@@ -771,7 +771,7 @@ html {
 html,
 body {
   height: 100%;
-  font-family: var(--font-family-sans-serif);
+  font-family: Times, "Times New Roman", Georgia, serif; KaiTi,"Microsoft YaHei", Georgia, sans, serif;;
   overflow-wrap: break-word;
 }
 body {
@@ -846,7 +846,7 @@ i.iconfont {
   --line-color: #eaecef;
   --navbar-bg-color: #2f4154;
   --navbar-text-color: #fff;
-  --subtitle-color: #fff;
+  --subtitle-color: #3e3e3e;
   --scrollbar-color: #c4c6c9;
   --scrollbar-hover-color: #a6a6a6;
   --button-bg-color: transparent;
@@ -871,7 +871,7 @@ i.iconfont {
     --line-color: #435266;
     --navbar-bg-color: #1f3144;
     --navbar-text-color: #d0d0d0;
-    --subtitle-color: #d0d0d0;
+    --subtitle-color: #3e3e3e;
     --scrollbar-color: #687582;
     --scrollbar-hover-color: #9da8b3;
     --button-bg-color: transparent;
@@ -907,7 +907,7 @@ i.iconfont {
     --line-color: #435266;
     --navbar-bg-color: #1f3144;
     --navbar-text-color: #d0d0d0;
-    --subtitle-color: #d0d0d0;
+    --subtitle-color: #3e3e3e;
     --scrollbar-color: #687582;
     --scrollbar-hover-color: #9da8b3;
     --button-bg-color: transparent;
@@ -1381,7 +1381,7 @@ figure.highlight td.code > pre {
 .markdown-body {
   font-size: 1rem;
   line-height: 1.6;
-  font-family: var(--font-family-sans-serif);
+  font-family: Times, "Times New Roman", Georgia, serif; KaiTi,"Microsoft YaHei", Georgia, sans, serif;;
   margin-bottom: 2rem;
   color: var(--post-text-color);
 }
