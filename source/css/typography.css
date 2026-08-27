@@ -1,0 +1,6 @@
+/* Cache-safe restoration of the typography used before the source migration. */
+html,
+body,
+.markdown-body {
+  font-family: Times, "Times New Roman", Georgia, serif;
+}

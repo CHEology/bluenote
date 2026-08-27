@@ -30,6 +30,7 @@ const required = [
   '2023/11/19/秋之纽约-2023-11/index.html',
   'css/home.css',
   'css/custom.css',
+  'css/typography.css',
   'js/site.js',
   'js/home.js'
 ];
@@ -57,7 +58,7 @@ const home = readFileSync(join(publicRoot, 'index.html'), 'utf8');
 for (const title of ['小蓝本', '布涅星', '秋之纽约_2023.11']) {
   if (!home.includes(title)) fail(`Home page does not contain post title: ${title}`);
 }
-for (const asset of ['/bluenote/css/home.css', '/bluenote/css/custom.css', '/bluenote/js/site.js']) {
+for (const asset of ['/bluenote/css/home.css', '/bluenote/css/custom.css', '/bluenote/css/typography.css', '/bluenote/js/site.js']) {
   if (!home.includes(asset)) fail(`Home page does not load custom asset: ${asset}`);
 }
 

@@ -27,6 +27,7 @@ fun_features:
 custom_css:
   - /css/home.css
   - /css/custom.css
+  - /css/typography.css
 
 custom_js:
   - /js/site.js
