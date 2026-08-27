@@ -35,49 +35,25 @@
     });
   }
 
-  function simplifyPostFooter() {
+  function removePostFooterMetadata() {
     var post = document.querySelector('article.post-content');
     if (!post) return;
 
     var tags = post.querySelector('.post-metas.my-3');
-    var license = post.querySelector('.license-box');
     var markdown = post.querySelector('.markdown-body');
     var divider = markdown ? markdown.nextElementSibling : null;
 
     if (tags) tags.remove();
 
-    if (!license && markdown) {
-      license = document.createElement('div');
-      markdown.insertAdjacentElement('afterend', license);
-    }
-
-    if (license) {
-      var titleSource = license.querySelector('.license-title > div:first-child');
-      var dateSource = license.querySelector('.license-meta-date > div:last-child');
-      var publishedTime = document.querySelector('.banner-text time[datetime]');
-      var title = document.createElement('div');
-      var date = document.createElement('time');
-
-      title.className = 'post-end-title';
-      title.textContent = titleSource ? titleSource.textContent.trim() : document.title.split(' - ')[0];
-      date.className = 'post-end-date';
-      date.textContent = isoDate(
-        publishedTime ? publishedTime.getAttribute('datetime') : (dateSource ? dateSource.textContent.trim() : '')
-      );
-
-      if (publishedTime) {
-        date.setAttribute('datetime', publishedTime.getAttribute('datetime'));
-      }
-
-      license.replaceChildren(title, date);
-      license.className = 'post-end-card my-3';
-    }
+    post.querySelectorAll('.post-end-card, .license-box').forEach(function(metadata) {
+      metadata.remove();
+    });
 
     if (divider && divider.tagName === 'HR') divider.remove();
   }
 
   document.addEventListener('DOMContentLoaded', function() {
-    simplifyPostFooter();
+    removePostFooterMetadata();
     preparePostPage();
   });
 })();

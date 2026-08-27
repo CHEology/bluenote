@@ -26,12 +26,12 @@ fun_features:
 
 custom_css:
   - /css/home.css
-  - /css/custom.css
+  - /css/custom.css?v=20260827-3
   - /css/literary-blocks.css?v=20260827-2
   - /css/typography.css
 
 custom_js:
-  - /js/site.js
+  - /js/site.js?v=20260827-3
   - /js/home.js
 
 navbar:
@@ -53,7 +53,7 @@ search:
 
 banner:
   random_img: false
-  parallax: true
+  parallax: false
   width_height_ratio: 1.0
 
 scroll_down_arrow:
