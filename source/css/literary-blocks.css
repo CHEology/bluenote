@@ -5,35 +5,51 @@
 }
 
 .post-page .markdown-body .literary-block--signal {
-  position: relative;
   max-width: 48rem;
   margin: 0 auto 2.5rem;
-  padding: 2.15rem 1.65rem 1.4rem;
+  padding: 1.75rem 1.65rem 1.6rem;
   background: rgba(99, 117, 131, 0.08);
-  border-left: 2px solid var(--post-link-color);
+  border: 1px solid var(--line-color);
 }
 
-.post-page .markdown-body .literary-block--signal::before {
-  position: absolute;
-  top: 0.75rem;
-  left: 1.65rem;
-  color: var(--post-link-color);
-  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
-  font-size: 0.67rem;
-  font-weight: 600;
-  letter-spacing: 0.16em;
-  content: "OPENING SIGNAL";
+.post-page .markdown-body .literary-block__section {
+  text-align: center;
 }
 
-.post-page .markdown-body .literary-block--signal p {
+.post-page .markdown-body .literary-block__section p {
   margin: 0;
   font-family: Times, "Times New Roman", Georgia, serif;
-  font-size: 1.03rem;
-  line-height: 1.82;
+  font-size: 1.06rem;
+  line-height: 1.75;
 }
 
-.post-page .markdown-body .literary-block--signal .literary-line {
-  display: block;
+.post-page .markdown-body .literary-block__section--opening p + p {
+  margin-top: 0.12rem;
+}
+
+.post-page .markdown-body .literary-block__divider {
+  width: 3.5rem;
+  margin: 1.35rem auto 1.25rem;
+  border-top: 1px solid var(--line-color);
+}
+
+.post-page .markdown-body .literary-block__section .literary-block__emphasis {
+  font-size: 1.11rem;
+  font-weight: 600;
+  letter-spacing: 0.075em;
+}
+
+.post-page .markdown-body .literary-block__section .literary-block__note {
+  margin-top: 0.65rem;
+  color: var(--sec-text-color);
+  font-family: "Songti SC", "Noto Serif CJK SC", "Source Han Serif SC", STSong, Georgia, serif;
+  font-size: 0.88rem;
+  line-height: 1.65;
+}
+
+.post-page .markdown-body .literary-block__title {
+  font-family: Times, "Times New Roman", Georgia, serif;
+  font-style: italic;
 }
 
 .post-page .markdown-body .literary-block--verse {
@@ -58,16 +74,19 @@
 
 @media (max-width: 767px) {
   .post-page .markdown-body .literary-block--signal {
+    padding-top: 1.45rem;
+    padding-bottom: 1.35rem;
     padding-right: 1.1rem;
     padding-left: 1.1rem;
   }
 
-  .post-page .markdown-body .literary-block--signal p {
-    font-size: 0.95rem;
+  .post-page .markdown-body .literary-block__section p {
+    font-size: 0.98rem;
   }
 
-  .post-page .markdown-body .literary-block--signal::before {
-    left: 1.1rem;
+  .post-page .markdown-body .literary-block__section .literary-block__emphasis {
+    font-size: 0.95rem;
+    letter-spacing: 0.02em;
   }
 
   .post-page .markdown-body .literary-block--verse {

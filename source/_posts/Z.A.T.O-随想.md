@@ -1,7 +1,7 @@
 ---
 title: Z.A.T.O 随想
 date: 2026-08-27 18:53:23
-updated: 2026-08-27 18:53:23
+updated: 2026-08-27 19:06:37
 tags:
   - 其他
 description: 在 I LOVE YOU 被破译出来后，感受到一些麻木。
@@ -10,10 +10,18 @@ index_img:
 ---
 
 <div class="literary-block literary-block--signal">
-  <p><span class="literary-line">OP - 「I call out, but my words collapse against the wall. / </span><span class="literary-line">My body is too soft. My outline is too blurry. / </span><span class="literary-line">Of course I can’t break through. / </span><span class="literary-line">I’m no more than a shadow. 」</span></p>
+  <div class="literary-block__section literary-block__section--opening">
+    <p>I call out, but my words collapse against the wall.</p>
+    <p>My body is too soft. My outline is too blurry.</p>
+    <p>Of course I can’t break through.</p>
+    <p>I’m no more than a shadow.</p>
+  </div>
+  <div class="literary-block__divider" aria-hidden="true"></div>
+  <div class="literary-block__section literary-block__section--ending">
+    <p class="literary-block__emphasis">I LOVE YOU. I LOVE YOU. I LOVE YOU.</p>
+    <p class="literary-block__note">以及画外音，标题中的 <span class="literary-block__title">I Love the world and Everything In It</span>。</p>
+  </div>
 </div>
-
-Ending - 「I LOVE YOU. I LOVE YOU. I LOVE YOU. 」以及画外音，标题中的 「I Love the world and Everything In It」。
 
 在 I LOVE YOU 被破译出来后，感受到一些麻木。无论是唯心的超级系、传递真正心声的电波，或是 “认清生活的真相后依然热爱它” ，在故事结构上都已属于无数次的老调重弹。然而，心里仍然有着沉重的郁结，有如极夜皑雪的重压。几乎是无意识地打开了ChatGPT，为怀疑提供确认。
 
