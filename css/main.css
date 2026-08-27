@@ -2173,3 +2173,63 @@ input[type=checkbox] {
     margin-left: 1rem;
   }
 }
+
+/* Compact article ending. Also covers pages generated with the legacy theme markup. */
+.post-content .post-metas.my-3 {
+  display: none;
+}
+.post-end-card,
+.post-content .license-box {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 2.75rem 0 1.5rem !important;
+  padding: 1rem 0.25rem;
+  overflow: visible;
+  color: var(--sec-text-color);
+  background: transparent !important;
+  border-top: 1px solid var(--line-color);
+  border-bottom: 1px solid var(--line-color);
+  border-radius: 0;
+  box-shadow: none;
+}
+.post-content .license-box .license-title,
+.post-content .license-box .license-meta,
+.post-content .license-box .license-meta-item,
+.post-content .license-box .license-meta-date {
+  margin: 0;
+  padding: 0;
+}
+.post-content .license-box .license-title > div:nth-child(2),
+.post-content .license-box .license-meta-item:not(.license-meta-date),
+.post-content .license-box .license-meta-date > div:first-child,
+.post-content .license-box .license-icon {
+  display: none;
+}
+.post-content .license-box .license-meta {
+  display: block;
+}
+.post-end-title,
+.post-content .license-box .license-title > div:first-child {
+  color: var(--text-color);
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.5;
+}
+.post-end-date,
+.post-content .license-box .license-meta-date > div:last-child {
+  color: var(--sec-text-color);
+  font-size: 0.82rem;
+  line-height: 1.5;
+  white-space: nowrap;
+}
+@media (max-width: 575px) {
+  .post-end-card,
+  .post-content .license-box {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 0.85rem 0.1rem;
+  }
+}
