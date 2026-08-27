@@ -5,7 +5,6 @@ updated: 2026-08-27 19:06:37
 tags:
   - 其他
 description: 在 I LOVE YOU 被破译出来后，感受到一些麻木。
-banner_img: /images/theme_fluid_bg/videoCover-穿梭在暴雨中的武汉杨泗港大桥..1213717019.jpeg
 index_img:
 ---
 

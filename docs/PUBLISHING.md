@@ -32,7 +32,6 @@ updated: 2026-08-27 14:30:00
 tags:
   - 标签
 description: 用于首页和搜索结果的一至两句话摘要。
-banner_img: /images/theme_fluid_bg/文章头图.jpg
 index_img:
 ---
 ```
@@ -44,7 +43,7 @@ index_img:
 - 修改正文后同步更新 `updated`；修正错别字可酌情不改。
 - `tags` 使用简短、稳定的主题词。标签页自动生成，导航栏不单独展示标签入口。
 - 只有标题与期望 URL 不一致时才添加 `slug`；已发布文章不得随意修改 `date` 或 `slug`，否则旧链接会失效。
-- `banner_img` 可省略并使用站点默认头图。
+- 内容页统一使用无图编辑式页眉，不设置 `banner_img`；首页继续保留站点视觉封面。
 - `index_img` 留空时首页使用纯文字卡片，这是 Blue Note 当前的默认设计。
 
 ## 3. 图片标准

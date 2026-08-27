@@ -26,7 +26,7 @@ fun_features:
 
 custom_css:
   - /css/home.css
-  - /css/custom.css?v=20260827-4
+  - /css/custom.css?v=20260827-5
   - /css/literary-blocks.css?v=20260827-2
   - /css/typography.css
 
@@ -81,9 +81,6 @@ index:
     tag: false
 
 post:
-  banner_img: /images/theme_fluid_bg/videoCover-穿梭在暴雨中的武汉杨泗港大桥..1213717019.jpeg
-  banner_img_height: 48
-  banner_mask_alpha: 0.34
   default_index_img:
   meta:
     author:
@@ -108,20 +105,16 @@ post:
   copyright:
     enable: false
 
-archive:
-  banner_img: /images/theme_fluid_bg/videoCover-穿梭在暴雨中的武汉杨泗港大桥..1213717019.jpeg
+archive: {}
 
 category:
   enable: false
 
 tag:
   enable: true
-  banner_img: /images/theme_fluid_bg/videoCover-穿梭在暴雨中的武汉杨泗港大桥..1213717019.jpeg
 
 about:
   enable: true
-  banner_img: /images/theme_fluid_bg/IMG_2749 - frame at 0m1s.jpg
-  banner_img_height: 60
   avatar: /images/theme_fluid_bg/机动警察 和平保卫战 猫 头像.png
   name: cheology
   intro: 语言的边界划定思绪的历史与领地。

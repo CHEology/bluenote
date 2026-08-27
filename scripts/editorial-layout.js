@@ -17,6 +17,10 @@ hexo.extend.filter.register('after_render:html', function applyEditorialLayout(h
   }
 
   if (classes.length > 0) {
+    html = html.replace(
+      /(<div id="banner" class="banner"[^>]*?)\s+style="background:[^"]*"/,
+      '$1'
+    );
     html = html.replace('<body>', '<body class="' + classes.join(' ') + '">');
   }
 

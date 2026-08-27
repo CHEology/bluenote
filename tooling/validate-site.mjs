@@ -65,16 +65,25 @@ for (const asset of ['/bluenote/css/home.css', '/bluenote/css/custom.css', '/blu
   if (!home.includes(asset)) fail(`Home page does not load custom asset: ${asset}`);
 }
 if (home.includes('href="/bluenote/links/"')) fail('Home navigation still contains Links');
+if (!/<div id="banner" class="banner"[^>]*style="background: url/.test(home)) {
+  fail('Home page no longer contains its visual cover');
+}
 
 const archive = readFileSync(join(publicRoot, 'archives', 'index.html'), 'utf8');
 if (!archive.includes('<body class="editorial-page listing-page">')) {
   fail('Archives page does not use the shared editorial layout');
 }
 if (archive.includes('posts in total')) fail('Archives page still contains the post total');
+if (/<div id="banner" class="banner"[^>]*style=/.test(archive)) {
+  fail('Archives page still contains an image masthead');
+}
 
 const about = readFileSync(join(publicRoot, 'about', 'index.html'), 'utf8');
 if (!about.includes('<body class="editorial-page about-page">')) {
   fail('About page does not use the shared editorial layout');
+}
+if (/<div id="banner" class="banner"[^>]*style=/.test(about)) {
+  fail('About page still contains an image masthead');
 }
 
 const htmlFiles = walk(publicRoot).filter((path) => extname(path) === '.html');
@@ -88,6 +97,9 @@ for (const generatedPost of generatedPosts) {
   const html = readFileSync(generatedPost, 'utf8');
   if (!html.includes('<body class="editorial-page post-page">')) {
     fail(`Post does not use the shared editorial layout: ${relative(publicRoot, generatedPost)}`);
+  }
+  if (/<div id="banner" class="banner"[^>]*style=/.test(html)) {
+    fail(`Post still contains an image masthead: ${relative(publicRoot, generatedPost)}`);
   }
 }
 
