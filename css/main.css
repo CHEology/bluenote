@@ -2117,47 +2117,59 @@ input[type=checkbox] {
 
 /* Continuous editorial layout for articles. */
 body.post-page {
-  --body-bg-color: #f3f1ec;
+  --body-bg-color: #eee9df;
   --board-bg-color: transparent;
-  --text-color: #454b52;
-  --sec-text-color: #777d83;
-  --post-text-color: #3f454c;
-  --post-heading-color: #30363d;
-  --post-link-color: #526b82;
-  --link-hover-color: #385b78;
-  --link-hover-bg-color: rgba(82,107,130,0.08);
-  --line-color: rgba(63,69,76,0.18);
-  --navbar-bg-color: #263543;
+  --text-color: #3e3a34;
+  --sec-text-color: #777168;
+  --post-text-color: #3e3a34;
+  --post-heading-color: #2d2b27;
+  --post-link-color: #637583;
+  --link-hover-color: #435d70;
+  --link-hover-bg-color: rgba(99,117,131,0.08);
+  --line-color: rgba(62,58,52,0.16);
+  --navbar-bg-color: #2c353c;
+}
+
+.post-page .banner .mask {
+  background-color: rgba(46,45,42,0.34) !important;
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-user-color-scheme]) body.post-page {
-    --body-bg-color: #2c3540;
+    --body-bg-color: #302f2d;
     --board-bg-color: transparent;
-    --text-color: #deddd7;
-    --sec-text-color: #a9adb0;
-    --post-text-color: #d8d7d1;
-    --post-heading-color: #e7e5de;
-    --post-link-color: #afc1cf;
-    --link-hover-color: #ccd7df;
-    --link-hover-bg-color: rgba(175,193,207,0.08);
-    --line-color: rgba(222,221,215,0.16);
-    --navbar-bg-color: #26323d;
+    --text-color: #dedad2;
+    --sec-text-color: #aaa59d;
+    --post-text-color: #d8d4cc;
+    --post-heading-color: #e8e3da;
+    --post-link-color: #b8c0c5;
+    --link-hover-color: #d0d5d8;
+    --link-hover-bg-color: rgba(184,192,197,0.08);
+    --line-color: rgba(222,218,210,0.16);
+    --navbar-bg-color: #282a2b;
+  }
+
+  :root:not([data-user-color-scheme]) body.post-page .banner .mask {
+    background-color: rgba(20,20,19,0.38) !important;
   }
 }
 
 [data-user-color-scheme="dark"] body.post-page {
-  --body-bg-color: #2c3540;
+  --body-bg-color: #302f2d;
   --board-bg-color: transparent;
-  --text-color: #deddd7;
-  --sec-text-color: #a9adb0;
-  --post-text-color: #d8d7d1;
-  --post-heading-color: #e7e5de;
-  --post-link-color: #afc1cf;
-  --link-hover-color: #ccd7df;
-  --link-hover-bg-color: rgba(175,193,207,0.08);
-  --line-color: rgba(222,221,215,0.16);
-  --navbar-bg-color: #26323d;
+  --text-color: #dedad2;
+  --sec-text-color: #aaa59d;
+  --post-text-color: #d8d4cc;
+  --post-heading-color: #e8e3da;
+  --post-link-color: #b8c0c5;
+  --link-hover-color: #d0d5d8;
+  --link-hover-bg-color: rgba(184,192,197,0.08);
+  --line-color: rgba(222,218,210,0.16);
+  --navbar-bg-color: #282a2b;
+}
+
+[data-user-color-scheme="dark"] body.post-page .banner .mask {
+  background-color: rgba(20,20,19,0.38) !important;
 }
 
 .post-page .header-inner {
