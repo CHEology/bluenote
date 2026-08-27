@@ -27,6 +27,7 @@ fun_features:
 custom_css:
   - /css/home.css
   - /css/custom.css
+  - /css/literary-blocks.css
   - /css/typography.css
 
 custom_js:

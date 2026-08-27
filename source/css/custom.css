@@ -146,64 +146,6 @@ body.post-page {
   margin-bottom: 1.15em;
 }
 
-/* Reusable literary blocks for quotations and verse. */
-.post-page .markdown-body .literary-block {
-  box-sizing: border-box;
-  color: var(--post-text-color);
-}
-
-.post-page .markdown-body .literary-block--signal {
-  position: relative;
-  max-width: 48rem;
-  margin: 0 auto 2.5rem;
-  padding: 2.15rem 1.65rem 1.4rem;
-  background: rgba(99, 117, 131, 0.08);
-  border-left: 2px solid var(--post-link-color);
-}
-
-.post-page .markdown-body .literary-block--signal::before {
-  position: absolute;
-  top: 0.75rem;
-  left: 1.65rem;
-  color: var(--post-link-color);
-  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
-  font-size: 0.67rem;
-  font-weight: 600;
-  letter-spacing: 0.16em;
-  content: "OPENING SIGNAL";
-}
-
-.post-page .markdown-body .literary-block--signal p {
-  margin: 0;
-  font-family: Times, "Times New Roman", Georgia, serif;
-  font-size: 1.03rem;
-  line-height: 1.82;
-}
-
-.post-page .markdown-body .literary-block--signal .literary-line {
-  display: block;
-}
-
-.post-page .markdown-body .literary-block--verse {
-  max-width: 34rem;
-  margin: 2.75rem auto 1rem;
-  padding: 2rem 1rem;
-  text-align: center;
-  border-top: 1px solid var(--line-color);
-  border-bottom: 1px solid var(--line-color);
-}
-
-.post-page .markdown-body .literary-block--verse p {
-  margin: 0;
-  font-family: Times, "Times New Roman", Georgia, serif;
-  font-size: 1.08rem;
-  line-height: 2.05;
-}
-
-.post-page .markdown-body .literary-block--verse p:nth-child(5) {
-  margin-top: 0.85rem;
-}
-
 .post-page .post-end-card,
 .post-page .post-content .license-box {
   border-color: var(--line-color);
@@ -259,21 +201,4 @@ body.post-page {
     padding-right: 1.5rem;
   }
 
-  .post-page .markdown-body .literary-block--signal {
-    padding-right: 1.1rem;
-    padding-left: 1.1rem;
-  }
-
-  .post-page .markdown-body .literary-block--signal p {
-    font-size: 0.95rem;
-  }
-
-  .post-page .markdown-body .literary-block--signal::before {
-    left: 1.1rem;
-  }
-
-  .post-page .markdown-body .literary-block--verse {
-    padding-right: 0.25rem;
-    padding-left: 0.25rem;
-  }
 }
