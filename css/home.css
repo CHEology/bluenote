@@ -48,17 +48,12 @@ body.home-page {
 }
 
 .home-page .scroll-down-bar {
-  transition: opacity 260ms ease;
+  display: none !important;
 }
 
 .home-page.home-page--scrolled .banner-text {
   opacity: 0;
   transform: translateY(-1.25rem);
-}
-
-.home-page.home-page--scrolled .scroll-down-bar {
-  opacity: 0;
-  pointer-events: none;
 }
 
 .home-page main {
@@ -261,7 +256,6 @@ body.home-page {
 
 @media (prefers-reduced-motion: reduce) {
   .home-page .banner-text,
-  .home-page .scroll-down-bar,
   .home-page .index-card {
     transition: none;
   }
