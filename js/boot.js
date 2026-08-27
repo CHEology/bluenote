@@ -53,7 +53,15 @@ Fluid.boot.simplifyPostFooter = function() {
   }
 };
 
+Fluid.boot.removeTagNavigation = function() {
+  var tagLink = document.querySelector('.navbar-nav a[href="/bluenote/tags/"]');
+  var navItem = tagLink ? tagLink.closest('li') : null;
+
+  if (navItem) navItem.remove();
+};
+
 document.addEventListener('DOMContentLoaded', function() {
   Fluid.boot.registerEvents();
   Fluid.boot.simplifyPostFooter();
+  Fluid.boot.removeTagNavigation();
 });

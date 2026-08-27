@@ -4,6 +4,12 @@
     return;
   }
 
+  Array.prototype.slice.call(document.querySelectorAll('.index-card .post-meta')).forEach(function(meta) {
+    if (meta.querySelector('.icon-tags')) {
+      meta.remove();
+    }
+  });
+
   var ticking = false;
 
   var update = function() {
