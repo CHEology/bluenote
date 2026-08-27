@@ -2132,32 +2132,32 @@ body.post-page {
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-user-color-scheme]) body.post-page {
-    --body-bg-color: #20262d;
+    --body-bg-color: #2c3540;
     --board-bg-color: transparent;
-    --text-color: #cfcec9;
-    --sec-text-color: #94999d;
-    --post-text-color: #cac9c4;
-    --post-heading-color: #deddd8;
-    --post-link-color: #9eb1c1;
-    --link-hover-color: #bbc9d4;
-    --link-hover-bg-color: rgba(158,177,193,0.08);
-    --line-color: rgba(207,206,201,0.16);
-    --navbar-bg-color: #202b35;
+    --text-color: #deddd7;
+    --sec-text-color: #a9adb0;
+    --post-text-color: #d8d7d1;
+    --post-heading-color: #e7e5de;
+    --post-link-color: #afc1cf;
+    --link-hover-color: #ccd7df;
+    --link-hover-bg-color: rgba(175,193,207,0.08);
+    --line-color: rgba(222,221,215,0.16);
+    --navbar-bg-color: #26323d;
   }
 }
 
 [data-user-color-scheme="dark"] body.post-page {
-  --body-bg-color: #20262d;
+  --body-bg-color: #2c3540;
   --board-bg-color: transparent;
-  --text-color: #cfcec9;
-  --sec-text-color: #94999d;
-  --post-text-color: #cac9c4;
-  --post-heading-color: #deddd8;
-  --post-link-color: #9eb1c1;
-  --link-hover-color: #bbc9d4;
-  --link-hover-bg-color: rgba(158,177,193,0.08);
-  --line-color: rgba(207,206,201,0.16);
-  --navbar-bg-color: #202b35;
+  --text-color: #deddd7;
+  --sec-text-color: #a9adb0;
+  --post-text-color: #d8d7d1;
+  --post-heading-color: #e7e5de;
+  --post-link-color: #afc1cf;
+  --link-hover-color: #ccd7df;
+  --link-hover-bg-color: rgba(175,193,207,0.08);
+  --line-color: rgba(222,221,215,0.16);
+  --navbar-bg-color: #26323d;
 }
 
 .post-page .header-inner {
@@ -2176,11 +2176,14 @@ body.post-page {
 }
 
 .post-page .markdown-body {
-  line-height: 1.72;
+  font-family: "Songti SC", "Noto Serif CJK SC", "Source Han Serif SC", STSong, Georgia, serif;
+  font-size: 1.0625rem;
+  font-weight: 400;
+  line-height: 1.78;
 }
 
 .post-page .markdown-body p {
-  margin-bottom: 1.1em;
+  margin-bottom: 1.15em;
 }
 
 .post-page .post-end-card,
