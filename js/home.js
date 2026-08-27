@@ -4,6 +4,12 @@
     return;
   }
 
+  var cards = Array.prototype.slice.call(document.querySelectorAll('.index-card'));
+
+  cards.slice(12).forEach(function(card) {
+    card.hidden = true;
+  });
+
   Array.prototype.slice.call(document.querySelectorAll('.index-card .post-meta')).forEach(function(meta) {
     if (meta.querySelector('.icon-tags')) {
       meta.remove();
