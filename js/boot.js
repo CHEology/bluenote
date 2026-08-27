@@ -60,8 +60,15 @@ Fluid.boot.removeTagNavigation = function() {
   if (navItem) navItem.remove();
 };
 
+Fluid.boot.removeSiteFooter = function() {
+  var footer = document.querySelector('body > footer');
+
+  if (footer) footer.remove();
+};
+
 document.addEventListener('DOMContentLoaded', function() {
   Fluid.boot.registerEvents();
   Fluid.boot.simplifyPostFooter();
   Fluid.boot.removeTagNavigation();
+  Fluid.boot.removeSiteFooter();
 });

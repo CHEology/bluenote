@@ -1,5 +1,12 @@
-.home-page {
+html.home-root,
+html:has(body.home-page),
+body.home-page {
   background: #061521;
+  overscroll-behavior-y: none;
+}
+
+.home-page {
+  min-height: 100%;
 }
 
 .home-page header {
@@ -59,12 +66,7 @@
   z-index: 2;
   min-height: 100vh;
   padding: clamp(4rem, 9vw, 8rem) 0 clamp(7rem, 12vw, 12rem);
-  background: linear-gradient(
-    180deg,
-    rgba(4, 17, 27, 0.02) 0%,
-    rgba(4, 17, 27, 0.28) 18rem,
-    rgba(4, 17, 27, 0.72) 100%
-  );
+  background: transparent;
 }
 
 .home-page main > .container {
@@ -97,7 +99,7 @@
   grid-auto-flow: column;
   gap: clamp(0.9rem, 1.6vw, 1.25rem);
   align-items: start;
-  direction: rtl;
+  direction: ltr;
   flex: 0 0 100%;
   width: 100%;
   max-width: none;
@@ -223,14 +225,7 @@
 }
 
 .home-page footer {
-  position: relative;
-  z-index: 2;
-  color: rgba(216, 229, 235, 0.74);
-  background: #07141d;
-}
-
-.home-page footer a {
-  color: rgba(226, 237, 241, 0.86);
+  display: none !important;
 }
 
 .home-page #scroll-top-button {

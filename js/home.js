@@ -4,6 +4,8 @@
     return;
   }
 
+  document.documentElement.classList.add('home-root');
+
   var cards = Array.prototype.slice.call(document.querySelectorAll('.index-card'));
 
   cards.slice(12).forEach(function(card) {
