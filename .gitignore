@@ -1,0 +1,9 @@
+node_modules/
+public/
+db.json
+.deploy_git/
+
+__pycache__/
+*.py[cod]
+.DS_Store
+npm-debug.log*

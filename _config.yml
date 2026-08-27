@@ -1,0 +1,78 @@
+# Blue Note / Hexo site configuration
+# Theme-specific settings live in _config.fluid.yml.
+
+title: Blue Note
+subtitle: Dream to be a tranquil spectator.
+description: 语言的边界划定思绪的历史与领地。
+keywords:
+author: 陆城
+language: en
+timezone: America/New_York
+
+url: https://cheology.github.io/bluenote
+root: /bluenote/
+permalink: :year/:month/:day/:title/
+permalink_defaults:
+pretty_urls:
+  trailing_index: false
+  trailing_html: false
+
+source_dir: source
+public_dir: public
+tag_dir: tags
+archive_dir: archives
+category_dir: categories
+code_dir: downloads/code
+i18n_dir: :lang
+skip_render:
+
+new_post_name: :title.md
+default_layout: post
+titlecase: false
+external_link:
+  enable: true
+  field: site
+  exclude:
+filename_case: 0
+render_drafts: false
+post_asset_folder: false
+relative_link: false
+future: true
+syntax_highlighter: highlight.js
+highlight:
+  line_number: true
+  auto_detect: false
+  tab_replace: ""
+  wrap: true
+  hljs: false
+
+index_generator:
+  path: ""
+  per_page: 12
+  order_by: -date
+
+default_category: uncategorized
+category_map:
+tag_map:
+
+meta_generator: true
+date_format: YYYY-MM-DD
+time_format: HH:mm:ss
+updated_option: date
+
+per_page: 10
+pagination_dir: page
+
+theme: fluid
+
+search:
+  path: local-search.xml
+  field: post
+  content: true
+  format: html
+
+include:
+  - .nojekyll
+
+deploy:
+  type: ""

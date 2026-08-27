@@ -1,0 +1,142 @@
+# Blue Note theme overrides. Unspecified options inherit Fluid defaults.
+
+favicon: /images/theme_fluid_bg/机动警察 和平保卫战 猫 头像.png
+apple_touch_icon: /images/theme_fluid_bg/机动警察 和平保卫战 猫 头像.png
+force_https: true
+
+dark_mode:
+  enable: true
+  default: auto
+
+fun_features:
+  typing:
+    enable: true
+    typeSpeed: 70
+    cursorChar: "_"
+    loop: false
+    scope:
+      - home
+
+custom_css:
+  - /css/home.css
+  - /css/custom.css
+
+custom_js:
+  - /js/site.js
+  - /js/home.js
+
+navbar:
+  blog_title: Blue Note
+  ground_glass:
+    enable: false
+  menu:
+    - { key: "home", link: "/", icon: "iconfont icon-home-fill" }
+    - { key: "archive", link: "/archives/", icon: "iconfont icon-archive-fill" }
+    - { key: "about", link: "/about/", icon: "iconfont icon-user-fill" }
+    - { key: "links", link: "/links/", icon: "iconfont icon-link-fill" }
+
+search:
+  enable: true
+  path: /local-search.xml
+  generate_path: /local-search.xml
+  field: post
+  content: true
+
+banner:
+  random_img: false
+  parallax: true
+  width_height_ratio: 1.0
+
+scroll_down_arrow:
+  enable: false
+
+footer:
+  content: ""
+  statistics:
+    enable: false
+  beian:
+    enable: false
+
+index:
+  banner_img: /images/theme_fluid_bg/2021.11.jpg
+  banner_img_height: 100
+  banner_mask_alpha: 0.3
+  slogan:
+    enable: true
+    text: Dream to be a tranquil spectator.
+  auto_excerpt:
+    enable: true
+  post_url_target: _self
+  post_meta:
+    date: true
+    category: false
+    tag: false
+
+post:
+  banner_img: /images/theme_fluid_bg/videoCover-穿梭在暴雨中的武汉杨泗港大桥..1213717019.jpeg
+  banner_img_height: 48
+  banner_mask_alpha: 0.34
+  default_index_img:
+  meta:
+    author:
+      enable: false
+    date:
+      enable: true
+      format: YYYY-MM-DD
+    wordcount:
+      enable: false
+    min2read:
+      enable: false
+    views:
+      enable: false
+  category_bar:
+    enable: false
+  toc:
+    enable: true
+    expand_all: true
+    placement: right
+    headingSelector: h1,h2,h3,h4,h5,h6
+    collapseDepth: 0
+  copyright:
+    enable: false
+
+archive:
+  banner_img: /images/theme_fluid_bg/videoCover-穿梭在暴雨中的武汉杨泗港大桥..1213717019.jpeg
+
+category:
+  enable: false
+
+tag:
+  enable: true
+  banner_img: /images/theme_fluid_bg/videoCover-穿梭在暴雨中的武汉杨泗港大桥..1213717019.jpeg
+
+about:
+  enable: true
+  banner_img: /images/theme_fluid_bg/IMG_2749 - frame at 0m1s.jpg
+  banner_img_height: 60
+  avatar: /images/theme_fluid_bg/机动警察 和平保卫战 猫 头像.png
+  name: cheology
+  intro: 语言的边界划定思绪的历史与领地。
+  icons: []
+
+links:
+  enable: true
+  banner_img: /images/theme_fluid_bg/videoCover-穿梭在暴雨中的武汉杨泗港大桥..1213717019.jpeg
+  items:
+    - title: Fluid Blog
+      intro: 主题博客
+      link: https://hexo.fluid-dev.com/
+      avatar: /img/fluid.png
+    - title: Fluid Docs
+      intro: 主题使用指南
+      link: https://hexo.fluid-dev.com/docs/
+      avatar: /img/fluid.png
+    - title: Fluid Repo
+      intro: 主题 GitHub 仓库
+      link: https://github.com/fluid-dev/hexo-theme-fluid
+      avatar: /img/fluid.png
+  onerror_avatar: /img/avatar.png
+
+page404:
+  enable: true
+  banner_img: /images/theme_fluid_bg/videoCover-穿梭在暴雨中的武汉杨泗港大桥..1213717019.jpeg
