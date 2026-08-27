@@ -2114,3 +2114,127 @@ input[type=checkbox] {
     padding: 0.85rem 0.1rem;
   }
 }
+
+/* Continuous editorial layout for articles. */
+body.post-page {
+  --body-bg-color: #f3f1ec;
+  --board-bg-color: transparent;
+  --text-color: #454b52;
+  --sec-text-color: #777d83;
+  --post-text-color: #3f454c;
+  --post-heading-color: #30363d;
+  --post-link-color: #526b82;
+  --link-hover-color: #385b78;
+  --link-hover-bg-color: rgba(82,107,130,0.08);
+  --line-color: rgba(63,69,76,0.18);
+  --navbar-bg-color: #263543;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-user-color-scheme]) body.post-page {
+    --body-bg-color: #20262d;
+    --board-bg-color: transparent;
+    --text-color: #cfcec9;
+    --sec-text-color: #94999d;
+    --post-text-color: #cac9c4;
+    --post-heading-color: #deddd8;
+    --post-link-color: #9eb1c1;
+    --link-hover-color: #bbc9d4;
+    --link-hover-bg-color: rgba(158,177,193,0.08);
+    --line-color: rgba(207,206,201,0.16);
+    --navbar-bg-color: #202b35;
+  }
+}
+
+[data-user-color-scheme="dark"] body.post-page {
+  --body-bg-color: #20262d;
+  --board-bg-color: transparent;
+  --text-color: #cfcec9;
+  --sec-text-color: #94999d;
+  --post-text-color: #cac9c4;
+  --post-heading-color: #deddd8;
+  --post-link-color: #9eb1c1;
+  --link-hover-color: #bbc9d4;
+  --link-hover-bg-color: rgba(158,177,193,0.08);
+  --line-color: rgba(207,206,201,0.16);
+  --navbar-bg-color: #202b35;
+}
+
+.post-page .header-inner {
+  height: 48vh !important;
+  min-height: 360px;
+  max-height: 520px;
+}
+
+.post-page #board {
+  margin-top: 0 !important;
+  padding: 3.75rem 0 4rem;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.post-page .markdown-body {
+  line-height: 1.72;
+}
+
+.post-page .markdown-body p {
+  margin-bottom: 1.1em;
+}
+
+.post-page .post-end-card,
+.post-page .post-content .license-box {
+  border-color: var(--line-color);
+}
+
+.photo-post main .side-col {
+  display: none !important;
+}
+
+.photo-post main > .container-fluid > .row > .col-lg-8 {
+  flex: 0 0 100%;
+  max-width: 100%;
+}
+
+.photo-post .post-content {
+  max-width: 1080px;
+  padding-left: 3rem;
+  padding-right: 3rem;
+}
+
+.photo-post .markdown-body > p:first-child {
+  max-width: 760px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.photo-post .markdown-body p > img,
+.photo-post .markdown-body p > a > img,
+.photo-post .markdown-body figure > img,
+.photo-post .markdown-body figure > a > img {
+  width: 100%;
+  max-width: 100%;
+  margin: 3rem auto 0;
+  border-radius: 2px;
+  box-shadow: none;
+}
+
+.photo-post .markdown-body figcaption.image-caption {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .post-page .header-inner {
+    min-height: 320px;
+  }
+
+  .post-page #board {
+    padding-top: 2.75rem;
+  }
+
+  .photo-post .post-content {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}

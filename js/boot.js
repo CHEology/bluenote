@@ -17,6 +17,38 @@ Fluid.boot.refresh = function() {
   Fluid.events.refresh();
 };
 
+Fluid.boot.preparePostPage = function() {
+  var post = document.querySelector('article.post-content');
+  if (!post) return;
+
+  document.body.classList.add('post-page');
+
+  if (post.querySelectorAll('.markdown-body img').length >= 3) {
+    document.body.classList.add('photo-post');
+  }
+
+  var details = document.querySelector('.banner-text > .mt-1');
+  if (details) details.remove();
+
+  document.querySelectorAll('.banner-text time[datetime], .post-end-date[datetime]').forEach(function(time) {
+    var date = time.getAttribute('datetime').split(' ')[0];
+    if (date) time.textContent = date;
+  });
+
+  document.querySelectorAll('figcaption.image-caption').forEach(function(caption) {
+    if (/\.(?:avif|gif|jpe?g|png|webp)$/i.test(caption.textContent.trim())) {
+      caption.remove();
+    }
+  });
+
+  document.querySelectorAll('a.fancybox[data-caption]').forEach(function(link) {
+    if (/\.(?:avif|gif|jpe?g|png|webp)$/i.test(link.getAttribute('data-caption').trim())) {
+      link.removeAttribute('data-caption');
+      link.removeAttribute('title');
+    }
+  });
+};
+
 Fluid.boot.simplifyPostFooter = function() {
   var post = document.querySelector('article.post-content');
   if (!post) return;
@@ -69,6 +101,7 @@ Fluid.boot.removeSiteFooter = function() {
 document.addEventListener('DOMContentLoaded', function() {
   Fluid.boot.registerEvents();
   Fluid.boot.simplifyPostFooter();
+  Fluid.boot.preparePostPage();
   Fluid.boot.removeTagNavigation();
   Fluid.boot.removeSiteFooter();
 });
