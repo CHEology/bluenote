@@ -22,7 +22,6 @@ const required = [
   'index.html',
   '404.html',
   'about/index.html',
-  'links/index.html',
   'archives/index.html',
   'local-search.xml',
   '2023/07/31/小蓝本/index.html',
@@ -37,6 +36,10 @@ const required = [
 
 for (const path of required) {
   if (!existsSync(join(publicRoot, path))) fail(`Missing generated file: ${path}`);
+}
+
+if (existsSync(join(publicRoot, 'links', 'index.html'))) {
+  fail('Links page must remain disabled');
 }
 
 const markdownPosts = readdirSync(sourcePosts).filter((name) => name.endsWith('.md'));
@@ -61,6 +64,18 @@ for (const title of ['小蓝本', '布涅星', '秋之纽约_2023.11']) {
 for (const asset of ['/bluenote/css/home.css', '/bluenote/css/custom.css', '/bluenote/css/typography.css', '/bluenote/js/site.js']) {
   if (!home.includes(asset)) fail(`Home page does not load custom asset: ${asset}`);
 }
+if (home.includes('href="/bluenote/links/"')) fail('Home navigation still contains Links');
+
+const archive = readFileSync(join(publicRoot, 'archives', 'index.html'), 'utf8');
+if (!archive.includes('<body class="editorial-page listing-page">')) {
+  fail('Archives page does not use the shared editorial layout');
+}
+if (archive.includes('posts in total')) fail('Archives page still contains the post total');
+
+const about = readFileSync(join(publicRoot, 'about', 'index.html'), 'utf8');
+if (!about.includes('<body class="editorial-page about-page">')) {
+  fail('About page does not use the shared editorial layout');
+}
 
 const htmlFiles = walk(publicRoot).filter((path) => extname(path) === '.html');
 const generatedPosts = htmlFiles.filter((path) =>
@@ -68,6 +83,12 @@ const generatedPosts = htmlFiles.filter((path) =>
 );
 if (generatedPosts.length !== markdownPosts.length) {
   fail(`Generated ${generatedPosts.length} post pages from ${markdownPosts.length} Markdown posts`);
+}
+for (const generatedPost of generatedPosts) {
+  const html = readFileSync(generatedPost, 'utf8');
+  if (!html.includes('<body class="editorial-page post-page">')) {
+    fail(`Post does not use the shared editorial layout: ${relative(publicRoot, generatedPost)}`);
+  }
 }
 
 const localReference = /(?:href|src)=["'](\/bluenote\/[^"'#?]*)/g;

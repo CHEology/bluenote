@@ -3,6 +3,31 @@
     return (value || '').split(/[ T]/)[0];
   }
 
+  function prepareEditorialPage() {
+    var post = document.querySelector('article.post-content');
+    var listing = document.querySelector('#board .list-group');
+    var page = document.querySelector('#board .page-content');
+
+    if (!post && !listing && !page) return;
+
+    document.body.classList.add('editorial-page');
+
+    if (listing) {
+      document.body.classList.add('listing-page');
+
+      var total = listing.querySelector('.h4');
+      if (total && total.parentElement === listing) {
+        var divider = total.nextElementSibling;
+        if (divider && divider.tagName === 'HR') divider.remove();
+        total.remove();
+      }
+    }
+
+    if (document.querySelector('.about-info')) {
+      document.body.classList.add('about-page');
+    }
+  }
+
   function preparePostPage() {
     var post = document.querySelector('article.post-content');
     if (!post) return;
@@ -53,6 +78,7 @@
   }
 
   document.addEventListener('DOMContentLoaded', function() {
+    prepareEditorialPage();
     removePostFooterMetadata();
     preparePostPage();
   });

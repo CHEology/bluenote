@@ -13,9 +13,9 @@ Blue Note 是一个以 Markdown 为唯一文章源、由 Hexo 构建并通过 Gi
 
 2026-08-27 已完成从“只保存生成后 HTML”到“保存 Markdown 源码并自动构建”的迁移：
 
-- 现有 3 篇文章已恢复到 `source/_posts/*.md`。
+- 现有文章均维护在 `source/_posts/*.md`。
 - 文章日期、URL、标签、图片链接和正文内容均已保留。
-- 首页网格、文章阅读配色、宽版图集和 About 页面定制已迁移到源码层。
+- 首页网格、统一内容页版式、文章阅读配色和宽版图集均已迁移到源码层。
 - 构建产物统一写入 `public/`，不再提交到 Git。
 - 每次推送 `master` 都会由 GitHub Actions 重新构建、检查并发布。
 - 本地验证会检查必需页面、文章数量和全部站内资源链接。
@@ -31,8 +31,8 @@ Blue Note 是一个以 Markdown 为唯一文章源、由 Hexo 构建并通过 Gi
 │   ├── images/          # 站点及文章图片
 │   ├── css/             # Blue Note 自定义样式
 │   ├── js/              # Blue Note 自定义交互
-│   ├── about/           # About 页面
-│   └── links/           # Links 页面
+│   └── about/           # About 页面
+├── scripts/             # 构建期页面模板统一处理
 ├── scaffolds/post.md    # 新文章模板
 ├── tooling/             # 构建结果校验
 ├── _config.yml          # Hexo 站点配置

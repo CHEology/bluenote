@@ -26,12 +26,12 @@ fun_features:
 
 custom_css:
   - /css/home.css
-  - /css/custom.css?v=20260827-3
+  - /css/custom.css?v=20260827-4
   - /css/literary-blocks.css?v=20260827-2
   - /css/typography.css
 
 custom_js:
-  - /js/site.js?v=20260827-3
+  - /js/site.js?v=20260827-4
   - /js/home.js
 
 navbar:
@@ -42,7 +42,6 @@ navbar:
     - { key: "home", link: "/", icon: "iconfont icon-home-fill" }
     - { key: "archive", link: "/archives/", icon: "iconfont icon-archive-fill" }
     - { key: "about", link: "/about/", icon: "iconfont icon-user-fill" }
-    - { key: "links", link: "/links/", icon: "iconfont icon-link-fill" }
 
 search:
   enable: true
@@ -129,22 +128,7 @@ about:
   icons: []
 
 links:
-  enable: true
-  banner_img: /images/theme_fluid_bg/videoCover-穿梭在暴雨中的武汉杨泗港大桥..1213717019.jpeg
-  items:
-    - title: Fluid Blog
-      intro: 主题博客
-      link: https://hexo.fluid-dev.com/
-      avatar: /img/fluid.png
-    - title: Fluid Docs
-      intro: 主题使用指南
-      link: https://hexo.fluid-dev.com/docs/
-      avatar: /img/fluid.png
-    - title: Fluid Repo
-      intro: 主题 GitHub 仓库
-      link: https://github.com/fluid-dev/hexo-theme-fluid
-      avatar: /img/fluid.png
-  onerror_avatar: /img/avatar.png
+  enable: false
 
 page404:
   enable: true

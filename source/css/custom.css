@@ -12,8 +12,8 @@ body > footer {
   display: none !important;
 }
 
-/* Continuous editorial layout for articles. */
-body.post-page {
+/* One continuous editorial layout for every content page. */
+body.editorial-page {
   --body-bg-color: #eee9df;
   --board-bg-color: transparent;
   --text-color: #3e3a34;
@@ -27,12 +27,12 @@ body.post-page {
   --navbar-bg-color: #2c353c;
 }
 
-.post-page .banner .mask {
+.editorial-page .banner .mask {
   background-color: rgba(46,45,42,0.34) !important;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root:not([data-user-color-scheme]) body.post-page {
+  :root:not([data-user-color-scheme]) body.editorial-page {
     --body-bg-color: #302f2d;
     --board-bg-color: transparent;
     --text-color: #dedad2;
@@ -46,12 +46,12 @@ body.post-page {
     --navbar-bg-color: #282a2b;
   }
 
-  :root:not([data-user-color-scheme]) body.post-page .banner .mask {
+  :root:not([data-user-color-scheme]) body.editorial-page .banner .mask {
     background-color: rgba(20,20,19,0.38) !important;
   }
 }
 
-[data-user-color-scheme="dark"] body.post-page {
+[data-user-color-scheme="dark"] body.editorial-page {
   --body-bg-color: #302f2d;
   --board-bg-color: transparent;
   --text-color: #dedad2;
@@ -65,17 +65,17 @@ body.post-page {
   --navbar-bg-color: #282a2b;
 }
 
-[data-user-color-scheme="dark"] body.post-page .banner .mask {
+[data-user-color-scheme="dark"] body.editorial-page .banner .mask {
   background-color: rgba(20,20,19,0.38) !important;
 }
 
-.post-page .header-inner {
+.editorial-page .header-inner {
   height: 48vh !important;
   min-height: 360px;
   max-height: 520px;
 }
 
-.post-page #board {
+.editorial-page #board {
   margin-top: 0 !important;
   padding: 3.75rem 0 4rem;
   background: transparent;
@@ -84,15 +84,114 @@ body.post-page {
   box-shadow: none;
 }
 
-.post-page .markdown-body {
+.editorial-page .markdown-body,
+.editorial-page .list-group,
+.editorial-page .about-info {
   font-family: "Songti SC", "Noto Serif CJK SC", "Source Han Serif SC", STSong, Georgia, serif;
   font-size: 1.0625rem;
   font-weight: 400;
   line-height: 1.78;
 }
 
-.post-page .markdown-body p {
+.editorial-page .markdown-body p {
   margin-bottom: 1.15em;
+}
+
+.editorial-page:not(.post-page) #board > .container {
+  width: min(100% - 2rem, 760px);
+  max-width: 760px;
+  padding: 0;
+}
+
+.editorial-page:not(.post-page) #board > .container > .row {
+  margin: 0;
+}
+
+.editorial-page:not(.post-page) #board > .container > .row > [class*="col-"] {
+  flex: 0 0 100%;
+  max-width: 100%;
+  padding: 0;
+}
+
+/* Archive, tag, and category lists use the same editorial surface. */
+.listing-page .list-group > .h4,
+.listing-page .list-group > .h4 + hr {
+  display: none !important;
+}
+
+.listing-page .list-group > .h5 {
+  margin: 2.25rem 0 0.45rem;
+  color: var(--sec-text-color);
+  font-size: 0.86rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+}
+
+.listing-page .list-group > .h5:first-of-type {
+  margin-top: 0;
+}
+
+.listing-page .list-group-item {
+  align-items: baseline;
+  gap: 1rem;
+  padding: 0.78rem 0.2rem;
+  color: var(--text-color);
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--line-color);
+  border-radius: 0;
+}
+
+.listing-page .list-group-item time {
+  flex: 0 0 4.5rem;
+  color: var(--sec-text-color);
+  font-size: 0.8rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.listing-page .list-group-item-title {
+  overflow: visible;
+  font-size: 1rem;
+  text-overflow: clip;
+  white-space: normal;
+}
+
+.listing-page .list-group-item-action:hover,
+.listing-page .list-group-item-action:focus {
+  color: var(--link-hover-color);
+  background: var(--link-hover-bg-color);
+}
+
+/* About keeps its identity content but no longer uses the old floating card. */
+.about-page .about-avatar {
+  z-index: 1;
+  width: 8rem;
+  height: 8rem;
+  margin: 0 auto 1.6rem;
+}
+
+.about-page .about-avatar img {
+  border: 1px solid var(--line-color);
+  box-shadow: none;
+}
+
+.about-page .about-info > div {
+  margin-bottom: 0.55rem;
+}
+
+.about-page .about-name {
+  color: var(--text-color);
+  font-size: 1.45rem;
+  font-weight: 500;
+}
+
+.about-page .about-intro {
+  color: var(--sec-text-color);
+  font-size: 1rem;
+}
+
+.about-page .about-content {
+  margin-top: 2.5rem !important;
 }
 
 .photo-post main .side-col {
@@ -132,12 +231,25 @@ body.post-page {
 }
 
 @media (max-width: 767px) {
-  .post-page .header-inner {
+  .editorial-page .header-inner {
     min-height: 320px;
   }
 
-  .post-page #board {
+  .editorial-page #board {
     padding-top: 2.75rem;
+  }
+
+  .editorial-page:not(.post-page) #board > .container {
+    width: min(100% - 2rem, 760px);
+  }
+
+  .listing-page .list-group-item {
+    gap: 0.65rem;
+    padding: 0.7rem 0.1rem;
+  }
+
+  .listing-page .list-group-item time {
+    flex-basis: 3.75rem;
   }
 
   .photo-post .post-content {
