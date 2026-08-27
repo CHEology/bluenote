@@ -4,11 +4,11 @@
   "private": true,
   "description": "Blue Note — Markdown-first Hexo blog published with GitHub Pages",
   "scripts": {
-    "clean": "hexo clean",
-    "build": "hexo clean && hexo generate",
+    "clean": "cross-env TZ=America/New_York hexo clean",
+    "build": "cross-env TZ=America/New_York hexo clean && cross-env TZ=America/New_York hexo generate",
     "check": "npm run build && node tooling/validate-site.mjs",
-    "server": "hexo server",
-    "new": "hexo new post"
+    "server": "cross-env TZ=America/New_York hexo server",
+    "new": "cross-env TZ=America/New_York hexo new post"
   },
   "engines": {
     "node": ">=20.19.0"
@@ -17,6 +17,7 @@
     "version": "8.1.2"
   },
   "dependencies": {
+    "cross-env": "10.1.0",
     "hexo": "8.1.2",
     "hexo-generator-archive": "2.0.0",
     "hexo-generator-category": "2.0.0",
