@@ -8,6 +8,13 @@ dark_mode:
   enable: true
   default: auto
 
+# Preserve the typography used by the pre-migration site.
+font:
+  font_size: 16px
+  font_family: 'Times, "Times New Roman", Georgia, serif'
+  letter_spacing: 0.02em
+  code_font_size: 85%
+
 fun_features:
   typing:
     enable: true
