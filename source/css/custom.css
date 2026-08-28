@@ -24,13 +24,18 @@ body.editorial-page {
   --link-hover-color: #435d70;
   --link-hover-bg-color: rgba(99,117,131,0.08);
   --line-color: rgba(62,58,52,0.16);
-  --navbar-bg-color: #2c353c;
+  --navbar-bg-color: #53616b;
   --masthead-background: linear-gradient(135deg, #596873 0%, #4c5963 100%);
   --masthead-title-color: #f4f1eb;
   --masthead-line-color: rgba(244,241,235,0.48);
 }
 
 .editorial-page #banner {
+  background: var(--masthead-background) !important;
+}
+
+.editorial-page #navbar.top-nav-collapse,
+.editorial-page #navbar.navbar-col-show {
   background: var(--masthead-background) !important;
 }
 
