@@ -1,5 +1,5 @@
 ---
-title: Z.A.T.O 随想
+title: Z.A.T.O. 随想
 date: 2026-08-27 18:53:23
 updated: 2026-08-27 19:06:37
 tags:
