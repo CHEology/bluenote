@@ -1,63 +1,37 @@
 .private-lock-icon,
 .private-post-shell__lock {
-  position: relative;
   display: inline-block;
-  box-sizing: border-box;
-  width: 0.78rem;
-  height: 0.62rem;
-  border: 1.5px solid currentColor;
-  border-radius: 0.08rem;
+  width: 1rem;
+  height: 1rem;
+  background-color: currentColor;
+  -webkit-mask: url("../img/icons/lock.svg?v=20260828-1") center / contain no-repeat;
+  mask: url("../img/icons/lock.svg?v=20260828-1") center / contain no-repeat;
 }
 
-.private-lock-icon::before,
-.private-post-shell__lock::before {
-  position: absolute;
-  left: 50%;
-  bottom: 100%;
-  width: 0.48rem;
-  height: 0.42rem;
-  border: 1.5px solid currentColor;
-  border-bottom: 0;
-  border-radius: 0.35rem 0.35rem 0 0;
-  content: "";
-  transform: translateX(-50%);
-}
-
-.private-access--unlocked .private-lock-icon::before,
-.private-reading-unlocked .private-lock-icon::before {
-  left: 63%;
-  transform: translateX(-50%) rotate(24deg);
-  transform-origin: bottom left;
+.private-access--unlocked .private-lock-icon,
+.private-reading-unlocked .private-lock-icon {
+  -webkit-mask-image: url("../img/icons/unlock.svg?v=20260828-1");
+  mask-image: url("../img/icons/unlock.svg?v=20260828-1");
 }
 
 .navbar .private-lock-icon {
-  margin: 0 0.35rem 0.08rem 0;
+  margin: 0 0.35rem 0.03rem 0;
   color: inherit;
   vertical-align: middle;
 }
 
 .mobile-grid-item .private-lock-icon {
-  width: 1.2rem;
-  height: 0.95rem;
+  width: 1.4rem;
+  height: 1.4rem;
   margin-bottom: 0.65rem;
 }
 
-.mobile-grid-item .private-lock-icon::before {
-  width: 0.74rem;
-  height: 0.62rem;
-}
-
 .private-link-lock {
-  width: 0.58rem;
-  height: 0.46rem;
-  margin: 0 0.48rem 0.05rem 0;
+  width: 0.72rem;
+  height: 0.72rem;
+  margin: 0 0.42rem 0.02rem 0;
   vertical-align: middle;
   opacity: 0.68;
-}
-
-.private-link-lock::before {
-  width: 0.36rem;
-  height: 0.31rem;
 }
 
 html:not(.private-reading-unlocked) body.home-page .index-card:has(a[data-private-link]) {
@@ -142,15 +116,10 @@ html:not(.private-reading-unlocked) body.home-page .index-card:has(a[data-privat
 }
 
 .private-post-shell__lock {
-  width: 1.05rem;
-  height: 0.82rem;
+  width: 1.45rem;
+  height: 1.45rem;
   margin-bottom: 1.2rem;
   color: var(--sec-text-color);
-}
-
-.private-post-shell__lock::before {
-  width: 0.68rem;
-  height: 0.58rem;
 }
 
 .private-post-shell__label {
@@ -226,14 +195,9 @@ html:not(.private-reading-unlocked) body.home-page .index-card:has(a[data-privat
 }
 
 .private-unlock-dialog__title .private-post-shell__lock {
-  width: 0.72rem;
-  height: 0.56rem;
+  width: 0.9rem;
+  height: 0.9rem;
   margin: 0;
-}
-
-.private-unlock-dialog__title .private-post-shell__lock::before {
-  width: 0.44rem;
-  height: 0.37rem;
 }
 
 .private-unlock-dialog h2 {

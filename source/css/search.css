@@ -31,26 +31,53 @@
 }
 
 .site-search-dialog__close {
-  position: absolute;
-  top: 0.72rem;
-  right: 0.9rem;
-  z-index: 1;
-  padding: 0.2rem 0.4rem;
+  position: relative;
+  width: 2.25rem;
+  height: 2.25rem;
+  padding: 0;
   color: #777168;
-  font: 300 1.55rem/1 sans-serif;
+  font-size: 0;
   background: transparent;
   border: 0;
   cursor: pointer;
 }
 
+.site-search-dialog__close::before,
+.site-search-dialog__close::after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1rem;
+  height: 1px;
+  background: currentColor;
+  border-radius: 1px;
+  content: "";
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.site-search-dialog__close::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
 .site-search-dialog__field {
-  display: flex;
+  display: grid;
+  grid-template-columns: 2.25rem minmax(0, 1fr) 2.25rem;
   align-items: center;
-  gap: 0.85rem;
-  margin: 0 3.5rem 0 1.6rem;
-  padding: 1.25rem 0 0.85rem;
+  gap: 0.5rem;
+  min-width: 0;
+  min-height: 4.5rem;
+  padding: 0 1rem;
   color: #777168;
-  border-bottom: 1px solid rgba(62, 58, 52, 0.3);
+}
+
+.site-search-dialog__field .icon-search {
+  width: 1.15rem;
+  height: 1.15rem;
+  justify-self: center;
+  font-size: 0;
+  background-color: currentColor;
+  -webkit-mask: url("../img/icons/search.svg?v=20260828-1") center / contain no-repeat;
+  mask: url("../img/icons/search.svg?v=20260828-1") center / contain no-repeat;
 }
 
 .site-search-dialog__field input {
@@ -60,6 +87,7 @@
   color: #2d2b27;
   font-family: "Songti SC", "Noto Serif CJK SC", STSong, Georgia, serif;
   font-size: 1.08rem;
+  line-height: 1.25;
   background: transparent;
   border: 0;
   outline: 0;
@@ -131,13 +159,8 @@
 }
 
 .site-search-result__privacy .private-lock-icon {
-  width: 0.58rem;
-  height: 0.46rem;
-}
-
-.site-search-result__privacy .private-lock-icon::before {
-  width: 0.36rem;
-  height: 0.31rem;
+  width: 0.72rem;
+  height: 0.72rem;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -152,10 +175,6 @@
   .site-search-result__excerpt,
   .site-search-result__privacy {
     color: #aaa59d;
-  }
-
-  .site-search-dialog__field {
-    border-color: rgba(222, 218, 210, 0.28);
   }
 
   .site-search-dialog__field input,
@@ -186,8 +205,9 @@
   }
 
   .site-search-dialog__field {
-    margin-right: 3.2rem;
-    margin-left: 1.2rem;
+    gap: 0.35rem;
+    min-height: 4.25rem;
+    padding: 0 0.75rem;
   }
 
   .site-search-result {

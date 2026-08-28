@@ -48,11 +48,11 @@
     element.hidden = true;
     element.innerHTML = [
       '<section class="site-search-dialog" role="dialog" aria-modal="true" aria-label="Search">',
-      '  <button class="site-search-dialog__close" type="button" data-search-close aria-label="关闭搜索">×</button>',
-      '  <label class="site-search-dialog__field" for="site-search-input">',
+      '  <div class="site-search-dialog__field">',
       '    <span class="iconfont icon-search" aria-hidden="true"></span>',
-      '    <input id="site-search-input" type="search" autocomplete="off" placeholder="Search">',
-      '  </label>',
+      '    <input id="site-search-input" type="search" autocomplete="off" placeholder="Search" aria-label="Search">',
+      '    <button class="site-search-dialog__close" type="button" data-search-close aria-label="关闭搜索"></button>',
+      '  </div>',
       '  <div class="site-search-results" data-search-results aria-live="polite"></div>',
       '</section>'
     ].join('');
