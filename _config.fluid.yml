@@ -28,13 +28,15 @@ custom_css:
   - /css/home.css
   - /css/custom.css?v=20260827-6
   - /css/literary-blocks.css?v=20260827-2
-  - /css/private.css?v=20260827-1
+  - /css/private.css?v=20260828-3
+  - /css/search.css?v=20260828-3
   - /css/typography.css
 
 custom_js:
   - /js/site.js?v=20260827-5
   - /js/home.js
-  - /js/private.js?v=20260827-1
+  - /js/private.js?v=20260828-4
+  - /js/search.js?v=20260828-5
 
 navbar:
   blog_title: Blue Note
@@ -44,9 +46,11 @@ navbar:
     - { key: "home", link: "/", icon: "iconfont icon-home-fill" }
     - { key: "archive", link: "/archives/", icon: "iconfont icon-archive-fill" }
     - { key: "about", link: "/about/", icon: "iconfont icon-user-fill" }
+    - { key: "private", name: "Private", link: "#private-unlock", icon: "private-lock-icon" }
+    - { key: "search", name: "Search", link: "#site-search", icon: "iconfont icon-search" }
 
 search:
-  enable: true
+  enable: false
   path: /local-search.xml
   generate_path: /local-search.xml
   field: post

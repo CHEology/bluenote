@@ -1,0 +1,234 @@
+.search-dialog-open {
+  overflow: hidden;
+}
+
+.site-search-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1220;
+  display: grid;
+  place-items: start center;
+  overflow-y: auto;
+  padding: clamp(4.5rem, 10vh, 7rem) 1rem 2rem;
+  background: rgba(8, 13, 17, 0.72);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+}
+
+.site-search-overlay[hidden] {
+  display: none !important;
+}
+
+.site-search-dialog {
+  width: min(100%, 46rem);
+  max-height: min(76vh, 44rem);
+  overflow: hidden;
+  color: #3e3a34;
+  background: #f1ece2;
+  border: 1px solid rgba(62, 58, 52, 0.16);
+  box-shadow: 0 1.6rem 5rem rgba(0, 0, 0, 0.32);
+}
+
+.site-search-dialog__header {
+  position: static;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: auto;
+  height: auto;
+  min-height: 0;
+  padding: 1.6rem 1.8rem 1.1rem;
+  border-bottom: 1px solid rgba(62, 58, 52, 0.14);
+}
+
+.site-search-dialog__header p {
+  margin: 0 0 0.35rem;
+  color: #777168;
+  font: 0.68rem/1.2 Times, "Times New Roman", serif;
+  letter-spacing: 0.16em;
+}
+
+.site-search-dialog__header h2 {
+  margin: 0;
+  color: #2d2b27;
+  font-family: "Songti SC", "Noto Serif CJK SC", STSong, Georgia, serif;
+  font-size: 1.45rem;
+  font-weight: 500;
+}
+
+.site-search-dialog__header button {
+  padding: 0 0.35rem;
+  color: #777168;
+  font: 300 1.8rem/1 sans-serif;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
+.site-search-dialog__field {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin: 1.35rem 1.8rem 0;
+  padding: 0 0.2rem 0.65rem;
+  color: #777168;
+  border-bottom: 1px solid rgba(62, 58, 52, 0.32);
+}
+
+.site-search-dialog__field input {
+  min-width: 0;
+  flex: 1;
+  padding: 0;
+  color: #2d2b27;
+  font-family: "Songti SC", "Noto Serif CJK SC", STSong, Georgia, serif;
+  font-size: 1.05rem;
+  background: transparent;
+  border: 0;
+  outline: 0;
+}
+
+.site-search-dialog__field input::placeholder {
+  color: #9a948b;
+}
+
+.site-search-dialog__hint {
+  margin: 0;
+  padding: 0.65rem 1.8rem 0.75rem;
+  color: #878077;
+  font-size: 0.78rem;
+}
+
+.site-search-results {
+  max-height: calc(min(76vh, 44rem) - 12rem);
+  overflow-y: auto;
+  border-top: 1px solid rgba(62, 58, 52, 0.12);
+}
+
+.site-search-result {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.35rem 1rem;
+  padding: 1rem 1.8rem;
+  color: #3e3a34;
+  border-bottom: 1px solid rgba(62, 58, 52, 0.12);
+  transition: color 150ms ease, background-color 150ms ease;
+}
+
+.site-search-result:hover,
+.site-search-result:focus-visible {
+  color: #435d70;
+  background: rgba(99, 117, 131, 0.08);
+}
+
+.site-search-result__title {
+  overflow: hidden;
+  font-family: "Songti SC", "Noto Serif CJK SC", STSong, Georgia, serif;
+  font-size: 1rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.site-search-result__excerpt {
+  grid-column: 1 / -1;
+  color: #777168;
+  font-size: 0.82rem;
+  line-height: 1.55;
+}
+
+.site-search-result__privacy {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  align-self: center;
+  color: #777168;
+  font-size: 0.62rem;
+  letter-spacing: 0.11em;
+}
+
+.site-search-result__privacy .private-lock-icon {
+  width: 0.58rem;
+  height: 0.46rem;
+}
+
+.site-search-result__privacy .private-lock-icon::before {
+  width: 0.36rem;
+  height: 0.31rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  .site-search-dialog {
+    color: #dedad2;
+    background: #302f2d;
+    border-color: rgba(222, 218, 210, 0.16);
+  }
+
+  .site-search-dialog__header,
+  .site-search-results,
+  .site-search-result {
+    border-color: rgba(222, 218, 210, 0.13);
+  }
+
+  .site-search-dialog__header h2,
+  .site-search-dialog__field input,
+  .site-search-result {
+    color: #dedad2;
+  }
+
+  .site-search-dialog__header p,
+  .site-search-dialog__header button,
+  .site-search-dialog__field,
+  .site-search-dialog__hint,
+  .site-search-result__excerpt,
+  .site-search-result__privacy {
+    color: #aaa59d;
+  }
+
+  .site-search-dialog__field {
+    border-color: rgba(222, 218, 210, 0.28);
+  }
+
+  .site-search-result:hover,
+  .site-search-result:focus-visible {
+    color: #d0d5d8;
+    background: rgba(184, 192, 197, 0.08);
+  }
+}
+
+@media (max-width: 575px) {
+  .site-search-overlay {
+    place-items: stretch;
+    padding: 3.85rem 0 0;
+  }
+
+  .site-search-dialog {
+    width: 100%;
+    max-height: calc(100vh - 3.85rem);
+    max-height: calc(100svh - 3.85rem);
+    min-height: calc(100vh - 3.85rem);
+    min-height: calc(100svh - 3.85rem);
+    border-right: 0;
+    border-bottom: 0;
+    border-left: 0;
+    box-shadow: none;
+  }
+
+  .site-search-dialog__header,
+  .site-search-result {
+    padding-right: 1.2rem;
+    padding-left: 1.2rem;
+  }
+
+  .site-search-dialog__field {
+    margin-right: 1.2rem;
+    margin-left: 1.2rem;
+  }
+
+  .site-search-dialog__hint {
+    padding-right: 1.2rem;
+    padding-left: 1.2rem;
+  }
+
+  .site-search-results {
+    max-height: calc(100svh - 15.5rem);
+  }
+}

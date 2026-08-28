@@ -34,16 +34,21 @@ try {
 }
 if (!wrongPasswordRejected) throw new Error('Wrong password unexpectedly decrypted the private archive.');
 
-const generatedPrivatePage = readFileSync(join(publicRoot, 'private', 'index.html'), 'utf8');
+const generatedHome = readFileSync(join(publicRoot, 'index.html'), 'utf8');
+const generatedPrivatePost = readFileSync(join(publicRoot, '2023', '07', '31', '小蓝本', 'index.html'), 'utf8');
 const generatedBundle = readFileSync(join(publicRoot, 'private', 'posts.enc.json'), 'utf8');
-if (!generatedPrivatePage.includes('data-private-vault')) {
-  throw new Error('Generated private reading page is missing.');
+const generatedManifest = readFileSync(join(publicRoot, 'private', 'posts.public.json'), 'utf8');
+if (!generatedHome.includes('data-private-link="eeddfa74ef298a0c"')) {
+  throw new Error('Private post is not marked on the generated home page.');
 }
-if (generatedPrivatePage.includes(secretTitle) || generatedPrivatePage.includes(secretBody)) {
-  throw new Error('Private fixture leaked into the generated reading page.');
+if (!generatedPrivatePost.includes('data-private-post-id="eeddfa74ef298a0c"')) {
+  throw new Error('Generated private post shell is missing.');
 }
 if (generatedBundle.includes(secretTitle) || generatedBundle.includes(secretBody)) {
   throw new Error('Private fixture leaked into the generated archive.');
 }
+if (!generatedManifest.includes('小蓝本') || generatedManifest.includes(secretBody)) {
+  throw new Error('Public private-post manifest is missing its title or leaks protected content.');
+}
 
-console.log('Validated encrypted private archive, wrong-password rejection, and no plaintext leakage.');
+console.log('Validated encrypted private archive, normal-page markers, wrong-password rejection, and no protected-content leakage.');

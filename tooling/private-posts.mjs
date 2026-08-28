@@ -11,6 +11,7 @@ import {
   readFileSync,
   readdirSync,
   renameSync,
+  unlinkSync,
   writeFileSync
 } from 'node:fs';
 import { basename, join, resolve } from 'node:path';
@@ -22,7 +23,9 @@ const projectRoot = fileURLToPath(new URL('..', import.meta.url));
 const publicPostsRoot = join(projectRoot, 'source', '_posts');
 const privatePostsRoot = join(projectRoot, '.private-posts');
 const encryptedArchivePath = join(projectRoot, 'source', 'private', 'posts.enc.json');
+const publicManifestPath = join(projectRoot, 'source', 'private', 'posts.public.json');
 const iterations = 600000;
+const siteRoot = '/bluenote/';
 
 function base64(value) {
   return Buffer.from(value).toString('base64');
@@ -38,6 +41,11 @@ function normalizedDate(value) {
   return String(value).split(/[ T]/)[0];
 }
 
+function rawFrontMatterValue(raw, field) {
+  var match = raw.match(new RegExp('^' + field + ':\\s*(.+)$', 'm'));
+  return match ? match[1].trim() : '';
+}
+
 function postId(filename) {
   return createHash('sha256').update(filename).digest('hex').slice(0, 16);
 }
@@ -48,17 +56,78 @@ export function serializePrivatePost(filename, raw) {
     throw new Error(`${filename} must include title, date, and description in its front matter.`);
   }
 
+  const dateValue = rawFrontMatterValue(raw, 'date');
+  const updatedValue = rawFrontMatterValue(raw, 'updated') || dateValue;
+  const date = dateValue ? dateValue.split(/[ T]/)[0] : normalizedDate(parsed.date);
+  const permalink = parsed.permalink
+    ? String(parsed.permalink).replace(/^\/+|\/+$/g, '') + '/'
+    : [date.replace(/-/g, '/'), String(parsed.slug || filename.replace(/\.md$/, ''))].join('/') + '/';
+
   return {
     id: postId(filename),
     filename,
     title: String(parsed.title),
-    date: normalizedDate(parsed.date),
-    updated: normalizedDate(parsed.updated || parsed.date),
+    date,
+    dateSource: dateValue,
+    updated: updatedValue ? updatedValue.split(/[ T]/)[0] : normalizedDate(parsed.updated || parsed.date),
+    updatedSource: updatedValue,
     description: String(parsed.description),
     tags: Array.isArray(parsed.tags) ? parsed.tags.map(String) : parsed.tags ? [String(parsed.tags)] : [],
+    permalink,
+    url: encodeURI(siteRoot + permalink),
     html: marked.parse(parsed._content || '', { gfm: true }),
     source: raw
   };
+}
+
+function privateStub(post) {
+  const tags = post.tags.length
+    ? `tags:\n${post.tags.map((tag) => `  - ${tag}`).join('\n')}`
+    : 'tags:';
+  return `---
+title: ${post.title}
+permalink: ${post.permalink}
+date: ${post.dateSource || post.date}
+updated: ${post.updatedSource || post.updated}
+${tags}
+description: Private reading.
+index_img:
+private_post: true
+private_id: ${post.id}
+---
+
+<section class="private-post-shell" data-private-post-id="${post.id}">
+  <div class="private-post-shell__locked" data-private-post-locked>
+    <span class="private-post-shell__lock" aria-hidden="true"></span>
+    <p class="private-post-shell__label">PRIVATE READING</p>
+    <p class="private-post-shell__message">这篇文章需要先解锁私人阅读。</p>
+    <button type="button" data-private-unlock>输入密码</button>
+  </div>
+  <div class="private-post-shell__content" data-private-post-content hidden></div>
+</section>
+`;
+}
+
+function syncPublicPrivateFiles(posts) {
+  const filenames = new Set(posts.map((post) => post.filename));
+  readdirSync(publicPostsRoot).filter((name) => name.endsWith('.md')).forEach((filename) => {
+    const path = join(publicPostsRoot, filename);
+    if (!filenames.has(filename) && /^private_post:\s*true$/m.test(readFileSync(path, 'utf8'))) {
+      unlinkSync(path);
+    }
+  });
+
+  posts.forEach((post) => {
+    const path = join(publicPostsRoot, post.filename);
+    if (!existsSync(path) || /^private_post:\s*true$/m.test(readFileSync(path, 'utf8'))) {
+      writeFileSync(path, privateStub(post));
+    }
+  });
+
+  writeFileSync(publicManifestPath, `${JSON.stringify({
+    version: 1,
+    posts: posts.map(({ id, filename, title, date, url }) => ({ id, filename, title, date, url }))
+  }, null, 2)}\n`);
 }
 
 export function encryptPrivateArchive(posts, password) {
@@ -169,6 +238,7 @@ async function syncArchive(password, { allowEmpty = false } = {}) {
       kdf: { name: 'PBKDF2', hash: 'SHA-256', iterations },
       cipher: { name: 'AES-256-GCM' }
     }, null, 2)}\n`);
+    syncPublicPrivateFiles([]);
     return 0;
   }
 
@@ -179,6 +249,7 @@ async function syncArchive(password, { allowEmpty = false } = {}) {
   );
   const encrypted = encryptPrivateArchive(posts, password);
   writeFileSync(encryptedArchivePath, `${JSON.stringify(encrypted, null, 2)}\n`);
+  syncPublicPrivateFiles(posts);
   return posts.length;
 }
 
@@ -214,7 +285,9 @@ async function publishPost(input) {
   const source = join(privatePostsRoot, filename);
   const destination = join(publicPostsRoot, filename);
   if (!existsSync(source)) throw new Error(`Private source not found: ${filename}. Run private:restore first on a fresh clone.`);
-  if (existsSync(destination)) throw new Error(`Public post already exists: ${filename}`);
+  if (existsSync(destination) && !/^private_post:\s*true$/m.test(readFileSync(destination, 'utf8'))) {
+    throw new Error(`Public post already exists: ${filename}`);
+  }
 
   const password = await hiddenPassword();
   decryptPrivateArchive(readBundle(), password);
