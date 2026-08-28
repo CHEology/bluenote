@@ -28,11 +28,13 @@ custom_css:
   - /css/home.css
   - /css/custom.css?v=20260827-6
   - /css/literary-blocks.css?v=20260827-2
+  - /css/private.css?v=20260827-1
   - /css/typography.css
 
 custom_js:
   - /js/site.js?v=20260827-5
   - /js/home.js
+  - /js/private.js?v=20260827-1
 
 navbar:
   blog_title: Blue Note

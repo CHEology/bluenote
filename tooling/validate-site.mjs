@@ -23,14 +23,18 @@ const required = [
   '404.html',
   'about/index.html',
   'archives/index.html',
+  'private/index.html',
+  'private/posts.enc.json',
   'local-search.xml',
   '2023/07/31/小蓝本/index.html',
   '2023/09/26/布涅星/index.html',
   '2023/11/19/秋之纽约-2023-11/index.html',
   'css/home.css',
   'css/custom.css',
+  'css/private.css',
   'css/typography.css',
   'js/site.js',
+  'js/private.js',
   'js/home.js'
 ];
 

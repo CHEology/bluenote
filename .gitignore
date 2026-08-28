@@ -2,6 +2,7 @@ node_modules/
 public/
 db.json
 .deploy_git/
+.private-posts/
 
 __pycache__/
 *.py[cod]

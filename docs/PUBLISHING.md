@@ -154,3 +154,48 @@ git push origin master
 ```
 
 回滚推送同样会触发自动构建和部署。不要删除 Git 历史，也不要手动替换 GitHub Pages 上的文件。
+
+## 9. 私密文章
+
+私密文章仍使用一个仓库和 GitHub Pages，不依赖数据库。公开仓库中只保存 AES-256-GCM 加密后的文章档案；可读的 Markdown 临时保存在本机 `.private-posts/`，该目录不会被 Git 提交。
+
+将一篇公开文章转为私密文章：
+
+```bash
+npm run private:hide -- "文章文件名.md"
+```
+
+首次使用时输入并再次确认至少 16 个字符的私人密码。密码不会显示在终端、写入仓库或保存到生成网页。随后提交文章源文件的删除和 `source/private/posts.enc.json` 的更新，推送后该文章不会出现在首页、归档、标签、搜索索引或独立公开页面中。
+
+管理员通过以下隐蔽地址阅读私密文章：
+
+```text
+https://cheology.github.io/bluenote/private/
+```
+
+输入密码后，浏览器使用 Web Crypto 在本地解密。标题、日期、标签、摘要、正文和原始 Markdown 全部位于加密档案内，未解锁时不以明文出现在页面或仓库中。
+
+编辑本机 `.private-posts/` 中的文章后，重新加密：
+
+```bash
+npm run private:sync
+```
+
+将私密文章重新公开：
+
+```bash
+npm run private:publish -- "文章文件名.md"
+```
+
+在新电脑或重新克隆仓库后，先用密码恢复本机可编辑源文件：
+
+```bash
+npm run private:restore
+```
+
+安全边界：
+
+- 使用唯一、足够长的密码；静态加密文件可以被下载后离线猜测，弱密码不安全。
+- 不要遗忘密码。站点和 GitHub 都没有密码重置能力；忘记后只能从仍保留明文的本机或备份恢复。
+- 已经在公开 Git 历史中出现过的旧文章，转为私密后会从当前网站消失，但旧提交仍可能包含原文。新建的私密文章应直接放入 `.private-posts/` 后执行 `private:sync`，不要先提交到 `source/_posts/`。
+- 私密文章使用的敏感图片也不能放在公开的 `source/images/` 中；当前加密档案只保护文章文本及内嵌 HTML，不会自动加密单独的图片文件。

@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "empty": true,
+  "kdf": {
+    "name": "PBKDF2",
+    "hash": "SHA-256",
+    "iterations": 600000
+  },
+  "cipher": {
+    "name": "AES-256-GCM"
+  }
+}
