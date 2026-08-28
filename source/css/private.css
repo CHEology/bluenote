@@ -60,11 +60,6 @@
   height: 0.31rem;
 }
 
-.private-entry .list-group-item-title .private-link-lock {
-  margin-right: 0;
-  margin-left: 0.48rem;
-}
-
 html:not(.private-reading-unlocked) body.home-page .index-card:has(a[data-private-link]) {
   display: none;
 }
@@ -79,8 +74,7 @@ html:not(.private-reading-unlocked) body.home-page .index-card:has(a[data-privat
   max-width: calc(100% - 1.8rem);
 }
 
-.post-prevnext a[data-private-link]::before,
-.private-entry .list-group-item-title::after {
+.post-prevnext a[data-private-link]::before {
   display: inline-flex;
   align-items: center;
   margin-right: 0.5rem;
@@ -99,14 +93,36 @@ html:not(.private-reading-unlocked) body.home-page .index-card:has(a[data-privat
   letter-spacing: 0.12em;
 }
 
-.private-entry .list-group-item-title::after {
-  margin-right: 0;
-  margin-left: 0.6rem;
+.private-reading-unlocked .post-prevnext a[data-private-link]::before {
+  content: "UNLOCKED";
 }
 
-.private-reading-unlocked .post-prevnext a[data-private-link]::before,
-.private-reading-unlocked .private-entry .list-group-item-title::after {
-  content: "UNLOCKED";
+.private-archive-state {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.42rem;
+  margin-left: 0.6rem;
+  color: currentColor;
+  font-size: 0.68em;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  opacity: 0.62;
+  vertical-align: middle;
+}
+
+.private-archive-state .private-link-lock {
+  margin: 0 0 0.03rem;
+}
+
+.private-reading-unlocked .private-archive-state {
+  cursor: pointer;
+  opacity: 0.78;
+}
+
+.private-reading-unlocked .private-archive-state:hover,
+.private-reading-unlocked .private-archive-state:focus-visible {
+  color: var(--link-hover-color);
+  outline: 0;
 }
 
 .private-post-shell {
@@ -269,6 +285,42 @@ html:not(.private-reading-unlocked) body.home-page .index-card:has(a[data-privat
   display: none;
 }
 
+.private-lock-confirm-dialog {
+  width: min(100%, 24rem);
+  padding: 2rem;
+}
+
+.private-lock-confirm-dialog > p {
+  margin: 0 0 1.5rem;
+  color: #2d2b27;
+  font-family: "Songti SC", "Noto Serif CJK SC", STSong, Georgia, serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.private-lock-confirm-dialog__actions {
+  display: flex;
+  justify-content: center;
+  gap: 0.7rem;
+}
+
+.private-lock-confirm-dialog__actions button {
+  min-width: 5.5rem;
+  padding: 0.65rem 1rem;
+  color: #53616b;
+  background: transparent;
+  border: 1px solid rgba(55, 52, 47, 0.28);
+  border-radius: 0;
+  cursor: pointer;
+}
+
+.private-lock-confirm-dialog__actions [data-private-lock-confirm-action] {
+  color: #f3efe7;
+  background: #53616b;
+  border-color: #53616b;
+}
+
 @media (prefers-color-scheme: dark) {
   .private-unlock-dialog {
     color: #dedad2;
@@ -277,7 +329,8 @@ html:not(.private-reading-unlocked) body.home-page .index-card:has(a[data-privat
   }
 
   .private-unlock-dialog h2,
-  .private-unlock-dialog form input {
+  .private-unlock-dialog form input,
+  .private-lock-confirm-dialog > p {
     color: #eeeae3;
   }
 
@@ -289,6 +342,17 @@ html:not(.private-reading-unlocked) body.home-page .index-card:has(a[data-privat
   .private-unlock-dialog form input {
     background: rgba(255, 255, 255, 0.04);
     border-color: rgba(222, 218, 210, 0.24);
+  }
+
+  .private-lock-confirm-dialog__actions button {
+    color: #aaa59d;
+    border-color: rgba(222, 218, 210, 0.24);
+  }
+
+  .private-lock-confirm-dialog__actions [data-private-lock-confirm-action] {
+    color: #f3efe7;
+    background: #53616b;
+    border-color: #53616b;
   }
 }
 

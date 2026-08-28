@@ -9,6 +9,7 @@
   var unlockedPayload;
   var activeKeyBytes;
   var previousFocus;
+  var lockPreviousFocus;
 
   function bytesFromBase64(value) {
     var binary = window.atob(value);
@@ -86,14 +87,44 @@
         if (listing) listing.classList.add('private-entry');
         var lockTarget = listing ? link.querySelector('.list-group-item-title') : null;
         if (!lockTarget && (link.closest('.index-header') || link.closest('.post-prevnext'))) lockTarget = link;
-        if (lockTarget && !lockTarget.querySelector('.private-link-lock')) {
+        if (listing && lockTarget && !lockTarget.querySelector('[data-private-lock-control]')) {
+          var state = document.createElement('span');
+          state.className = 'private-archive-state';
+          state.dataset.privateLockControl = '';
+          var archiveLock = document.createElement('span');
+          archiveLock.className = 'private-lock-icon private-link-lock';
+          archiveLock.setAttribute('aria-hidden', 'true');
+          var stateLabel = document.createElement('span');
+          stateLabel.className = 'private-archive-state__label';
+          state.appendChild(archiveLock);
+          state.appendChild(stateLabel);
+          lockTarget.appendChild(state);
+        } else if (lockTarget && !lockTarget.querySelector('.private-link-lock')) {
           var lock = document.createElement('span');
           lock.className = 'private-lock-icon private-link-lock';
           lock.setAttribute('aria-hidden', 'true');
-          if (listing) lockTarget.appendChild(lock);
-          else lockTarget.insertBefore(lock, lockTarget.firstChild);
+          lockTarget.insertBefore(lock, lockTarget.firstChild);
         }
       });
+    });
+    updatePrivateStateControls();
+  }
+
+  function updatePrivateStateControls() {
+    var unlocked = Boolean(unlockedPayload);
+    document.querySelectorAll('[data-private-lock-control]').forEach(function(control) {
+      var label = control.querySelector('.private-archive-state__label');
+      if (label) label.textContent = unlocked ? 'UNLOCKED' : 'LOCKED';
+      control.setAttribute('aria-label', unlocked ? '退出解锁状态' : 'Locked');
+      if (unlocked) {
+        control.setAttribute('role', 'button');
+        control.setAttribute('tabindex', '0');
+        control.setAttribute('title', '退出解锁状态');
+      } else {
+        control.removeAttribute('role');
+        control.removeAttribute('tabindex');
+        control.removeAttribute('title');
+      }
     });
   }
 
@@ -114,6 +145,7 @@
 
   function announceUnlocked() {
     document.documentElement.classList.add('private-reading-unlocked');
+    updatePrivateStateControls();
     renderCurrentPrivatePost();
     document.dispatchEvent(new CustomEvent('bluenote:private-unlocked', {
       detail: { posts: unlockedPayload.posts }
@@ -156,6 +188,48 @@
   var passwordInput = overlay.querySelector('#private-global-password');
   var status = overlay.querySelector('[data-private-status]');
 
+  function buildLockConfirmation() {
+    var confirmation = document.createElement('div');
+    confirmation.className = 'private-unlock-overlay private-lock-confirm-overlay';
+    confirmation.dataset.privateLockConfirm = '';
+    confirmation.hidden = true;
+    confirmation.innerHTML = [
+      '<section class="private-unlock-dialog private-lock-confirm-dialog" role="dialog" aria-modal="true" aria-labelledby="private-lock-confirm-title">',
+      '  <p id="private-lock-confirm-title">是否退出解锁状态？</p>',
+      '  <div class="private-lock-confirm-dialog__actions">',
+      '    <button type="button" data-private-lock-cancel>取消</button>',
+      '    <button type="button" data-private-lock-confirm-action>退出</button>',
+      '  </div>',
+      '</section>'
+    ].join('');
+    document.body.appendChild(confirmation);
+    return confirmation;
+  }
+
+  var lockConfirmation = buildLockConfirmation();
+
+  function openLockConfirmation() {
+    lockPreviousFocus = document.activeElement;
+    lockConfirmation.hidden = false;
+    document.body.classList.add('private-dialog-open');
+    window.setTimeout(function() {
+      lockConfirmation.querySelector('[data-private-lock-confirm-action]').focus();
+    }, 0);
+  }
+
+  function closeLockConfirmation() {
+    lockConfirmation.hidden = true;
+    document.body.classList.remove('private-dialog-open');
+    if (lockPreviousFocus && lockPreviousFocus.focus) lockPreviousFocus.focus();
+  }
+
+  function forgetPrivateAccess() {
+    window.localStorage.removeItem(storageKey);
+    activeKeyBytes = undefined;
+    unlockedPayload = undefined;
+    window.location.reload();
+  }
+
   function openDialog() {
     previousFocus = document.activeElement;
     closeMobileMenu();
@@ -175,6 +249,21 @@
   }
 
   document.addEventListener('click', function(event) {
+    var lockControl = event.target.closest('[data-private-lock-control]');
+    if (lockControl && unlockedPayload) {
+      event.preventDefault();
+      event.stopPropagation();
+      openLockConfirmation();
+      return;
+    }
+    if (event.target.closest('[data-private-lock-cancel]') || event.target === lockConfirmation) {
+      closeLockConfirmation();
+      return;
+    }
+    if (event.target.closest('[data-private-lock-confirm-action]')) {
+      forgetPrivateAccess();
+      return;
+    }
     var accessLink = event.target.closest('a[href$="#private-unlock"], [data-private-unlock]');
     if (accessLink) {
       event.preventDefault();
@@ -185,6 +274,17 @@
   });
 
   document.addEventListener('keydown', function(event) {
+    var lockControl = event.target.closest('[data-private-lock-control]');
+    if (lockControl && unlockedPayload && (event.key === 'Enter' || event.key === ' ')) {
+      event.preventDefault();
+      event.stopPropagation();
+      openLockConfirmation();
+      return;
+    }
+    if (event.key === 'Escape' && !lockConfirmation.hidden) {
+      closeLockConfirmation();
+      return;
+    }
     if (event.key === 'Escape' && !overlay.hidden) closeDialog();
   });
 

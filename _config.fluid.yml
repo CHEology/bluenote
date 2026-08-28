@@ -28,14 +28,14 @@ custom_css:
   - /css/home.css
   - /css/custom.css?v=20260827-6
   - /css/literary-blocks.css?v=20260827-2
-  - /css/private.css?v=20260828-5
+  - /css/private.css?v=20260828-6
   - /css/search.css?v=20260828-5
   - /css/typography.css
 
 custom_js:
   - /js/site.js?v=20260827-5
   - /js/home.js
-  - /js/private.js?v=20260828-5
+  - /js/private.js?v=20260828-6
   - /js/search.js?v=20260828-7
 
 navbar:
