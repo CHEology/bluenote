@@ -25,7 +25,7 @@ body.editorial-page {
   --link-hover-bg-color: rgba(99,117,131,0.08);
   --line-color: rgba(62,58,52,0.16);
   --navbar-bg-color: #53616b;
-  --masthead-background: linear-gradient(135deg, #596873 0%, #4c5963 100%);
+  --masthead-background: #53616b;
   --masthead-title-color: #f4f1eb;
   --masthead-line-color: rgba(244,241,235,0.48);
 }
@@ -37,6 +37,15 @@ body.editorial-page {
 .editorial-page #navbar.top-nav-collapse,
 .editorial-page #navbar.navbar-col-show {
   background: var(--masthead-background) !important;
+}
+
+/* The editorial navigation uses typography, not decorative category glyphs. */
+.navbar #navbarSupportedContent .nav-item:not(#color-toggle-btn) .nav-link > i {
+  display: none;
+}
+
+.navbar #navbarSupportedContent .nav-item:not(#color-toggle-btn) .nav-link {
+  letter-spacing: 0.055em;
 }
 
 /* Keep the desktop color-scheme glyph legible while its nav link is hovered. */
@@ -103,7 +112,7 @@ body.editorial-page {
     --link-hover-bg-color: rgba(184,192,197,0.08);
     --line-color: rgba(222,218,210,0.16);
     --navbar-bg-color: #282a2b;
-    --masthead-background: linear-gradient(135deg, #2e3337 0%, #25292c 100%);
+    --masthead-background: #282a2b;
     --masthead-title-color: #eeeae3;
     --masthead-line-color: rgba(238,234,227,0.38);
   }
@@ -121,13 +130,13 @@ body.editorial-page {
   --link-hover-bg-color: rgba(184,192,197,0.08);
   --line-color: rgba(222,218,210,0.16);
   --navbar-bg-color: #282a2b;
-  --masthead-background: linear-gradient(135deg, #2e3337 0%, #25292c 100%);
+  --masthead-background: #282a2b;
   --masthead-title-color: #eeeae3;
   --masthead-line-color: rgba(238,234,227,0.38);
 }
 
 .editorial-page .header-inner {
-  height: 216px !important;
+  height: 160px !important;
   min-height: 0;
   max-height: none;
 }
@@ -139,6 +148,61 @@ body.editorial-page {
   border: 0;
   border-radius: 0;
   box-shadow: none;
+}
+
+/* On small screens the former icon grid becomes a quiet textual contents list. */
+#mobile-grid-menu .mobile-grid-menu-inner {
+  padding-top: 4.4rem;
+}
+
+#mobile-grid-menu .container {
+  width: min(calc(100% - 2rem), 30rem);
+  padding: 0;
+}
+
+#mobile-grid-menu .row {
+  display: block;
+  margin: 0;
+}
+
+#mobile-grid-menu .mobile-grid-cell {
+  width: 100%;
+  max-width: none;
+  padding: 0;
+}
+
+#mobile-grid-menu .mobile-grid-item {
+  flex-direction: row;
+  justify-content: flex-start;
+  min-height: 0;
+  padding: 0.95rem 0.15rem;
+  background: transparent;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 0;
+}
+
+#mobile-grid-menu .mobile-grid-item:hover,
+#mobile-grid-menu .mobile-grid-item:active {
+  background: rgba(255, 255, 255, 0.055);
+  transform: none;
+}
+
+#mobile-grid-menu .mobile-grid-item > i {
+  display: none;
+}
+
+#mobile-grid-menu a[href$="#site-search"] .mobile-grid-item > i,
+#mobile-grid-menu #mobile-color-toggle-icon {
+  display: inline-block;
+  order: 2;
+  margin: 0 0 0 auto;
+  font-size: 1rem;
+}
+
+#mobile-grid-menu .mobile-grid-item > span {
+  font-size: 0.92rem;
+  letter-spacing: 0.055em;
+  text-align: left;
 }
 
 .editorial-page .markdown-body,
@@ -289,12 +353,12 @@ body.editorial-page {
 
 @media (max-width: 767px) {
   .editorial-page .header-inner {
-    height: 176px !important;
+    height: 132px !important;
     min-height: 0;
   }
 
   .editorial-page .banner .mask.flex-center {
-    padding-bottom: 1.9rem;
+    padding-bottom: 1.35rem;
   }
 
   .editorial-page .banner-text .h2 {

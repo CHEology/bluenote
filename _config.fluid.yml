@@ -29,7 +29,7 @@ fun_features:
 
 custom_css:
   - /css/home.css
-  - /css/custom.css?v=20260828-7
+  - /css/custom.css?v=20260828-8
   - /css/literary-blocks.css?v=20260827-2
   - /css/private.css?v=20260828-6
   - /css/search.css?v=20260828-5
@@ -46,9 +46,9 @@ navbar:
   ground_glass:
     enable: false
   menu:
-    - { key: "home", link: "/", icon: "iconfont icon-home-fill" }
-    - { key: "archive", link: "/archives/", icon: "iconfont icon-archive-fill" }
-    - { key: "about", link: "/about/", icon: "iconfont icon-user-fill" }
+    - { key: "home", link: "/" }
+    - { key: "archive", link: "/archives/" }
+    - { key: "about", link: "/about/" }
     - { key: "search", name: "Search", link: "#site-search", icon: "iconfont icon-search" }
 
 search:

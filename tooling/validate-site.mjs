@@ -119,6 +119,18 @@ const customCss = readFileSync(join(publicRoot, 'css', 'custom.css'), 'utf8');
 if (!customCss.includes('#color-toggle-btn .nav-link:hover #color-toggle-icon')) {
   fail('Color-scheme icon does not preserve its visibility on hover');
 }
+if (!customCss.includes('--masthead-background: #53616b')) {
+  fail('Editorial masthead is no longer a stable solid color');
+}
+if (!customCss.includes('height: 160px !important')) {
+  fail('Editorial masthead has returned to its oversized height');
+}
+if (!customCss.includes('#mobile-grid-menu .mobile-grid-item > i')) {
+  fail('Mobile navigation no longer suppresses decorative category icons');
+}
+for (const icon of ['icon-home-fill', 'icon-archive-fill', 'icon-user-fill']) {
+  if (home.includes(icon)) fail(`Desktop navigation still contains decorative icon: ${icon}`);
+}
 
 const generatedPosts = htmlFiles.filter((path) =>
   readFileSync(path, 'utf8').includes('<article class="post-content')
