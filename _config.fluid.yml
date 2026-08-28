@@ -8,6 +8,9 @@ dark_mode:
   enable: true
   default: auto
 
+scroll_top_arrow:
+  enable: false
+
 # Preserve the typography used by the pre-migration site.
 font:
   font_size: 16px
@@ -26,7 +29,7 @@ fun_features:
 
 custom_css:
   - /css/home.css
-  - /css/custom.css?v=20260827-6
+  - /css/custom.css?v=20260828-7
   - /css/literary-blocks.css?v=20260827-2
   - /css/private.css?v=20260828-6
   - /css/search.css?v=20260828-5

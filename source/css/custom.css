@@ -39,6 +39,19 @@ body.editorial-page {
   background: var(--masthead-background) !important;
 }
 
+/* Keep the desktop color-scheme glyph legible while its nav link is hovered. */
+.editorial-page #color-toggle-btn .nav-link:hover,
+.editorial-page #color-toggle-btn .nav-link:focus-visible {
+  color: var(--navbar-text-color);
+}
+
+.editorial-page #color-toggle-btn .nav-link:hover #color-toggle-icon,
+.editorial-page #color-toggle-btn .nav-link:focus-visible #color-toggle-icon {
+  color: inherit;
+  opacity: 1;
+  visibility: visible;
+}
+
 .editorial-page .banner .mask.flex-center {
   align-items: flex-end;
   justify-content: center;

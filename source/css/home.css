@@ -261,11 +261,6 @@ body.home-page {
   display: none !important;
 }
 
-.home-page #scroll-top-button {
-  border: 1px solid rgba(198, 225, 236, 0.2);
-  background: #091c2a;
-}
-
 @media (max-width: 991px) {
   .home-page #board > .container > .row > [class*="col-"] {
     grid-template-columns: repeat(3, var(--home-card-size));

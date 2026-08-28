@@ -108,6 +108,18 @@ if (/<div id="banner" class="banner"[^>]*style=/.test(about)) {
 }
 
 const htmlFiles = walk(publicRoot).filter((path) => extname(path) === '.html');
+for (const htmlFile of htmlFiles) {
+  const html = readFileSync(htmlFile, 'utf8');
+  if (html.includes('id="scroll-top-button"')) {
+    fail(`Scroll-to-top button is still generated: ${relative(publicRoot, htmlFile)}`);
+  }
+}
+
+const customCss = readFileSync(join(publicRoot, 'css', 'custom.css'), 'utf8');
+if (!customCss.includes('#color-toggle-btn .nav-link:hover #color-toggle-icon')) {
+  fail('Color-scheme icon does not preserve its visibility on hover');
+}
+
 const generatedPosts = htmlFiles.filter((path) =>
   readFileSync(path, 'utf8').includes('<article class="post-content')
 );
