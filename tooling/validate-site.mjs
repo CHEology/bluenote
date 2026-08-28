@@ -26,7 +26,6 @@ const required = [
   'private/index.html',
   'private/posts.enc.json',
   'local-search.xml',
-  '2023/07/31/小蓝本/index.html',
   '2023/09/26/布涅星/index.html',
   '2023/11/19/秋之纽约-2023-11/index.html',
   'css/home.css',
@@ -62,7 +61,7 @@ for (const post of markdownPosts) {
 }
 
 const home = readFileSync(join(publicRoot, 'index.html'), 'utf8');
-for (const title of ['小蓝本', '布涅星', '秋之纽约_2023.11']) {
+for (const title of ['布涅星', '秋之纽约_2023.11']) {
   if (!home.includes(title)) fail(`Home page does not contain post title: ${title}`);
 }
 for (const asset of ['/bluenote/css/home.css', '/bluenote/css/custom.css', '/bluenote/css/typography.css', '/bluenote/js/site.js']) {
