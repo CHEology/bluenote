@@ -113,6 +113,7 @@
     if (!query) return;
 
     var matches = entries.filter(function(entry) {
+      if (entry.privatePost && !document.documentElement.classList.contains('private-reading-unlocked')) return false;
       return entry.title.toLowerCase().includes(query) || entry.content.toLowerCase().includes(query);
     }).slice(0, 20);
     matches.forEach(function(entry) {

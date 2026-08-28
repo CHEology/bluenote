@@ -65,6 +65,10 @@
   margin-left: 0.48rem;
 }
 
+html:not(.private-reading-unlocked) body.home-page .index-card:has(a[data-private-link]) {
+  display: none;
+}
+
 .home-page .index-card.private-entry .index-excerpt,
 .home-page .index-card:has(a[data-private-link]) .index-excerpt {
   display: none;

@@ -75,9 +75,19 @@ if (!/<div id="banner" class="banner"[^>]*style="background: url/.test(home)) {
   fail('Home page no longer contains its visual cover');
 }
 
+const privateCss = readFileSync(join(publicRoot, 'css', 'private.css'), 'utf8');
+if (!privateCss.includes('html:not(.private-reading-unlocked) body.home-page .index-card:has(a[data-private-link])')) {
+  fail('Locked visitors can still see private posts on the homepage');
+}
+
 const siteScript = readFileSync(join(publicRoot, 'js', 'site.js'), 'utf8');
 if (!siteScript.includes("matchMedia('(prefers-color-scheme: dark)')")) {
   fail('Site script does not listen for system color-scheme changes');
+}
+
+const searchScript = readFileSync(join(publicRoot, 'js', 'search.js'), 'utf8');
+if (!searchScript.includes("entry.privatePost && !document.documentElement.classList.contains('private-reading-unlocked')")) {
+  fail('Locked visitors can still discover private posts through search');
 }
 
 const archive = readFileSync(join(publicRoot, 'archives', 'index.html'), 'utf8');
