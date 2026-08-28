@@ -3,6 +3,26 @@
     return (value || '').split(/[ T]/)[0];
   }
 
+  function followSystemColorScheme() {
+    if (!window.matchMedia) return;
+
+    var systemScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    var applySystemChange = function() {
+      try {
+        if (window.localStorage.getItem('Fluid_Color_Scheme')) return;
+      } catch (error) {}
+
+      var toggle = document.querySelector('#color-toggle-btn');
+      if (toggle) toggle.click();
+    };
+
+    if (typeof systemScheme.addEventListener === 'function') {
+      systemScheme.addEventListener('change', applySystemChange);
+    } else if (typeof systemScheme.addListener === 'function') {
+      systemScheme.addListener(applySystemChange);
+    }
+  }
+
   function prepareEditorialPage() {
     var post = document.querySelector('article.post-content');
     var listing = document.querySelector('#board .list-group');
@@ -78,6 +98,7 @@
   }
 
   document.addEventListener('DOMContentLoaded', function() {
+    followSystemColorScheme();
     prepareEditorialPage();
     removePostFooterMetadata();
     preparePostPage();

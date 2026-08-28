@@ -31,7 +31,7 @@ custom_css:
   - /css/typography.css
 
 custom_js:
-  - /js/site.js?v=20260827-4
+  - /js/site.js?v=20260827-5
   - /js/home.js
 
 navbar:

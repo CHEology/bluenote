@@ -69,6 +69,11 @@ if (!/<div id="banner" class="banner"[^>]*style="background: url/.test(home)) {
   fail('Home page no longer contains its visual cover');
 }
 
+const siteScript = readFileSync(join(publicRoot, 'js', 'site.js'), 'utf8');
+if (!siteScript.includes("matchMedia('(prefers-color-scheme: dark)')")) {
+  fail('Site script does not listen for system color-scheme changes');
+}
+
 const archive = readFileSync(join(publicRoot, 'archives', 'index.html'), 'utf8');
 if (!archive.includes('<body class="editorial-page listing-page">')) {
   fail('Archives page does not use the shared editorial layout');
