@@ -47,19 +47,12 @@
     element.dataset.searchOverlay = '';
     element.hidden = true;
     element.innerHTML = [
-      '<section class="site-search-dialog" role="dialog" aria-modal="true" aria-labelledby="site-search-title">',
-      '  <div class="site-search-dialog__header">',
-      '    <div>',
-      '      <p>BLUE NOTE</p>',
-      '      <h2 id="site-search-title">搜索</h2>',
-      '    </div>',
-      '    <button type="button" data-search-close aria-label="关闭搜索">×</button>',
-      '  </div>',
+      '<section class="site-search-dialog" role="dialog" aria-modal="true" aria-label="Search">',
+      '  <button class="site-search-dialog__close" type="button" data-search-close aria-label="关闭搜索">×</button>',
       '  <label class="site-search-dialog__field" for="site-search-input">',
       '    <span class="iconfont icon-search" aria-hidden="true"></span>',
-      '    <input id="site-search-input" type="search" autocomplete="off" placeholder="搜索标题或正文">',
+      '    <input id="site-search-input" type="search" autocomplete="off" placeholder="Search">',
       '  </label>',
-      '  <p class="site-search-dialog__hint" data-search-hint>输入关键词开始搜索；按 Esc 可以关闭。</p>',
       '  <div class="site-search-results" data-search-results aria-live="polite"></div>',
       '</section>'
     ].join('');
@@ -70,7 +63,6 @@
   var overlay = buildOverlay();
   var input = overlay.querySelector('#site-search-input');
   var results = overlay.querySelector('[data-search-results]');
-  var hint = overlay.querySelector('[data-search-hint]');
 
   function loadIndex() {
     if (loadingPromise) return loadingPromise;
@@ -100,9 +92,8 @@
       });
       mergeUnlockedPrivatePosts();
       loaded = true;
-      hint.textContent = '输入关键词开始搜索；按 Esc 可以关闭。';
     }).catch(function() {
-      hint.textContent = '搜索索引暂时无法读取，请稍后重试。';
+      loaded = false;
     });
     return loadingPromise;
   }
@@ -119,16 +110,11 @@
   function renderResults() {
     var query = input.value.trim().toLowerCase();
     results.replaceChildren();
-    if (!query) {
-      hint.textContent = loaded ? '输入关键词开始搜索；按 Esc 可以关闭。' : '正在准备搜索…';
-      return;
-    }
+    if (!query) return;
 
     var matches = entries.filter(function(entry) {
       return entry.title.toLowerCase().includes(query) || entry.content.toLowerCase().includes(query);
     }).slice(0, 20);
-    hint.textContent = matches.length ? '找到 ' + matches.length + ' 篇文章' : '没有找到匹配的文章';
-
     matches.forEach(function(entry) {
       var link = document.createElement('a');
       link.className = 'site-search-result';
@@ -147,7 +133,7 @@
         lockIcon.className = 'private-lock-icon';
         lockIcon.setAttribute('aria-hidden', 'true');
         lock.appendChild(lockIcon);
-        lock.appendChild(document.createTextNode(document.documentElement.classList.contains('private-reading-unlocked') ? 'UNLOCKED' : 'PRIVATE READING'));
+        lock.setAttribute('aria-label', document.documentElement.classList.contains('private-reading-unlocked') ? 'Unlocked' : 'Locked');
         link.appendChild(lock);
       } else if (entry.content) {
         var excerpt = document.createElement('span');
@@ -173,7 +159,6 @@
     document.body.classList.remove('search-dialog-open');
     input.value = '';
     results.replaceChildren();
-    hint.textContent = '输入关键词开始搜索；按 Esc 可以关闭。';
     if (previousFocus && previousFocus.focus) previousFocus.focus();
   }
 

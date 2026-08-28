@@ -99,9 +99,8 @@ private_id: ${post.id}
 <section class="private-post-shell" data-private-post-id="${post.id}">
   <div class="private-post-shell__locked" data-private-post-locked>
     <span class="private-post-shell__lock" aria-hidden="true"></span>
-    <p class="private-post-shell__label">PRIVATE READING</p>
-    <p class="private-post-shell__message">这篇文章需要先解锁私人阅读。</p>
-    <button type="button" data-private-unlock>输入密码</button>
+    <p class="private-post-shell__label">Locked</p>
+    <button type="button" data-private-unlock>Unlock</button>
   </div>
   <div class="private-post-shell__content" data-private-post-content hidden></div>
 </section>

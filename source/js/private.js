@@ -97,19 +97,6 @@
     });
   }
 
-  function navLinks() {
-    return Array.prototype.slice.call(document.querySelectorAll('a[href$="#private-unlock"]'));
-  }
-
-  function updateNavState() {
-    navLinks().forEach(function(link) {
-      link.classList.toggle('private-access--unlocked', Boolean(unlockedPayload));
-      link.setAttribute('aria-label', unlockedPayload ? 'Private reading 已解锁' : '解锁 Private reading');
-      var label = link.querySelector('span');
-      if (label) label.textContent = unlockedPayload ? 'Private · Unlocked' : 'Private';
-    });
-  }
-
   function renderCurrentPrivatePost() {
     var shell = document.querySelector('[data-private-post-id]');
     if (!shell || !unlockedPayload) return;
@@ -127,7 +114,6 @@
 
   function announceUnlocked() {
     document.documentElement.classList.add('private-reading-unlocked');
-    updateNavState();
     renderCurrentPrivatePost();
     document.dispatchEvent(new CustomEvent('bluenote:private-unlocked', {
       detail: { posts: unlockedPayload.posts }
@@ -150,16 +136,15 @@
     overlay.innerHTML = [
       '<section class="private-unlock-dialog" role="dialog" aria-modal="true" aria-labelledby="private-unlock-title">',
       '  <button class="private-unlock-dialog__close" type="button" data-private-close aria-label="关闭">×</button>',
-      '  <p class="private-unlock-dialog__eyebrow">PRIVATE READING</p>',
-      '  <h2 id="private-unlock-title">解锁私人阅读</h2>',
-      '  <p class="private-unlock-dialog__intro">解锁一次后，此浏览器会保持访问权限，直到你主动退出或清除网站数据。</p>',
+      '  <div class="private-unlock-dialog__title">',
+      '    <span class="private-post-shell__lock" aria-hidden="true"></span>',
+      '    <h2 id="private-unlock-title">Locked</h2>',
+      '  </div>',
       '  <form data-private-form>',
-      '    <label for="private-global-password">密码</label>',
-      '    <input id="private-global-password" type="password" autocomplete="current-password" required>',
-      '    <button class="private-unlock-dialog__submit" type="submit">解锁</button>',
+      '    <input id="private-global-password" type="password" autocomplete="current-password" placeholder="Password" aria-label="Password" required>',
+      '    <button class="private-unlock-dialog__submit" type="submit">Unlock</button>',
       '  </form>',
       '  <p class="private-unlock-dialog__status" data-private-status role="status" aria-live="polite"></p>',
-      '  <button class="private-unlock-dialog__forget" type="button" data-private-forget hidden>退出并忘记本机权限</button>',
       '</section>'
     ].join('');
     document.body.appendChild(overlay);
@@ -170,7 +155,6 @@
   var form = overlay.querySelector('[data-private-form]');
   var passwordInput = overlay.querySelector('#private-global-password');
   var status = overlay.querySelector('[data-private-status]');
-  var forgetButton = overlay.querySelector('[data-private-forget]');
 
   function openDialog() {
     previousFocus = document.activeElement;
@@ -178,8 +162,7 @@
     overlay.hidden = false;
     document.body.classList.add('private-dialog-open');
     form.hidden = Boolean(unlockedPayload);
-    forgetButton.hidden = !unlockedPayload;
-    status.textContent = unlockedPayload ? 'Private reading 已在此浏览器中解锁。' : '';
+    status.textContent = '';
     if (!unlockedPayload) window.setTimeout(function() { passwordInput.focus(); }, 0);
   }
 
@@ -208,12 +191,12 @@
   form.addEventListener('submit', async function(event) {
     event.preventDefault();
     if (!archive || !archive.ciphertext) {
-      status.textContent = '加密文章暂时无法读取。';
+      status.textContent = 'Unavailable';
       return;
     }
     var submit = form.querySelector('button[type="submit"]');
     submit.disabled = true;
-    status.textContent = '正在解锁…';
+    status.textContent = 'Checking…';
     try {
       var keyBytes = await deriveKeyBytes(passwordInput.value, archive);
       var payload = await decryptWithKeyBytes(archive, keyBytes);
@@ -227,18 +210,11 @@
       announceUnlocked();
       closeDialog();
     } catch (error) {
-      status.textContent = '密码不正确，请重新输入。';
+      status.textContent = 'Incorrect password';
       passwordInput.select();
     } finally {
       submit.disabled = false;
     }
-  });
-
-  forgetButton.addEventListener('click', function() {
-    window.localStorage.removeItem(storageKey);
-    activeKeyBytes = undefined;
-    unlockedPayload = undefined;
-    window.location.reload();
   });
 
   Promise.all([
@@ -254,7 +230,6 @@
     archive = results[0];
     manifest = results[1];
     markPrivateLinks();
-    updateNavState();
 
     var saved;
     try {
@@ -271,7 +246,5 @@
       activeKeyBytes = undefined;
       unlockedPayload = undefined;
     }
-  }).catch(function() {
-    updateNavState();
-  });
+  }).catch(function() {});
 })();
