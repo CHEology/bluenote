@@ -25,6 +25,7 @@ body.editorial-page {
   --link-hover-bg-color: rgba(99,117,131,0.08);
   --line-color: rgba(62,58,52,0.16);
   --navbar-bg-color: #53616b;
+  --navbar-hover-color: #f3dca6;
   --masthead-background: #53616b;
   --masthead-title-color: #f4f1eb;
   --masthead-line-color: rgba(244,241,235,0.48);
@@ -45,7 +46,37 @@ body.editorial-page {
 }
 
 .navbar #navbarSupportedContent .nav-item:not(#color-toggle-btn) .nav-link {
+  position: relative;
+  color: var(--navbar-text-color);
   letter-spacing: 0.055em;
+}
+
+.navbar #navbarSupportedContent .nav-item:not(#color-toggle-btn) .nav-link:hover,
+.navbar #navbarSupportedContent .nav-item:not(#color-toggle-btn) .nav-link:focus-visible {
+  color: var(--navbar-hover-color, #f3dca6);
+}
+
+.navbar #navbarSupportedContent .nav-item:not(#color-toggle-btn) .nav-link > span {
+  position: relative;
+}
+
+.navbar #navbarSupportedContent .nav-item:not(#color-toggle-btn) .nav-link > span::after {
+  position: absolute;
+  right: 0;
+  bottom: -0.28rem;
+  left: 0;
+  height: 1px;
+  background: currentColor;
+  content: "";
+  opacity: 0;
+  transform: scaleX(0.35);
+  transition: opacity 160ms ease, transform 160ms ease;
+}
+
+.navbar #navbarSupportedContent .nav-item:not(#color-toggle-btn) .nav-link:hover > span::after,
+.navbar #navbarSupportedContent .nav-item:not(#color-toggle-btn) .nav-link:focus-visible > span::after {
+  opacity: 0.9;
+  transform: scaleX(1);
 }
 
 /* Keep the desktop color-scheme glyph legible while its nav link is hovered. */
@@ -136,7 +167,7 @@ body.editorial-page {
 }
 
 .editorial-page .header-inner {
-  height: 160px !important;
+  height: 216px !important;
   min-height: 0;
   max-height: none;
 }
@@ -353,12 +384,12 @@ body.editorial-page {
 
 @media (max-width: 767px) {
   .editorial-page .header-inner {
-    height: 132px !important;
+    height: 176px !important;
     min-height: 0;
   }
 
   .editorial-page .banner .mask.flex-center {
-    padding-bottom: 1.35rem;
+    padding-bottom: 1.9rem;
   }
 
   .editorial-page .banner-text .h2 {

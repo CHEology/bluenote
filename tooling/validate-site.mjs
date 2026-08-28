@@ -122,11 +122,14 @@ if (!customCss.includes('#color-toggle-btn .nav-link:hover #color-toggle-icon'))
 if (!customCss.includes('--masthead-background: #53616b')) {
   fail('Editorial masthead is no longer a stable solid color');
 }
-if (!customCss.includes('height: 160px !important')) {
-  fail('Editorial masthead has returned to its oversized height');
+if (!customCss.includes('height: 216px !important')) {
+  fail('Editorial masthead no longer uses its established height');
 }
 if (!customCss.includes('#mobile-grid-menu .mobile-grid-item > i')) {
   fail('Mobile navigation no longer suppresses decorative category icons');
+}
+if (!customCss.includes('--navbar-hover-color: #f3dca6')) {
+  fail('Navigation hover state no longer contrasts with the blue masthead');
 }
 for (const icon of ['icon-home-fill', 'icon-archive-fill', 'icon-user-fill']) {
   if (home.includes(icon)) fail(`Desktop navigation still contains decorative icon: ${icon}`);

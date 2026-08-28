@@ -29,7 +29,7 @@ fun_features:
 
 custom_css:
   - /css/home.css
-  - /css/custom.css?v=20260828-8
+  - /css/custom.css?v=20260828-9
   - /css/literary-blocks.css?v=20260827-2
   - /css/private.css?v=20260828-6
   - /css/search.css?v=20260828-5
