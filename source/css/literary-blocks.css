@@ -4,12 +4,15 @@
   color: var(--post-text-color);
 }
 
-.post-page .markdown-body .literary-block--signal {
+.post-page .markdown-body .literary-block--signal,
+.post-page .markdown-body [data-private-post-id="eeddfa74ef298a0c"] .private-post-shell__content > pre:first-child {
   max-width: 48rem;
   margin: 0 auto 2.5rem;
   padding: 1.75rem 1.65rem 1.6rem;
+  color: var(--post-text-color);
   background: rgba(99, 117, 131, 0.08);
   border: 1px solid var(--line-color);
+  border-radius: 0;
 }
 
 .post-page .markdown-body .literary-block__section {
@@ -21,6 +24,27 @@
   font-family: Times, "Times New Roman", Georgia, serif;
   font-size: 1.06rem;
   line-height: 1.75;
+}
+
+/* The encrypted source predates literary blocks and renders its opening as code. */
+.post-page .markdown-body [data-private-post-id="eeddfa74ef298a0c"] .private-post-shell__content > pre:first-child {
+  overflow: visible;
+  white-space: normal;
+  text-align: center;
+}
+
+.post-page .markdown-body [data-private-post-id="eeddfa74ef298a0c"] .private-post-shell__content > pre:first-child > code {
+  display: block;
+  padding: 0;
+  color: inherit;
+  background: transparent;
+  font-family: "Songti SC", "Noto Serif CJK SC", "Source Han Serif SC", STSong, Georgia, serif;
+  font-size: 1.02rem !important;
+  font-weight: 400;
+  letter-spacing: 0.045em;
+  line-height: 1.95;
+  white-space: normal;
+  text-wrap: balance;
 }
 
 .post-page .markdown-body .literary-block__section--opening p + p {
@@ -73,7 +97,8 @@
 }
 
 @media (max-width: 767px) {
-  .post-page .markdown-body .literary-block--signal {
+  .post-page .markdown-body .literary-block--signal,
+  .post-page .markdown-body [data-private-post-id="eeddfa74ef298a0c"] .private-post-shell__content > pre:first-child {
     padding-top: 1.45rem;
     padding-bottom: 1.35rem;
     padding-right: 1.1rem;
@@ -82,6 +107,12 @@
 
   .post-page .markdown-body .literary-block__section p {
     font-size: 0.98rem;
+  }
+
+  .post-page .markdown-body [data-private-post-id="eeddfa74ef298a0c"] .private-post-shell__content > pre:first-child > code {
+    font-size: 0.98rem !important;
+    letter-spacing: 0.025em;
+    line-height: 1.9;
   }
 
   .post-page .markdown-body .literary-block__section .literary-block__emphasis {
