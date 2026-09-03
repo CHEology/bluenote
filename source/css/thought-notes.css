@@ -1,0 +1,290 @@
+/* Editorial devices for short-form essays built around ideas and equations. */
+.post-page .markdown-body .thought-note__lead {
+  max-width: 38rem;
+  margin: 0 auto 3.8rem;
+  color: var(--sec-text-color);
+  font-size: 1.05rem;
+  font-style: italic;
+  letter-spacing: 0.025em;
+  line-height: 1.9;
+  text-align: center;
+  text-wrap: balance;
+}
+
+.post-page .markdown-body .thought-note__lead::after {
+  display: block;
+  width: 2.5rem;
+  height: 1px;
+  margin: 1.6rem auto 0;
+  background: var(--line-color);
+  content: "";
+}
+
+.post-page .markdown-body .thought-note__heading {
+  display: flex;
+  align-items: baseline;
+  gap: 0.9rem;
+  margin: 4.2rem 0 1.55rem;
+  padding: 0;
+  color: var(--post-heading-color);
+  border: 0;
+  font-size: 1.28rem;
+  font-weight: 500;
+  letter-spacing: 0.035em;
+  line-height: 1.45;
+}
+
+.post-page .markdown-body .thought-note__heading:first-of-type {
+  margin-top: 0;
+}
+
+.post-page .markdown-body .thought-note__heading i {
+  font-family: Times, "Times New Roman", Georgia, serif;
+  font-weight: 400;
+}
+
+.post-page .markdown-body .thought-note__number {
+  color: var(--post-link-color);
+  font-family: Times, "Times New Roman", Georgia, serif;
+  font-size: 0.78rem;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+}
+
+.post-page .markdown-body .thought-note__formula-pair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  max-width: 43rem;
+  margin: 2.5rem auto 2.65rem;
+  border-top: 1px solid var(--line-color);
+  border-bottom: 1px solid var(--line-color);
+}
+
+.post-page .markdown-body .thought-note__formula {
+  margin: 0;
+  padding: 1.85rem 1.4rem 1.7rem;
+  text-align: center;
+}
+
+.post-page .markdown-body .thought-note__formula + .thought-note__formula {
+  border-left: 1px solid var(--line-color);
+}
+
+.post-page .markdown-body .thought-note__formula > div {
+  color: var(--post-heading-color);
+  font-family: Times, "Times New Roman", Georgia, serif;
+  font-size: clamp(1.65rem, 4vw, 2.05rem);
+  font-variant-numeric: lining-nums;
+  letter-spacing: 0.025em;
+  line-height: 1.15;
+}
+
+.post-page .markdown-body .thought-note__formula--accent > div {
+  color: var(--post-link-color);
+}
+
+.post-page .markdown-body .thought-note__formula sup,
+.post-page .markdown-body .thought-note__derivation sup {
+  position: relative;
+  top: -0.05em;
+  font-size: 0.6em;
+}
+
+.post-page .markdown-body .thought-note__formula figcaption {
+  margin-top: 0.75rem;
+  color: var(--sec-text-color);
+  font-family: "Songti SC", "Noto Serif CJK SC", "Source Han Serif SC", STSong, Georgia, serif;
+  font-size: 0.77rem;
+  letter-spacing: 0.06em;
+  line-height: 1.55;
+}
+
+.post-page .markdown-body .thought-note__derivation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.1rem;
+  max-width: 45rem;
+  margin: 2.35rem auto 2.55rem;
+  padding: 1.45rem 1.5rem;
+  color: var(--post-heading-color);
+  background: rgba(99, 117, 131, 0.065);
+  font-family: Times, "Times New Roman", Georgia, serif;
+  font-size: 1.2rem;
+  font-variant-numeric: lining-nums;
+  letter-spacing: 0.025em;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+.post-page .markdown-body .thought-note__derivation b {
+  color: var(--sec-text-color);
+  font-size: 0.85em;
+  font-weight: 400;
+}
+
+.post-page .markdown-body .thought-note__pullquote {
+  max-width: 38rem;
+  margin: 3rem auto;
+  padding: 1.5rem 2rem;
+  color: var(--post-heading-color);
+  border-top: 1px solid var(--line-color);
+  border-bottom: 1px solid var(--line-color);
+  font-size: 1.15rem;
+  letter-spacing: 0.045em;
+  line-height: 1.85;
+  text-align: center;
+  text-wrap: balance;
+}
+
+.post-page .markdown-body .thought-note__sources {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.45rem 1rem;
+  margin-top: 2.6rem;
+  color: var(--sec-text-color);
+  font-size: 0.76rem;
+  letter-spacing: 0.035em;
+  line-height: 1.6;
+}
+
+.post-page .markdown-body .thought-note__sources > span {
+  margin-right: 0.25rem;
+  color: var(--post-heading-color);
+  font-weight: 600;
+  letter-spacing: 0.09em;
+}
+
+.post-page .markdown-body .thought-note__sources a {
+  color: var(--sec-text-color);
+  border-bottom: 1px solid var(--line-color);
+}
+
+.post-page .markdown-body .thought-note__sources a:hover,
+.post-page .markdown-body .thought-note__sources a:focus-visible {
+  color: var(--link-hover-color);
+  border-bottom-color: currentColor;
+}
+
+.post-page .markdown-body .thought-note__ta {
+  font-family: Times, "Times New Roman", Georgia, serif;
+  font-size: 0.94em;
+  font-variant-caps: small-caps;
+  letter-spacing: 0.045em;
+}
+
+.post-page .markdown-body .thought-note__conditions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0;
+  max-width: 43rem;
+  margin: 2.25rem auto 2.6rem;
+  padding: 0;
+  border-top: 1px solid var(--line-color);
+  list-style: none;
+}
+
+.post-page .markdown-body .thought-note__conditions li {
+  display: grid;
+  grid-template-columns: 1.75rem minmax(0, 1fr);
+  align-items: baseline;
+  gap: 0.75rem;
+  margin: 0;
+  padding: 1.05rem 1rem 1.05rem 0;
+  border-bottom: 1px solid var(--line-color);
+}
+
+.post-page .markdown-body .thought-note__conditions li:nth-child(odd) {
+  padding-right: 1.4rem;
+}
+
+.post-page .markdown-body .thought-note__conditions li:nth-child(even) {
+  padding-left: 1.4rem;
+}
+
+.post-page .markdown-body .thought-note__conditions li > span:first-child {
+  display: inline-grid;
+  width: 1.55rem;
+  height: 1.55rem;
+  place-items: center;
+  color: var(--post-link-color);
+  border: 1px solid var(--line-color);
+  border-radius: 50%;
+  font-family: Times, "Times New Roman", Georgia, serif;
+  font-size: 0.76rem;
+  font-style: italic;
+  line-height: 1;
+}
+
+.post-page .markdown-body .thought-note__conditions p {
+  margin: 0;
+}
+
+.post-page .markdown-body .thought-note__question {
+  max-width: 39rem;
+  margin: 3.2rem auto 1rem;
+  color: var(--post-heading-color);
+  font-size: 1.1rem;
+  letter-spacing: 0.025em;
+  line-height: 1.95;
+  text-align: center;
+  text-wrap: balance;
+}
+
+@media (max-width: 767px) {
+  .post-page .markdown-body .thought-note__lead {
+    margin-bottom: 3.1rem;
+    font-size: 1rem;
+  }
+
+  .post-page .markdown-body .thought-note__heading {
+    margin-top: 3.55rem;
+    font-size: 1.18rem;
+  }
+
+  .post-page .markdown-body .thought-note__formula {
+    padding-right: 0.8rem;
+    padding-left: 0.8rem;
+  }
+
+  .post-page .markdown-body .thought-note__formula figcaption {
+    font-size: 0.7rem;
+    letter-spacing: 0.025em;
+  }
+
+  .post-page .markdown-body .thought-note__derivation {
+    display: grid;
+    gap: 0.55rem;
+    justify-items: center;
+    padding: 1.4rem 1rem;
+    font-size: 1.15rem;
+    white-space: normal;
+  }
+
+  .post-page .markdown-body .thought-note__derivation b {
+    transform: rotate(90deg);
+  }
+
+  .post-page .markdown-body .thought-note__pullquote {
+    padding-right: 0.75rem;
+    padding-left: 0.75rem;
+    font-size: 1.07rem;
+  }
+
+  .post-page .markdown-body .thought-note__conditions {
+    grid-template-columns: 1fr;
+  }
+
+  .post-page .markdown-body .thought-note__conditions li,
+  .post-page .markdown-body .thought-note__conditions li:nth-child(odd),
+  .post-page .markdown-body .thought-note__conditions li:nth-child(even) {
+    padding-right: 0;
+    padding-left: 0;
+  }
+
+  .post-page .markdown-body .thought-note__question {
+    font-size: 1.04rem;
+  }
+}
