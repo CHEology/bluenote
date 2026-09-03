@@ -37,13 +37,6 @@
   font-weight: 400;
 }
 
-.post-page .markdown-body .thought-note__ta {
-  font-family: Times, "Times New Roman", Georgia, serif;
-  font-size: 0.94em;
-  font-variant-caps: small-caps;
-  letter-spacing: 0.045em;
-}
-
 .post-page .markdown-body .thought-note__section-break {
   width: 4rem;
   height: 1px;

@@ -239,7 +239,7 @@ body.editorial-page {
 .editorial-page .markdown-body,
 .editorial-page .list-group,
 .editorial-page .about-info {
-  font-family: "Songti SC", "Noto Serif CJK SC", "Source Han Serif SC", STSong, Georgia, serif;
+  font-family: Charter, Georgia, "Times New Roman", "Songti SC", "Noto Serif CJK SC", "Source Han Serif SC", STSong, serif;
   font-size: 1.0625rem;
   font-weight: 400;
   line-height: 1.78;
