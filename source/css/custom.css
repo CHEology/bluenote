@@ -314,6 +314,98 @@ body.editorial-page {
   background: var(--link-hover-bg-color);
 }
 
+.listing-page .archive-design-label {
+  margin-top: 3.25rem;
+}
+
+.listing-page .archive-design-kind {
+  flex: 0 0 4.5rem;
+  color: var(--sec-text-color);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+}
+
+.listing-page .archive-design-copy {
+  display: block;
+}
+
+.listing-page .archive-design-summary {
+  display: block;
+  margin-top: 0.1rem;
+  color: var(--sec-text-color);
+  font-size: 0.78rem;
+  line-height: 1.5;
+}
+
+.design-doc-page .page-content {
+  padding: 0;
+}
+
+.design-doc-page .design-document {
+  margin-bottom: 0;
+}
+
+.design-doc-page .design-document > p:first-child {
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.25rem;
+  color: var(--sec-text-color);
+  border-bottom: 1px solid var(--line-color);
+  font-size: 0.84rem;
+  line-height: 1.65;
+}
+
+.design-doc-page .design-document h2 {
+  margin: 3.25rem 0 1.25rem;
+  padding-bottom: 0.45rem;
+  border-bottom: 1px solid var(--line-color);
+  font-size: 1.35rem;
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+.design-doc-page .design-document h3 {
+  margin: 2.1rem 0 0.9rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.design-doc-page .design-document li + li {
+  margin-top: 0.28rem;
+}
+
+.design-doc-page .design-document table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  border: 0;
+  font-size: 0.88rem;
+  white-space: nowrap;
+}
+
+.design-doc-page .design-document table th,
+.design-doc-page .design-document table td {
+  padding: 0.65rem 0.75rem;
+  border-color: var(--line-color);
+}
+
+.design-doc-page .design-document table th {
+  color: var(--post-heading-color);
+  background: rgba(99, 117, 131, 0.06);
+  font-weight: 600;
+}
+
+.design-doc-page .design-document pre {
+  border: 1px solid var(--line-color);
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.design-doc-page .design-document code {
+  font-size: 0.86em;
+}
+
 /* About keeps its identity content but no longer uses the old floating card. */
 .about-page .about-avatar {
   z-index: 1;
@@ -415,6 +507,10 @@ body.editorial-page {
   }
 
   .listing-page .list-group-item time {
+    flex-basis: 3.75rem;
+  }
+
+  .listing-page .archive-design-kind {
     flex-basis: 3.75rem;
   }
 

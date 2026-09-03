@@ -23,6 +23,7 @@ const required = [
   '404.html',
   'about/index.html',
   'archives/index.html',
+  'design/index.html',
   'private/posts.enc.json',
   'private/posts.public.json',
   'local-search.xml',
@@ -97,6 +98,20 @@ if (!archive.includes('<body class="editorial-page listing-page">')) {
 if (archive.includes('posts in total')) fail('Archives page still contains the post total');
 if (/<div id="banner" class="banner"[^>]*style=/.test(archive)) {
   fail('Archives page still contains an image masthead');
+}
+if (!archive.includes('href="/bluenote/design/"') || !archive.includes('Design Doc')) {
+  fail('Archives page does not contain the Design Doc entry');
+}
+
+const design = readFileSync(join(publicRoot, 'design', 'index.html'), 'utf8');
+if (!design.includes('<body class="editorial-page design-doc-page">')) {
+  fail('Design Doc page does not use its editorial layout');
+}
+if (!design.includes('class="markdown-body design-document"')) {
+  fail('Design Doc page does not contain the generated canonical document');
+}
+if (!design.includes('## 1. 设计目标') && !design.includes('1. 设计目标')) {
+  fail('Design Doc page is missing its first design section');
 }
 
 const about = readFileSync(join(publicRoot, 'about', 'index.html'), 'utf8');

@@ -22,8 +22,48 @@ function markPrivateLinks(html) {
   return html;
 }
 
+function appendInsideFirstDiv(html, className, fragment) {
+  var marker = '<div class="' + className + '">';
+  var start = html.indexOf(marker);
+  if (start === -1) return html;
+
+  var depth = 0;
+  var tags = /<\/?div\b[^>]*>/g;
+  tags.lastIndex = start;
+  var match;
+
+  while ((match = tags.exec(html))) {
+    if (match[0].startsWith('</')) {
+      depth -= 1;
+      if (depth === 0) {
+        return html.slice(0, match.index) + fragment + html.slice(match.index);
+      }
+    } else {
+      depth += 1;
+    }
+  }
+
+  return html;
+}
+
+function addArchiveDesignDocument(html) {
+  var root = hexo.config.root.endsWith('/') ? hexo.config.root : hexo.config.root + '/';
+  var entry = [
+    '<p class="h5 archive-design-label">SITE</p>',
+    '<a href="' + root + 'design/" class="list-group-item list-group-item-action archive-design-link">',
+    '  <span class="archive-design-kind" aria-hidden="true">DOC</span>',
+    '  <span class="list-group-item-title archive-design-copy">',
+    '    <span>Design Doc</span>',
+    '    <span class="archive-design-summary">颜色、字体、排版与组件规范</span>',
+    '  </span>',
+    '</a>'
+  ].join('\n');
+
+  return appendInsideFirstDiv(html, 'list-group', '\n' + entry + '\n');
+}
+
 /* Mark content pages at build time so they share one layout before JavaScript runs. */
-hexo.extend.filter.register('after_render:html', function applyEditorialLayout(html) {
+hexo.extend.filter.register('after_render:html', function applyEditorialLayout(html, data) {
   var classes = [];
 
   html = markPrivateLinks(html);
@@ -37,10 +77,17 @@ hexo.extend.filter.register('after_render:html', function applyEditorialLayout(h
       /(<div class="list-group">\s*)<p class="h4">[^<]*<\/p>\s*<hr>/,
       '$1'
     );
+    var renderPath = data && typeof data.path === 'string' ? data.path.replace(/\\/g, '/') : '';
+    if (renderPath.endsWith('/archives/index.html') || renderPath === 'archives/index.html' || html.includes('<title>Archives - Blue Note</title>')) {
+      html = addArchiveDesignDocument(html);
+    }
   } else if (html.includes('class="about-content page-content')) {
     classes.push('editorial-page', 'about-page');
   } else if (html.includes('<article class="page-content')) {
     classes.push('editorial-page');
+    if (html.includes('class="markdown-body design-document"')) {
+      classes.push('design-doc-page');
+    }
   }
 
   if (classes.length > 0) {

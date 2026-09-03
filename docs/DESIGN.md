@@ -262,6 +262,7 @@ box-shadow: none;
 - `source/css/private.css`：私密文章界面；
 - `source/css/search.css`：搜索界面；
 - `_config.fluid.yml`：主题开关与自定义资源加载。
+- `scripts/design-document.js`：从本文件生成公开 Design Doc 页面；不得另存第二份网页正文。
 
 实现规则：
 
