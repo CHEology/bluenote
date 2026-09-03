@@ -1,0 +1,27 @@
+const { readFileSync } = require('node:fs');
+const { join } = require('node:path');
+const { validateGallery, renderGallery } = require('../tooling/lib/gallery.cjs');
+
+hexo.extend.generator.register('gallery', function generateGallery() {
+  const manifest = JSON.parse(readFileSync(join(hexo.source_dir, '_data/gallery.json'), 'utf8'));
+  const photos = validateGallery(manifest, hexo.source_dir);
+  return {
+    path: 'gallery/index.html',
+    layout: 'page',
+    data: {
+      title: 'Gallery',
+      subtitle: 'Gallery',
+      comments: false,
+      lazyload: false,
+      content: renderGallery(photos, hexo.config.root)
+    }
+  };
+});
+
+hexo.extend.filter.register('after_render:html', function galleryAssets(html) {
+  if (!html.includes('class="gallery-collection"') || !html.includes('</head>')) return html;
+  const root = hexo.config.root.replace(/\/?$/, '/');
+  return html
+    .replace('</head>', '<link rel="stylesheet" href="' + root + 'css/gallery.css?v=20260903-1">\n</head>')
+    .replace('</body>', '<script defer src="' + root + 'js/gallery.js?v=20260903-1"></script>\n</body>');
+}, 40);

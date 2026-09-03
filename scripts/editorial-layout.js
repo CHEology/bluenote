@@ -88,6 +88,9 @@ hexo.extend.filter.register('after_render:html', function applyEditorialLayout(h
     if (html.includes('class="markdown-body design-document"')) {
       classes.push('design-doc-page');
     }
+    if (html.includes('class="gallery-collection"')) {
+      classes.push('gallery-page');
+    }
   }
 
   if (classes.length > 0) {

@@ -100,6 +100,36 @@ npm run gallery:prepare -- --input "/本机/原图目录" --year 2026 --slug gal
 
 ## 4. 创建和编辑
 
+### 独立 Gallery 的照片录入
+
+Gallery 与博客文章分开管理，唯一清单是 `source/_data/gallery.json`。约 50 张精选照片直接排列在 `/gallery/`，不要为每张照片新建文章，也不要自动导入《秋之纽约_2023.11》的照片。
+
+收到作者照片后，先确认原始像素尺寸、方向、画面边界、色彩及展示顺序，再准备预览。没有作者图注时省略 caption；alt 只提供准确的无障碍描述，不显示成图注。清单数组顺序就是观看顺序。
+
+单项结构如下（仅为字段示例，不是待发布照片）：
+
+~~~json
+{
+  "version": 1,
+  "photos": [
+    {
+      "id": "photo-001",
+      "alt": "作者确认的照片描述",
+      "full": { "src": "/images/galleries/2026/selected/photo-001.jpg", "width": 6000, "height": 4000 },
+      "previews": [
+        { "src": "/images/galleries/2026/selected/photo-001-800.jpg", "width": 800, "height": 533 },
+        { "src": "/images/galleries/2026/selected/photo-001-1600.jpg", "width": 1600, "height": 1067 },
+        { "src": "/images/galleries/2026/selected/photo-001-2880.jpg", "width": 2880, "height": 1920 }
+      ]
+    }
+  ]
+}
+~~~
+
+像素尺寸必须读取实际文件，不使用示例数字。主文件保持原分辨率，预览保持完整构图；Gallery 首页的 srcset 不包含主文件。构建会校验清单、路径、预览比例和重复 ID；`npm run check` 同时检查空页、混合比例排列、大图切换与加载状态。照片未到时保留空数组，不提交测试照片。
+
+### 普通博客文章
+
 安装依赖后创建文章：
 
 ```bash

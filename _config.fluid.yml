@@ -49,6 +49,7 @@ navbar:
   menu:
     - { key: "home", link: "/" }
     - { key: "archive", link: "/archives/" }
+    - { key: "gallery", name: "Gallery", link: "/gallery/" }
     - { key: "about", link: "/about/" }
     - { key: "search", name: "Search", link: "#site-search", icon: "iconfont icon-search" }
 

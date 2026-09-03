@@ -24,6 +24,9 @@ const required = [
   'about/index.html',
   'archives/index.html',
   'design/index.html',
+  'gallery/index.html',
+  'css/gallery.css',
+  'js/gallery.js',
   'private/posts.enc.json',
   'private/posts.public.json',
   'local-search.xml',
@@ -82,6 +85,10 @@ for (const asset of ['/bluenote/css/home.css', '/bluenote/css/custom.css', '/blu
   if (!home.includes(asset)) fail(`Home page does not load custom asset: ${asset}`);
 }
 if (home.includes('href="/bluenote/links/"')) fail('Home navigation still contains Links');
+if (!home.includes('href="/bluenote/gallery/"')) fail('Home navigation is missing Gallery');
+if (home.includes('/css/gallery.css') || home.includes('/js/gallery.js')) {
+  fail('Gallery assets must not load on the article homepage');
+}
 if (!/<div id="banner" class="banner"[^>]*style="background: url/.test(home)) {
   fail('Home page no longer contains its visual cover');
 }
@@ -130,6 +137,28 @@ if (!about.includes('<body class="editorial-page about-page">')) {
 }
 if (/<div id="banner" class="banner"[^>]*style=/.test(about)) {
   fail('About page still contains an image masthead');
+}
+
+const gallery = readFileSync(join(publicRoot, 'gallery', 'index.html'), 'utf8');
+const galleryManifest = JSON.parse(readFileSync(join(projectRoot, 'source/_data/gallery.json'), 'utf8'));
+if (!gallery.includes('<body class="editorial-page gallery-page">') ||
+    !gallery.includes('class="gallery-collection"')) {
+  fail('Gallery must be an independent editorial page');
+}
+for (const asset of ['css/gallery.css', 'js/gallery.js']) {
+  if (!gallery.includes('/bluenote/' + asset)) fail('Gallery asset is missing: ' + asset);
+}
+const photoCount = (gallery.match(/data-gallery-open="/g) || []).length;
+if (photoCount !== galleryManifest.photos.length) fail('Gallery must only contain explicitly selected photos');
+if (photoCount === 0 && (!gallery.includes('尚未收录照片。') || gallery.includes('<dialog'))) {
+  fail('Empty Gallery must have an honest empty state without inactive controls');
+}
+if (gallery.includes('article class="post-content') || (photoCount === 0 && gallery.includes('DSC_0034'))) {
+  fail('Gallery must not import the New York blog article');
+}
+const galleryCss = readFileSync(join(publicRoot, 'css/gallery.css'), 'utf8');
+if (galleryCss.includes('object-fit: cover') || !galleryCss.includes('object-fit: contain')) {
+  fail('Gallery must preserve complete photo framing');
 }
 
 const htmlFiles = walk(publicRoot).filter((path) => extname(path) === '.html');

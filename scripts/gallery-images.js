@@ -41,6 +41,7 @@ hexo.extend.filter.register('after_render:html', function responsiveGalleryImage
   const root = hexo.config.root.endsWith('/') ? hexo.config.root : `${hexo.config.root}/`;
 
   return html.replace(/<img\b[^>]*\bsrc=(['"])([^'"]*\/images\/galleries\/[^'"]+\.jpe?g)\1[^>]*>/gi, function(tag, quote, sourceUrl) {
+    if (tag.includes('data-gallery-thumbnail')) return tag;
     const pathname = decodeURIComponent(sourceUrl.split(/[?#]/)[0]);
     let sourcePath = pathname;
     if (sourcePath.startsWith(root)) sourcePath = sourcePath.slice(root.length);
