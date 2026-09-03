@@ -1,7 +1,7 @@
 const { existsSync, readFileSync } = require('node:fs');
 const { extname, join } = require('node:path');
 
-const widths = [800, 1280, 1920];
+const derivativeLongEdges = [800, 1600, 2880];
 
 function jpegDimensions(path) {
   const data = readFileSync(path);
@@ -49,23 +49,27 @@ hexo.extend.filter.register('after_render:html', function responsiveGalleryImage
     const baseFile = join(hexo.base_dir, 'source', sourcePath);
     const extension = extname(baseFile);
     const stemUrl = sourceUrl.slice(0, sourceUrl.length - extension.length);
-    const variants = widths.slice(0, -1).map((width) => ({
-      file: baseFile.slice(0, -extension.length) + `-${width}${extension}`,
-      url: `${stemUrl}-${width}${extension}`,
-      width
+    const variants = derivativeLongEdges.map((longEdge) => ({
+      file: baseFile.slice(0, -extension.length) + `-${longEdge}${extension}`,
+      url: `${stemUrl}-${longEdge}${extension}`
     }));
 
     if (!existsSync(baseFile) || variants.some((variant) => !existsSync(variant.file))) return tag;
 
     const dimensions = jpegDimensions(baseFile);
     if (!dimensions) return tag;
+    const variantDimensions = variants.map((variant) => jpegDimensions(variant.file));
+    if (variantDimensions.some((variant) => !variant)) return tag;
+    variants.forEach((variant, index) => {
+      variant.width = variantDimensions[index].width;
+    });
 
     tag = tag
       .replace(/\s(?:srcset|sizes|loading|decoding|fetchpriority|width|height|lazyload)=(?:"[^"]*"|'[^']*'|[^\s>]+)/gi, '')
       .replace(/\slazyload(?=\s|>)/gi, '');
 
     const srcset = variants
-      .concat({ url: sourceUrl, width: widths.at(-1) })
+      .concat({ url: sourceUrl, width: dimensions.width })
       .map((variant) => `${variant.url} ${variant.width}w`)
       .join(', ');
 

@@ -3,17 +3,18 @@ import {
   mkdtempSync,
   mkdirSync,
   readdirSync,
+  renameSync,
   rmSync,
   statSync
 } from 'node:fs';
 import { tmpdir } from 'node:os';
-import { basename, extname, join, resolve } from 'node:path';
+import { basename, dirname, extname, join, resolve } from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 
 const projectRoot = fileURLToPath(new URL('..', import.meta.url));
-const widths = [800, 1280, 1920];
-const quality = 74;
+const derivativeLongEdges = [800, 1600, 2880];
+const quality = 84;
 
 function fail(message) {
   console.error(message);
@@ -42,6 +43,7 @@ function run(command, args) {
 const inputOption = option('--input');
 const year = option('--year');
 const slug = option('--slug');
+const force = process.argv.includes('--force');
 
 if (!inputOption || !/^\d{4}$/.test(year) || !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug)) {
   fail('Usage: npm run gallery:prepare -- --input "/path/to/photos" --year 2026 --slug gallery-name');
@@ -59,7 +61,7 @@ const inputs = readdirSync(inputRoot)
 if (inputs.length === 0) fail(`No JPEG files found in: ${inputRoot}`);
 
 const destination = join(projectRoot, 'source', 'images', 'galleries', year, slug);
-if (existsSync(destination) && readdirSync(destination).length > 0) {
+if (existsSync(destination) && readdirSync(destination).length > 0 && !force) {
   fail(`Destination is not empty; refusing to overwrite: ${destination}`);
 }
 
@@ -68,7 +70,8 @@ const jpegtran = commandPath('jpegtran');
 if (!sips) fail('The gallery preparation command currently requires macOS sips.');
 if (!jpegtran) fail('jpegtran is required to strip metadata and create progressive JPEGs.');
 
-mkdirSync(destination, { recursive: true });
+mkdirSync(dirname(destination), { recursive: true });
+const stagingRoot = mkdtempSync(join(dirname(destination), `.${slug}-staging-`));
 const temporaryRoot = mkdtempSync(join(tmpdir(), 'bluenote-gallery-'));
 
 try {
@@ -76,13 +79,12 @@ try {
     const input = join(inputRoot, inputName);
     const stem = basename(inputName, extname(inputName));
 
-    for (const width of widths) {
-      const temporary = join(temporaryRoot, `${stem}-${width}.jpg`);
-      const outputName = width === widths.at(-1) ? `${stem}.jpg` : `${stem}-${width}.jpg`;
-      const output = join(destination, outputName);
+    for (const longEdge of derivativeLongEdges) {
+      const temporary = join(temporaryRoot, `${stem}-${longEdge}.jpg`);
+      const output = join(stagingRoot, `${stem}-${longEdge}.jpg`);
 
       run(sips, [
-        '--resampleHeightWidthMax', String(width),
+        '--resampleHeightWidthMax', String(longEdge),
         '--setProperty', 'format', 'jpeg',
         '--setProperty', 'formatOptions', String(quality),
         input,
@@ -97,14 +99,25 @@ try {
       ]);
     }
 
+    run(jpegtran, [
+      '-copy', 'none',
+      '-optimize',
+      '-progressive',
+      '-outfile', join(stagingRoot, `${stem}.jpg`),
+      input
+    ]);
+
     console.log(`Prepared ${inputName}`);
   }
+
+  if (existsSync(destination)) rmSync(destination, { recursive: true, force: true });
+  renameSync(stagingRoot, destination);
 } catch (error) {
-  rmSync(destination, { recursive: true, force: true });
+  rmSync(stagingRoot, { recursive: true, force: true });
   rmSync(temporaryRoot, { recursive: true, force: true });
   fail(error.message);
 } finally {
   rmSync(temporaryRoot, { recursive: true, force: true });
 }
 
-console.log(`Created ${inputs.length * widths.length} responsive files in ${destination}`);
+console.log(`Created ${inputs.length * (derivativeLongEdges.length + 1)} responsive files in ${destination}`);
