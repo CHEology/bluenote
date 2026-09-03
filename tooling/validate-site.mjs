@@ -62,6 +62,16 @@ for (const post of markdownPosts) {
       fail(`Missing required front matter field "${field}": ${post}`);
     }
   }
+
+  const externalImages = source.matchAll(/!\[[^\]]*\]\((https?:\/\/[^)]+)\)/g);
+  for (const image of externalImages) {
+    fail(`Externally hosted display image in ${post}: ${image[1]}`);
+  }
+
+  const externalHtmlImages = source.matchAll(/<img\b[^>]*\bsrc=["'](https?:\/\/[^"']+)["'][^>]*>/gi);
+  for (const image of externalHtmlImages) {
+    fail(`Externally hosted HTML image in ${post}: ${image[1]}`);
+  }
 }
 
 const home = readFileSync(join(publicRoot, 'index.html'), 'utf8');
@@ -164,6 +174,19 @@ for (const generatedPost of generatedPosts) {
   if (/<div id="banner" class="banner"[^>]*style=/.test(html)) {
     fail(`Post still contains an image masthead: ${relative(publicRoot, generatedPost)}`);
   }
+
+  const galleryImages = html.match(/<img\b[^>]*\bsrc=["'][^"']*\/images\/galleries\/[^"']+["'][^>]*>/gi) || [];
+  galleryImages.forEach((image, index) => {
+    for (const attribute of ['srcset=', 'sizes=', 'width=', 'height=', 'decoding="async"']) {
+      if (!image.includes(attribute)) {
+        fail(`Gallery image lacks ${attribute} in ${relative(publicRoot, generatedPost)}`);
+      }
+    }
+    const expectedLoading = index === 0 ? 'loading="eager"' : 'loading="lazy"';
+    if (!image.includes(expectedLoading)) {
+      fail(`Gallery image has incorrect loading priority in ${relative(publicRoot, generatedPost)}`);
+    }
+  });
 }
 
 const localReference = /(?:href|src)=["'](\/bluenote\/[^"'#?]*)/g;

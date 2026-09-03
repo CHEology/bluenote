@@ -9,6 +9,7 @@
     "check": "npm run build && node tooling/validate-site.mjs && node tooling/validate-private-vault.mjs",
     "server": "cross-env TZ=America/New_York hexo server",
     "new": "cross-env TZ=America/New_York hexo new post",
+    "gallery:prepare": "node tooling/prepare-gallery-images.mjs",
     "private:hide": "node tooling/private-posts.mjs hide",
     "private:publish": "node tooling/private-posts.mjs publish",
     "private:sync": "node tooling/private-posts.mjs sync",
