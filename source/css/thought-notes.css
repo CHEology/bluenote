@@ -40,11 +40,8 @@
   align-items: center;
   justify-content: center;
   gap: 1.25rem;
-  max-width: 43rem;
-  margin: 2.25rem auto 2.45rem;
-  padding: 1.25rem 1.4rem;
+  margin-top: 2.25rem;
   color: var(--post-heading-color);
-  background: rgba(99, 117, 131, 0.06);
   font-size: 1.28rem;
   letter-spacing: 0.025em;
   line-height: 1.35;
@@ -76,7 +73,6 @@
 
   .post-page .markdown-body .thought-note__equation {
     gap: 0.65rem;
-    padding: 1.15rem 0.7rem;
     font-size: 1.05rem;
   }
 

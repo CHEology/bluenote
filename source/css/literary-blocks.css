@@ -1,11 +1,13 @@
-/* Reusable literary blocks for quotations and verse. */
+/* Reusable literary blocks for quotations, equations, and verse. */
 .post-page .markdown-body .literary-block {
   box-sizing: border-box;
   color: var(--post-text-color);
 }
 
+.post-page .markdown-body .literary-panel,
 .post-page .markdown-body .literary-block--signal,
 .post-page .markdown-body [data-private-post-id="eeddfa74ef298a0c"] .private-post-shell__content > pre:first-child {
+  box-sizing: border-box;
   max-width: 48rem;
   margin: 0 auto 2.5rem;
   padding: 1.75rem 1.65rem 1.6rem;
@@ -97,6 +99,7 @@
 }
 
 @media (max-width: 767px) {
+  .post-page .markdown-body .literary-panel,
   .post-page .markdown-body .literary-block--signal,
   .post-page .markdown-body [data-private-post-id="eeddfa74ef298a0c"] .private-post-shell__content > pre:first-child {
     padding-top: 1.45rem;

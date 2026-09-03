@@ -8,7 +8,7 @@ description: 在 I LOVE YOU 被破译出来后，感受到一些麻木。
 index_img:
 ---
 
-<div class="literary-block literary-block--signal">
+<div class="literary-block literary-panel literary-block--signal">
   <div class="literary-block__section literary-block__section--opening">
     <p>I call out, but my words collapse against the wall.</p>
     <p>My body is too soft. My outline is too blurry.</p>
