@@ -1,25 +1,4 @@
 /* Minimal typesetting for notes containing mathematical relationships. */
-.post-page .markdown-body .thought-note__lead {
-  max-width: 38rem;
-  margin: 0 auto 3.4rem;
-  color: var(--sec-text-color);
-  font-size: 1.02rem;
-  font-style: italic;
-  letter-spacing: 0.025em;
-  line-height: 1.9;
-  text-align: center;
-  text-wrap: balance;
-}
-
-.post-page .markdown-body .thought-note__lead::after {
-  display: block;
-  width: 2.5rem;
-  height: 1px;
-  margin: 1.5rem auto 0;
-  background: var(--line-color);
-  content: "";
-}
-
 .post-page .markdown-body .thought-note__math,
 .post-page .markdown-body .thought-note__equation {
   font-family: Times, "Times New Roman", Georgia, serif;
@@ -66,11 +45,6 @@
 }
 
 @media (max-width: 767px) {
-  .post-page .markdown-body .thought-note__lead {
-    margin-bottom: 3rem;
-    font-size: 0.98rem;
-  }
-
   .post-page .markdown-body .thought-note__equation {
     gap: 0.65rem;
     font-size: 1.05rem;
