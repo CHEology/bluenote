@@ -2,6 +2,8 @@
 
 These instructions apply to the entire repository.
 
+`docs/DESIGN.md` is the visual and typesetting authority for the site. Any presentation change must follow it; update the document and implementation together when the design system intentionally changes.
+
 ## Authorial fidelity is the core principle
 
 - Treat the author's source document as the sole authority for article wording, order, paragraph boundaries, parentheticals, repetitions, and rhetorical structure.
