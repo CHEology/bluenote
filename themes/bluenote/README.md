@@ -3,15 +3,18 @@
 A quiet editorial theme for [Hexo](https://hexo.io/): paper tones, serif Latin and CJK
 typography, a full-viewport cover with square cards on the home page, solid mastheads
 on content pages, light and dark schemes, and no framework, icon font or third-party
-request. Built for [Blue Note](https://cheology.github.io/bluenote/).
+request. Built for [Blue Note](https://cheology.github.io/bluenote/), whose source lives at [CHEology/bluenote](https://github.com/CHEology/bluenote).
 
 ## Install
 
 Copy or clone the theme into your site's `themes/` directory and point Hexo at it:
 
 ```bash
-git clone https://github.com/CHEology/bluenote.git /tmp/bluenote
-cp -R /tmp/bluenote/themes/bluenote themes/bluenote
+# as an npm dependency (recommended; Hexo >= 5 resolves node_modules/hexo-theme-bluenote)
+npm install git+https://github.com/CHEology/hexo-theme-bluenote.git#v1.0.0
+
+# or as a checkout in themes/ (takes precedence over node_modules, handy for development)
+git clone https://github.com/CHEology/hexo-theme-bluenote.git themes/bluenote
 ```
 
 ```yaml

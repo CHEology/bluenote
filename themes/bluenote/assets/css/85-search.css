@@ -155,34 +155,63 @@
   height: 0.72rem;
 }
 
+/* Dark scheme: system preference unless the reader chose light, or an explicit choice of dark. */
 @media (prefers-color-scheme: dark) {
-  .site-search-dialog {
+  :root:not([data-scheme="light"]) .site-search-dialog {
     color: #dedad2;
     background: #302f2d;
     border-color: rgba(222, 218, 210, 0.16);
   }
 
-  .site-search-dialog__close,
-  .site-search-dialog__field,
-  .site-search-result__excerpt,
-  .site-search-result__privacy {
+  :root:not([data-scheme="light"]) .site-search-dialog__close,
+  :root:not([data-scheme="light"]) .site-search-dialog__field,
+  :root:not([data-scheme="light"]) .site-search-result__excerpt,
+  :root:not([data-scheme="light"]) .site-search-result__privacy {
     color: #aaa59d;
   }
 
-  .site-search-dialog__field input,
-  .site-search-result {
+  :root:not([data-scheme="light"]) .site-search-dialog__field input,
+  :root:not([data-scheme="light"]) .site-search-result {
     color: #dedad2;
   }
 
-  .site-search-result {
+  :root:not([data-scheme="light"]) .site-search-result {
     border-color: rgba(222, 218, 210, 0.13);
   }
 
-  .site-search-result:hover,
-  .site-search-result:focus-visible {
+  :root:not([data-scheme="light"]) .site-search-result:hover,
+  :root:not([data-scheme="light"]) .site-search-result:focus-visible {
     color: #d0d5d8;
     background: rgba(184, 192, 197, 0.08);
   }
+}
+
+:root[data-scheme="dark"] .site-search-dialog {
+  color: #dedad2;
+  background: #302f2d;
+  border-color: rgba(222, 218, 210, 0.16);
+}
+
+:root[data-scheme="dark"] .site-search-dialog__close,
+:root[data-scheme="dark"] .site-search-dialog__field,
+:root[data-scheme="dark"] .site-search-result__excerpt,
+:root[data-scheme="dark"] .site-search-result__privacy {
+  color: #aaa59d;
+}
+
+:root[data-scheme="dark"] .site-search-dialog__field input,
+:root[data-scheme="dark"] .site-search-result {
+  color: #dedad2;
+}
+
+:root[data-scheme="dark"] .site-search-result {
+  border-color: rgba(222, 218, 210, 0.13);
+}
+
+:root[data-scheme="dark"] .site-search-result:hover,
+:root[data-scheme="dark"] .site-search-result:focus-visible {
+  color: #d0d5d8;
+  background: rgba(184, 192, 197, 0.08);
 }
 
 @media (max-width: 575px) {
