@@ -1,6 +1,7 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
-const { mountGallery } = require('../source/js/gallery.js');
+const { mountGallery, drawSelection } = require('../source/js/gallery.js');
+const { pickSelection, composeSelection } = require('../source/js/gallery-selection.js');
 const { validateGallery, renderGallery, curatedRows } = require('./lib/gallery.cjs');
 
 function photo(id = 'photo-001', width = 6000, height = 4000) {
@@ -74,6 +75,73 @@ test('only author-supplied captions render, with safe literal text', () => {
   assert.match(html, /&quot; onerror=&quot;bad/);
 });
 
+function seededRandom(seed = 42) {
+  return () => ((seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0) / 4294967296);
+}
+
+test('a thousand successive selections contain 3–5 fresh photos and preserve complete diptychs', () => {
+  const units = curatedRows(require('../source/_data/gallery.json').photos);
+  const unchanged = JSON.stringify(units);
+  const random = seededRandom();
+  const counts = new Set();
+  let previous = [];
+  for (let i = 0; i < 1000; i++) {
+    const selection = pickSelection(units, previous, random);
+    const ids = selection.flatMap(unit => unit.photos.map(p => p.id));
+    counts.add(ids.length);
+    assert.ok(ids.length >= 3 && ids.length <= 5);
+    assert.equal(new Set(ids).size, ids.length);
+    assert.ok(ids.every(id => !previous.includes(id)));
+    const arranged = composeSelection(selection);
+    assert.deepEqual(arranged.flatMap(row => row.photos.map(p => p.id)), ids);
+    for (const unit of selection.filter(unit => unit.photos.length === 2)) {
+      assert.ok(arranged.some(row => !row.counterpoint &&
+        row.photos.map(p => p.id).join() === unit.photos.map(p => p.id).join()));
+    }
+    assert.ok(arranged.every(row => row.photos.length <= 2));
+    previous = ids;
+  }
+  assert.deepEqual([...counts].sort(), [3, 4, 5]);
+  assert.equal(JSON.stringify(units), unchanged);
+});
+
+test('selection composition protects a generous lead and avoids tiny mixed-ratio side images', () => {
+  const unit = (id, width, height) => ({ photos: [photo(id, width, height)] });
+  const rows = composeSelection([unit('lead', 4000, 6000), unit('a', 6000, 4000), unit('b', 6000, 4000)]);
+  assert.equal(rows[0].lead, true);
+  assert.deepEqual(rows[0].photos.map(p => p.id), ['lead']);
+  assert.equal(rows[1].counterpoint, true);
+  const mixed = composeSelection([unit('lead', 6000, 4000), unit('a', 4000, 6000), unit('b', 6000, 4000)]);
+  assert.equal(mixed.length, 3);
+  assert.equal(mixed[2].coda, true);
+  assert.deepEqual(pickSelection([], [], seededRandom()), []);
+  assert.equal(pickSelection([unit('only', 6000, 4000)], ['only'], seededRandom()).length, 1);
+  const pair = { photos: [photo('a'), photo('b')] };
+  assert.deepEqual(pickSelection([pair], [], seededRandom()), [pair]);
+});
+
+test('small-exhibition HTML loads no unselected photos and safely embeds its model', () => {
+  const items = require('../source/_data/gallery.json').photos;
+  const html = renderGallery(items, '/bluenote/', { mode: 'few' });
+  const activeHTML = html.replace(/<noscript>[\s\S]*?<\/noscript>/g, '');
+  assert.doesNotMatch(activeHTML, /<img\b/);
+  assert.match(activeHTML, /data-gallery-reshuffle hidden/);
+  assert.match(activeHTML, /href="\/bluenote\/gallery\/" aria-current="page">A few/);
+  assert.match(activeHTML, /href="\/bluenote\/gallery\/all\/">All photographs/);
+  const model = JSON.parse(html.match(/data-gallery-model>([\s\S]*?)<\/script>/)[1]);
+  assert.equal(model.rows.flatMap(row => row.photos).length, 50);
+  const unsafe = photo();
+  unsafe.caption = '</script><script>alert("bad")</script>&';
+  const embedded = renderGallery([unsafe], '/', { mode: 'few' }).match(/data-gallery-model>([\s\S]*?)<\/script>/)[1];
+  assert.doesNotMatch(embedded, /[<>&]/);
+  assert.equal(JSON.parse(embedded).rows[0].photos[0].caption, unsafe.caption);
+});
+
+test('single portraits fill their centered row without a second flex shrink', () => {
+  const css = require('node:fs').readFileSync(require('node:path').join(__dirname, '../source/css/gallery.css'), 'utf8');
+  assert.match(css, /\.gallery-row > \.gallery-item:only-child\s*\{\s*flex: 1 1 0%;/);
+});
+
 test('manifest rejects missing images, IDs, external paths, damaged ratios and false previews', () => {
   const check = (items) => validateGallery({ version: 1, photos: items });
   assert.throws(() => validateGallery({ photos: [] }), /version/);
@@ -134,13 +202,26 @@ function fixture(count = 3) {
     }
     set src(value) { this._src = value; requests.push(value); }
     get src() { return this._src; }
-    querySelector(selector) {
-      if (selector === 'img' && !this.map[selector]) return this.children.find((child) => child.tagName === 'IMG') || null;
-      return this.map[selector] || null;
+    matches(selector) {
+      if (selector.startsWith('.')) return (this.className || '').split(/\s+/).includes(selector.slice(1));
+      const data = selector.match(/^\[data-([a-z-]+)\]$/);
+      if (data) return data[1].replace(/-([a-z])/g, (_, letter) => letter.toUpperCase()) in this.dataset;
+      return selector.toUpperCase() === this.tagName;
     }
-    querySelectorAll(selector) { return this.map[selector] || []; }
+    querySelector(selector) {
+      return this.map[selector] || this.querySelectorAll(selector)[0] || null;
+    }
+    querySelectorAll(selector) {
+      if (this.map[selector]) return this.map[selector];
+      return this.children.flatMap(child => [
+        ...(child.matches(selector) ? [child] : []), ...child.querySelectorAll(selector)
+      ]);
+    }
     appendChild(element) { this.children.push(element); return element; }
-    replaceChildren(...children) { this.children = children.flatMap((child) => child.tagName === 'FRAGMENT' ? child.children : [child]); }
+    replaceChildren(...children) {
+      this.children = children.flatMap((child) => child.tagName === 'FRAGMENT' ? child.children : [child]);
+      this.map = {};
+    }
     setAttribute(name, value) { this.attributes[name] = value; }
     addEventListener(type, handler) { (this.events[type] ||= []).push(handler); }
     emit(type, values = {}) {
@@ -193,6 +274,84 @@ function fixture(count = 3) {
     image: () => viewer.map['[data-gallery-zoom]'].children[0]
   };
 }
+
+function fewFixture() {
+  const f = fixture(0);
+  const nodes = {};
+  for (const name of ['model', 'reshuffle', 'selection-status', 'fallback']) {
+    nodes[name] = f.doc.createElement(name === 'reshuffle' ? 'button' : 'div');
+  }
+  nodes.model.textContent = JSON.stringify({ root: '/bluenote/', rows: curatedRows(require('../source/_data/gallery.json').photos) });
+  nodes.reshuffle.hidden = true;
+  const originalQuery = f.doc.querySelector;
+  f.doc.querySelector = selector => {
+    const name = selector.match(/^\[data-gallery-(.*)\]$/)?.[1];
+    return nodes[name] || originalQuery(selector);
+  };
+  const random = seededRandom();
+  f.win.BlueNoteSelection = { composeSelection, pickSelection: (units, previous) => pickSelection(units, previous, random) };
+  f.nodes = nodes;
+  f.currentLinks = () => f.grid.querySelectorAll('[data-gallery-open]');
+  return f;
+}
+
+test('small exhibition requests only its previews; reshuffle rebinds scoped navigation and preserves focus', () => {
+  const f = fewFixture();
+  mountGallery(f.doc, f.win);
+  const initial = f.currentLinks();
+  assert.ok(initial.length >= 3 && initial.length <= 5);
+  assert.equal(f.requests.length, initial.length);
+  assert.ok(f.requests.every(src => /-800\.jpg$/.test(src)));
+  assert.equal(f.nodes.reshuffle.hidden, false);
+  assert.equal(f.nodes.fallback.hidden, true);
+  initial[0].emit('click');
+  assert.equal(f.viewer.open, true);
+  assert.equal(f.control('count').textContent, '1 / ' + initial.length);
+  assert.equal(f.requests.at(-1), initial[0].href);
+  f.nodes.reshuffle.emit('click');
+  assert.deepEqual(f.currentLinks(), initial, 'do not redraw beneath an open viewer');
+  f.control('close').emit('click');
+  f.nodes.reshuffle.focus();
+  f.nodes.reshuffle.emit('click');
+  const fresh = f.currentLinks();
+  assert.ok(fresh.length >= 3 && fresh.length <= 5);
+  assert.ok(fresh.every(link => !initial.some(old => old.dataset.galleryOpen === link.dataset.galleryOpen)));
+  assert.equal(f.doc.activeElement, f.nodes.reshuffle);
+  assert.match(f.nodes['selection-status'].textContent, /^[3-5] photographs/);
+  fresh[0].emit('click');
+  for (let i = 0; i < fresh.length; i++) {
+    assert.equal(f.control('count').textContent, (i + 1) + ' / ' + fresh.length);
+    assert.equal(f.control('zoom').children.at(-1).src, fresh[i].href);
+    assert.equal(fresh[i].events.click.length, 1);
+    if (i < fresh.length - 1) f.control('next').emit('click');
+  }
+  assert.equal(f.control('next').disabled, true);
+  f.control('close').emit('click');
+  assert.equal(f.doc.activeElement, fresh[0]);
+});
+
+test('reshuffle remains useful without native dialogs and failures keep the previous set', () => {
+  const f = fewFixture();
+  f.viewer.showModal = undefined;
+  mountGallery(f.doc, f.win);
+  assert.equal(f.currentLinks()[0].emit('click').prevented, false);
+  const initial = f.currentLinks();
+  f.nodes.reshuffle.emit('click');
+  assert.notDeepEqual(f.currentLinks(), initial);
+  const fresh = f.currentLinks();
+  f.win.BlueNoteSelection.composeSelection = () => [{ photos: [photo('valid'), {}] }];
+  f.nodes.reshuffle.emit('click');
+  assert.deepEqual(f.currentLinks(), fresh);
+  assert.match(f.nodes['selection-status'].textContent, /Unable to reshuffle/);
+  assert.throws(() => drawSelection(f.doc, f.grid, { root: '/' }, [{ photos: [{}] }]));
+  assert.deepEqual(f.currentLinks(), fresh);
+  const broken = fewFixture();
+  broken.nodes.model.textContent = '{broken';
+  mountGallery(broken.doc, broken.win);
+  assert.equal(broken.nodes.fallback.hidden, false);
+  assert.equal(broken.nodes.reshuffle.hidden, true);
+  assert.equal(broken.requests.length, 0);
+});
 
 test('opening is on-demand; switching ignores stale load events; errors offer the original', () => {
   const f = fixture();
