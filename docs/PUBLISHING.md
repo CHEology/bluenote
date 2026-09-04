@@ -191,7 +191,7 @@ git diff --check
 提交并推送：
 
 ```bash
-git add source scaffolds tooling docs themes _config.yml _config.bluenote.yml package.json package-lock.json .github README.md AGENTS.md
+git add source scaffolds tooling docs _config.yml _config.bluenote.yml package.json package-lock.json .github README.md AGENTS.md
 git commit -m "Publish <文章标题>"
 git push origin master
 ```
@@ -272,3 +272,21 @@ npm run private:restore
 - 不要遗忘密码。站点和 GitHub 都没有密码重置能力；忘记后只能从仍保留明文的本机或备份恢复。
 - 已经在公开 Git 历史中出现过的旧文章，转为私密后正文会从当前网站消失，但旧提交仍可能包含原文。新建的私密文章应直接放入 `.private-posts/` 后执行 `private:sync`，不要先提交正文到 `source/_posts/`。
 - 私密文章使用的敏感图片也不能放在公开的 `source/images/` 中；当前加密档案只保护文章文本及内嵌 HTML，不会自动加密单独的图片文件。
+
+## 10. 主题版本
+
+主题 [`hexo-theme-bluenote`](https://github.com/CHEology/hexo-theme-bluenote) 是独立仓库，博客在 `package.json` 中以 git 标签锁定版本：
+
+```json
+"hexo-theme-bluenote": "git+https://github.com/CHEology/hexo-theme-bluenote.git#v1.0.0"
+```
+
+升级主题：
+
+```bash
+npm install --save "git+https://github.com/CHEology/hexo-theme-bluenote.git#v1.1.0"
+npm run check
+npm run visual:capture && npm run visual:compare
+```
+
+修改主题：在主题仓库中改动、验证并打新标签，再按上面的步骤更新博客。需要边改边看时，把主题仓库克隆到 `themes/bluenote`（该目录已被 `.gitignore` 忽略，且优先于 `node_modules` 中的副本），完成后删除该目录或确认它与已发布标签一致，以免本地构建与 Actions 不一致。

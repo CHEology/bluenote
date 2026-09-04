@@ -312,10 +312,10 @@ box-shadow: none;
 
 样式职责固定如下：
 
-- `themes/bluenote/assets/css/`：主题样式，按文件名顺序合并为一个 `css/bluenote.css`：`00-tokens` 结构尺寸（760px 列、39.667rem 文章列、1080px 照片列、1160px 宽版、页眉高度）、`01-base` 基础重置与滚动条、`10-nav` 导航与手机菜单、`20-masthead` 编辑式页眉、`30-home` 首页封面与卡片、`40-editorial` 内容容器、列表、分页、About、404、`50-post` 文章列、目录、上下篇、照片文章、标题锚点、灯箱、`60-markdown` 与 `65-markdown-overrides` 正文排版、`70-panels` 方框、诗歌等可复用文学内容块、`80-highlight` 代码配色、`85-search` 搜索面板、`90-print` 打印；
-- `themes/bluenote/_config.yml` 与站点 `_config.bluenote.yml`：颜色与字体 token（`--paper`、`--text`、`--prose`、`--heading`、`--muted`、`--link`、`--link-hover`、`--line`、`--masthead`、`--masthead-text`、`--accent`、`--panel`、`--home-*` 等）及主题开关；颜色值以本文第 2 节为准，主题默认值即 Blue Note 的取值；
-- `themes/bluenote/layout/`：全部页面模板；首页、内容页与摄影文章的布局类在构建时写入 `<body>`；
-- `themes/bluenote/scripts/`：主题构建期脚本——布局类、标题锚点、图注（文件名 alt 不生成图注）、原生懒加载、CSS/JS 合并与内容版本号；第三方副本来源见 `docs/VENDORED-ASSETS.md`；
+- 主题仓库 [`hexo-theme-bluenote`](https://github.com/CHEology/hexo-theme-bluenote)（本地安装在 `node_modules/hexo-theme-bluenote/`）的 `assets/css/`：主题样式，按文件名顺序合并为一个 `css/bluenote.css`：`00-tokens` 结构尺寸（760px 列、39.667rem 文章列、1080px 照片列、1160px 宽版、页眉高度）、`01-base` 基础重置与滚动条、`10-nav` 导航与手机菜单、`20-masthead` 编辑式页眉、`30-home` 首页封面与卡片、`40-editorial` 内容容器、列表、分页、About、404、`50-post` 文章列、目录、上下篇、照片文章、标题锚点、灯箱、`60-markdown` 与 `65-markdown-overrides` 正文排版、`70-panels` 方框、诗歌等可复用文学内容块、`80-highlight` 代码配色、`85-search` 搜索面板、`90-print` 打印；
+- 主题的 `_config.yml` 与站点 `_config.bluenote.yml`：颜色与字体 token（`--paper`、`--text`、`--prose`、`--heading`、`--muted`、`--link`、`--link-hover`、`--line`、`--masthead`、`--masthead-text`、`--accent`、`--panel`、`--home-*` 等）及主题开关；颜色值以本文第 2 节为准，主题默认值即 Blue Note 的取值；
+- 主题的 `layout/`：全部页面模板；首页、内容页与摄影文章的布局类在构建时写入 `<body>`；
+- 主题的 `scripts/`：主题构建期脚本——布局类、标题锚点、图注（文件名 alt 不生成图注）、原生懒加载、CSS/JS 合并与内容版本号；第三方副本来源见 `docs/VENDORED-ASSETS.md`；
 - `source/css/site.css`：仅 Blue Note 专属的例外（《小蓝本》解锁后的首个代码块按通用方框呈现）；
 - `source/css/design-doc.css`：Design Doc 页面；
 - `source/css/thought-notes.css`：随想中的公式排列和主题分隔，不重定义通用方框；
@@ -330,6 +330,7 @@ box-shadow: none;
 
 - 共享视觉值优先使用现有 CSS 变量，不在文章 Markdown 中写内联颜色、字号、边框或间距。
 - 主题 CSS 不使用 `!important`（仅 `[hidden]`、`.markdown-body` 首尾元素外边距归零与打印样式三处例外）；主题不得包含 Blue Note 专属的内容、路径或文案，站点专属规则放在 `source/css`。
+- 主题改动在主题仓库提交并打版本标签，博客通过 `package.json` 更新到新标签；本地调试可把主题仓库克隆到 `themes/bluenote`（已在 `.gitignore` 中），它会优先于 `node_modules` 中的副本。
 - 新文章默认不需要专属 CSS；确有特殊结构时，先判断能否使用已有组件。
 - 新增专属类只能解决该内容的内部布局，不能复制或覆盖通用组件外观。
 - HTML 引用的本站 CSS 与 JavaScript 由构建流程按最终文件内容自动附加版本号；内容改变才更新版本，不再手工维护日期查询参数。
