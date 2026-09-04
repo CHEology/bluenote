@@ -37,6 +37,9 @@ test('curated spreads preserve fifty photos, diptychs, and continuous sequences'
   assert.equal(rows.filter(row => row.continuation).length, 11);
   const html = renderGallery(photos, '/bluenote/');
   assert.equal((html.match(/data-gallery-spread=/g) || []).length, 39);
+  assert.equal((html.match(/class="gallery-bay/g) || []).length, 39);
+  assert.equal((html.match(/gallery-bay--continuation/g) || []).length, 11);
+  assert.match(html, /<div class="gallery-bay[^\"]*"><div class="gallery-row/);
   assert.doesNotMatch(html, /<figcaption>|gallery-row--partial/);
 });
 
@@ -128,6 +131,8 @@ test('small-exhibition HTML loads no unselected photos and safely embeds its mod
   assert.match(activeHTML, /data-gallery-reshuffle hidden/);
   assert.match(activeHTML, /href="\/bluenote\/gallery\/" aria-current="page">A few/);
   assert.match(activeHTML, /href="\/bluenote\/gallery\/all\/">All photographs/);
+  const fallback = html.match(/<noscript>([\s\S]*?)<\/noscript>/)[1];
+  assert.equal((fallback.match(/class="gallery-bay/g) || []).length, 2);
   const model = JSON.parse(html.match(/data-gallery-model>([\s\S]*?)<\/script>/)[1]);
   assert.equal(model.rows.flatMap(row => row.photos).length, 50);
   const unsafe = photo();
@@ -140,6 +145,16 @@ test('small-exhibition HTML loads no unselected photos and safely embeds its mod
 test('single portraits fill their centered row without a second flex shrink', () => {
   const css = require('node:fs').readFileSync(require('node:path').join(__dirname, '../source/css/gallery.css'), 'utf8');
   assert.match(css, /\.gallery-row > \.gallery-item:only-child\s*\{\s*flex: 1 1 0%;/);
+});
+
+test('every spread receives a full-height centered exhibition bay', () => {
+  const css = require('node:fs').readFileSync(require('node:path').join(__dirname, '../source/css/gallery.css'), 'utf8');
+  const bay = css.match(/\.gallery-bay\s*\{([^}]*)\}/)[1];
+  assert.match(bay, /display: flex/);
+  assert.match(bay, /align-items: center/);
+  assert.match(bay, /min-height: 100vh/);
+  assert.match(bay, /min-height: 100svh/);
+  assert.match(css, /\.gallery-bay \+ \.gallery-bay\s*\{[^}]*margin-top:/);
 });
 
 test('loading feedback cannot paint a dark strip across a visible photograph', () => {
@@ -311,6 +326,8 @@ test('small exhibition requests only its previews; reshuffle rebinds scoped navi
   mountGallery(f.doc, f.win);
   const initial = f.currentLinks();
   assert.ok(initial.length >= 3 && initial.length <= 5);
+  assert.ok(f.grid.children.every(bay => bay.className === 'gallery-bay'));
+  assert.ok(f.grid.children.every(bay => bay.children.length === 1 && /gallery-row/.test(bay.children[0].className)));
   assert.equal(f.requests.length, initial.length);
   assert.ok(f.requests.every(src => /-800\.jpg$/.test(src)));
   assert.equal(f.nodes.reshuffle.hidden, false);

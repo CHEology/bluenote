@@ -6,6 +6,8 @@
     var position = 0;
     function url(src) { return model.root + src.replace(/^\//, ''); }
     rows.forEach(function(arrangement) {
+      var bay = doc.createElement('div');
+      bay.className = 'gallery-bay';
       var row = doc.createElement('div');
       row.className = 'gallery-row' + (arrangement.photos.length === 2 ? ' gallery-row--paired' : '') +
         (arrangement.lead ? ' gallery-row--lead' : '') +
@@ -44,7 +46,8 @@
         }
         row.appendChild(figure);
       });
-      fragment.appendChild(row);
+      bay.appendChild(row);
+      fragment.appendChild(bay);
     });
     // Construct everything first: a failed redraw never discards the previous set.
     grid.replaceChildren(fragment);
