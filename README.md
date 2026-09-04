@@ -2,7 +2,7 @@
 
 个人博客：<https://cheology.github.io/bluenote/>
 
-使用 [Hexo](https://hexo.io/) 与仓库内自有主题 [bluenote](themes/bluenote/README.md) 构建，通过 GitHub Pages 发布。主题不依赖任何前端框架、图标字体或第三方请求，可供其他 Hexo 站点复用。
+使用 [Hexo](https://hexo.io/) 与自有主题 [hexo-theme-bluenote](https://github.com/CHEology/hexo-theme-bluenote) 构建，通过 GitHub Pages 发布。主题是独立仓库，以 npm 依赖的方式引入（`package.json` 中锁定版本标签）；它不依赖任何前端框架、图标字体或第三方请求，可供其他 Hexo 站点复用。
 
 ## Project standards
 
@@ -13,7 +13,7 @@
 
 ```text
 .
-├── themes/bluenote/   # 自有主题：模板、样式、脚本、配置默认值
+├── node_modules/hexo-theme-bluenote/  # 主题（npm 依赖；源码见 github.com/CHEology/hexo-theme-bluenote）
 ├── source/
 │   ├── _posts/        # Markdown 文章
 │   ├── css/           # 站点专属样式（私密文章、Gallery、Design Doc、随想公式）
