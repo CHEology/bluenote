@@ -1,7 +1,32 @@
 const { existsSync } = require('node:fs');
 const { join } = require('node:path');
-const { groupRows } = require('../../source/js/gallery.js');
 const { imageDimensions } = require('./image-dimensions.cjs');
+
+function curatedRows(photos) {
+  const rows = [], seenSpreads = new Set(), seenSequences = new Set();
+  let previousSequence = '';
+  for (const photo of photos) {
+    const spread = photo.spread || photo.id;
+    const sequence = photo.sequence || '';
+    for (const value of [spread, sequence].filter(Boolean)) {
+      if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(value)) throw new Error('Invalid Gallery spread/sequence');
+    }
+    let row = rows.at(-1);
+    if (!row || row.spread !== spread) {
+      if (seenSpreads.has(spread)) throw new Error('Gallery spreads must remain contiguous');
+      if (sequence !== previousSequence && sequence && seenSequences.has(sequence)) throw new Error('Gallery sequences must remain contiguous');
+      seenSpreads.add(spread);
+      if (sequence) seenSequences.add(sequence);
+      row = { spread, sequence, continuation: !!sequence && sequence === previousSequence, photos: [] };
+      rows.push(row);
+      previousSequence = sequence;
+    }
+    if (sequence !== row.sequence) throw new Error('A Gallery spread cannot split a sequence');
+    row.photos.push(photo);
+    if (row.photos.length > 2) throw new Error('Gallery spreads contain at most two photographs');
+  }
+  return rows;
+}
 
 function escapeHtml(value) {
   return String(value).replace(/[&<>"']/g, (character) => ({
@@ -14,7 +39,7 @@ function validateGallery(manifest, sourceRoot) {
     throw new Error('Gallery requires version: 1 and a photos array.');
   }
   const ids = new Set();
-  return manifest.photos.map((photo) => {
+  const photos = manifest.photos.map((photo) => {
     if (!photo || typeof photo.id !== 'string' || !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(photo.id) || ids.has(photo.id)) {
       throw new Error('Gallery photo IDs must be unique, lowercase, and URL-safe.');
     }
@@ -60,14 +85,16 @@ function validateGallery(manifest, sourceRoot) {
       widths.add(preview.width);
       paths.add(preview.src);
     }
-    return { id: photo.id, alt: photo.alt, caption: photo.caption || '', full, previews };
+    return { id: photo.id, alt: photo.alt, caption: photo.caption || '', spread: photo.spread, sequence: photo.sequence, full, previews };
   });
+  curatedRows(photos);
+  return photos;
 }
 
 function renderGallery(photos, root) {
   const base = (root || '/').replace(/\/?$/, '/');
   const url = (path) => base + path.replace(/^\//, '');
-  const item = (photo, index) => {
+  const item = (photo, index, rowRatio, paired) => {
     const full = photo.full;
     const preview = photo.previews[0];
     const srcset = photo.previews.map((image) => url(image.src) + ' ' + image.width + 'w').join(', ');
@@ -76,7 +103,7 @@ function renderGallery(photos, root) {
       '<a class="gallery-photo" href="' + escapeHtml(url(full.src)) + '" data-gallery-open="' + escapeHtml(photo.id) + '"',
       ' data-width="' + full.width + '" data-height="' + full.height + '" aria-label="' + escapeHtml(photo.alt) + '">',
       '<img data-gallery-thumbnail src="' + escapeHtml(url(preview.src)) + '" srcset="' + escapeHtml(srcset) + '"',
-      ' sizes="(max-width: 767px) calc(100vw - 3rem), (max-width: 1140px) 50vw, 540px"',
+      ' sizes="(max-width: 900px) calc(100vw - 3rem), ' + Math.ceil((1160 - (paired ? 32 : 0)) * (full.width / full.height) / rowRatio) + 'px"',
       ' width="' + full.width + '" height="' + full.height + '" alt="' + escapeHtml(photo.alt) + '"',
       ' loading="' + (index < 2 ? 'eager' : 'lazy') + '" decoding="async">',
       '</a>',
@@ -84,13 +111,16 @@ function renderGallery(photos, root) {
       '</figure>'
     ].join('');
   };
-  const rows = groupRows(photos.map((photo) => photo.full.width / photo.full.height), 1080, false);
+  const rows = curatedRows(photos);
   let offset = 0;
-  const grid = rows.map((count) => {
-    const partial = count === 1 && photos[offset].full.width / photos[offset].full.height < 2.7;
-    const items = photos.slice(offset, offset + count).map((photo, index) => item(photo, offset + index));
-    offset += count;
-    return '<div class="gallery-row' + (partial ? ' gallery-row--partial' : '') + '">' + items.join('') + '</div>';
+  const grid = rows.map((row) => {
+    const paired = row.photos.length === 2;
+    const ratio = row.photos.reduce((sum, photo) => sum + photo.full.width / photo.full.height, 0);
+    const items = row.photos.map((photo, index) => item(photo, offset + index, ratio, paired));
+    offset += row.photos.length;
+    return '<div class="gallery-row' + (paired ? ' gallery-row--paired' : '') +
+      (row.continuation ? ' gallery-row--continuation' : '') + '" data-gallery-spread="' + escapeHtml(row.spread) +
+      '" style="--gallery-row-ratio:' + ratio + ';--gallery-row-gutter:' + (paired ? 32 : 0) + 'px">' + items.join('') + '</div>';
   }).join('\n');
 
   return [
@@ -120,4 +150,4 @@ function renderGallery(photos, root) {
   ].join('\n');
 }
 
-module.exports = { validateGallery, renderGallery };
+module.exports = { validateGallery, renderGallery, curatedRows };

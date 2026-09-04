@@ -1,78 +1,21 @@
 (function() {
   'use strict';
 
-  // Ordered rows; only row membership changes, never the photograph's framing.
-  function groupRows(ratios, width, singleColumn) {
-    if (singleColumn) return ratios.map(function() { return 1; });
-    var gap = width < 900 ? 24 : 32;
-    var target = Math.min(340, width / 2.8);
-    var rows = [];
-    var offset = 0;
-    while (offset < ratios.length) {
-      if (ratios[offset] >= 2.7) {
-        rows.push(1);
-        offset += 1;
-        continue;
-      }
-      var sum = 0;
-      var bestCount = 1;
-      var bestScore = Infinity;
-      for (var count = 1; count <= 3 && offset + count <= ratios.length; count += 1) {
-        if (count > 1 && ratios[offset + count - 1] >= 2.7) break;
-        sum += ratios[offset + count - 1];
-        var height = (width - gap * (count - 1)) / sum;
-        var score = Math.abs(Math.log(height / target)) + (count === 1 ? 0.28 : 0);
-        if (score < bestScore) {
-          bestScore = score;
-          bestCount = count;
-        }
-      }
-      rows.push(bestCount);
-      offset += bestCount;
-    }
-    return rows;
-  }
-
   function mountGallery(doc, win) {
     var grid = doc.querySelector('[data-gallery-grid]');
     if (!grid) return;
     var figures = Array.from(grid.querySelectorAll('.gallery-item'));
     var links = figures.map(function(figure) { return figure.querySelector('[data-gallery-open]'); });
-    var ratios = links.map(function(link) { return Number(link.dataset.width) / Number(link.dataset.height); });
-    var rowSignature = '';
 
-    function arrange() {
-      var width = grid.clientWidth;
-      if (!width) return;
-      var mobile = win.matchMedia('(max-width: 767px)').matches;
-      var rows = groupRows(ratios, width, mobile);
-      var signature = String(mobile) + ':' + rows.join(',');
-      if (signature !== rowSignature) {
-        var fragment = doc.createDocumentFragment();
-        var offset = 0;
-        rows.forEach(function(count) {
-          var row = doc.createElement('div');
-          row.className = 'gallery-row';
-          if (count === 1 && ratios[offset] < 2.7 && !mobile) row.classList.add('gallery-row--partial');
-          figures.slice(offset, offset + count).forEach(function(figure) { row.appendChild(figure); });
-          offset += count;
-          fragment.appendChild(row);
-        });
-        grid.replaceChildren(fragment);
-        rowSignature = signature;
-      }
-      // The browser selects a preview for the real rendered width, not a guess.
+    // CSS adapts the authored spreads; resize must never move photographs or focus.
+    function sizePreviews() {
       links.forEach(function(link) {
-        var image = link.querySelector('img');
-        image.sizes = Math.ceil(link.clientWidth) + 'px';
+        if (link.clientWidth) link.querySelector('img').sizes = Math.ceil(link.clientWidth) + 'px';
       });
     }
-    arrange();
-    if (win.ResizeObserver) {
-      new win.ResizeObserver(arrange).observe(grid);
-    } else {
-      win.addEventListener('resize', arrange);
-    }
+    sizePreviews();
+    if (win.ResizeObserver) new win.ResizeObserver(sizePreviews).observe(grid);
+    win.addEventListener('resize', sizePreviews);
 
     var viewer = doc.querySelector('[data-gallery-viewer]');
     if (!viewer || typeof viewer.showModal !== 'function') return;
@@ -129,14 +72,31 @@
       status.hidden = false;
       message.textContent = '正在加载原图…';
 
+      // Keep a complete preview visible while the full-resolution file arrives.
+      var thumbnail = link.querySelector('img');
+      var previewSource = thumbnail.currentSrc || thumbnail.src;
+      stage.classList.toggle('has-preview', !!previewSource);
+      zoom.setAttribute('aria-busy', 'true');
+      if (previewSource) {
+        var preview = doc.createElement('img');
+        preview.alt = currentAlt;
+        preview.src = previewSource;
+        zoom.appendChild(preview);
+        zoom.hidden = false;
+      }
+
       var image = doc.createElement('img');
       image.alt = link.querySelector('img').alt;
       image.width = Number(link.dataset.width);
       image.height = Number(link.dataset.height);
       image.decoding = 'async';
+      image.hidden = true;
       image.addEventListener('load', function() {
         if (token !== serial || !viewer.open) return;
         loaded = true;
+        image.hidden = false;
+        zoom.replaceChildren(image);
+        zoom.setAttribute('aria-busy', 'false');
         status.hidden = true;
         zoom.hidden = false;
       });
@@ -144,7 +104,8 @@
         if (token !== serial || !viewer.open) return;
         message.textContent = '原图加载失败。';
         original.hidden = false;
-        zoom.hidden = true;
+        zoom.hidden = !previewSource;
+        zoom.setAttribute('aria-busy', 'false');
       });
       zoom.appendChild(image);
       // No original requests are made until the reader opens or changes a photo.
@@ -220,7 +181,7 @@
   }
 
   if (typeof module === 'object' && module.exports) {
-    module.exports = { groupRows: groupRows, mountGallery: mountGallery };
+    module.exports = { mountGallery: mountGallery };
   }
   if (typeof document !== 'undefined') {
     if (document.readyState === 'loading') {

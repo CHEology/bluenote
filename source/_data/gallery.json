@@ -1,4 +1,1375 @@
 {
   "version": 1,
-  "photos": []
+  "photos": [
+    {
+      "id": "dsc-1501",
+      "alt": "暮色海面与码头上的人影",
+      "spread": "spread-01",
+      "full": {
+        "src": "/images/selected/2026-09/dsc-1501.jpg",
+        "height": 3712,
+        "width": 5568
+      },
+      "previews": [
+        {
+          "src": "/images/selected/2026-09/dsc-1501-800.jpg",
+          "height": 533,
+          "width": 800
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-1501-1600.jpg",
+          "height": 1067,
+          "width": 1600
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-1501-2880.jpg",
+          "height": 1920,
+          "width": 2880
+        }
+      ]
+    },
+    {
+      "id": "dsc-1412",
+      "alt": "海边的行人与沙滩上的椅子",
+      "spread": "spread-02",
+      "full": {
+        "src": "/images/selected/2026-09/dsc-1412.jpg",
+        "height": 3712,
+        "width": 5568
+      },
+      "previews": [
+        {
+          "src": "/images/selected/2026-09/dsc-1412-800.jpg",
+          "height": 533,
+          "width": 800
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-1412-1600.jpg",
+          "height": 1067,
+          "width": 1600
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-1412-2880.jpg",
+          "height": 1920,
+          "width": 2880
+        }
+      ]
+    },
+    {
+      "id": "dsc-2068",
+      "alt": "海边坐着的人、行人与海鸟",
+      "spread": "spread-02",
+      "full": {
+        "src": "/images/selected/2026-09/dsc-2068.jpg",
+        "height": 5501,
+        "width": 8252
+      },
+      "previews": [
+        {
+          "src": "/images/selected/2026-09/dsc-2068-800.jpg",
+          "height": 533,
+          "width": 800
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-2068-1600.jpg",
+          "height": 1066,
+          "width": 1600
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-2068-2880.jpg",
+          "height": 1920,
+          "width": 2880
+        }
+      ]
+    },
+    {
+      "id": "dsc-1414",
+      "alt": "沙地上的黑鸟、影子与足迹",
+      "spread": "spread-03",
+      "full": {
+        "src": "/images/selected/2026-09/dsc-1414.jpg",
+        "height": 3712,
+        "width": 5568
+      },
+      "previews": [
+        {
+          "src": "/images/selected/2026-09/dsc-1414-800.jpg",
+          "height": 533,
+          "width": 800
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-1414-1600.jpg",
+          "height": 1067,
+          "width": 1600
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-1414-2880.jpg",
+          "height": 1920,
+          "width": 2880
+        }
+      ]
+    },
+    {
+      "id": "dsc-1482",
+      "alt": "暮色里的棕榈树",
+      "spread": "spread-04",
+      "full": {
+        "src": "/images/selected/2026-09/dsc-1482.jpg",
+        "height": 5568,
+        "width": 3712
+      },
+      "previews": [
+        {
+          "src": "/images/selected/2026-09/dsc-1482-800.jpg",
+          "height": 800,
+          "width": 533
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-1482-1600.jpg",
+          "height": 1600,
+          "width": 1067
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-1482-2880.jpg",
+          "height": 2880,
+          "width": 1920
+        }
+      ]
+    },
+    {
+      "id": "dsc-0617",
+      "alt": "阴云与光束下的水田",
+      "spread": "spread-05",
+      "full": {
+        "src": "/images/selected/2026-09/dsc-0617.jpg",
+        "height": 5154,
+        "width": 7731
+      },
+      "previews": [
+        {
+          "src": "/images/selected/2026-09/dsc-0617-800.jpg",
+          "height": 533,
+          "width": 800
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-0617-1600.jpg",
+          "height": 1067,
+          "width": 1600
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-0617-2880.jpg",
+          "height": 1920,
+          "width": 2880
+        }
+      ]
+    },
+    {
+      "id": "dsc-0481",
+      "alt": "车站屋檐下等待的人们",
+      "spread": "spread-06",
+      "full": {
+        "src": "/images/selected/2026-09/dsc-0481.jpg",
+        "height": 5504,
+        "width": 7986
+      },
+      "previews": [
+        {
+          "src": "/images/selected/2026-09/dsc-0481-800.jpg",
+          "height": 552,
+          "width": 800
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-0481-1600.jpg",
+          "height": 1103,
+          "width": 1600
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-0481-2880.jpg",
+          "height": 1985,
+          "width": 2880
+        }
+      ]
+    },
+    {
+      "id": "dsc-3979",
+      "alt": "黄昏广场上的几位行人",
+      "spread": "spread-07",
+      "full": {
+        "src": "/images/selected/2026-09/dsc-3979.jpg",
+        "height": 2843,
+        "width": 4400
+      },
+      "previews": [
+        {
+          "src": "/images/selected/2026-09/dsc-3979-800.jpg",
+          "height": 516,
+          "width": 800
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-3979-1600.jpg",
+          "height": 1034,
+          "width": 1600
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-3979-2880.jpg",
+          "height": 1861,
+          "width": 2880
+        }
+      ]
+    },
+    {
+      "id": "dsc-1974",
+      "alt": "钢桥结构间的行人与水面",
+      "spread": "spread-08",
+      "full": {
+        "src": "/images/selected/2026-09/dsc-1974.jpg",
+        "height": 5504,
+        "width": 8256
+      },
+      "previews": [
+        {
+          "src": "/images/selected/2026-09/dsc-1974-800.jpg",
+          "height": 533,
+          "width": 800
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-1974-1600.jpg",
+          "height": 1067,
+          "width": 1600
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-1974-2880.jpg",
+          "height": 1920,
+          "width": 2880
+        }
+      ]
+    },
+    {
+      "id": "dsc-5969",
+      "alt": "水面上的桥墩与两侧桥身",
+      "spread": "spread-08",
+      "full": {
+        "src": "/images/selected/2026-09/dsc-5969.jpg",
+        "height": 5495,
+        "width": 8243
+      },
+      "previews": [
+        {
+          "src": "/images/selected/2026-09/dsc-5969-800.jpg",
+          "height": 533,
+          "width": 800
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-5969-1600.jpg",
+          "height": 1066,
+          "width": 1600
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-5969-2880.jpg",
+          "height": 1920,
+          "width": 2880
+        }
+      ]
+    },
+    {
+      "id": "dsc-2046",
+      "alt": "橙色灯光照亮的钢架",
+      "spread": "spread-09",
+      "full": {
+        "src": "/images/selected/2026-09/dsc-2046.jpg",
+        "height": 5568,
+        "width": 3712
+      },
+      "previews": [
+        {
+          "src": "/images/selected/2026-09/dsc-2046-800.jpg",
+          "height": 800,
+          "width": 533
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-2046-1600.jpg",
+          "height": 1600,
+          "width": 1067
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-2046-2880.jpg",
+          "height": 2880,
+          "width": 1920
+        }
+      ]
+    },
+    {
+      "id": "dsc-1236-denoise-2",
+      "alt": "昏暗门口与倒下的橙色路锥",
+      "spread": "spread-10",
+      "full": {
+        "src": "/images/selected/2026-09/dsc-1236-denoise-2.jpg",
+        "height": 5165,
+        "width": 8072
+      },
+      "previews": [
+        {
+          "src": "/images/selected/2026-09/dsc-1236-denoise-2-800.jpg",
+          "height": 511,
+          "width": 800
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-1236-denoise-2-1600.jpg",
+          "height": 1024,
+          "width": 1600
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-1236-denoise-2-2880.jpg",
+          "height": 1843,
+          "width": 2880
+        }
+      ]
+    },
+    {
+      "id": "dsc-4041",
+      "alt": "暖色灯光下的空站台",
+      "spread": "spread-10",
+      "full": {
+        "src": "/images/selected/2026-09/dsc-4041.jpg",
+        "height": 4237,
+        "width": 8256
+      },
+      "previews": [
+        {
+          "src": "/images/selected/2026-09/dsc-4041-800.jpg",
+          "height": 410,
+          "width": 800
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-4041-1600.jpg",
+          "height": 821,
+          "width": 1600
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-4041-2880.jpg",
+          "height": 1478,
+          "width": 2880
+        }
+      ]
+    },
+    {
+      "id": "dsc-1763",
+      "alt": "夜晚店铺门口的一只狗",
+      "spread": "spread-11",
+      "full": {
+        "src": "/images/selected/2026-09/dsc-1763.jpg",
+        "height": 5300,
+        "width": 8256
+      },
+      "previews": [
+        {
+          "src": "/images/selected/2026-09/dsc-1763-800.jpg",
+          "height": 513,
+          "width": 800
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-1763-1600.jpg",
+          "height": 1027,
+          "width": 1600
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-1763-2880.jpg",
+          "height": 1849,
+          "width": 2880
+        }
+      ]
+    },
+    {
+      "id": "dsc-2442",
+      "alt": "夜间经过道口的列车",
+      "spread": "spread-12",
+      "full": {
+        "src": "/images/selected/2026-09/dsc-2442.jpg",
+        "height": 3712,
+        "width": 5568
+      },
+      "previews": [
+        {
+          "src": "/images/selected/2026-09/dsc-2442-800.jpg",
+          "height": 533,
+          "width": 800
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-2442-1600.jpg",
+          "height": 1067,
+          "width": 1600
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-2442-2880.jpg",
+          "height": 1920,
+          "width": 2880
+        }
+      ]
+    },
+    {
+      "id": "dsc-3006",
+      "alt": "雪夜街道上的除雪车与行人",
+      "spread": "spread-13",
+      "sequence": "snow",
+      "full": {
+        "src": "/images/selected/2026-09/dsc-3006.jpg",
+        "height": 5504,
+        "width": 8256
+      },
+      "previews": [
+        {
+          "src": "/images/selected/2026-09/dsc-3006-800.jpg",
+          "height": 533,
+          "width": 800
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-3006-1600.jpg",
+          "height": 1067,
+          "width": 1600
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-3006-2880.jpg",
+          "height": 1920,
+          "width": 2880
+        }
+      ]
+    },
+    {
+      "id": "dsc-3047",
+      "alt": "灯光下在积雪里行走的人",
+      "spread": "spread-14",
+      "sequence": "snow",
+      "full": {
+        "src": "/images/selected/2026-09/dsc-3047.jpg",
+        "height": 7744,
+        "width": 5504
+      },
+      "previews": [
+        {
+          "src": "/images/selected/2026-09/dsc-3047-800.jpg",
+          "height": 800,
+          "width": 569
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-3047-1600.jpg",
+          "height": 1600,
+          "width": 1137
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-3047-2880.jpg",
+          "height": 2880,
+          "width": 2047
+        }
+      ]
+    },
+    {
+      "id": "dsc-3066",
+      "alt": "黄色灯光下的雪地行人",
+      "spread": "spread-14",
+      "sequence": "snow",
+      "full": {
+        "src": "/images/selected/2026-09/dsc-3066.jpg",
+        "height": 8256,
+        "width": 5504
+      },
+      "previews": [
+        {
+          "src": "/images/selected/2026-09/dsc-3066-800.jpg",
+          "height": 800,
+          "width": 533
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-3066-1600.jpg",
+          "height": 1600,
+          "width": 1067
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-3066-2880.jpg",
+          "height": 2880,
+          "width": 1920
+        }
+      ]
+    },
+    {
+      "id": "dsc-3145",
+      "alt": "积雪覆盖的夜间街口",
+      "spread": "spread-15",
+      "sequence": "snow",
+      "full": {
+        "src": "/images/selected/2026-09/dsc-3145.jpg",
+        "height": 3552,
+        "width": 7418
+      },
+      "previews": [
+        {
+          "src": "/images/selected/2026-09/dsc-3145-800.jpg",
+          "height": 383,
+          "width": 800
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-3145-1600.jpg",
+          "height": 766,
+          "width": 1600
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-3145-2880.jpg",
+          "height": 1379,
+          "width": 2880
+        }
+      ]
+    },
+    {
+      "id": "dsc-4222",
+      "alt": "雪中街边的行人与脚印",
+      "spread": "spread-16",
+      "sequence": "snow",
+      "full": {
+        "src": "/images/selected/2026-09/dsc-4222.jpg",
+        "height": 4615,
+        "width": 7773
+      },
+      "previews": [
+        {
+          "src": "/images/selected/2026-09/dsc-4222-800.jpg",
+          "height": 475,
+          "width": 800
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-4222-1600.jpg",
+          "height": 950,
+          "width": 1600
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-4222-2880.jpg",
+          "height": 1710,
+          "width": 2880
+        }
+      ]
+    },
+    {
+      "id": "dsc-4225",
+      "alt": "雪中路口并肩的两个人",
+      "spread": "spread-16",
+      "sequence": "snow",
+      "full": {
+        "src": "/images/selected/2026-09/dsc-4225.jpg",
+        "height": 4020,
+        "width": 4694
+      },
+      "previews": [
+        {
+          "src": "/images/selected/2026-09/dsc-4225-800.jpg",
+          "height": 685,
+          "width": 800
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-4225-1600.jpg",
+          "height": 1370,
+          "width": 1600
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-4225-2880.jpg",
+          "height": 2466,
+          "width": 2880
+        }
+      ]
+    },
+    {
+      "id": "dsc-4239",
+      "alt": "雪夜道路、车灯与楼宇",
+      "spread": "spread-17",
+      "sequence": "snow",
+      "full": {
+        "src": "/images/selected/2026-09/dsc-4239.jpg",
+        "height": 3097,
+        "width": 5506
+      },
+      "previews": [
+        {
+          "src": "/images/selected/2026-09/dsc-4239-800.jpg",
+          "height": 450,
+          "width": 800
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-4239-1600.jpg",
+          "height": 900,
+          "width": 1600
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-4239-2880.jpg",
+          "height": 1620,
+          "width": 2880
+        }
+      ]
+    },
+    {
+      "id": "dsc-3401-2",
+      "alt": "雪夜街道上并肩行走的人",
+      "spread": "spread-18",
+      "sequence": "snow",
+      "full": {
+        "src": "/images/selected/2026-09/dsc-3401-2.jpg",
+        "height": 8256,
+        "width": 5504
+      },
+      "previews": [
+        {
+          "src": "/images/selected/2026-09/dsc-3401-2-800.jpg",
+          "height": 800,
+          "width": 533
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-3401-2-1600.jpg",
+          "height": 1600,
+          "width": 1067
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-3401-2-2880.jpg",
+          "height": 2880,
+          "width": 1920
+        }
+      ]
+    },
+    {
+      "id": "dsc-3452",
+      "alt": "枝桠间的高楼与夜空",
+      "spread": "spread-18",
+      "sequence": "snow",
+      "full": {
+        "src": "/images/selected/2026-09/dsc-3452.jpg",
+        "height": 8063,
+        "width": 5375
+      },
+      "previews": [
+        {
+          "src": "/images/selected/2026-09/dsc-3452-800.jpg",
+          "height": 800,
+          "width": 533
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-3452-1600.jpg",
+          "height": 1600,
+          "width": 1066
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-3452-2880.jpg",
+          "height": 2880,
+          "width": 1920
+        }
+      ]
+    },
+    {
+      "id": "dsc-3438",
+      "alt": "雪夜中被灯光照亮的阶梯",
+      "spread": "spread-19",
+      "sequence": "snow",
+      "full": {
+        "src": "/images/selected/2026-09/dsc-3438.jpg",
+        "height": 5319,
+        "width": 7978
+      },
+      "previews": [
+        {
+          "src": "/images/selected/2026-09/dsc-3438-800.jpg",
+          "height": 533,
+          "width": 800
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-3438-1600.jpg",
+          "height": 1067,
+          "width": 1600
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-3438-2880.jpg",
+          "height": 1920,
+          "width": 2880
+        }
+      ]
+    },
+    {
+      "id": "dsc-3445",
+      "alt": "树木、灯光与水面的倒影",
+      "spread": "spread-20",
+      "sequence": "snow",
+      "full": {
+        "src": "/images/selected/2026-09/dsc-3445.jpg",
+        "height": 5375,
+        "width": 8063
+      },
+      "previews": [
+        {
+          "src": "/images/selected/2026-09/dsc-3445-800.jpg",
+          "height": 533,
+          "width": 800
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-3445-1600.jpg",
+          "height": 1066,
+          "width": 1600
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-3445-2880.jpg",
+          "height": 1920,
+          "width": 2880
+        }
+      ]
+    },
+    {
+      "id": "dsc-3476",
+      "alt": "渡轮内的长椅与乘客",
+      "spread": "spread-21",
+      "sequence": "snow",
+      "full": {
+        "src": "/images/selected/2026-09/dsc-3476.jpg",
+        "height": 3734,
+        "width": 6878
+      },
+      "previews": [
+        {
+          "src": "/images/selected/2026-09/dsc-3476-800.jpg",
+          "height": 434,
+          "width": 800
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-3476-1600.jpg",
+          "height": 869,
+          "width": 1600
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-3476-2880.jpg",
+          "height": 1564,
+          "width": 2880
+        }
+      ]
+    },
+    {
+      "id": "dsc-3497",
+      "alt": "夜间码头与远处城市灯光",
+      "spread": "spread-21",
+      "sequence": "snow",
+      "full": {
+        "src": "/images/selected/2026-09/dsc-3497.jpg",
+        "height": 5504,
+        "width": 8256
+      },
+      "previews": [
+        {
+          "src": "/images/selected/2026-09/dsc-3497-800.jpg",
+          "height": 533,
+          "width": 800
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-3497-1600.jpg",
+          "height": 1067,
+          "width": 1600
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-3497-2880.jpg",
+          "height": 1920,
+          "width": 2880
+        }
+      ]
+    },
+    {
+      "id": "dsc-3554",
+      "alt": "路灯下绵延的积雪街道",
+      "spread": "spread-22",
+      "sequence": "snow",
+      "full": {
+        "src": "/images/selected/2026-09/dsc-3554.jpg",
+        "height": 5504,
+        "width": 8256
+      },
+      "previews": [
+        {
+          "src": "/images/selected/2026-09/dsc-3554-800.jpg",
+          "height": 533,
+          "width": 800
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-3554-1600.jpg",
+          "height": 1067,
+          "width": 1600
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-3554-2880.jpg",
+          "height": 1920,
+          "width": 2880
+        }
+      ]
+    },
+    {
+      "id": "dsc-4253",
+      "alt": "暖色路灯下的积雪站台与轨道",
+      "spread": "spread-23",
+      "sequence": "snow",
+      "full": {
+        "src": "/images/selected/2026-09/dsc-4253.jpg",
+        "height": 3554,
+        "width": 7177
+      },
+      "previews": [
+        {
+          "src": "/images/selected/2026-09/dsc-4253-800.jpg",
+          "height": 396,
+          "width": 800
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-4253-1600.jpg",
+          "height": 792,
+          "width": 1600
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-4253-2880.jpg",
+          "height": 1426,
+          "width": 2880
+        }
+      ]
+    },
+    {
+      "id": "dsc-4181-2",
+      "alt": "车窗框中的雪景与树影",
+      "spread": "spread-24",
+      "sequence": "snow",
+      "full": {
+        "src": "/images/selected/2026-09/dsc-4181-2.jpg",
+        "height": 5263,
+        "width": 8065
+      },
+      "previews": [
+        {
+          "src": "/images/selected/2026-09/dsc-4181-2-800.jpg",
+          "height": 521,
+          "width": 800
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-4181-2-1600.jpg",
+          "height": 1044,
+          "width": 1600
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-4181-2-2880.jpg",
+          "height": 1879,
+          "width": 2880
+        }
+      ]
+    },
+    {
+      "id": "dsc-4560",
+      "alt": "河边穿红衣服的人",
+      "spread": "spread-25",
+      "full": {
+        "src": "/images/selected/2026-09/dsc-4560.jpg",
+        "height": 3712,
+        "width": 5568
+      },
+      "previews": [
+        {
+          "src": "/images/selected/2026-09/dsc-4560-800.jpg",
+          "height": 533,
+          "width": 800
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-4560-1600.jpg",
+          "height": 1067,
+          "width": 1600
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-4560-2880.jpg",
+          "height": 1920,
+          "width": 2880
+        }
+      ]
+    },
+    {
+      "id": "dsc-2180",
+      "alt": "水母与玻璃上重叠的人影",
+      "spread": "spread-26",
+      "full": {
+        "src": "/images/selected/2026-09/dsc-2180.jpg",
+        "height": 5504,
+        "width": 8256
+      },
+      "previews": [
+        {
+          "src": "/images/selected/2026-09/dsc-2180-800.jpg",
+          "height": 533,
+          "width": 800
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-2180-1600.jpg",
+          "height": 1067,
+          "width": 1600
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-2180-2880.jpg",
+          "height": 1920,
+          "width": 2880
+        }
+      ]
+    },
+    {
+      "id": "dsc-5019",
+      "alt": "绿叶前的一只蛙",
+      "spread": "spread-27",
+      "full": {
+        "src": "/images/selected/2026-09/dsc-5019.jpg",
+        "height": 4525,
+        "width": 7305
+      },
+      "previews": [
+        {
+          "src": "/images/selected/2026-09/dsc-5019-800.jpg",
+          "height": 495,
+          "width": 800
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-5019-1600.jpg",
+          "height": 991,
+          "width": 1600
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-5019-2880.jpg",
+          "height": 1784,
+          "width": 2880
+        }
+      ]
+    },
+    {
+      "id": "dsc-5091",
+      "alt": "玻璃前的手与几只陆龟",
+      "spread": "spread-27",
+      "full": {
+        "src": "/images/selected/2026-09/dsc-5091.jpg",
+        "height": 4171,
+        "width": 6674
+      },
+      "previews": [
+        {
+          "src": "/images/selected/2026-09/dsc-5091-800.jpg",
+          "height": 500,
+          "width": 800
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-5091-1600.jpg",
+          "height": 1000,
+          "width": 1600
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-5091-2880.jpg",
+          "height": 1800,
+          "width": 2880
+        }
+      ]
+    },
+    {
+      "id": "dsc-5180",
+      "alt": "女孩面对玻璃后的动物",
+      "spread": "spread-28",
+      "sequence": "glass",
+      "full": {
+        "src": "/images/selected/2026-09/dsc-5180.jpg",
+        "height": 8256,
+        "width": 5504
+      },
+      "previews": [
+        {
+          "src": "/images/selected/2026-09/dsc-5180-800.jpg",
+          "height": 800,
+          "width": 533
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-5180-1600.jpg",
+          "height": 1600,
+          "width": 1067
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-5180-2880.jpg",
+          "height": 2880,
+          "width": 1920
+        }
+      ]
+    },
+    {
+      "id": "dsc-5182",
+      "alt": "玻璃前回头的女孩",
+      "spread": "spread-28",
+      "sequence": "glass",
+      "full": {
+        "src": "/images/selected/2026-09/dsc-5182.jpg",
+        "height": 8256,
+        "width": 5504
+      },
+      "previews": [
+        {
+          "src": "/images/selected/2026-09/dsc-5182-800.jpg",
+          "height": 800,
+          "width": 533
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-5182-1600.jpg",
+          "height": 1600,
+          "width": 1067
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-5182-2880.jpg",
+          "height": 2880,
+          "width": 1920
+        }
+      ]
+    },
+    {
+      "id": "dsc-6679",
+      "alt": "跃起的人与远处地面",
+      "spread": "spread-29",
+      "full": {
+        "src": "/images/selected/2026-09/dsc-6679.jpg",
+        "height": 8256,
+        "width": 5504
+      },
+      "previews": [
+        {
+          "src": "/images/selected/2026-09/dsc-6679-800.jpg",
+          "height": 800,
+          "width": 533
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-6679-1600.jpg",
+          "height": 1600,
+          "width": 1067
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-6679-2880.jpg",
+          "height": 2880,
+          "width": 1920
+        }
+      ]
+    },
+    {
+      "id": "dsc-6029",
+      "alt": "草地上的作业车与远处城市",
+      "spread": "spread-30",
+      "full": {
+        "src": "/images/selected/2026-09/dsc-6029.jpg",
+        "height": 4909,
+        "width": 8256
+      },
+      "previews": [
+        {
+          "src": "/images/selected/2026-09/dsc-6029-800.jpg",
+          "height": 475,
+          "width": 800
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-6029-1600.jpg",
+          "height": 951,
+          "width": 1600
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-6029-2880.jpg",
+          "height": 1712,
+          "width": 2880
+        }
+      ]
+    },
+    {
+      "id": "dsc-0140",
+      "alt": "树木环绕的公园小径与行人",
+      "spread": "spread-31",
+      "full": {
+        "src": "/images/selected/2026-09/dsc-0140.jpg",
+        "height": 5504,
+        "width": 8256
+      },
+      "previews": [
+        {
+          "src": "/images/selected/2026-09/dsc-0140-800.jpg",
+          "height": 533,
+          "width": 800
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-0140-1600.jpg",
+          "height": 1067,
+          "width": 1600
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-0140-2880.jpg",
+          "height": 1920,
+          "width": 2880
+        }
+      ]
+    },
+    {
+      "id": "dsc-6493",
+      "alt": "草地和树下的鹿群",
+      "spread": "spread-32",
+      "full": {
+        "src": "/images/selected/2026-09/dsc-6493.jpg",
+        "height": 4370,
+        "width": 8256
+      },
+      "previews": [
+        {
+          "src": "/images/selected/2026-09/dsc-6493-800.jpg",
+          "height": 423,
+          "width": 800
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-6493-1600.jpg",
+          "height": 847,
+          "width": 1600
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-6493-2880.jpg",
+          "height": 1524,
+          "width": 2880
+        }
+      ]
+    },
+    {
+      "id": "dsc-6625",
+      "alt": "建筑框架中的绿地与人影",
+      "spread": "spread-33",
+      "full": {
+        "src": "/images/selected/2026-09/dsc-6625.jpg",
+        "height": 4540,
+        "width": 8256
+      },
+      "previews": [
+        {
+          "src": "/images/selected/2026-09/dsc-6625-800.jpg",
+          "height": 440,
+          "width": 800
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-6625-1600.jpg",
+          "height": 880,
+          "width": 1600
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-6625-2880.jpg",
+          "height": 1584,
+          "width": 2880
+        }
+      ]
+    },
+    {
+      "id": "dsc-6700",
+      "alt": "绿色田野里戴帽子的人",
+      "spread": "spread-34",
+      "full": {
+        "src": "/images/selected/2026-09/dsc-6700.jpg",
+        "height": 4171,
+        "width": 8003
+      },
+      "previews": [
+        {
+          "src": "/images/selected/2026-09/dsc-6700-800.jpg",
+          "height": 417,
+          "width": 800
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-6700-1600.jpg",
+          "height": 834,
+          "width": 1600
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-6700-2880.jpg",
+          "height": 1501,
+          "width": 2880
+        }
+      ]
+    },
+    {
+      "id": "dsc-8308",
+      "alt": "林荫路上拉着车的人",
+      "spread": "spread-34",
+      "full": {
+        "src": "/images/selected/2026-09/dsc-8308.jpg",
+        "height": 3585,
+        "width": 5195
+      },
+      "previews": [
+        {
+          "src": "/images/selected/2026-09/dsc-8308-800.jpg",
+          "height": 552,
+          "width": 800
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-8308-1600.jpg",
+          "height": 1104,
+          "width": 1600
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-8308-2880.jpg",
+          "height": 1987,
+          "width": 2880
+        }
+      ]
+    },
+    {
+      "id": "dsc-4325",
+      "alt": "水边沙洲上的一群动物",
+      "spread": "spread-35",
+      "full": {
+        "src": "/images/selected/2026-09/dsc-4325.jpg",
+        "height": 3712,
+        "width": 5568
+      },
+      "previews": [
+        {
+          "src": "/images/selected/2026-09/dsc-4325-800.jpg",
+          "height": 533,
+          "width": 800
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-4325-1600.jpg",
+          "height": 1067,
+          "width": 1600
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-4325-2880.jpg",
+          "height": 1920,
+          "width": 2880
+        }
+      ]
+    },
+    {
+      "id": "dsc-5441",
+      "alt": "雪山下蜿蜒的公路",
+      "spread": "spread-36",
+      "full": {
+        "src": "/images/selected/2026-09/dsc-5441.jpg",
+        "height": 5527,
+        "width": 3712
+      },
+      "previews": [
+        {
+          "src": "/images/selected/2026-09/dsc-5441-800.jpg",
+          "height": 800,
+          "width": 538
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-5441-1600.jpg",
+          "height": 1600,
+          "width": 1075
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-5441-2880.jpg",
+          "height": 2880,
+          "width": 1934
+        }
+      ]
+    },
+    {
+      "id": "dsc-6510",
+      "alt": "僧人中一张回望的笑脸",
+      "spread": "spread-37",
+      "full": {
+        "src": "/images/selected/2026-09/dsc-6510.jpg",
+        "height": 3712,
+        "width": 5568
+      },
+      "previews": [
+        {
+          "src": "/images/selected/2026-09/dsc-6510-800.jpg",
+          "height": 533,
+          "width": 800
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-6510-1600.jpg",
+          "height": 1067,
+          "width": 1600
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-6510-2880.jpg",
+          "height": 1920,
+          "width": 2880
+        }
+      ]
+    },
+    {
+      "id": "dsc-6549",
+      "alt": "草地、树木与雾中的山坡",
+      "spread": "spread-38",
+      "sequence": "field",
+      "full": {
+        "src": "/images/selected/2026-09/dsc-6549.jpg",
+        "height": 4879,
+        "width": 5320
+      },
+      "previews": [
+        {
+          "src": "/images/selected/2026-09/dsc-6549-800.jpg",
+          "height": 733,
+          "width": 800
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-6549-1600.jpg",
+          "height": 1467,
+          "width": 1600
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-6549-2880.jpg",
+          "height": 2641,
+          "width": 2880
+        }
+      ]
+    },
+    {
+      "id": "dsc-6549-2",
+      "alt": "草地、树木与雾中山坡的窄幅画面",
+      "spread": "spread-38",
+      "sequence": "field",
+      "full": {
+        "src": "/images/selected/2026-09/dsc-6549-2.jpg",
+        "height": 3844,
+        "width": 1947
+      },
+      "previews": [
+        {
+          "src": "/images/selected/2026-09/dsc-6549-2-800.jpg",
+          "height": 800,
+          "width": 405
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-6549-2-1600.jpg",
+          "height": 1600,
+          "width": 810
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-6549-2-2880.jpg",
+          "height": 2880,
+          "width": 1459
+        }
+      ]
+    },
+    {
+      "id": "dsc-6229",
+      "alt": "橙色夕阳中的雕塑与城市轮廓",
+      "spread": "spread-39",
+      "full": {
+        "src": "/images/selected/2026-09/dsc-6229.jpg",
+        "height": 2365,
+        "width": 5056
+      },
+      "previews": [
+        {
+          "src": "/images/selected/2026-09/dsc-6229-800.jpg",
+          "height": 374,
+          "width": 800
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-6229-1600.jpg",
+          "height": 748,
+          "width": 1600
+        },
+        {
+          "src": "/images/selected/2026-09/dsc-6229-2880.jpg",
+          "height": 1347,
+          "width": 2880
+        }
+      ]
+    }
+  ]
 }

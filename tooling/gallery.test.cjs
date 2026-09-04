@@ -1,7 +1,7 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
-const { groupRows, mountGallery } = require('../source/js/gallery.js');
-const { validateGallery, renderGallery } = require('./lib/gallery.cjs');
+const { mountGallery } = require('../source/js/gallery.js');
+const { validateGallery, renderGallery, curatedRows } = require('./lib/gallery.cjs');
 
 function photo(id = 'photo-001', width = 6000, height = 4000) {
   return {
@@ -21,21 +21,32 @@ test('empty Gallery is intentional and contains no sample photos or inactive con
   assert.doesNotMatch(html, /<img|<dialog|data-gallery-open|DSC_/);
 });
 
-test('ordered rows support fifty landscape, portrait, square and panoramic photographs', () => {
-  const ratios = Array.from({ length: 50 }, (_, index) => [1.5, 2 / 3, 1, 3.2][index % 4]);
-  for (const width of [720, 900, 1080, 1400]) {
-    const rows = groupRows(ratios, width, false);
-    assert.equal(rows.reduce((sum, count) => sum + count, 0), 50);
-    let offset = 0;
-    for (const count of rows) {
-      assert.ok(count >= 1 && count <= 3);
-      if (ratios.slice(offset, offset + count).some((ratio) => ratio >= 2.7)) assert.equal(count, 1);
-      offset += count;
-    }
-  }
-  assert.deepEqual(groupRows(ratios, 342, true), Array(50).fill(1));
-  assert.deepEqual(groupRows([1.5, 1.5, 1.5, 1.5], 1080, false), [2, 2]);
-  assert.deepEqual(groupRows([], 1080, false), []);
+test('curated spreads preserve fifty photos, diptychs, and continuous sequences', () => {
+  const manifest = require('../source/_data/gallery.json');
+  const selected = require('./gallery-selection.json').entries;
+  const photos = validateGallery(manifest, require('node:path').join(__dirname, '..', 'source'));
+  const rows = curatedRows(photos);
+  assert.equal(photos.length, 50);
+  assert.equal(rows.length, 39);
+  assert.equal(rows.filter(row => row.photos.length === 2).length, 11);
+  assert.deepEqual(rows.flatMap(row => row.photos.map(photo => photo.id)), selected.map(photo => photo.id));
+  assert.deepEqual(rows.find(row => row.sequence === 'glass').photos.map(p => p.id), ['dsc-5180', 'dsc-5182']);
+  assert.deepEqual(rows.find(row => row.sequence === 'field').photos.map(p => p.id), ['dsc-6549', 'dsc-6549-2']);
+  assert.equal(rows.filter(row => row.sequence === 'snow').length, 12);
+  assert.equal(rows.filter(row => row.continuation).length, 11);
+  const html = renderGallery(photos, '/bluenote/');
+  assert.equal((html.match(/data-gallery-spread=/g) || []).length, 39);
+  assert.doesNotMatch(html, /<figcaption>|gallery-row--partial/);
+});
+
+test('invalid or fragmented spreads/sequences cannot silently separate related photographs', () => {
+  const p = (id, spread, sequence) => ({ ...photo(id), spread, sequence });
+  assert.throws(() => curatedRows([p('a', 'one'), p('b', 'two'), p('c', 'one')]), /contiguous/);
+  assert.throws(() => curatedRows([p('a', 'one'), p('b', 'one'), p('c', 'one')]), /at most two/);
+  assert.throws(() => curatedRows([p('a', 'one', 'snow'), p('b', 'two'), p('c', 'three', 'snow')]), /contiguous/);
+  assert.throws(() => curatedRows([p('a', 'one', 'snow'), p('b', 'one')]), /split a sequence/);
+  assert.throws(() => curatedRows([p('a', '<unsafe>')]), /Invalid/);
+  assert.deepEqual(curatedRows([]), []);
 });
 
 test('photo order and full-frame dimensions survive rendering; srcset excludes originals', () => {
@@ -260,4 +271,64 @@ test('single-image collections and unsupported dialogs retain useful navigation'
   mountGallery(fallback.doc, fallback.win);
   assert.equal(fallback.links[0].emit('click').prevented, false);
   assert.equal(fallback.requests.length, 0);
+});
+
+test('a cached full-frame preview stays visible during loading and on full-image failure', () => {
+  const f = fixture();
+  f.links[0].map.img.currentSrc = '/preview/0-1600.jpg';
+  mountGallery(f.doc, f.win);
+  f.links[0].emit('click');
+  assert.deepEqual(f.requests, ['/preview/0-1600.jpg', '/full/0.jpg']);
+  assert.equal(f.control('zoom').hidden, false);
+  assert.equal(f.control('zoom').attributes['aria-busy'], 'true');
+  f.control('zoom').emit('click');
+  assert.equal(f.control('zoom').attributes['aria-pressed'], 'false');
+  f.control('zoom').children.at(-1).emit('error');
+  assert.equal(f.control('zoom').hidden, false);
+  assert.equal(f.control('original').hidden, false);
+  f.control('close').emit('click');
+  f.links[0].emit('click');
+  const full = f.control('zoom').children.at(-1);
+  full.emit('load');
+  assert.deepEqual(f.control('zoom').children, [full]);
+  assert.equal(full.hidden, false);
+  assert.equal(f.control('status').hidden, true);
+});
+
+test('resize never reparents curated photos and the viewer visits all fifty in order', () => {
+  const f = fixture(50), events = {};
+  f.win.addEventListener = (name, handler) => { events[name] = handler; };
+  const authoredRow = { id: 'keep-this-row' };
+  f.grid.children = [authoredRow];
+  mountGallery(f.doc, f.win);
+  f.links[0].clientWidth = 342;
+  events.resize();
+  assert.deepEqual(f.grid.children, [authoredRow]);
+  assert.equal(f.links[0].map.img.sizes, '342px');
+  f.links[0].emit('click');
+  for (let i = 0; i < 50; i++) {
+    assert.equal(f.control('count').textContent, (i + 1) + ' / 50');
+    assert.equal(f.image().src, '/full/' + i + '.jpg');
+    f.image().emit('load');
+    if (i < 49) f.control('next').emit('click');
+  }
+  assert.equal(f.control('next').disabled, true);
+  assert.equal(f.requests.length, 50);
+});
+
+test('all 200 publication JPEGs retain ICC and contain no EXIF, IPTC or comment metadata', () => {
+  const fs = require('node:fs'), path = require('node:path');
+  const { hasPrivateMetadata, withICC } = require('./import-selected-gallery.cjs');
+  const photos = require('../source/_data/gallery.json').photos;
+  for (const photo of photos) for (const image of [photo.full, ...photo.previews]) {
+    const data = fs.readFileSync(path.join(__dirname, '..', 'source', image.src));
+    assert.equal(hasPrivateMetadata(data), false, image.src);
+    assert.ok(data.includes(Buffer.from('ICC_PROFILE\0')), image.src);
+  }
+  // Large ICC profiles must be split without losing any bytes.
+  const profile = Buffer.alloc(70000, 123);
+  const jpeg = withICC(Buffer.from([255, 216, 255, 217]), profile);
+  assert.equal(jpeg[19], 2);
+  assert.equal(jpeg[2 + 18 + 65519 + 16], 2);
+  assert.equal(hasPrivateMetadata(jpeg), false);
 });
