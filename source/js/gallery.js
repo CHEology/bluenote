@@ -57,7 +57,7 @@
     var grid = doc.querySelector('[data-gallery-grid]');
     if (!grid) return;
     var modelElement = doc.querySelector('[data-gallery-model]');
-    var reshuffle = doc.querySelector('[data-gallery-reshuffle]');
+    var reshuffles = Array.from(doc.querySelectorAll('[data-gallery-reshuffle]'));
     var announcement = doc.querySelector('[data-gallery-selection-status]');
     var selection = win.BlueNoteSelection;
     var model = null;
@@ -75,7 +75,7 @@
         selectAgain();
         var fallback = doc.querySelector('[data-gallery-fallback]');
         if (fallback) fallback.hidden = true;
-        if (reshuffle) reshuffle.hidden = false;
+        reshuffles.forEach(function(reshuffle) { reshuffle.hidden = false; });
       } catch (error) { model = null; }
     }
     var figures = Array.from(grid.querySelectorAll('.gallery-item'));
@@ -91,15 +91,28 @@
     if (win.ResizeObserver) new win.ResizeObserver(sizePreviews).observe(grid);
     win.addEventListener('resize', sizePreviews);
 
-    if (reshuffle && model) reshuffle.addEventListener('click', function() {
-      if (viewer && viewer.open) return;
-      try {
-        selectAgain();
-        bindPhotos();
-        sizePreviews();
-      } catch (error) {
-        if (announcement) announcement.textContent = 'Unable to reshuffle. Please try again.';
-      }
+    reshuffles.forEach(function(reshuffle) {
+      if (!model) return;
+      reshuffle.addEventListener('click', function() {
+        if (viewer && viewer.open) return;
+        try {
+          selectAgain();
+          bindPhotos();
+          sizePreviews();
+          if (reshuffle.dataset.galleryReshufflePosition === 'bottom') {
+            var firstPhoto = grid.querySelector('[data-gallery-open]');
+            if (firstPhoto) {
+              firstPhoto.focus({ preventScroll: true });
+              if (typeof firstPhoto.scrollIntoView === 'function') {
+                var reduceMotion = win.matchMedia && win.matchMedia('(prefers-reduced-motion: reduce)').matches;
+                firstPhoto.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'center' });
+              }
+            }
+          }
+        } catch (error) {
+          if (announcement) announcement.textContent = 'Unable to reshuffle. Please try again.';
+        }
+      });
     });
 
     var viewer = doc.querySelector('[data-gallery-viewer]');

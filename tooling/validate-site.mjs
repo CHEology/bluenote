@@ -186,6 +186,10 @@ if (photoCount && (!gallery.includes('gallery-grid--few') || !gallery.includes('
     !gallery.includes('data-gallery-model') || !gallery.includes('/js/gallery-selection.js'))) {
   fail('Gallery must default to the random small exhibition');
 }
+if (photoCount && ((gallery.match(/data-gallery-reshuffle(?=[\s>])/g) || []).length !== 2 ||
+    !gallery.includes('data-gallery-reshuffle-position="bottom"'))) {
+  fail('Small exhibition must provide both opening and closing reshuffle controls');
+}
 if (photoCount) {
   const model = JSON.parse(gallery.match(/data-gallery-model>([\s\S]*?)<\/script>/)[1]);
   if (JSON.stringify(model.rows.flatMap(row => row.photos.map(photo => photo.id))) !==
