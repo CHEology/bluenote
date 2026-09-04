@@ -195,6 +195,7 @@ function fixture(count = 3) {
       const classes = new Set();
       this.classList = {
         add: (name) => classes.add(name),
+        remove: (name) => classes.delete(name),
         toggle: (name, value) => value ? classes.add(name) : classes.delete(name),
         contains: (name) => classes.has(name)
       };
@@ -271,7 +272,7 @@ function fixture(count = 3) {
   return {
     doc, win, grid, viewer, figures, links, requests,
     control: (name) => viewer.map['[data-gallery-' + name + ']'],
-    image: () => viewer.map['[data-gallery-zoom]'].children[0]
+    image: () => viewer.map['[data-gallery-zoom]'].children.at(-1)
   };
 }
 
@@ -438,6 +439,8 @@ test('a cached full-frame preview stays visible during loading and on full-image
   mountGallery(f.doc, f.win);
   f.links[0].emit('click');
   assert.deepEqual(f.requests, ['/preview/0-1600.jpg', '/full/0.jpg']);
+  assert.equal(f.control('zoom').hidden, true);
+  f.control('zoom').children[0].emit('load');
   assert.equal(f.control('zoom').hidden, false);
   assert.equal(f.control('zoom').attributes['aria-busy'], 'true');
   f.control('zoom').emit('click');
@@ -452,6 +455,52 @@ test('a cached full-frame preview stays visible during loading and on full-image
   assert.deepEqual(f.control('zoom').children, [full]);
   assert.equal(full.hidden, false);
   assert.equal(f.control('status').hidden, true);
+});
+
+test('photo changes retain the last frame and wait for decode before an atomic replacement', async () => {
+  const f = fixture();
+  for (const link of f.links) link.map.img.currentSrc = '/preview/' + link.href.match(/(\d+)\.jpg$/)[1] + '-1600.jpg';
+  mountGallery(f.doc, f.win);
+  f.links[0].emit('click');
+  assert.deepEqual(f.requests.filter(src => src.startsWith('/full/')), ['/full/0.jpg']);
+  const firstPreview = f.control('zoom').children[0];
+  firstPreview.emit('load');
+  const firstFull = f.image();
+  firstFull.emit('load');
+  assert.deepEqual(f.control('zoom').children, [firstFull]);
+
+  f.control('next').emit('click');
+  assert.deepEqual(f.requests.filter(src => src.startsWith('/full/')), ['/full/0.jpg', '/full/1.jpg']);
+  const nextPreview = f.control('zoom').children.at(-2);
+  const nextFull = f.control('zoom').children.at(-1);
+  assert.equal(f.control('zoom').children[0], firstFull);
+  assert.equal(f.control('zoom').hidden, false);
+  assert.equal(f.control('count').textContent, '2 / 3');
+  nextPreview.emit('load');
+  assert.deepEqual(f.control('zoom').children, [nextPreview, nextFull]);
+  assert.equal(nextPreview.hidden, false);
+
+  let finishDecode;
+  nextFull.decode = () => new Promise(resolve => { finishDecode = resolve; });
+  nextFull.emit('load');
+  assert.deepEqual(f.control('zoom').children, [nextPreview, nextFull]);
+  assert.equal(f.control('status').hidden, false);
+  finishDecode();
+  await Promise.resolve();
+  assert.deepEqual(f.control('zoom').children, [nextFull]);
+  assert.equal(nextFull.hidden, false);
+  assert.equal(f.control('status').hidden, true);
+
+  f.control('prev').emit('click');
+  const staleFull = f.control('zoom').children.at(-1);
+  let finishStaleDecode;
+  staleFull.decode = () => new Promise(resolve => { finishStaleDecode = resolve; });
+  staleFull.emit('load');
+  f.control('next').emit('click');
+  const retained = f.control('zoom').children[0];
+  finishStaleDecode();
+  await Promise.resolve();
+  assert.equal(f.control('zoom').children[0], retained, 'a stale decode cannot reinsert an earlier photo');
 });
 
 test('resize never reparents curated photos and the viewer visits all fifty in order', () => {

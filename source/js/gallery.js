@@ -121,6 +121,7 @@
     var restoreBody = null;
     var touch = null;
     var suppressClickUntil = 0;
+    var warmingPreviews = new Map();
 
     function setZoom(value) {
       zoomed = value;
@@ -131,6 +132,33 @@
       stage.scrollLeft = 0;
     }
 
+    function afterDecode(image, callback) {
+      var decoding = null;
+      try {
+        if (typeof image.decode === 'function') decoding = image.decode();
+      } catch (error) { decoding = null; }
+      if (decoding && typeof decoding.then === 'function') {
+        decoding.then(callback, callback);
+      } else {
+        callback();
+      }
+    }
+
+    function warmPreview(position) {
+      if (position < 0 || position >= links.length) return;
+      var thumbnail = links[position].querySelector('img');
+      var source = thumbnail.currentSrc || thumbnail.src;
+      if (!source || warmingPreviews.has(source)) return;
+      var preload = doc.createElement('img');
+      preload.decoding = 'async';
+      preload.fetchPriority = 'low';
+      warmingPreviews.set(source, preload);
+      function release() { warmingPreviews.delete(source); }
+      preload.addEventListener('load', release);
+      preload.addEventListener('error', release);
+      preload.src = source;
+    }
+
     function showPhoto(position) {
       if (position < 0 || position >= links.length) return;
       index = position;
@@ -139,8 +167,13 @@
       currentAlt = link.querySelector('img').alt;
       loaded = false;
       setZoom(false);
-      zoom.hidden = true;
-      zoom.replaceChildren();
+      // Preserve the last complete frame while the next one loads. Removing it
+      // first creates a visible blank/preview/full jump on slower connections.
+      var heldImage = Array.from(zoom.querySelectorAll('img')).find(function(candidate) {
+        return !candidate.hidden;
+      });
+      zoom.replaceChildren.apply(zoom, heldImage ? [heldImage] : []);
+      zoom.hidden = !heldImage;
       zoom.style.setProperty('--original-width', link.dataset.width + 'px');
       zoom.style.setProperty('--original-height', link.dataset.height + 'px');
       countLabel.textContent = (index + 1) + ' / ' + links.length;
@@ -152,19 +185,49 @@
       original.href = link.href;
       original.hidden = true;
       status.hidden = false;
-      message.textContent = '正在加载原图…';
+      message.textContent = '正在加载照片…';
 
-      // Keep a complete preview visible while the full-resolution file arrives.
+      // Decode each candidate before it replaces the held frame. Both preview
+      // and original receive the original dimensions for stable provisional geometry.
       var thumbnail = link.querySelector('img');
       var previewSource = thumbnail.currentSrc || thumbnail.src;
-      stage.classList.toggle('has-preview', !!previewSource);
+      var previewReady = false;
+      var previewFailed = !previewSource;
+      var fullReady = false;
+      var fullFailed = false;
+      stage.classList.toggle('has-preview', !!heldImage);
       zoom.setAttribute('aria-busy', 'true');
+      function clearIfUnavailable() {
+        if (token !== serial || !viewer.open || !previewFailed || !fullFailed) return;
+        zoom.replaceChildren();
+        zoom.hidden = true;
+        stage.classList.remove('has-preview');
+      }
+      var preview = null;
       if (previewSource) {
-        var preview = doc.createElement('img');
+        preview = doc.createElement('img');
         preview.alt = currentAlt;
+        preview.width = Number(link.dataset.width);
+        preview.height = Number(link.dataset.height);
+        preview.decoding = 'async';
+        preview.hidden = true;
+        preview.addEventListener('load', function() {
+          afterDecode(preview, function() {
+            if (token !== serial || !viewer.open || fullReady) return;
+            previewReady = true;
+            preview.hidden = false;
+            zoom.replaceChildren.apply(zoom, fullFailed ? [preview] : [preview, image]);
+            zoom.hidden = false;
+            stage.classList.add('has-preview');
+          });
+        });
+        preview.addEventListener('error', function() {
+          if (token !== serial || !viewer.open) return;
+          previewFailed = true;
+          clearIfUnavailable();
+        });
         preview.src = previewSource;
         zoom.appendChild(preview);
-        zoom.hidden = false;
       }
 
       var image = doc.createElement('img');
@@ -174,21 +237,30 @@
       image.decoding = 'async';
       image.hidden = true;
       image.addEventListener('load', function() {
-        if (token !== serial || !viewer.open) return;
-        loaded = true;
-        image.hidden = false;
-        zoom.replaceChildren(image);
-        zoom.setAttribute('aria-busy', 'false');
-        status.hidden = true;
-        zoom.hidden = false;
+        afterDecode(image, function() {
+          if (token !== serial || !viewer.open) return;
+          loaded = true;
+          fullReady = true;
+          image.hidden = false;
+          zoom.replaceChildren(image);
+          zoom.setAttribute('aria-busy', 'false');
+          status.hidden = true;
+          zoom.hidden = false;
+          stage.classList.add('has-preview');
+        });
       });
       image.addEventListener('error', function() {
         if (token !== serial || !viewer.open) return;
+        fullFailed = true;
         message.textContent = '原图加载失败。';
         original.hidden = false;
-        zoom.hidden = !previewSource;
+        if (previewReady) zoom.replaceChildren(preview);
         zoom.setAttribute('aria-busy', 'false');
+        clearIfUnavailable();
       });
+      // Only warm the two neighboring previews, never their full originals.
+      warmPreview(index - 1);
+      warmPreview(index + 1);
       zoom.appendChild(image);
       // No original requests are made until the reader opens or changes a photo.
       image.src = link.href;
