@@ -142,6 +142,16 @@ test('single portraits fill their centered row without a second flex shrink', ()
   assert.match(css, /\.gallery-row > \.gallery-item:only-child\s*\{\s*flex: 1 1 0%;/);
 });
 
+test('loading feedback cannot paint a dark strip across a visible photograph', () => {
+  const css = require('node:fs').readFileSync(require('node:path').join(__dirname, '../source/css/gallery.css'), 'utf8');
+  const loading = css.match(/\.has-preview \.gallery-viewer-status\s*\{([^}]*)\}/)[1];
+  const failure = css.match(/\.has-preview\.has-error \.gallery-viewer-status\s*\{([^}]*)\}/)[1];
+  assert.match(loading, /width: max-content/);
+  assert.match(loading, /background: transparent/);
+  assert.doesNotMatch(loading, /inset:\s*auto 0 0/);
+  assert.match(failure, /padding: 0\.45rem 0\.65rem/);
+});
+
 test('manifest rejects missing images, IDs, external paths, damaged ratios and false previews', () => {
   const check = (items) => validateGallery({ version: 1, photos: items });
   assert.throws(() => validateGallery({ photos: [] }), /version/);
@@ -442,12 +452,14 @@ test('a cached full-frame preview stays visible during loading and on full-image
   assert.equal(f.control('zoom').hidden, true);
   f.control('zoom').children[0].emit('load');
   assert.equal(f.control('zoom').hidden, false);
+  assert.equal(f.control('status').hidden, true);
   assert.equal(f.control('zoom').attributes['aria-busy'], 'true');
   f.control('zoom').emit('click');
   assert.equal(f.control('zoom').attributes['aria-pressed'], 'false');
   f.control('zoom').children.at(-1).emit('error');
   assert.equal(f.control('zoom').hidden, false);
   assert.equal(f.control('original').hidden, false);
+  assert.equal(f.control('status').hidden, false);
   f.control('close').emit('click');
   f.links[0].emit('click');
   const full = f.control('zoom').children.at(-1);
@@ -476,6 +488,7 @@ test('photo changes retain the last frame and wait for decode before an atomic r
   assert.equal(f.control('zoom').children[0], firstFull);
   assert.equal(f.control('zoom').hidden, false);
   assert.equal(f.control('count').textContent, '2 / 3');
+  assert.equal(f.control('status').hidden, true);
   nextPreview.emit('load');
   assert.deepEqual(f.control('zoom').children, [nextPreview, nextFull]);
   assert.equal(nextPreview.hidden, false);
@@ -484,7 +497,7 @@ test('photo changes retain the last frame and wait for decode before an atomic r
   nextFull.decode = () => new Promise(resolve => { finishDecode = resolve; });
   nextFull.emit('load');
   assert.deepEqual(f.control('zoom').children, [nextPreview, nextFull]);
-  assert.equal(f.control('status').hidden, false);
+  assert.equal(f.control('status').hidden, true);
   finishDecode();
   await Promise.resolve();
   assert.deepEqual(f.control('zoom').children, [nextFull]);
