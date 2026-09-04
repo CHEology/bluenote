@@ -174,6 +174,7 @@
       });
       zoom.replaceChildren.apply(zoom, heldImage ? [heldImage] : []);
       zoom.hidden = !heldImage;
+      stage.classList.remove('has-error');
       zoom.style.setProperty('--original-width', link.dataset.width + 'px');
       zoom.style.setProperty('--original-height', link.dataset.height + 'px');
       countLabel.textContent = (index + 1) + ' / ' + links.length;
@@ -184,7 +185,7 @@
       caption.hidden = !caption.textContent;
       original.href = link.href;
       original.hidden = true;
-      status.hidden = false;
+      status.hidden = !!heldImage;
       message.textContent = '正在加载照片…';
 
       // Decode each candidate before it replaces the held frame. Both preview
@@ -219,6 +220,7 @@
             zoom.replaceChildren.apply(zoom, fullFailed ? [preview] : [preview, image]);
             zoom.hidden = false;
             stage.classList.add('has-preview');
+            status.hidden = !fullFailed;
           });
         });
         preview.addEventListener('error', function() {
@@ -247,6 +249,7 @@
           status.hidden = true;
           zoom.hidden = false;
           stage.classList.add('has-preview');
+          stage.classList.remove('has-error');
         });
       });
       image.addEventListener('error', function() {
@@ -254,6 +257,8 @@
         fullFailed = true;
         message.textContent = '原图加载失败。';
         original.hidden = false;
+        status.hidden = false;
+        stage.classList.add('has-error');
         if (previewReady) zoom.replaceChildren(preview);
         zoom.setAttribute('aria-busy', 'false');
         clearIfUnavailable();

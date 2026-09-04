@@ -303,10 +303,21 @@
 }
 
 .has-preview .gallery-viewer-status {
-  inset: auto 0 0;
-  padding: 0.5rem;
-  background: rgba(36, 36, 36, 0.88);
+  inset: auto auto max(0.75rem, env(safe-area-inset-bottom)) 50%;
+  width: max-content;
+  max-width: calc(100% - 2rem);
+  padding: 0;
+  background: transparent;
   font-size: 0.875rem;
+  text-align: center;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+  transform: translateX(-50%);
+}
+
+.has-preview.has-error .gallery-viewer-status {
+  padding: 0.45rem 0.65rem;
+  background: rgba(36, 36, 36, 0.88);
+  text-shadow: none;
 }
 
 .gallery-viewer-status a {
