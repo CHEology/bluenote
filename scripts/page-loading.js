@@ -11,7 +11,8 @@ hexo.extend.filter.register('after_render:html', function prepareFirstPaint(html
   if (html.includes('<body class="home-page">')) {
     const cover = html.match(/<div id="banner"[^>]*style="background: url\(([^)]+)\)/);
     if (cover) {
-      html = html.replace('<head>', '<head>\n<link rel="preload" as="image" fetchpriority="high" href="' + cover[1] + '">');
+      const url = cover[1].trim().replace(/^(['"])(.*)\1$/, '$2');
+      html = html.replace('<head>', '<head>\n<link rel="preload" as="image" fetchpriority="high" href="' + url + '">');
     }
   }
   return html;

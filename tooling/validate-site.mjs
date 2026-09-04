@@ -82,9 +82,13 @@ const home = readFileSync(join(publicRoot, 'index.html'), 'utf8');
 if (!/<html\b[^>]*class="home-root"/.test(home) || !home.includes('<body class="home-page">')) {
   fail('Homepage must have its current layout before any JavaScript executes');
 }
-const homeCover = home.match(/<div id="banner"[^>]*style="background: url\(([^)]+)\)/)?.[1];
+const homeCover = home.match(/<div id="banner"[^>]*style="background: url\(['"]?([^)'" ]+)['"]?\)/)?.[1];
 if (!homeCover || !home.includes('rel="preload" as="image" fetchpriority="high" href="' + homeCover + '"')) {
   fail('Homepage must preload the same cover that its banner displays');
+}
+const preloadedCover = home.match(/<link rel="preload" as="image"[^>]*href="([^"]+)"/)?.[1];
+if (!preloadedCover?.startsWith('/bluenote/images/')) {
+  fail('Preloaded cover must be a site image URL without CSS quoting');
 }
 for (const [element] of home.matchAll(/<(?:link|script)\b[^>]*>/g)) {
   if ((element.startsWith('<script') || element.includes('rel="stylesheet"')) &&
