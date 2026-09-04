@@ -285,39 +285,73 @@ html:not(.private-reading-unlocked) body.home-page .index-card:has(a[data-privat
   border-color: #53616b;
 }
 
+/* Dark scheme: system preference unless the reader chose light, or an explicit choice of dark. */
 @media (prefers-color-scheme: dark) {
-  .private-unlock-dialog {
+  :root:not([data-scheme="light"]) .private-unlock-dialog {
     color: #dedad2;
     background: #302f2d;
     border-color: rgba(222, 218, 210, 0.18);
   }
 
-  .private-unlock-dialog h2,
-  .private-unlock-dialog form input,
-  .private-lock-confirm-dialog > p {
+  :root:not([data-scheme="light"]) .private-unlock-dialog h2,
+  :root:not([data-scheme="light"]) .private-unlock-dialog form input,
+  :root:not([data-scheme="light"]) .private-lock-confirm-dialog > p {
     color: #eeeae3;
   }
 
-  .private-unlock-dialog__close,
-  .private-unlock-dialog__status {
+  :root:not([data-scheme="light"]) .private-unlock-dialog__close,
+  :root:not([data-scheme="light"]) .private-unlock-dialog__status {
     color: #aaa59d;
   }
 
-  .private-unlock-dialog form input {
+  :root:not([data-scheme="light"]) .private-unlock-dialog form input {
     background: rgba(255, 255, 255, 0.04);
     border-color: rgba(222, 218, 210, 0.24);
   }
 
-  .private-lock-confirm-dialog__actions button {
+  :root:not([data-scheme="light"]) .private-lock-confirm-dialog__actions button {
     color: #aaa59d;
     border-color: rgba(222, 218, 210, 0.24);
   }
 
-  .private-lock-confirm-dialog__actions [data-private-lock-confirm-action] {
+  :root:not([data-scheme="light"]) .private-lock-confirm-dialog__actions [data-private-lock-confirm-action] {
     color: #f3efe7;
     background: #53616b;
     border-color: #53616b;
   }
+}
+
+:root[data-scheme="dark"] .private-unlock-dialog {
+  color: #dedad2;
+  background: #302f2d;
+  border-color: rgba(222, 218, 210, 0.18);
+}
+
+:root[data-scheme="dark"] .private-unlock-dialog h2,
+:root[data-scheme="dark"] .private-unlock-dialog form input,
+:root[data-scheme="dark"] .private-lock-confirm-dialog > p {
+  color: #eeeae3;
+}
+
+:root[data-scheme="dark"] .private-unlock-dialog__close,
+:root[data-scheme="dark"] .private-unlock-dialog__status {
+  color: #aaa59d;
+}
+
+:root[data-scheme="dark"] .private-unlock-dialog form input {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(222, 218, 210, 0.24);
+}
+
+:root[data-scheme="dark"] .private-lock-confirm-dialog__actions button {
+  color: #aaa59d;
+  border-color: rgba(222, 218, 210, 0.24);
+}
+
+:root[data-scheme="dark"] .private-lock-confirm-dialog__actions [data-private-lock-confirm-action] {
+  color: #f3efe7;
+  background: #53616b;
+  border-color: #53616b;
 }
 
 @media (max-width: 575px) {
