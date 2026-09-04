@@ -112,6 +112,13 @@
 }
 
 .gallery-reshuffle { color: var(--text-color); }
+.gallery-reshuffle--bottom {
+  display: flex;
+  justify-content: center;
+  width: max-content;
+  margin: clamp(5rem, 10vh, 8rem) auto 1rem;
+  margin: clamp(5rem, 10svh, 8rem) auto 1rem;
+}
 .gallery-reshuffle-symbol { font-size: 1.35rem; line-height: 1; }
 .gallery-mode:focus-visible,
 .gallery-reshuffle:focus-visible { outline: 2px solid var(--post-link-color); outline-offset: 5px; }

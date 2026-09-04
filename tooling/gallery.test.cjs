@@ -128,7 +128,9 @@ test('small-exhibition HTML loads no unselected photos and safely embeds its mod
   const html = renderGallery(items, '/bluenote/', { mode: 'few' });
   const activeHTML = html.replace(/<noscript>[\s\S]*?<\/noscript>/g, '');
   assert.doesNotMatch(activeHTML, /<img\b/);
-  assert.match(activeHTML, /data-gallery-reshuffle hidden/);
+  assert.equal((activeHTML.match(/data-gallery-reshuffle(?=[\s>])/g) || []).length, 2);
+  assert.match(activeHTML, /data-gallery-reshuffle-position="top" hidden/);
+  assert.match(activeHTML, /gallery-reshuffle--bottom[^>]*data-gallery-reshuffle-position="bottom" hidden/);
   assert.match(activeHTML, /href="\/bluenote\/gallery\/" aria-current="page">A few/);
   assert.match(activeHTML, /href="\/bluenote\/gallery\/all\/">All photographs/);
   const fallback = html.match(/<noscript>([\s\S]*?)<\/noscript>/)[1];
@@ -256,6 +258,7 @@ function fixture(count = 3) {
       return event;
     }
     focus() { doc.activeElement = this; }
+    scrollIntoView(options) { this.scrollOptions = options; }
     showModal() { this.open = true; }
     close() { this.open = false; this.emit('close'); }
   }
@@ -284,6 +287,10 @@ function fixture(count = 3) {
     body: new Element('body'),
     documentElement: { clientWidth: 1280 },
     querySelector: (selector) => ({ '[data-gallery-grid]': grid, '[data-gallery-viewer]': viewer })[selector],
+    querySelectorAll(selector) {
+      const result = this.querySelector(selector);
+      return result ? [result] : [];
+    },
     createElement: (tag) => new Element(tag),
     createDocumentFragment: () => new Element('fragment')
   };
@@ -304,16 +311,24 @@ function fixture(count = 3) {
 function fewFixture() {
   const f = fixture(0);
   const nodes = {};
-  for (const name of ['model', 'reshuffle', 'selection-status', 'fallback']) {
-    nodes[name] = f.doc.createElement(name === 'reshuffle' ? 'button' : 'div');
+  for (const name of ['model', 'selection-status', 'fallback']) {
+    nodes[name] = f.doc.createElement('div');
   }
+  nodes.reshuffle = f.doc.createElement('button');
+  nodes.reshuffle.dataset.galleryReshufflePosition = 'top';
+  nodes.reshuffleBottom = f.doc.createElement('button');
+  nodes.reshuffleBottom.dataset.galleryReshufflePosition = 'bottom';
   nodes.model.textContent = JSON.stringify({ root: '/bluenote/', rows: curatedRows(require('../source/_data/gallery.json').photos) });
   nodes.reshuffle.hidden = true;
+  nodes.reshuffleBottom.hidden = true;
   const originalQuery = f.doc.querySelector;
   f.doc.querySelector = selector => {
     const name = selector.match(/^\[data-gallery-(.*)\]$/)?.[1];
     return nodes[name] || originalQuery(selector);
   };
+  f.doc.querySelectorAll = selector => selector === '[data-gallery-reshuffle]'
+    ? [nodes.reshuffle, nodes.reshuffleBottom]
+    : [f.doc.querySelector(selector)].filter(Boolean);
   const random = seededRandom();
   f.win.BlueNoteSelection = { composeSelection, pickSelection: (units, previous) => pickSelection(units, previous, random) };
   f.nodes = nodes;
@@ -331,6 +346,7 @@ test('small exhibition requests only its previews; reshuffle rebinds scoped navi
   assert.equal(f.requests.length, initial.length);
   assert.ok(f.requests.every(src => /-800\.jpg$/.test(src)));
   assert.equal(f.nodes.reshuffle.hidden, false);
+  assert.equal(f.nodes.reshuffleBottom.hidden, false);
   assert.equal(f.nodes.fallback.hidden, true);
   initial[0].emit('click');
   assert.equal(f.viewer.open, true);
@@ -358,6 +374,23 @@ test('small exhibition requests only its previews; reshuffle rebinds scoped navi
   assert.equal(f.doc.activeElement, fresh[0]);
 });
 
+test('bottom reshuffle returns to the first new photograph and respects reduced motion', () => {
+  const f = fewFixture();
+  mountGallery(f.doc, f.win);
+  const initial = f.currentLinks();
+  f.nodes.reshuffleBottom.emit('click');
+  const fresh = f.currentLinks();
+  assert.ok(fresh.every(link => !initial.some(old => old.dataset.galleryOpen === link.dataset.galleryOpen)));
+  assert.equal(f.doc.activeElement, fresh[0]);
+  assert.deepEqual(fresh[0].scrollOptions, { behavior: 'smooth', block: 'center' });
+
+  const reduced = fewFixture();
+  reduced.win.matchMedia = query => ({ matches: query === '(prefers-reduced-motion: reduce)' });
+  mountGallery(reduced.doc, reduced.win);
+  reduced.nodes.reshuffleBottom.emit('click');
+  assert.deepEqual(reduced.currentLinks()[0].scrollOptions, { behavior: 'auto', block: 'center' });
+});
+
 test('reshuffle remains useful without native dialogs and failures keep the previous set', () => {
   const f = fewFixture();
   f.viewer.showModal = undefined;
@@ -378,6 +411,7 @@ test('reshuffle remains useful without native dialogs and failures keep the prev
   mountGallery(broken.doc, broken.win);
   assert.equal(broken.nodes.fallback.hidden, false);
   assert.equal(broken.nodes.reshuffle.hidden, true);
+  assert.equal(broken.nodes.reshuffleBottom.hidden, true);
   assert.equal(broken.requests.length, 0);
 });
 

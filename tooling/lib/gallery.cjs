@@ -146,11 +146,12 @@ function renderGallery(photos, root, options = {}) {
       '<a class="gallery-mode" href="' + base + 'gallery/"' + (few ? ' aria-current="page"' : '') + '>A few</a>',
       '<a class="gallery-mode" href="' + base + 'gallery/all/"' + (!few ? ' aria-current="page"' : '') + '>All photographs</a>',
       '</nav>',
-      few ? '<button class="gallery-reshuffle" type="button" data-gallery-reshuffle hidden><span class="gallery-reshuffle-symbol" aria-hidden="true">↻</span><span>Reshuffle</span></button>' : '',
+      few ? '<button class="gallery-reshuffle" type="button" data-gallery-reshuffle data-gallery-reshuffle-position="top" hidden><span class="gallery-reshuffle-symbol" aria-hidden="true">↻</span><span>Reshuffle</span></button>' : '',
       '</div>'
     ].join('') : '',
     photos.length ? (few ? [
       '<div class="gallery-grid gallery-grid--few" data-gallery-grid></div>',
+      '<button class="gallery-reshuffle gallery-reshuffle--bottom" type="button" data-gallery-reshuffle data-gallery-reshuffle-position="bottom" hidden><span class="gallery-reshuffle-symbol" aria-hidden="true">↻</span><span>Reshuffle</span></button>',
       '<p class="gallery-empty" data-gallery-fallback><a href="' + base + 'gallery/all/">View all photographs</a></p>',
       '<p class="gallery-sr-only" role="status" aria-live="polite" data-gallery-selection-status></p>',
       '<script type="application/json" data-gallery-model>' + model + '</script>',
