@@ -91,7 +91,8 @@ function validateGallery(manifest, sourceRoot) {
   return photos;
 }
 
-function renderGallery(photos, root) {
+function renderGallery(photos, root, options = {}) {
+  const few = options.mode === 'few';
   const base = (root || '/').replace(/\/?$/, '/');
   const url = (path) => base + path.replace(/^\//, '');
   const item = (photo, index, rowRatio, paired) => {
@@ -123,10 +124,34 @@ function renderGallery(photos, root) {
       '" style="--gallery-row-ratio:' + ratio + ';--gallery-row-gutter:' + (paired ? 32 : 0) + 'px">' + items.join('') + '</div>';
   }).join('\n');
 
+  const fallbackRows = rows.slice(0, 2);
+  const fallback = few ? fallbackRows.map((row) => {
+    const ratio = row.photos.reduce((n, p) => n + p.full.width / p.full.height, 0);
+    return '<div class="gallery-row" style="--gallery-row-ratio:' + ratio + ';--gallery-row-gutter:' + (row.photos.length === 2 ? 32 : 0) + 'px">' +
+      row.photos.map((p, i) => item(p, i, ratio, row.photos.length === 2)).join('') + '</div>';
+  }).join('') : '';
+  const model = JSON.stringify({ root: base, rows }).replace(/[<>&]/g, character =>
+    ({ '<': '\\u003c', '>': '\\u003e', '&': '\\u0026' })[character]);
+
   return [
     '<section class="gallery-collection" aria-label="照片集">',
     '<h1 class="gallery-sr-only">Gallery</h1>',
-    photos.length ? '<div class="gallery-grid" data-gallery-grid>' + grid + '</div>' :
+    photos.length ? [
+      '<div class="gallery-toolbar">',
+      '<nav class="gallery-modes" aria-label="Gallery view">',
+      '<a class="gallery-mode" href="' + base + 'gallery/"' + (few ? ' aria-current="page"' : '') + '>A few</a>',
+      '<a class="gallery-mode" href="' + base + 'gallery/all/"' + (!few ? ' aria-current="page"' : '') + '>All photographs</a>',
+      '</nav>',
+      few ? '<button class="gallery-reshuffle" type="button" data-gallery-reshuffle hidden><span class="gallery-reshuffle-symbol" aria-hidden="true">↻</span><span>Reshuffle</span></button>' : '',
+      '</div>'
+    ].join('') : '',
+    photos.length ? (few ? [
+      '<div class="gallery-grid gallery-grid--few" data-gallery-grid></div>',
+      '<p class="gallery-empty" data-gallery-fallback><a href="' + base + 'gallery/all/">View all photographs</a></p>',
+      '<p class="gallery-sr-only" role="status" aria-live="polite" data-gallery-selection-status></p>',
+      '<script type="application/json" data-gallery-model>' + model + '</script>',
+      '<noscript><div class="gallery-grid">' + fallback + '</div></noscript>'
+    ].join('') : '<div class="gallery-grid" data-gallery-grid>' + grid + '</div>') :
       '<p class="gallery-empty">尚未收录照片。</p>',
     '</section>',
     photos.length ? [

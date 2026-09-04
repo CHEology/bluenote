@@ -26,8 +26,10 @@ const required = [
   'archives/index.html',
   'design/index.html',
   'gallery/index.html',
+  'gallery/all/index.html',
   'css/gallery.css',
   'js/gallery.js',
+  'js/gallery-selection.js',
   'private/posts.enc.json',
   'private/posts.public.json',
   'local-search.xml',
@@ -166,8 +168,33 @@ if (!gallery.includes('<body class="editorial-page gallery-page">') ||
 for (const asset of ['css/gallery.css', 'js/gallery.js']) {
   if (!gallery.includes('/bluenote/' + asset)) fail('Gallery asset is missing: ' + asset);
 }
-const photoCount = (gallery.match(/data-gallery-open="/g) || []).length;
+const allGallery = readFileSync(join(publicRoot, 'gallery/all/index.html'), 'utf8');
+if (!allGallery.includes('<body class="editorial-page gallery-page">') ||
+    !allGallery.includes('class="gallery-collection"')) {
+  fail('Complete Gallery must share the independent editorial layout');
+}
+for (const asset of ['css/gallery.css', 'js/gallery.js']) {
+  if (!allGallery.includes('/bluenote/' + asset)) fail('Complete Gallery asset is missing: ' + asset);
+}
+const photoCount = (allGallery.match(/data-gallery-open="/g) || []).length;
 if (photoCount !== galleryManifest.photos.length) fail('Gallery must only contain explicitly selected photos');
+if (photoCount && (!gallery.includes('gallery-grid--few') || !gallery.includes('data-gallery-reshuffle') ||
+    !gallery.includes('data-gallery-model') || !gallery.includes('/js/gallery-selection.js'))) {
+  fail('Gallery must default to the random small exhibition');
+}
+if (photoCount) {
+  const model = JSON.parse(gallery.match(/data-gallery-model>([\s\S]*?)<\/script>/)[1]);
+  if (JSON.stringify(model.rows.flatMap(row => row.photos.map(photo => photo.id))) !==
+      JSON.stringify(galleryManifest.photos.map(photo => photo.id))) {
+    fail('Small exhibition must draw from the same complete, ordered photo manifest');
+  }
+  if (/<img\b/.test(gallery.replace(/<noscript>[\s\S]*?<\/noscript>/g, ''))) {
+    fail('Small exhibition must not preload unselected photo elements');
+  }
+}
+if (photoCount && (!allGallery.includes('All photographs') || allGallery.includes('data-gallery-model'))) {
+  fail('Complete collection must keep its authored sequence independently');
+}
 if (photoCount === 0 && (!gallery.includes('尚未收录照片。') || gallery.includes('<dialog'))) {
   fail('Empty Gallery must have an honest empty state without inactive controls');
 }
