@@ -1,0 +1,179 @@
+# bluenote — a quiet editorial theme for Hexo.
+# Every key below can be overridden from your site's `_config.bluenote.yml`
+# (Hexo >= 5 merges that file over these defaults automatically).
+
+# Navigation title. Falls back to the site `title` when empty.
+brand:
+
+# Icons. Leave empty to omit the tags.
+favicon:
+apple_touch_icon:
+
+# Adds <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">.
+force_https: true
+
+# Font stacks. `ui` is used for navigation, mastheads and cards; `prose` for
+# article bodies and lists on content pages; `math` for formula panels; `mono` for code.
+fonts:
+  ui: 'Times, "Times New Roman", Georgia, serif'
+  prose: 'Charter, Georgia, "Times New Roman", "Songti SC", "Noto Serif CJK SC", "Source Han Serif SC", STSong, serif'
+  math: 'Times, "Times New Roman", Georgia, serif'
+  mono: 'SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace'
+  letter_spacing: 0.02em
+
+# Colour tokens. Each key becomes a CSS custom property (`paper` -> `--paper`,
+# `home.nav` -> `--home-nav`). `light` applies by default, `dark` under
+# prefers-color-scheme: dark or when the reader picks dark mode.
+colors:
+  light:
+    paper: "#eee9df"
+    text: "#3e3a34"
+    prose: "#3e3a34"
+    heading: "#2d2b27"
+    muted: "#777168"
+    link: "#637583"
+    link-hover: "#435d70"
+    link-hover-bg: "rgba(99, 117, 131, 0.08)"
+    line: "rgba(62, 58, 52, 0.16)"
+    masthead: "#53616b"
+    masthead-text: "#f4f1eb"
+    masthead-line: "rgba(244, 241, 235, 0.48)"
+    nav-text: "#ffffff"
+    accent: "#f3dca6"
+    panel: "rgba(99, 117, 131, 0.08)"
+    code-bg: "#f6f8fa"
+    inline-code-bg: "rgba(175, 184, 193, 0.2)"
+    scrollbar: "#c4c6c9"
+    scrollbar-hover: "#a6a6a6"
+  dark:
+    paper: "#302f2d"
+    text: "#dedad2"
+    prose: "#d8d4cc"
+    heading: "#e8e3da"
+    muted: "#aaa59d"
+    link: "#b8c0c5"
+    link-hover: "#d0d5d8"
+    link-hover-bg: "rgba(184, 192, 197, 0.08)"
+    line: "rgba(222, 218, 210, 0.16)"
+    masthead: "#282a2b"
+    masthead-text: "#eeeae3"
+    masthead-line: "rgba(238, 234, 227, 0.38)"
+    nav-text: "#d0d0d0"
+    accent: "#f3dca6"
+    panel: "rgba(99, 117, 131, 0.08)"
+    code-bg: "#303030"
+    inline-code-bg: "rgba(99, 110, 123, 0.4)"
+    scrollbar: "#687582"
+    scrollbar-hover: "#9da8b3"
+    image-brightness: "0.9"
+  # The home page is a dark, image-led surface in both schemes.
+  home:
+    bg: "#061521"
+    nav: "#2f4154"
+    nav-dark: "#1f3144"
+    slogan: "#ffffff"
+    slogan-dark: "#d0d0d0"
+    card: "#091821"
+    card-hover: "#0d202b"
+    card-title: "#e9e8e2"
+    card-title-hover: "#f4f2eb"
+    card-excerpt: "rgba(220, 221, 216, 0.72)"
+    card-meta: "rgba(218, 218, 211, 0.64)"
+    card-meta-link: "rgba(218, 218, 211, 0.72)"
+
+nav:
+  # Menu entries: name (shown text), link (site-relative, `#site-search` opens the
+  # search panel), optional icon (`search`), optional target.
+  # Leave empty to get Home, Archives, About and Search. (Hexo merges arrays by index, so the
+  # theme default stays empty and the fallback lives in layout/_partials/nav.ejs.)
+  menu: []
+  # Light/dark toggle in the menu.
+  scheme_toggle: true
+  # Pixels scrolled before the transparent bar turns solid.
+  solid_after: 50
+
+home:
+  # Full-viewport cover image behind the slogan; empty uses the solid `home.bg` colour.
+  cover:
+  preload_cover: true
+  # Slogan typed on the cover; falls back to the site `subtitle`.
+  slogan:
+  typing:
+    enable: true
+    speed: 70
+    cursor: "_"
+  # Number of square cards on the second screen (desktop shows 4 x 3).
+  cards: 12
+  excerpt: true
+  date: true
+  # Render a paginator below the cards when there are more posts.
+  pagination: false
+
+post:
+  toc:
+    enable: true
+    min_depth: 1
+    max_depth: 6
+  prev_next: true
+  show_tags: false
+  heading_anchors: true
+  figure_captions:
+    enable: true
+    # Do not turn file names such as DSC_0034.jpg into visible captions.
+    skip_filename_alt: true
+  lightbox: true
+  # Posts with at least `min_images` images use the wide photo layout.
+  photo_layout:
+    enable: true
+    min_images: 3
+
+archive:
+  show_total: false
+  # Extra rows appended to the main archive page, e.g.
+  # - { section: SITE, kind: DOC, title: Design Doc, summary: Colours and type, link: /design/ }
+  extra_entries: []
+
+about:
+  avatar:
+  name:
+  intro:
+  # Optional links under the intro: - { name: GitHub, link: https://github.com/you }
+  links: []
+
+tags:
+  enable: true
+categories:
+  enable: false
+page404:
+  enable: true
+  # Cover image for the 404 page; empty uses the masthead colour.
+  cover:
+
+dark_mode:
+  enable: true
+  # auto | light | dark
+  default: auto
+  storage_key: bluenote.color-scheme
+  # A legacy key to migrate once (sites moving from hexo-theme-fluid).
+  legacy_storage_key: Fluid_Color_Scheme
+
+# Site search panel. Needs hexo-generator-search writing `path` (XML format).
+search:
+  enable: true
+  path: /local-search.xml
+
+open_graph:
+  enable: true
+  twitter_card: summary_large_image
+
+# Append a content hash (`?v=`) to the site's own CSS/JS references.
+asset_version: true
+# Show a warning bar when JavaScript is disabled.
+noscript_warning: false
+
+footer:
+  content: ""
+
+# Additional site stylesheets and scripts (site-relative paths).
+custom_css: []
+custom_js: []

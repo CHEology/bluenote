@@ -1,0 +1,25 @@
+<%
+const home = is_home();
+const bodyClasses = body_classes(page);
+const schemeDefault = theme.dark_mode && theme.dark_mode.enable ? (theme.dark_mode.default || 'auto') : 'light';
+-%>
+<!DOCTYPE html>
+<html lang="<%= config.language || 'en' %>"<%- home ? ' class="home-root"' : '' %> data-root="<%= config.root %>" data-scheme-default="<%= schemeDefault %>" data-scheme-storage="<%= theme.dark_mode.storage_key || 'bluenote.color-scheme' %>"<%- theme.dark_mode.legacy_storage_key ? ` data-scheme-legacy="${theme.dark_mode.legacy_storage_key}"` : '' %><%- theme.search && theme.search.enable ? ` data-search-path="${theme.search.path || '/local-search.xml'}"` : '' %>>
+<%- partial('_partials/head') %>
+<body class="<%= bodyClasses %>">
+<%- partial('_partials/icons') %>
+<header class="site-header">
+<%- partial('_partials/nav') %>
+<% if (home) { -%>
+<%- partial('_partials/cover') %>
+<% } else if (page.layout !== '404') { -%>
+<%- partial('_partials/masthead') %>
+<% } -%>
+</header>
+<main class="<%= home ? 'home-main' : 'page-body' %>" id="main">
+<%- body %>
+</main>
+<%- partial('_partials/footer') %>
+<%- partial('_partials/scripts') %>
+</body>
+</html>

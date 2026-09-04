@@ -1,0 +1,7 @@
+<% const tocHtml = post_toc(page); -%>
+<% if (tocHtml) { -%>
+<aside class="post-toc">
+  <p class="post-toc__header"><%- icon('list') %><span><%= __('post.toc') %></span></p>
+  <nav class="post-toc__body" aria-label="<%= __('post.toc') %>"><%- tocHtml %></nav>
+</aside>
+<% } -%>

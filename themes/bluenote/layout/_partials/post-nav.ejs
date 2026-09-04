@@ -1,0 +1,14 @@
+<% if (theme.post.prev_next && !page.hide && (page.prev || page.next)) { -%>
+<nav class="post-nav" aria-label="<%= __('post.nav') %>">
+  <div class="post-nav__cell post-nav__cell--prev">
+<% if (page.prev) { -%>
+    <a class="post-nav__prev" href="<%- url_for(page.prev.path) %>" title="<%= page.prev.title %>"><%- icon('arrow-left') %><span class="post-nav__title"><%= page.prev.title %></span><span class="post-nav__label"><%= __('post.prev_post') %></span></a>
+<% } -%>
+  </div>
+  <div class="post-nav__cell post-nav__cell--next">
+<% if (page.next) { -%>
+    <a class="post-nav__next" href="<%- url_for(page.next.path) %>" title="<%= page.next.title %>"><span class="post-nav__title"><%= page.next.title %></span><span class="post-nav__label"><%= __('post.next_post') %></span><%- icon('arrow-right') %></a>
+<% } -%>
+  </div>
+</nav>
+<% } -%>

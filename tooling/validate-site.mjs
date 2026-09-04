@@ -24,35 +24,36 @@ const required = [
   '404.html',
   'about/index.html',
   'archives/index.html',
+  'tags/index.html',
   'design/index.html',
   'gallery/index.html',
   'gallery/all/index.html',
+  'css/bluenote.css',
+  'js/bluenote.js',
+  'css/site.css',
+  'css/design-doc.css',
+  'css/thought-notes.css',
+  'css/private.css',
   'css/gallery.css',
+  'js/private.js',
   'js/gallery.js',
   'js/gallery-selection.js',
+  'vendor/typed.js/2.0.12/typed.min.js',
   'private/posts.enc.json',
   'private/posts.public.json',
   'local-search.xml',
   '2023/07/31/小蓝本/index.html',
   '2023/09/26/布涅星/index.html',
-  '2023/11/19/秋之纽约-2023-11/index.html',
-  'css/home.css',
-  'css/custom.css',
-  'css/private.css',
-  'css/search.css',
-  'css/typography.css',
-  'js/site.js',
-  'js/private.js',
-  'js/search.js',
-  'js/home.js'
+  '2023/11/19/秋之纽约-2023-11/index.html'
 ];
 
 for (const path of required) {
   if (!existsSync(join(publicRoot, path))) fail(`Missing generated file: ${path}`);
 }
 
-if (existsSync(join(publicRoot, 'links', 'index.html'))) {
-  fail('Links page must remain disabled');
+for (const path of ['links/index.html', 'categories/index.html', 'css/main.css', 'js/boot.js', 'js/utils.js', 'xml/local-search.xml',
+  'vendor/bootstrap', 'vendor/jquery', 'vendor/iconfont', 'vendor/nprogress', 'css/custom.css', 'css/home.css', 'js/site.js']) {
+  if (existsSync(join(publicRoot, path))) fail(`Retired output must not be generated: ${path}`);
 }
 
 const markdownPosts = readdirSync(sourcePosts).filter((name) => name.endsWith('.md'));
@@ -84,7 +85,7 @@ const home = readFileSync(join(publicRoot, 'index.html'), 'utf8');
 if (!/<html\b[^>]*class="home-root"/.test(home) || !home.includes('<body class="home-page">')) {
   fail('Homepage must have its current layout before any JavaScript executes');
 }
-const homeCover = home.match(/<div id="banner"[^>]*style="background: url\(['"]?([^)'" ]+)['"]?\)/)?.[1];
+const homeCover = home.match(/<div id="banner" class="home-cover"[^>]*style="background-image: url\(['"]?([^)'" ]+)['"]?\)/)?.[1];
 if (!homeCover || !home.includes('rel="preload" as="image" fetchpriority="high" href="' + homeCover + '"')) {
   fail('Homepage must preload the same cover that its banner displays');
 }
@@ -92,25 +93,23 @@ const preloadedCover = home.match(/<link rel="preload" as="image"[^>]*href="([^"
 if (!preloadedCover?.startsWith('/bluenote/images/')) {
   fail('Preloaded cover must be a site image URL without CSS quoting');
 }
-for (const [element] of home.matchAll(/<(?:link|script)\b[^>]*>/g)) {
-  if ((element.startsWith('<script') || element.includes('rel="stylesheet"')) &&
-      /(?:href|src)="(?:https?:)?\/\//.test(element)) {
-    fail('Homepage CSS and JavaScript must be served by the site');
-  }
-}
 for (const title of ['小蓝本', '布涅星', '秋之纽约_2023.11']) {
   if (!home.includes(title)) fail(`Home page does not contain post title: ${title}`);
 }
-for (const asset of ['/bluenote/css/home.css', '/bluenote/css/custom.css', '/bluenote/css/typography.css', '/bluenote/js/site.js']) {
-  if (!home.includes(asset)) fail(`Home page does not load custom asset: ${asset}`);
+for (const asset of ['/bluenote/css/bluenote.css', '/bluenote/js/bluenote.js', '/bluenote/css/site.css', '/bluenote/js/private.js']) {
+  if (!home.includes(asset)) fail(`Home page does not load asset: ${asset}`);
 }
 if (home.includes('href="/bluenote/links/"')) fail('Home navigation still contains Links');
 if (!home.includes('href="/bluenote/gallery/"')) fail('Home navigation is missing Gallery');
 if (home.includes('/css/gallery.css') || home.includes('/js/gallery.js')) {
   fail('Gallery assets must not load on the article homepage');
 }
-if (!/<div id="banner" class="banner"[^>]*style="background: url/.test(home)) {
-  fail('Home page no longer contains its visual cover');
+if (!home.includes('<style id="bluenote-tokens">') || !home.includes('--masthead:#53616b') || !home.includes('--accent:#f3dca6') ||
+    !home.includes('--home-nav:#2f4154')) {
+  fail('Design tokens (masthead #53616b, accent #f3dca6, home navigation #2f4154) are not emitted in the document head');
+}
+if (!home.includes('data-typed-text="Dream to be a tranquil spectator."')) {
+  fail('Home slogan is missing');
 }
 
 const privateCss = readFileSync(join(publicRoot, 'css', 'private.css'), 'utf8');
@@ -118,14 +117,33 @@ if (!privateCss.includes('html:not(.private-reading-unlocked) body.home-page .in
   fail('Locked visitors can still see private posts on the homepage');
 }
 
-const siteScript = readFileSync(join(publicRoot, 'js', 'site.js'), 'utf8');
-if (!siteScript.includes("matchMedia('(prefers-color-scheme: dark)')")) {
-  fail('Site script does not listen for system color-scheme changes');
+const themeScript = readFileSync(join(publicRoot, 'js', 'bluenote.js'), 'utf8');
+if (!themeScript.includes("matchMedia('(prefers-color-scheme: dark)')")) {
+  fail('Theme script does not listen for system color-scheme changes');
+}
+if (!themeScript.includes('entry.privatePost && !unlocked')) {
+  fail('Locked visitors can still discover private posts through search');
+}
+if (!themeScript.includes('Fluid_Color_Scheme') && !home.includes('data-scheme-legacy="Fluid_Color_Scheme"')) {
+  fail('Saved color-scheme preferences from the previous theme are not migrated');
 }
 
-const searchScript = readFileSync(join(publicRoot, 'js', 'search.js'), 'utf8');
-if (!searchScript.includes("entry.privatePost && !document.documentElement.classList.contains('private-reading-unlocked')")) {
-  fail('Locked visitors can still discover private posts through search');
+const themeCss = readFileSync(join(publicRoot, 'css', 'bluenote.css'), 'utf8');
+if (!themeCss.includes('--masthead-height: 216px') || !themeCss.includes('--masthead-height-mobile: 176px')) {
+  fail('Editorial masthead no longer uses its established heights');
+}
+if (!themeCss.includes('--reading-width: 39.667rem')) {
+  fail('Article reading column is not the agreed fixed width');
+}
+if (!/\.scheme-toggle__icon\s*\{/.test(themeCss)) {
+  fail('Color-scheme toggle icon styles are missing');
+}
+const cssWithoutPrint = themeCss.replace(/\/\*[\s\S]*?\*\//g, '').replace(/@media print\s*\{[\s\S]*$/, '');
+const importantRules = [...cssWithoutPrint.matchAll(/([^{}]+)\{[^{}]*!important[^{}]*\}/g)].map((match) => match[1].trim().replace(/\s+/g, ' '));
+const allowedImportant = new Set(['[hidden]', '.markdown-body > :first-child', '.markdown-body > :last-child']);
+const unexpectedImportant = importantRules.filter((selector) => !allowedImportant.has(selector));
+if (unexpectedImportant.length || (cssWithoutPrint.match(/!important/g) || []).length !== 3) {
+  fail(`Theme CSS uses !important outside the documented exceptions: ${unexpectedImportant.join('; ') || 'count mismatch'}`);
 }
 
 const archive = readFileSync(join(publicRoot, 'archives', 'index.html'), 'utf8');
@@ -133,11 +151,16 @@ if (!archive.includes('<body class="editorial-page listing-page">')) {
   fail('Archives page does not use the shared editorial layout');
 }
 if (archive.includes('posts in total')) fail('Archives page still contains the post total');
-if (/<div id="banner" class="banner"[^>]*style=/.test(archive)) {
+if (/<div class="masthead"[^>]*style=/.test(archive)) {
   fail('Archives page still contains an image masthead');
 }
-if (!archive.includes('href="/bluenote/design/"') || !archive.includes('Design Doc')) {
+if (!archive.includes('href="/bluenote/design/"') || !archive.includes('Design Doc') || !archive.includes('listing__item--entry')) {
   fail('Archives page does not contain the Design Doc entry');
+}
+
+const tags = readFileSync(join(publicRoot, 'tags', 'index.html'), 'utf8');
+if (!tags.includes('<body class="editorial-page listing-page tags-page">') || !tags.includes('href="/bluenote/tags/%E5%85%B6%E4%BB%96/"')) {
+  fail('Tags index does not use the editorial listing layout');
 }
 
 const design = readFileSync(join(publicRoot, 'design', 'index.html'), 'utf8');
@@ -155,8 +178,13 @@ const about = readFileSync(join(publicRoot, 'about', 'index.html'), 'utf8');
 if (!about.includes('<body class="editorial-page about-page">')) {
   fail('About page does not use the shared editorial layout');
 }
-if (/<div id="banner" class="banner"[^>]*style=/.test(about)) {
+if (/<div class="masthead"[^>]*style=/.test(about)) {
   fail('About page still contains an image masthead');
+}
+
+const notFound = readFileSync(join(publicRoot, '404.html'), 'utf8');
+if (!notFound.includes('<body class="error-page">') || !notFound.includes('class="site-nav"') || !notFound.includes('href="/bluenote/"')) {
+  fail('404 page does not use the theme navigation with a way home');
 }
 
 const gallery = readFileSync(join(publicRoot, 'gallery', 'index.html'), 'utf8');
@@ -219,10 +247,31 @@ if (!/\.gallery-bay\s*\{[^}]*min-height:\s*100svh/s.test(galleryCss)) {
 
 const htmlFiles = walk(publicRoot).filter((path) => extname(path) === '.html');
 const assetVersions = new Map();
+const retiredDependency = /iconfont|alicdn|baomitu|bootstrap|jquery/i;
 for (const htmlFile of htmlFiles) {
   const html = readFileSync(htmlFile, 'utf8');
+  const name = relative(publicRoot, htmlFile);
   if (html.includes('id="scroll-top-button"')) {
-    fail(`Scroll-to-top button is still generated: ${relative(publicRoot, htmlFile)}`);
+    fail(`Scroll-to-top button is still generated: ${name}`);
+  }
+  for (const [element] of html.matchAll(/<(?:link|script)\b[^>]*>/g)) {
+    if ((element.startsWith('<script') || element.includes('rel="stylesheet"')) &&
+        /(?:href|src)="(?:https?:)?\/\//.test(element)) {
+      fail(`CSS and JavaScript must be served by the site: ${name}`);
+    }
+  }
+  // Only tags and class lists count: article text may legitimately mention old libraries,
+  // and the image folder theme_fluid_bg keeps its historical name.
+  const dependencySurface = [...html.matchAll(/<(?:link|script)\b[^>]*>/g), ...html.matchAll(/\b(?:class|id)="[^"]*"/g)]
+    .map((match) => match[0]).join(' ').replace(/theme_fluid_bg/g, '');
+  if (retiredDependency.test(dependencySurface) || /fluid|navbar-|mobile-grid|col-lg|nprogress|fancybox|tocbot|anchorjs/i.test(dependencySurface)) {
+    fail(`Retired theme dependency referenced in ${name}`);
+  }
+  if (!html.includes('data-root="/bluenote/"')) fail(`Site root attribute missing in ${name}`);
+  if (!html.includes('<meta name="theme-color"')) fail(`theme-color meta missing in ${name}`);
+  if (!html.includes('id="bluenote-scheme-boot"')) fail(`Color-scheme boot script missing in ${name}`);
+  if (!/\/bluenote\/css\/bluenote\.css\?v=[0-9a-f]{12}/.test(html) || !/\/bluenote\/js\/bluenote\.js\?v=[0-9a-f]{12}/.test(html)) {
+    fail(`Theme assets are not referenced with content versions in ${name}`);
   }
   for (const [, url, assetPath, version] of html.matchAll(/(?:href|src)="(\/bluenote\/([^"?#]+\.(?:css|js))(?:\?v=([^"#]+))?)"/g)) {
     const target = join(publicRoot, decodeURIComponent(assetPath));
@@ -231,29 +280,9 @@ for (const htmlFile of htmlFiles) {
       assetVersions.set(target, createHash('sha256').update(readFileSync(target)).digest('hex').slice(0, 12));
     }
     if (version !== assetVersions.get(target)) {
-      fail(`Stale or missing resource version in ${relative(publicRoot, htmlFile)}: ${url}`);
+      fail(`Stale or missing resource version in ${name}: ${url}`);
     }
   }
-}
-
-const customCss = readFileSync(join(publicRoot, 'css', 'custom.css'), 'utf8');
-if (!customCss.includes('#color-toggle-btn .nav-link:hover #color-toggle-icon')) {
-  fail('Color-scheme icon does not preserve its visibility on hover');
-}
-if (!customCss.includes('--masthead-background: #53616b')) {
-  fail('Editorial masthead is no longer a stable solid color');
-}
-if (!customCss.includes('height: 216px !important')) {
-  fail('Editorial masthead no longer uses its established height');
-}
-if (!customCss.includes('#mobile-grid-menu .mobile-grid-item > i')) {
-  fail('Mobile navigation no longer suppresses decorative category icons');
-}
-if (!customCss.includes('--navbar-hover-color: #f3dca6')) {
-  fail('Navigation hover state no longer contrasts with the blue masthead');
-}
-for (const icon of ['icon-home-fill', 'icon-archive-fill', 'icon-user-fill']) {
-  if (home.includes(icon)) fail(`Desktop navigation still contains decorative icon: ${icon}`);
 }
 
 const generatedPosts = htmlFiles.filter((path) =>
@@ -267,8 +296,11 @@ for (const generatedPost of generatedPosts) {
   if (!/<body class="editorial-page post-page(?: [^"]+)?">/.test(html)) {
     fail(`Post does not use the shared editorial layout: ${relative(publicRoot, generatedPost)}`);
   }
-  if (/<div id="banner" class="banner"[^>]*style=/.test(html)) {
+  if (/<div class="masthead"[^>]*style=/.test(html)) {
     fail(`Post still contains an image masthead: ${relative(publicRoot, generatedPost)}`);
+  }
+  if (!/<h1 class="masthead__title">/.test(html)) {
+    fail(`Post title is not the masthead heading: ${relative(publicRoot, generatedPost)}`);
   }
 
   const galleryImages = html.match(/<img\b[^>]*\bsrc=["'][^"']*\/images\/galleries\/[^"']+["'][^>]*>/gi) || [];

@@ -1,0 +1,17 @@
+<%
+const entries = showEntries ? (theme.archive.extra_entries || []) : [];
+let cursor;
+-%>
+<section class="listing">
+<% posts.each((post) => {
+  const year = date(post.date, 'YYYY');
+  if (year !== cursor) { cursor = year; -%>
+  <p class="listing__year"><%= year %></p>
+<% } -%>
+  <a class="listing__item" href="<%- url_for(post.path) %>"><time class="listing__date" datetime="<%= full_date(post.date, 'YYYY-MM-DD') %>"><%= date(post.date, 'MM-DD') %></time><span class="listing__title"><%= post.title %></span></a>
+<% }); -%>
+<% entries.forEach((entry) => { if (!entry || !entry.link) return; -%>
+  <p class="listing__year listing__section"><%= entry.section || '' %></p>
+  <a class="listing__item listing__item--entry" href="<%- /^(#|\/\/|https?:)/.test(entry.link) ? entry.link : url_for(entry.link) %>"><span class="listing__kind" aria-hidden="true"><%= entry.kind || '' %></span><span class="listing__title listing__copy"><span><%= entry.title %></span><% if (entry.summary) { %><span class="listing__summary"><%= entry.summary %></span><% } %></span></a>
+<% }); -%>
+</section>

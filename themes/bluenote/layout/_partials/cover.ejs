@@ -1,0 +1,14 @@
+<%
+const cover = theme.home.cover ? url_for(theme.home.cover) : '';
+const slogan = theme.home.slogan || config.subtitle || '';
+const typing = Boolean(theme.home.typing && theme.home.typing.enable && slogan);
+-%>
+<div id="banner" class="home-cover"<%- cover ? ` style="background-image: url('${cover}')"` : '' %>>
+  <div class="home-cover__mask">
+<% if (slogan) { -%>
+    <div class="home-cover__slogan">
+      <p class="home-cover__text"><span id="subtitle"<%- typing ? ` data-typed-text="${slogan.replace(/"/g, '&quot;')}" data-typed-speed="${Number(theme.home.typing.speed) || 70}" data-typed-cursor="${String(theme.home.typing.cursor || '_').replace(/"/g, '&quot;')}"` : '' %>><%= typing ? '' : slogan %></span></p>
+    </div>
+<% } -%>
+  </div>
+</div>

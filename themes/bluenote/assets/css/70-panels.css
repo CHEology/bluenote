@@ -1,0 +1,99 @@
+/* Literary blocks: a quiet framed panel for quotations, formulas and signals, and an
+   open verse block with rules above and below. */
+.markdown-body .literary-block {
+  box-sizing: border-box;
+  color: var(--prose);
+}
+
+.markdown-body .literary-panel,
+.markdown-body .literary-block--signal {
+  box-sizing: border-box;
+  max-width: 48rem;
+  margin: 0 auto 2.5rem;
+  padding: 1.75rem 1.65rem 1.6rem;
+  color: var(--prose);
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 0;
+}
+
+.markdown-body .literary-block__section {
+  text-align: center;
+}
+
+.markdown-body .literary-block__section p {
+  margin: 0;
+  font-family: var(--font-math);
+  font-size: 1.06rem;
+  line-height: 1.75;
+}
+
+.markdown-body .literary-block__section--opening p + p {
+  margin-top: 0.12rem;
+}
+
+.markdown-body .literary-block__divider {
+  width: 3.5rem;
+  margin: 1.35rem auto 1.25rem;
+  border-top: 1px solid var(--line);
+}
+
+.markdown-body .literary-block__section .literary-block__emphasis {
+  font-size: 1.11rem;
+  font-weight: 600;
+  letter-spacing: 0.075em;
+}
+
+.markdown-body .literary-block__section .literary-block__note {
+  margin-top: 0.65rem;
+  color: var(--muted);
+  font-family: "Songti SC", "Noto Serif CJK SC", "Source Han Serif SC", STSong, Georgia, serif;
+  font-size: 0.88rem;
+  line-height: 1.65;
+}
+
+.markdown-body .literary-block__title {
+  font-family: var(--font-math);
+  font-style: italic;
+}
+
+.markdown-body .literary-block--verse {
+  max-width: 34rem;
+  margin: 2.75rem auto 1rem;
+  padding: 2rem 1rem;
+  text-align: center;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.markdown-body .literary-block--verse p {
+  margin: 0;
+  font-family: var(--font-math);
+  font-size: 1.08rem;
+  line-height: 2.05;
+}
+
+.markdown-body .literary-block--verse p:nth-child(5) {
+  margin-top: 0.85rem;
+}
+
+@media (max-width: 767px) {
+  .markdown-body .literary-panel,
+  .markdown-body .literary-block--signal {
+    padding: 1.45rem 1.1rem 1.35rem;
+  }
+
+  .markdown-body .literary-block__section p {
+    font-size: 0.98rem;
+  }
+
+  .markdown-body .literary-block__section .literary-block__emphasis {
+    font-size: 0.95rem;
+    letter-spacing: 0.02em;
+  }
+
+  .markdown-body .literary-block--verse {
+    padding-right: 0.25rem;
+    padding-left: 0.25rem;
+  }
+}

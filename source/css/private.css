@@ -14,13 +14,13 @@
   mask-image: url("../img/icons/unlock.svg?v=20260828-1");
 }
 
-.navbar .private-lock-icon {
+.site-nav .private-lock-icon {
   margin: 0 0.35rem 0.03rem 0;
   color: inherit;
   vertical-align: middle;
 }
 
-.mobile-grid-item .private-lock-icon {
+.site-menu__item .private-lock-icon {
   width: 1.4rem;
   height: 1.4rem;
   margin-bottom: 0.65rem;
@@ -48,7 +48,7 @@ html:not(.private-reading-unlocked) body.home-page .index-card:has(a[data-privat
   max-width: calc(100% - 1.8rem);
 }
 
-.post-prevnext a[data-private-link]::before {
+.post-nav a[data-private-link]::before {
   display: inline-flex;
   align-items: center;
   margin-right: 0.5rem;
@@ -67,7 +67,7 @@ html:not(.private-reading-unlocked) body.home-page .index-card:has(a[data-privat
   letter-spacing: 0.12em;
 }
 
-.private-reading-unlocked .post-prevnext a[data-private-link]::before {
+.private-reading-unlocked .post-nav a[data-private-link]::before {
   content: "UNLOCKED";
 }
 
@@ -95,7 +95,7 @@ html:not(.private-reading-unlocked) body.home-page .index-card:has(a[data-privat
 
 .private-reading-unlocked .private-archive-state:hover,
 .private-reading-unlocked .private-archive-state:focus-visible {
-  color: var(--link-hover-color);
+  color: var(--link-hover);
   outline: 0;
 }
 
@@ -112,19 +112,19 @@ html:not(.private-reading-unlocked) body.home-page .index-card:has(a[data-privat
   margin: 1rem auto 2rem;
   padding: 3rem 2.5rem;
   text-align: center;
-  border: 1px solid var(--line-color);
+  border: 1px solid var(--line);
 }
 
 .private-post-shell__lock {
   width: 1.45rem;
   height: 1.45rem;
   margin-bottom: 1.2rem;
-  color: var(--sec-text-color);
+  color: var(--muted);
 }
 
 .private-post-shell__label {
   margin: 0 0 1.1rem !important;
-  color: var(--sec-text-color);
+  color: var(--muted);
   font-family: Times, "Times New Roman", serif;
   font-size: 0.8rem;
   letter-spacing: 0.14em;
@@ -132,17 +132,17 @@ html:not(.private-reading-unlocked) body.home-page .index-card:has(a[data-privat
 
 .private-post-shell__locked button {
   padding: 0.65rem 1.25rem;
-  color: var(--text-color);
+  color: var(--text);
   background: transparent;
-  border: 1px solid var(--line-color);
+  border: 1px solid var(--line);
   border-radius: 0;
   cursor: pointer;
 }
 
 .private-post-shell__locked button:hover,
 .private-post-shell__locked button:focus-visible {
-  color: var(--link-hover-color);
-  background: var(--link-hover-bg-color);
+  color: var(--link-hover);
+  background: var(--link-hover-bg);
 }
 
 .private-dialog-open {

@@ -14,3 +14,4 @@ These instructions apply to the entire repository.
 - Use the shared `literary-panel` class for ordinary framed content. Its visual authority is the opening panel in `source/_posts/Z.A.T.O-随想.md`; article-specific classes may arrange content inside it but must not redefine the frame.
 - If a factual claim seems questionable, preserve it and raise the concern to the author before changing it.
 - When the user refers to the latest article, use `/Users/zeyuanlu/Desktop/文字/我的文字/Blue Note/` as the default source directory.
+- Site presentation lives in `themes/bluenote` (templates, CSS, JS, defaults) and `_config.bluenote.yml`; site-only styles stay in `source/css`. Follow `docs/DESIGN.md` §11 for which file owns what.

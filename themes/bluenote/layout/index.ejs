@@ -1,0 +1,15 @@
+<%
+const limit = Number(theme.home.cards) || 12;
+const posts = typeof page.posts.limit === 'function' ? page.posts.limit(limit) : page.posts;
+-%>
+<h1 class="visually-hidden"><%= config.title %></h1>
+<div class="home-main__inner">
+  <div class="home-grid">
+<% posts.each((post) => { -%>
+<%- partial('_partials/card', { post }) %>
+<% }); -%>
+  </div>
+<% if (theme.home.pagination) { -%>
+<%- partial('_partials/pagination') %>
+<% } -%>
+</div>

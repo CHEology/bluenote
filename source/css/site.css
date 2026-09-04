@@ -1,0 +1,43 @@
+/* Blue Note site-specific rules that do not belong to the theme. */
+
+/* The encrypted 小蓝本 source predates literary blocks and renders its opening as code;
+   present that first block as the shared literary panel. */
+.post-page .markdown-body [data-private-post-id="eeddfa74ef298a0c"] .private-post-shell__content > pre:first-child {
+  box-sizing: border-box;
+  max-width: 48rem;
+  margin: 0 auto 2.5rem;
+  padding: 1.75rem 1.65rem 1.6rem;
+  overflow: visible;
+  color: var(--prose);
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 0;
+  white-space: normal;
+  text-align: center;
+}
+
+.post-page .markdown-body [data-private-post-id="eeddfa74ef298a0c"] .private-post-shell__content > pre:first-child > code {
+  display: block;
+  padding: 0;
+  color: inherit;
+  background: transparent;
+  font-family: "Songti SC", "Noto Serif CJK SC", "Source Han Serif SC", STSong, Georgia, serif;
+  font-size: 1.02rem;
+  font-weight: 400;
+  letter-spacing: 0.045em;
+  line-height: 1.95;
+  white-space: normal;
+  text-wrap: balance;
+}
+
+@media (max-width: 767px) {
+  .post-page .markdown-body [data-private-post-id="eeddfa74ef298a0c"] .private-post-shell__content > pre:first-child {
+    padding: 1.45rem 1.1rem 1.35rem;
+  }
+
+  .post-page .markdown-body [data-private-post-id="eeddfa74ef298a0c"] .private-post-shell__content > pre:first-child > code {
+    font-size: 0.98rem;
+    letter-spacing: 0.025em;
+    line-height: 1.9;
+  }
+}

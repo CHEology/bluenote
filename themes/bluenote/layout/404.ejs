@@ -1,0 +1,7 @@
+<% const cover = theme.page404 && theme.page404.cover ? url_for(theme.page404.cover) : ''; -%>
+<div class="error-cover"<%- cover ? ` style="background-image: url('${cover}')"` : '' %>>
+  <div class="error-cover__mask">
+    <h1 class="error-cover__title"><%= __('page404.title') %></h1>
+    <a class="error-cover__link" href="<%= url_for('/') %>"><%= __('page404.back') %></a>
+  </div>
+</div>

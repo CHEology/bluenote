@@ -2,7 +2,7 @@
   "name": "bluenote-blog",
   "version": "2.0.0",
   "private": true,
-  "description": "Blue Note — Markdown-first Hexo blog published with GitHub Pages",
+  "description": "Blue Note — Markdown-first Hexo blog with its own bluenote theme, published with GitHub Pages",
   "scripts": {
     "clean": "cross-env TZ=America/New_York hexo clean",
     "build": "cross-env TZ=America/New_York hexo clean && cross-env TZ=America/New_York hexo generate",
@@ -15,7 +15,10 @@
     "private:publish": "node tooling/private-posts.mjs publish",
     "private:sync": "node tooling/private-posts.mjs sync",
     "private:restore": "node tooling/private-posts.mjs restore",
-    "private:list": "node tooling/private-posts.mjs list"
+    "private:list": "node tooling/private-posts.mjs list",
+    "visual:baseline": "node tooling/visual/capture.mjs --out baseline",
+    "visual:capture": "node tooling/visual/capture.mjs --out current",
+    "visual:compare": "node tooling/visual/compare.mjs"
   },
   "engines": {
     "node": ">=20.19.0"
@@ -34,9 +37,12 @@
     "hexo-generator-tag": "2.0.0",
     "hexo-renderer-ejs": "2.0.0",
     "hexo-renderer-marked": "7.0.1",
-    "hexo-renderer-stylus": "3.0.1",
     "hexo-server": "3.0.0",
-    "hexo-theme-fluid": "1.9.9",
     "marked": "15.0.12"
+  },
+  "devDependencies": {
+    "pixelmatch": "^6.0.0",
+    "playwright": "^1.62.1",
+    "pngjs": "^7.0.0"
   }
 }

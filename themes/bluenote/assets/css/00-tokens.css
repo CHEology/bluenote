@@ -1,0 +1,15 @@
+/* Structural tokens. Colour and font tokens are emitted into <head> from the theme
+   configuration (see scripts/helpers.js: theme_tokens_css). */
+:root {
+  --theme-color: var(--masthead);
+  --column-width: 760px;      /* content pages and mastheads */
+  --reading-width: 39.667rem; /* article text column (634.67px at the 1280px reference width) */
+  --photo-width: 1080px;      /* posts with several photographs */
+  --wide-width: 1160px;       /* wide pages such as a gallery */
+  --masthead-height: 216px;
+  --masthead-height-mobile: 176px;
+}
+
+.home-root {
+  --theme-color: var(--home-nav);
+}

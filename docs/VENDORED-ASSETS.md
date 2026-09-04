@@ -1,23 +1,19 @@
-# Theme dependency copies
+# Third-party copies
 
-The homepage serves its existing Fluid dependencies from `source/vendor/` to avoid
-third-party connections on the critical loading path. Versions and behavior match
-Fluid 1.9.9; this is a hosting change, not a library upgrade. Original license
-notices in the distributed files are retained.
+Blue Note no longer depends on a framework or an icon font. The only third-party
+code that ships with the site lives inside the theme and is listed in
+[`themes/bluenote/THIRD-PARTY-LICENSES.md`](../themes/bluenote/THIRD-PARTY-LICENSES.md):
 
-| Local directory | Original source |
-| --- | --- |
-| `bootstrap/4.6.1` | `https://lib.baomitu.com/twitter-bootstrap/4.6.1/` (`css/bootstrap.min.css`, `js/bootstrap.min.js`) |
-| `jquery/3.6.4` | `https://lib.baomitu.com/jquery/3.6.4/jquery.min.js` |
-| `typed.js/2.0.12` | `https://lib.baomitu.com/typed.js/2.0.12/typed.min.js` |
-| `nprogress/0.2.0` | `https://lib.baomitu.com/nprogress/0.2.0/` (`nprogress.min.css`, `nprogress.min.js`) |
-| `iconfont` | `https://at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.{css,woff2,woff,ttf}` and `font_1736178_k526ubmyhba.{css,woff2,woff,ttf}` |
+| Component | Version | Purpose |
+| --- | --- | --- |
+| typed.js | 2.0.12 (MIT) | Home slogan typing effect; loaded on the home page only |
+| github-markdown-css | 4.0.0 (MIT) | Base typography of `.markdown-body`; vendored into the theme CSS instead of being fetched from a CDN |
+| highlight.js `github` / `dark` styles | 11.12.0 (BSD-3) | Code block colours for light and dark schemes |
 
-Icon font URLs in the copied CSS are changed to relative local paths; trailing
-whitespace is normalized without changing code or license notices. The
-theme's hardcoded icon CSS links are redirected by `scripts/page-loading.js`.
-Builds require no additional download step. When upgrading Fluid, review its
-dependency versions and update these copies and their notices together.
+Bootstrap, jQuery, the Alibaba icon fonts, NProgress, tocbot, anchor.js,
+clipboard.js, fancybox and hint.css were removed with the switch from Fluid to the
+`bluenote` theme in September 2026. Icons are inline SVG symbols in
+`themes/bluenote/layout/_partials/icons.ejs`.
 
 The homepage cover `2021.11-2880.jpg` is a progressive JPEG preview generated from
 the untouched `2021.11.jpg` with macOS `sips` (long edge 2880px, JPEG quality 86),

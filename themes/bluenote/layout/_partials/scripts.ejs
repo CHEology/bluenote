@@ -1,0 +1,13 @@
+<%
+const typing = is_home() && theme.home.typing && theme.home.typing.enable && (theme.home.slogan || config.subtitle);
+-%>
+<% if (typing) { -%>
+<script defer src="<%= url_for('/vendor/typed.js/2.0.12/typed.min.js') %>"></script>
+<% } -%>
+<script defer src="<%= url_for('/js/bluenote.js') %>"></script>
+<% (theme.custom_js || []).forEach((src) => { -%>
+<script defer src="<%= url_for(src) %>"></script>
+<% }); -%>
+<% if (theme.noscript_warning) { -%>
+<noscript><div class="noscript-warning"><%= __('noscript_warning') %></div></noscript>
+<% } -%>
