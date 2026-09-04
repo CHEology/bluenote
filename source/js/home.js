@@ -1,11 +1,8 @@
 (function() {
   var page = document.body;
-  if (!document.querySelector('.index-card')) {
+  if (!page.classList.contains('home-page')) {
     return;
   }
-
-  page.classList.add('home-page');
-  document.documentElement.classList.add('home-root');
 
   var scrollPrompt = document.querySelector('.scroll-down-bar');
   if (scrollPrompt) scrollPrompt.remove();

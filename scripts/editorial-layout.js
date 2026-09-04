@@ -68,9 +68,14 @@ hexo.extend.filter.register('after_render:html', function applyEditorialLayout(h
 
   html = markPrivateLinks(html);
 
-  if (html.includes('<article class="post-content')) {
+  if (/<div\b[^>]*class="[^"]*\bindex-card\b/.test(html)) {
+    classes.push('home-page');
+    html = html.replace('<html ', '<html class="home-root" ');
+  } else if (html.includes('<article class="post-content')) {
     classes.push('editorial-page', 'post-page');
     if (html.includes('data-private-post-id=')) classes.push('private-post-page');
+    var post = html.match(/<article class="post-content[\s\S]*?<\/article>/);
+    if (post && (post[0].match(/<img\b/g) || []).length >= 3) classes.push('photo-post');
   } else if (html.includes('<div class="list-group">')) {
     classes.push('editorial-page', 'listing-page');
     html = html.replace(
@@ -94,10 +99,12 @@ hexo.extend.filter.register('after_render:html', function applyEditorialLayout(h
   }
 
   if (classes.length > 0) {
-    html = html.replace(
-      /(<div id="banner" class="banner"[^>]*?)\s+style="background:[^"]*"/,
-      '$1'
-    );
+    if (classes.includes('editorial-page')) {
+      html = html.replace(
+        /(<div id="banner" class="banner"[^>]*?)\s+style="background:[^"]*"/,
+        '$1'
+      );
+    }
     html = html.replace('<body>', '<body class="' + classes.join(' ') + '">');
   }
 

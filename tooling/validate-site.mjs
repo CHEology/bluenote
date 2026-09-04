@@ -1,4 +1,5 @@
 import { existsSync, readFileSync, readdirSync } from 'node:fs';
+import { createHash } from 'node:crypto';
 import { extname, join, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -78,6 +79,19 @@ for (const post of markdownPosts) {
 }
 
 const home = readFileSync(join(publicRoot, 'index.html'), 'utf8');
+if (!/<html\b[^>]*class="home-root"/.test(home) || !home.includes('<body class="home-page">')) {
+  fail('Homepage must have its current layout before any JavaScript executes');
+}
+const homeCover = home.match(/<div id="banner"[^>]*style="background: url\(([^)]+)\)/)?.[1];
+if (!homeCover || !home.includes('rel="preload" as="image" fetchpriority="high" href="' + homeCover + '"')) {
+  fail('Homepage must preload the same cover that its banner displays');
+}
+for (const [element] of home.matchAll(/<(?:link|script)\b[^>]*>/g)) {
+  if ((element.startsWith('<script') || element.includes('rel="stylesheet"')) &&
+      /(?:href|src)="(?:https?:)?\/\//.test(element)) {
+    fail('Homepage CSS and JavaScript must be served by the site');
+  }
+}
 for (const title of ['小蓝本', '布涅星', '秋之纽约_2023.11']) {
   if (!home.includes(title)) fail(`Home page does not contain post title: ${title}`);
 }
@@ -162,10 +176,21 @@ if (galleryCss.includes('object-fit: cover') || !galleryCss.includes('object-fit
 }
 
 const htmlFiles = walk(publicRoot).filter((path) => extname(path) === '.html');
+const assetVersions = new Map();
 for (const htmlFile of htmlFiles) {
   const html = readFileSync(htmlFile, 'utf8');
   if (html.includes('id="scroll-top-button"')) {
     fail(`Scroll-to-top button is still generated: ${relative(publicRoot, htmlFile)}`);
+  }
+  for (const [, url, assetPath, version] of html.matchAll(/(?:href|src)="(\/bluenote\/([^"?#]+\.(?:css|js))(?:\?v=([^"#]+))?)"/g)) {
+    const target = join(publicRoot, decodeURIComponent(assetPath));
+    if (!existsSync(target)) continue; // Reported by the local reference check below.
+    if (!assetVersions.has(target)) {
+      assetVersions.set(target, createHash('sha256').update(readFileSync(target)).digest('hex').slice(0, 12));
+    }
+    if (version !== assetVersions.get(target)) {
+      fail(`Stale or missing resource version in ${relative(publicRoot, htmlFile)}: ${url}`);
+    }
   }
 }
 
@@ -205,6 +230,9 @@ for (const generatedPost of generatedPosts) {
   }
 
   const galleryImages = html.match(/<img\b[^>]*\bsrc=["'][^"']*\/images\/galleries\/[^"']+["'][^>]*>/gi) || [];
+  if (galleryImages.length >= 3 && !/<body class="[^"]*\bphoto-post\b/.test(html)) {
+    fail(`Photo post must have its final layout before JavaScript: ${relative(publicRoot, generatedPost)}`);
+  }
   galleryImages.forEach((image, index) => {
     for (const attribute of ['srcset=', 'sizes=', 'width=', 'height=', 'decoding="async"']) {
       if (!image.includes(attribute)) {

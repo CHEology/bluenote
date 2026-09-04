@@ -22,6 +22,6 @@ hexo.extend.filter.register('after_render:html', function galleryAssets(html) {
   if (!html.includes('class="gallery-collection"') || !html.includes('</head>')) return html;
   const root = hexo.config.root.replace(/\/?$/, '/');
   return html
-    .replace('</head>', '<link rel="stylesheet" href="' + root + 'css/gallery.css?v=20260903-1">\n</head>')
-    .replace('</body>', '<script defer src="' + root + 'js/gallery.js?v=20260903-1"></script>\n</body>');
+    .replace('</head>', '<link rel="stylesheet" href="' + root + 'css/gallery.css">\n</head>')
+    .replace('</body>', '<script defer src="' + root + 'js/gallery.js"></script>\n</body>');
 }, 40);

@@ -29,18 +29,25 @@ fun_features:
 
 custom_css:
   - /css/home.css
-  - /css/custom.css?v=20260903-1
-  - /css/literary-blocks.css?v=20260902-1
-  - /css/thought-notes.css?v=20260902-6
-  - /css/private.css?v=20260828-9
-  - /css/search.css?v=20260828-8
+  - /css/custom.css
+  - /css/literary-blocks.css
+  - /css/thought-notes.css
+  - /css/private.css
+  - /css/search.css
   - /css/typography.css
 
 custom_js:
-  - /js/site.js?v=20260827-5
+  - /js/site.js
   - /js/home.js
-  - /js/private.js?v=20260828-6
-  - /js/search.js?v=20260828-9
+  - /js/private.js
+  - /js/search.js
+
+# Pinned copies of the same theme dependencies, served with the site.
+static_prefix:
+  bootstrap: /vendor/bootstrap/4.6.1/
+  jquery: /vendor/jquery/3.6.4/
+  typed: /vendor/typed.js/2.0.12/
+  nprogress: /vendor/nprogress/0.2.0/
 
 navbar:
   blog_title: Blue Note
@@ -76,7 +83,7 @@ footer:
     enable: false
 
 index:
-  banner_img: /images/theme_fluid_bg/2021.11.jpg
+  banner_img: /images/theme_fluid_bg/2021.11-2880.jpg
   banner_img_height: 100
   banner_mask_alpha: 0.3
   slogan:
