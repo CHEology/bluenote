@@ -8,6 +8,7 @@
 
 - [设计规范](docs/DESIGN.md)：颜色、字体、字号、行距、行宽、内容框及视觉验收的唯一规范。
 - [发文流程](docs/PUBLISHING.md)：从原稿转换、检查到发布与回滚的操作标准。
+- [主题 1.1 与博客复验](docs/VALIDATION-2026-09-04.md)：移动适配、独立安装与线上加载测量。
 
 ## Repository structure
 
