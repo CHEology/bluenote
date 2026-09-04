@@ -178,6 +178,10 @@ for (const asset of ['css/gallery.css', 'js/gallery.js']) {
 }
 const photoCount = (allGallery.match(/data-gallery-open="/g) || []).length;
 if (photoCount !== galleryManifest.photos.length) fail('Gallery must only contain explicitly selected photos');
+const fullGalleryBayCount = (allGallery.match(/class="gallery-bay/g) || []).length;
+if (photoCount && fullGalleryBayCount !== 39) {
+  fail('Every authored Gallery spread must have its own exhibition bay');
+}
 if (photoCount && (!gallery.includes('gallery-grid--few') || !gallery.includes('data-gallery-reshuffle') ||
     !gallery.includes('data-gallery-model') || !gallery.includes('/js/gallery-selection.js'))) {
   fail('Gallery must default to the random small exhibition');
@@ -204,6 +208,9 @@ if (gallery.includes('article class="post-content') || (photoCount === 0 && gall
 const galleryCss = readFileSync(join(publicRoot, 'css/gallery.css'), 'utf8');
 if (galleryCss.includes('object-fit: cover') || !galleryCss.includes('object-fit: contain')) {
   fail('Gallery must preserve complete photo framing');
+}
+if (!/\.gallery-bay\s*\{[^}]*min-height:\s*100svh/s.test(galleryCss)) {
+  fail('Gallery spreads must retain a full-viewport exhibition space');
 }
 
 const htmlFiles = walk(publicRoot).filter((path) => extname(path) === '.html');

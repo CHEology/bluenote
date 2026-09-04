@@ -119,16 +119,20 @@ function renderGallery(photos, root, options = {}) {
     const ratio = row.photos.reduce((sum, photo) => sum + photo.full.width / photo.full.height, 0);
     const items = row.photos.map((photo, index) => item(photo, offset + index, ratio, paired));
     offset += row.photos.length;
-    return '<div class="gallery-row' + (paired ? ' gallery-row--paired' : '') +
+    return '<div class="gallery-bay' + (row.continuation ? ' gallery-bay--continuation' : '') + '"><div class="gallery-row' +
+      (paired ? ' gallery-row--paired' : '') +
       (row.continuation ? ' gallery-row--continuation' : '') + '" data-gallery-spread="' + escapeHtml(row.spread) +
-      '" style="--gallery-row-ratio:' + ratio + ';--gallery-row-gutter:' + (paired ? 32 : 0) + 'px">' + items.join('') + '</div>';
+      '" style="--gallery-row-ratio:' + ratio + ';--gallery-row-gutter:' + (paired ? 32 : 0) + 'px">' + items.join('') + '</div></div>';
   }).join('\n');
 
   const fallbackRows = rows.slice(0, 2);
   const fallback = few ? fallbackRows.map((row) => {
+    const paired = row.photos.length === 2;
     const ratio = row.photos.reduce((n, p) => n + p.full.width / p.full.height, 0);
-    return '<div class="gallery-row" style="--gallery-row-ratio:' + ratio + ';--gallery-row-gutter:' + (row.photos.length === 2 ? 32 : 0) + 'px">' +
-      row.photos.map((p, i) => item(p, i, ratio, row.photos.length === 2)).join('') + '</div>';
+    return '<div class="gallery-bay' + (row.continuation ? ' gallery-bay--continuation' : '') + '"><div class="gallery-row' +
+      (paired ? ' gallery-row--paired' : '') + (row.continuation ? ' gallery-row--continuation' : '') +
+      '" style="--gallery-row-ratio:' + ratio + ';--gallery-row-gutter:' + (paired ? 32 : 0) + 'px">' +
+      row.photos.map((p, i) => item(p, i, ratio, paired)).join('') + '</div></div>';
   }).join('') : '';
   const model = JSON.stringify({ root: base, rows }).replace(/[<>&]/g, character =>
     ({ '<': '\\u003c', '>': '\\u003e', '&': '\\u0026' })[character]);
