@@ -1,0 +1,44 @@
+<%
+const home = is_home();
+const pageTitle = page_title(page);
+const title = pageTitle ? [pageTitle, config.title].join(' - ') : config.title;
+let description = page.description || page.excerpt || (is_post() && page.content) || config.description;
+if (description) description = strip_html(description).substring(0, 200).trim().replace(/\n/g, ' ');
+let keywords = page.keywords || config.keywords;
+if (Array.isArray(keywords)) keywords = keywords.join(',');
+const ogImage = page.og_img || page.cover || page.index_img;
+const cover = home && theme.home.cover ? url_for(theme.home.cover) : '';
+-%>
+<head>
+<meta charset="UTF-8">
+<% if (cover && theme.home.preload_cover) { -%>
+<link rel="preload" as="image" fetchpriority="high" href="<%- cover %>">
+<% } -%>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+<% if (theme.favicon) { -%>
+<link rel="icon" href="<%= url_for(theme.favicon) %>">
+<% } -%>
+<% if (theme.apple_touch_icon) { -%>
+<link rel="apple-touch-icon" sizes="76x76" href="<%= url_for(theme.apple_touch_icon) %>">
+<% } -%>
+<% if (theme.force_https) { -%>
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+<% } -%>
+<meta name="theme-color" content="<%= theme_color(page) %>">
+<meta name="author" content="<%= page.author || config.author %>">
+<% if (keywords) { -%>
+<meta name="keywords" content="<%= keywords %>">
+<% } -%>
+<% if (theme.open_graph && theme.open_graph.enable) { -%>
+<%- open_graph({ twitter_card: theme.open_graph.twitter_card || 'summary', image: ogImage ? url_for(ogImage) : undefined, description: description }) %>
+<% } else { -%>
+<meta name="description" content="<%= description %>">
+<% } -%>
+<title><%= title %></title>
+<style id="bluenote-tokens"><%- theme_tokens_css() %></style>
+<link rel="stylesheet" href="<%= url_for('/css/bluenote.css') %>">
+<% (theme.custom_css || []).forEach((href) => { -%>
+<link rel="stylesheet" href="<%= url_for(href) %>">
+<% }); -%>
+<script id="bluenote-scheme-boot"><%- scheme_boot_script() %></script>
+</head>

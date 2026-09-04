@@ -1,0 +1,54 @@
+name: English
+
+home:
+  menu: Home
+  title: Home
+
+archive:
+  menu: Archives
+  title: Archives
+  post_total: '%d posts in total'
+
+category:
+  menu: Categories
+  title: Categories
+
+tag:
+  menu: Tags
+  title: Tags
+
+about:
+  menu: About
+  title: About
+
+page404:
+  title: Page not found
+  back: Back to the home page
+
+post:
+  toc: Table of Contents
+  nav: Adjacent posts
+  prev_post: Previous
+  next_post: Next
+
+nav:
+  label: Site
+  toggle: Toggle navigation
+
+scheme:
+  toggle: Toggle color scheme
+  light: Light
+  dark: Dark
+
+search:
+  title: Search
+  placeholder: Search
+  close: Close search
+
+lightbox:
+  label: Image viewer
+  close: Close
+  prev: Previous image
+  next: Next image
+
+noscript_warning: This site works best with JavaScript enabled

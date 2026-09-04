@@ -1,7 +1,6 @@
 (function() {
   var storageKey = 'bluenote.private-key.v1';
-  var rootLink = document.querySelector('.navbar-brand');
-  var siteRoot = rootLink ? new URL(rootLink.href, window.location.href).pathname : '/';
+  var siteRoot = document.documentElement.getAttribute('data-root') || '/';
   if (!siteRoot.endsWith('/')) siteRoot += '/';
 
   var archive;
@@ -83,10 +82,10 @@
         link.setAttribute('aria-label', post.title + '，Private reading');
         var card = link.closest('.index-card');
         if (card) card.classList.add('private-entry');
-        var listing = link.closest('.list-group-item');
+        var listing = link.closest('.listing__item');
         if (listing) listing.classList.add('private-entry');
-        var lockTarget = listing ? link.querySelector('.list-group-item-title') : null;
-        if (!lockTarget && (link.closest('.index-header') || link.closest('.post-prevnext'))) lockTarget = link;
+        var lockTarget = listing ? link.querySelector('.listing__title') : null;
+        if (!lockTarget && (link.closest('.index-header') || link.closest('.post-nav'))) lockTarget = link;
         if (listing && lockTarget && !lockTarget.querySelector('[data-private-lock-control]')) {
           var state = document.createElement('span');
           state.className = 'private-archive-state';
@@ -153,11 +152,7 @@
   }
 
   function closeMobileMenu() {
-    var menu = document.querySelector('#mobile-grid-menu');
-    var icon = document.querySelector('.animated-icon');
-    if (menu) menu.classList.remove('show');
-    if (icon) icon.classList.remove('open');
-    document.body.classList.remove('mobile-menu-open');
+    if (window.BlueNote && window.BlueNote.nav) window.BlueNote.nav.close();
   }
 
   function buildDialog() {

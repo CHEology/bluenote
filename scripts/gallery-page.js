@@ -12,7 +12,7 @@ hexo.extend.generator.register('gallery', function generateGallery() {
       title: 'Gallery',
       subtitle: 'Gallery',
       comments: false,
-      lazyload: false,
+      body_class: 'gallery-page',
       content: renderGallery(photos, hexo.config.root, { mode })
     }
   }));

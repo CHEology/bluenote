@@ -1,0 +1,13 @@
+<% const tocHtml = post_toc(page); -%>
+<div class="post-layout<%= tocHtml ? ' post-layout--toc' : '' %>">
+  <article class="post-content">
+    <div class="markdown-body">
+<%- page.content %>
+    </div>
+<% if (theme.post.show_tags && page.tags && page.tags.length) { -%>
+    <div class="post-tags"><% page.tags.each((tag) => { %><a class="post-tags__item" href="<%- url_for(tag.path) %>">#<%= tag.name %></a><% }); %></div>
+<% } -%>
+<%- partial('_partials/post-nav') %>
+  </article>
+<%- partial('_partials/toc') %>
+</div>

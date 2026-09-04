@@ -1,0 +1,34 @@
+/*
+ * Code block colours: highlight.js 11.12.0 "github" (light) and "dark" themes.
+ * BSD-3-Clause License, Copyright (c) 2006 Ivan Sagalaev and contributors. Selectors are scoped by colour scheme.
+ */
+.markdown-body pre code.hljs { display: block; overflow-x: auto; padding: 0; }
+.hljs { color: #24292e; background: #ffffff; }
+.hljs-doctag, .hljs-keyword, .hljs-meta .hljs-keyword, .hljs-template-tag, .hljs-template-variable, .hljs-type, .hljs-variable.language_ { color: #d73a49; }
+.hljs-title, .hljs-title.class_, .hljs-title.class_.inherited__, .hljs-title.function_ { color: #6f42c1; }
+.hljs-attr, .hljs-attribute, .hljs-literal, .hljs-meta, .hljs-number, .hljs-operator, .hljs-variable, .hljs-selector-attr, .hljs-selector-class, .hljs-selector-id { color: #005cc5; }
+.hljs-regexp, .hljs-string, .hljs-meta .hljs-string { color: #032f62; }
+.hljs-built_in, .hljs-symbol { color: #e36209; }
+.hljs-comment, .hljs-code, .hljs-formula { color: #6a737d; }
+.hljs-name, .hljs-quote, .hljs-selector-tag, .hljs-selector-pseudo { color: #22863a; }
+.hljs-subst { color: #24292e; }
+.hljs-section { color: #005cc5; font-weight: bold; }
+.hljs-bullet { color: #735c0f; }
+.hljs-emphasis { color: #24292e; font-style: italic; }
+.hljs-strong { color: #24292e; font-weight: bold; }
+.hljs-addition { color: #22863a; background-color: #f0fff4; }
+.hljs-deletion { color: #b31d28; background-color: #ffeef0; }
+@media (prefers-color-scheme: dark) {
+:root:not([data-scheme="light"]) .hljs { color: #ddd; background: #303030; }
+:root:not([data-scheme="light"]) .hljs-keyword, :root:not([data-scheme="light"]) .hljs-selector-tag, :root:not([data-scheme="light"]) .hljs-literal, :root:not([data-scheme="light"]) .hljs-section, :root:not([data-scheme="light"]) .hljs-link { color: white; }
+:root:not([data-scheme="light"]) .hljs-string, :root:not([data-scheme="light"]) .hljs-title, :root:not([data-scheme="light"]) .hljs-name, :root:not([data-scheme="light"]) .hljs-type, :root:not([data-scheme="light"]) .hljs-attribute, :root:not([data-scheme="light"]) .hljs-symbol, :root:not([data-scheme="light"]) .hljs-bullet, :root:not([data-scheme="light"]) .hljs-built_in, :root:not([data-scheme="light"]) .hljs-addition, :root:not([data-scheme="light"]) .hljs-variable, :root:not([data-scheme="light"]) .hljs-template-tag, :root:not([data-scheme="light"]) .hljs-template-variable { color: #d88; }
+:root:not([data-scheme="light"]) .hljs-comment, :root:not([data-scheme="light"]) .hljs-quote, :root:not([data-scheme="light"]) .hljs-deletion, :root:not([data-scheme="light"]) .hljs-meta { color: #979797; }
+:root:not([data-scheme="light"]) .hljs-keyword, :root:not([data-scheme="light"]) .hljs-selector-tag, :root:not([data-scheme="light"]) .hljs-literal, :root:not([data-scheme="light"]) .hljs-title, :root:not([data-scheme="light"]) .hljs-section, :root:not([data-scheme="light"]) .hljs-doctag, :root:not([data-scheme="light"]) .hljs-type, :root:not([data-scheme="light"]) .hljs-name, :root:not([data-scheme="light"]) .hljs-strong { font-weight: bold; }
+:root:not([data-scheme="light"]) .hljs-emphasis { font-style: italic; }
+}
+:root[data-scheme="dark"] .hljs { color: #ddd; background: #303030; }
+:root[data-scheme="dark"] .hljs-keyword, :root[data-scheme="dark"] .hljs-selector-tag, :root[data-scheme="dark"] .hljs-literal, :root[data-scheme="dark"] .hljs-section, :root[data-scheme="dark"] .hljs-link { color: white; }
+:root[data-scheme="dark"] .hljs-string, :root[data-scheme="dark"] .hljs-title, :root[data-scheme="dark"] .hljs-name, :root[data-scheme="dark"] .hljs-type, :root[data-scheme="dark"] .hljs-attribute, :root[data-scheme="dark"] .hljs-symbol, :root[data-scheme="dark"] .hljs-bullet, :root[data-scheme="dark"] .hljs-built_in, :root[data-scheme="dark"] .hljs-addition, :root[data-scheme="dark"] .hljs-variable, :root[data-scheme="dark"] .hljs-template-tag, :root[data-scheme="dark"] .hljs-template-variable { color: #d88; }
+:root[data-scheme="dark"] .hljs-comment, :root[data-scheme="dark"] .hljs-quote, :root[data-scheme="dark"] .hljs-deletion, :root[data-scheme="dark"] .hljs-meta { color: #979797; }
+:root[data-scheme="dark"] .hljs-keyword, :root[data-scheme="dark"] .hljs-selector-tag, :root[data-scheme="dark"] .hljs-literal, :root[data-scheme="dark"] .hljs-title, :root[data-scheme="dark"] .hljs-section, :root[data-scheme="dark"] .hljs-doctag, :root[data-scheme="dark"] .hljs-type, :root[data-scheme="dark"] .hljs-name, :root[data-scheme="dark"] .hljs-strong { font-weight: bold; }
+:root[data-scheme="dark"] .hljs-emphasis { font-style: italic; }

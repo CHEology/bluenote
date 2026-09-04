@@ -1,0 +1,24 @@
+<% const about = theme.about || {}; const links = (about.links || []).filter((item) => item && item.link && item.name); -%>
+<div class="content-column">
+  <div class="about-header">
+<% if (about.avatar) { -%>
+    <div class="about-avatar"><img src="<%= url_for(about.avatar) %>" alt="" width="128" height="128"></div>
+<% } -%>
+    <div class="about-info">
+<% if (about.name) { -%>
+      <div class="about-name"><%= about.name %></div>
+<% } -%>
+<% if (about.intro) { -%>
+      <div class="about-intro"><%- about.intro %></div>
+<% } -%>
+<% if (links.length) { -%>
+      <div class="about-links"><% links.forEach((item) => { %><a class="about-links__item" href="<%- item.link %>" target="_blank" rel="noopener"><%= item.name %></a><% }); %></div>
+<% } -%>
+    </div>
+  </div>
+  <article class="about-content page-content">
+    <div class="markdown-body">
+<%- page.content %>
+    </div>
+  </article>
+</div>

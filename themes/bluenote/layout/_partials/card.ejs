@@ -1,0 +1,12 @@
+<%
+const url = url_for(post.path);
+const source = post.description || post.excerpt || (theme.home.excerpt ? post.content : '') || '';
+const excerpt = strip_html(source).substring(0, 200).trim().replace(/\n/g, ' ');
+-%>
+<article class="index-card">
+  <h2 class="index-header"><a href="<%- url %>"><%= post.title %></a></h2>
+  <a class="index-excerpt" href="<%- url %>"><div><%= excerpt %></div></a>
+<% if (theme.home.date) { -%>
+  <div class="index-meta"><span class="index-meta__item"><%- icon('date', 'index-meta__icon') %><time datetime="<%= full_date(post.date, 'YYYY-MM-DD HH:mm') %>"><%= date(post.date, config.date_format) %></time></span></div>
+<% } -%>
+</article>

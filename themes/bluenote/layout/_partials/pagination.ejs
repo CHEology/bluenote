@@ -1,0 +1,7 @@
+<% if (page.total > 1) { -%>
+<nav class="pagination-nav" aria-label="Pagination">
+  <span class="pagination" id="pagination">
+    <%- paginator({ prev_text: icon('arrow-left'), next_text: icon('arrow-right'), mid_size: 2, end_size: 1, format: `${config.pagination_dir}/%d/`, escape: false }) %>
+  </span>
+</nav>
+<% } -%>

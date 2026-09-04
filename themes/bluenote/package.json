@@ -1,0 +1,33 @@
+{
+  "name": "hexo-theme-bluenote",
+  "version": "1.0.0",
+  "description": "A quiet editorial Hexo theme: paper tones, serif Latin and CJK typography, an image-led home page with square cards, dark mode, no framework and no third-party requests.",
+  "keywords": [
+    "hexo",
+    "hexo-theme",
+    "blog",
+    "editorial",
+    "dark-mode"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CHEology/bluenote.git",
+    "directory": "themes/bluenote"
+  },
+  "engines": {
+    "hexo": ">=7.0.0"
+  },
+  "files": [
+    "_config.yml",
+    "languages",
+    "layout",
+    "scripts",
+    "assets",
+    "source",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md",
+    "THIRD-PARTY-LICENSES.md"
+  ]
+}

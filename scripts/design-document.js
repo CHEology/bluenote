@@ -29,6 +29,7 @@ hexo.extend.generator.register('design-document', function generateDesignDocumen
         subtitle: 'Design',
         description: 'Blue Note 的颜色、字体、排版、组件与视觉验收规范。',
         comments: false,
+        body_class: 'design-doc-page',
         content: '<div class="markdown-body design-document">' + content + '</div>'
       }
     };

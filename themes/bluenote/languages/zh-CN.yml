@@ -1,0 +1,54 @@
+name: 简体中文
+
+home:
+  menu: 首页
+  title: 首页
+
+archive:
+  menu: 归档
+  title: 归档
+  post_total: '共 %d 篇文章'
+
+category:
+  menu: 分类
+  title: 分类
+
+tag:
+  menu: 标签
+  title: 标签
+
+about:
+  menu: 关于
+  title: 关于
+
+page404:
+  title: 页面不存在
+  back: 返回首页
+
+post:
+  toc: 目录
+  nav: 相邻文章
+  prev_post: 上一篇
+  next_post: 下一篇
+
+nav:
+  label: 站点导航
+  toggle: 切换导航
+
+scheme:
+  toggle: 切换配色
+  light: 浅色
+  dark: 深色
+
+search:
+  title: 搜索
+  placeholder: 搜索
+  close: 关闭搜索
+
+lightbox:
+  label: 图片浏览
+  close: 关闭
+  prev: 上一张
+  next: 下一张
+
+noscript_warning: 启用 JavaScript 后本站体验更佳

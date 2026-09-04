@@ -1,0 +1,5 @@
+<% const mainArchive = is_archive() && !page.year && !page.month && (!page.current || page.current === 1); -%>
+<div class="content-column">
+<%- partial('_partials/listing', { posts: page.posts, showEntries: mainArchive }) %>
+<%- partial('_partials/pagination') %>
+</div>

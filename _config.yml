@@ -43,8 +43,8 @@ highlight:
   line_number: true
   auto_detect: false
   tab_replace: ""
-  wrap: true
-  hljs: false
+  wrap: false
+  hljs: true
 
 index_generator:
   path: ""
@@ -63,7 +63,7 @@ updated_option: date
 per_page: 10
 pagination_dir: page
 
-theme: fluid
+theme: bluenote
 
 search:
   path: local-search.xml

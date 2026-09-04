@@ -1,0 +1,8 @@
+<% const categories = site.categories.sort('length', -1); -%>
+<div class="content-column">
+  <section class="listing listing--tags">
+<% categories.each((category) => { -%>
+    <a class="listing__item" href="<%- url_for(category.path) %>"><span class="listing__title"><%= category.name %></span><span class="listing__count"><%= category.length %></span></a>
+<% }); -%>
+  </section>
+</div>

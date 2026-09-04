@@ -1,0 +1,653 @@
+{
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 900
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844
+    }
+  },
+  "schemes": [
+    "light",
+    "dark"
+  ],
+  "styleProps": [
+    "fontFamily",
+    "fontSize",
+    "fontWeight",
+    "lineHeight",
+    "letterSpacing",
+    "textAlign",
+    "color",
+    "backgroundColor",
+    "backgroundImage",
+    "opacity",
+    "paddingTop",
+    "paddingRight",
+    "paddingBottom",
+    "paddingLeft",
+    "marginTop",
+    "marginRight",
+    "marginBottom",
+    "marginLeft",
+    "borderTop",
+    "borderBottom",
+    "borderRadius",
+    "boxShadow",
+    "visibility",
+    "display"
+  ],
+  "selectors": {
+    "nav": {
+      "old": "#navbar",
+      "new": ".site-nav"
+    },
+    "navBrand": {
+      "old": ".navbar-brand",
+      "new": ".site-nav__brand"
+    },
+    "navLink": {
+      "old": "#navbarSupportedContent .nav-item:not(#color-toggle-btn) .nav-link > span",
+      "new": ".site-menu__label"
+    },
+    "schemeIcon": {
+      "old": "#color-toggle-icon",
+      "new": ".site-nav .scheme-toggle__icon"
+    },
+    "masthead": {
+      "old": ".editorial-page #banner",
+      "new": ".masthead"
+    },
+    "mastheadInner": {
+      "old": ".editorial-page .banner-text",
+      "new": ".masthead__inner"
+    },
+    "mastheadTitle": {
+      "old": ".editorial-page .banner-text .h2",
+      "new": ".masthead__title"
+    },
+    "pageBody": {
+      "old": ".editorial-page #board",
+      "new": ".page-body"
+    },
+    "column": {
+      "old": ".editorial-page:not(.post-page) #board > .container",
+      "new": ".content-column"
+    },
+    "postContent": {
+      "old": ".post-content",
+      "new": ".post-content"
+    },
+    "markdown": {
+      "old": ".markdown-body",
+      "new": ".markdown-body"
+    },
+    "paragraph": {
+      "old": ".markdown-body p",
+      "new": ".markdown-body p"
+    },
+    "panel": {
+      "old": ".literary-panel",
+      "new": ".literary-panel"
+    },
+    "verse": {
+      "old": ".literary-block--verse",
+      "new": ".literary-block--verse"
+    },
+    "postNav": {
+      "old": ".post-prevnext",
+      "new": ".post-nav"
+    },
+    "postPrev": {
+      "old": ".post-prev a",
+      "new": ".post-nav__prev"
+    },
+    "postImage": {
+      "old": ".photo-post .markdown-body img",
+      "new": ".photo-post .markdown-body img"
+    },
+    "privateShell": {
+      "old": ".private-post-shell__locked",
+      "new": ".private-post-shell__locked"
+    },
+    "homeCover": {
+      "old": ".home-page #banner",
+      "new": ".home-cover"
+    },
+    "homeMask": {
+      "old": ".home-page #banner .mask",
+      "new": ".home-cover__mask"
+    },
+    "homeSlogan": {
+      "old": "#subtitle",
+      "new": "#subtitle"
+    },
+    "homeMain": {
+      "old": ".home-page main",
+      "new": ".home-main"
+    },
+    "homeGrid": {
+      "old": ".home-page #board > .container > .row > [class*=col-]",
+      "new": ".home-grid"
+    },
+    "card": {
+      "old": ".index-card",
+      "new": ".index-card"
+    },
+    "cardTitle": {
+      "old": ".index-header",
+      "new": ".index-header"
+    },
+    "cardExcerpt": {
+      "old": ".index-excerpt > div",
+      "new": ".index-excerpt > div"
+    },
+    "cardMeta": {
+      "old": ".index-btm",
+      "new": ".index-meta"
+    },
+    "cardMetaIcon": {
+      "old": ".index-btm i",
+      "new": ".index-meta .icon"
+    },
+    "listYear": {
+      "old": ".list-group > .h5",
+      "new": ".listing__year"
+    },
+    "listItem": {
+      "old": ".list-group-item",
+      "new": ".listing__item"
+    },
+    "listDate": {
+      "old": ".list-group-item time",
+      "new": ".listing__date"
+    },
+    "listTitle": {
+      "old": ".list-group-item-title",
+      "new": ".listing__title"
+    },
+    "listSection": {
+      "old": ".archive-design-label",
+      "new": ".listing__section"
+    },
+    "listKind": {
+      "old": ".archive-design-kind",
+      "new": ".listing__kind"
+    },
+    "listSummary": {
+      "old": ".archive-design-summary",
+      "new": ".listing__summary"
+    },
+    "aboutAvatar": {
+      "old": ".about-avatar",
+      "new": ".about-avatar"
+    },
+    "aboutAvatarImg": {
+      "old": ".about-avatar img",
+      "new": ".about-avatar img"
+    },
+    "aboutName": {
+      "old": ".about-name",
+      "new": ".about-name"
+    },
+    "aboutIntro": {
+      "old": ".about-intro",
+      "new": ".about-intro"
+    },
+    "aboutContent": {
+      "old": ".about-content",
+      "new": ".about-content"
+    },
+    "docFirstP": {
+      "old": ".design-document > p:first-child",
+      "new": ".design-document > p:first-child"
+    },
+    "docH2": {
+      "old": ".design-document h2",
+      "new": ".design-document h2"
+    },
+    "docH3": {
+      "old": ".design-document h3",
+      "new": ".design-document h3"
+    },
+    "docTable": {
+      "old": ".design-document table",
+      "new": ".design-document table"
+    },
+    "docTh": {
+      "old": ".design-document th",
+      "new": ".design-document th"
+    },
+    "docPre": {
+      "old": ".design-document pre",
+      "new": ".design-document pre"
+    },
+    "docCode": {
+      "old": ".design-document pre code",
+      "new": ".design-document pre code"
+    },
+    "docInlineCode": {
+      "old": ".design-document p code",
+      "new": ".design-document p code"
+    },
+    "docUl": {
+      "old": ".design-document ul",
+      "new": ".design-document ul"
+    },
+    "docLi": {
+      "old": ".design-document li",
+      "new": ".design-document li"
+    },
+    "galleryToolbar": {
+      "old": ".gallery-toolbar",
+      "new": ".gallery-toolbar"
+    },
+    "galleryMode": {
+      "old": ".gallery-mode",
+      "new": ".gallery-mode"
+    },
+    "galleryBay": {
+      "old": ".gallery-bay",
+      "new": ".gallery-bay"
+    },
+    "galleryImg": {
+      "old": ".gallery-photo img",
+      "new": ".gallery-photo img"
+    },
+    "menu": {
+      "old": "#mobile-grid-menu",
+      "new": ".site-menu"
+    },
+    "menuItem": {
+      "old": "#mobile-grid-menu .mobile-grid-item",
+      "new": ".site-menu__item"
+    },
+    "menuLabel": {
+      "old": "#mobile-grid-menu .mobile-grid-item > span",
+      "new": ".site-menu__label"
+    },
+    "menuSearchIcon": {
+      "old": "#mobile-grid-menu a[href$='#site-search'] .mobile-grid-item > i",
+      "new": ".site-menu__entry--search .icon"
+    },
+    "menuSchemeIcon": {
+      "old": "#mobile-color-toggle-icon",
+      "new": ".site-menu .scheme-toggle__icon"
+    }
+  },
+  "editorialKeys": [
+    "nav",
+    "navBrand",
+    "navLink",
+    "schemeIcon",
+    "masthead",
+    "mastheadInner",
+    "mastheadTitle",
+    "pageBody"
+  ],
+  "pages": [
+    {
+      "key": "home",
+      "path": "/",
+      "waitTyped": true,
+      "keys": [
+        "nav",
+        "navBrand",
+        "navLink",
+        "schemeIcon",
+        "homeCover",
+        "homeMask",
+        "homeSlogan",
+        "homeMain",
+        "homeGrid",
+        "card",
+        "cardTitle",
+        "cardExcerpt",
+        "cardMeta",
+        "cardMetaIcon"
+      ],
+      "shots": [
+        {
+          "name": "top"
+        },
+        {
+          "name": "grid",
+          "scrollTo": "main"
+        }
+      ]
+    },
+    {
+      "key": "home-menu",
+      "path": "/",
+      "viewports": [
+        "mobile"
+      ],
+      "openMenu": true,
+      "keys": [
+        "menu",
+        "menuItem",
+        "menuLabel",
+        "menuSearchIcon",
+        "menuSchemeIcon"
+      ],
+      "shots": [
+        {
+          "name": "menu"
+        }
+      ]
+    },
+    {
+      "key": "post-text",
+      "path": "/2026/09/02/%E8%BF%91%E6%9C%9F%E9%9A%8F%E6%83%B3/",
+      "editorial": true,
+      "keys": [
+        "postContent",
+        "markdown",
+        "paragraph",
+        "panel",
+        "postNav",
+        "postPrev"
+      ],
+      "shots": [
+        {
+          "name": "full",
+          "full": true
+        }
+      ],
+      "markdown": true
+    },
+    {
+      "key": "post-zato",
+      "path": "/2026/08/27/Z.A.T.O-%E9%9A%8F%E6%83%B3/",
+      "editorial": true,
+      "keys": [
+        "postContent",
+        "markdown",
+        "paragraph",
+        "panel",
+        "verse",
+        "postNav",
+        "postPrev"
+      ],
+      "shots": [
+        {
+          "name": "full",
+          "full": true
+        }
+      ],
+      "markdown": true
+    },
+    {
+      "key": "post-story",
+      "path": "/2023/09/26/%E5%B8%83%E6%B6%85%E6%98%9F/",
+      "editorial": true,
+      "keys": [
+        "postContent",
+        "markdown",
+        "paragraph",
+        "postNav",
+        "postPrev"
+      ],
+      "shots": [
+        {
+          "name": "top"
+        },
+        {
+          "name": "end",
+          "scrollTo": "bottom"
+        }
+      ],
+      "markdown": true
+    },
+    {
+      "key": "post-photo",
+      "path": "/2023/11/19/%E7%A7%8B%E4%B9%8B%E7%BA%BD%E7%BA%A6-2023-11/",
+      "editorial": true,
+      "keys": [
+        "postContent",
+        "markdown",
+        "paragraph",
+        "postImage",
+        "postNav"
+      ],
+      "shots": [
+        {
+          "name": "top"
+        },
+        {
+          "name": "second",
+          "scrollTo": 1400
+        }
+      ],
+      "markdown": true
+    },
+    {
+      "key": "post-private",
+      "path": "/2023/07/31/%E5%B0%8F%E8%93%9D%E6%9C%AC/",
+      "editorial": true,
+      "keys": [
+        "postContent",
+        "markdown",
+        "privateShell",
+        "postNav"
+      ],
+      "shots": [
+        {
+          "name": "full",
+          "full": true
+        }
+      ]
+    },
+    {
+      "key": "post-menu",
+      "path": "/2026/09/02/%E8%BF%91%E6%9C%9F%E9%9A%8F%E6%83%B3/",
+      "viewports": [
+        "mobile"
+      ],
+      "openMenu": true,
+      "keys": [
+        "nav",
+        "menu",
+        "menuItem",
+        "menuLabel"
+      ],
+      "shots": [
+        {
+          "name": "menu"
+        }
+      ]
+    },
+    {
+      "key": "archives",
+      "path": "/archives/",
+      "editorial": true,
+      "keys": [
+        "column",
+        "listYear",
+        "listItem",
+        "listDate",
+        "listTitle",
+        "listSection",
+        "listKind",
+        "listSummary"
+      ],
+      "shots": [
+        {
+          "name": "full",
+          "full": true
+        }
+      ]
+    },
+    {
+      "key": "archive-year",
+      "path": "/archives/2023/",
+      "editorial": true,
+      "keys": [
+        "column",
+        "listYear",
+        "listItem",
+        "listDate",
+        "listTitle"
+      ],
+      "shots": [
+        {
+          "name": "full",
+          "full": true
+        }
+      ]
+    },
+    {
+      "key": "tag",
+      "path": "/tags/%E5%85%B6%E4%BB%96/",
+      "editorial": true,
+      "keys": [
+        "column",
+        "listYear",
+        "listItem",
+        "listDate",
+        "listTitle"
+      ],
+      "shots": [
+        {
+          "name": "full",
+          "full": true
+        }
+      ]
+    },
+    {
+      "key": "about",
+      "path": "/about/",
+      "editorial": true,
+      "keys": [
+        "column",
+        "aboutAvatar",
+        "aboutAvatarImg",
+        "aboutName",
+        "aboutIntro",
+        "aboutContent"
+      ],
+      "shots": [
+        {
+          "name": "full",
+          "full": true
+        }
+      ]
+    },
+    {
+      "key": "gallery",
+      "path": "/gallery/",
+      "editorial": true,
+      "compareShots": false,
+      "skipReason": "random selection differs between builds",
+      "keys": [
+        "column",
+        "galleryToolbar",
+        "galleryMode",
+        "mastheadInner"
+      ],
+      "shots": [
+        {
+          "name": "top"
+        },
+        {
+          "name": "bay2",
+          "scrollTo": ".gallery-bay:nth-child(2)"
+        }
+      ]
+    },
+    {
+      "key": "gallery-all",
+      "path": "/gallery/all/",
+      "editorial": true,
+      "shotThreshold": 6,
+      "thresholdReason": "column widened from 1046px to the documented 1160px (decision D14)",
+      "keys": [
+        "column",
+        "galleryToolbar",
+        "galleryMode",
+        "galleryBay",
+        "galleryImg"
+      ],
+      "shots": [
+        {
+          "name": "top"
+        },
+        {
+          "name": "bay3",
+          "scrollTo": ".gallery-bay:nth-child(3)"
+        }
+      ]
+    },
+    {
+      "key": "design",
+      "path": "/design/",
+      "editorial": true,
+      "keys": [
+        "column",
+        "docFirstP",
+        "docH2",
+        "docH3",
+        "docTable",
+        "docTh",
+        "docPre",
+        "docCode",
+        "docInlineCode",
+        "docUl",
+        "docLi"
+      ],
+      "shots": [
+        {
+          "name": "top"
+        },
+        {
+          "name": "table",
+          "scrollTo": ".design-document table"
+        },
+        {
+          "name": "code",
+          "scrollTo": ".design-document pre"
+        }
+      ],
+      "markdown": true,
+      "compareText": false,
+      "textReason": "docs/DESIGN.md itself changed in this migration (sections 2.3, 4.1, 9.1, 11, 12)",
+      "shotThreshold": 2.5,
+      "thresholdReason": "the document text changed; earlier runs with unchanged text were within 0.11%"
+    },
+    {
+      "key": "tags",
+      "path": "/tags/",
+      "newOnly": true,
+      "keys": [
+        "nav",
+        "masthead",
+        "mastheadTitle",
+        "column",
+        "listItem",
+        "listTitle"
+      ],
+      "shots": [
+        {
+          "name": "full",
+          "full": true
+        }
+      ]
+    },
+    {
+      "key": "404",
+      "path": "/404.html",
+      "newOnly": true,
+      "keys": [
+        "nav",
+        "homeCover"
+      ],
+      "shots": [
+        {
+          "name": "top"
+        }
+      ]
+    }
+  ]
+}

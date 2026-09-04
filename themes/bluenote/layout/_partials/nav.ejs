@@ -1,0 +1,47 @@
+<%
+const configured = (theme.nav && theme.nav.menu) || [];
+const menu = configured.length ? configured : [
+  { key: 'home', link: '/' },
+  { key: 'archive', link: '/archives/' },
+  { key: 'about', link: '/about/' },
+  { key: 'search', name: __('search.title'), link: '#site-search', icon: 'search' }
+];
+const brand = theme.brand || config.title;
+const schemeToggle = theme.dark_mode && theme.dark_mode.enable && theme.nav && theme.nav.scheme_toggle;
+-%>
+<nav class="site-nav" id="navbar" aria-label="<%= __('nav.label') %>">
+  <div class="site-nav__inner">
+    <a class="site-nav__brand" href="<%= url_for('/') %>"><%= brand %></a>
+    <button class="site-nav__toggle" type="button" aria-controls="site-menu" aria-expanded="false" aria-label="<%= __('nav.toggle') %>">
+      <span class="site-nav__burger" aria-hidden="true"><span></span><span></span><span></span></span>
+    </button>
+    <ul class="site-menu" id="site-menu">
+<% for (const item of menu) {
+  if (!item || !item.link) continue;
+  const label = item.name || (item.key ? __(item.key + '.menu') : item.link);
+  const anchor = /^#/.test(item.link);
+  const href = anchor ? item.link : url_for(item.link);
+  const classes = ['site-menu__entry'];
+  if (/#site-search$/.test(item.link)) classes.push('site-menu__entry--search');
+  if (item.icon) classes.push('site-menu__entry--icon');
+-%>
+      <li class="<%= classes.join(' ') %>">
+        <a class="site-menu__item" href="<%- href %>"<%- item.target ? ` target="${item.target}" rel="noopener"` : '' %>>
+          <span class="site-menu__label"><%= label %></span>
+<% if (item.icon) { -%>
+          <%- icon(item.icon, 'site-menu__icon') %>
+<% } -%>
+        </a>
+      </li>
+<% } -%>
+<% if (schemeToggle) { -%>
+      <li class="site-menu__entry site-menu__entry--scheme">
+        <button class="scheme-toggle" type="button" aria-label="<%= __('scheme.toggle') %>" data-label-light="<%= __('scheme.light') %>" data-label-dark="<%= __('scheme.dark') %>">
+          <span class="scheme-toggle__label site-menu__label"><%= __('scheme.dark') %></span>
+          <svg class="icon scheme-toggle__icon" aria-hidden="true" focusable="false"><use href="#icon-sun"></use></svg>
+        </button>
+      </li>
+<% } -%>
+    </ul>
+  </div>
+</nav>

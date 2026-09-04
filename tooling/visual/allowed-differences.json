@@ -1,0 +1,532 @@
+[
+  {
+    "reason": "Containers changed nesting; inherited colour/border on wrappers is not visible",
+    "page": "*",
+    "key": "nav",
+    "prop": "display"
+  },
+  {
+    "reason": "as above",
+    "page": "*",
+    "key": "nav",
+    "prop": "color"
+  },
+  {
+    "reason": "as above",
+    "page": "*",
+    "key": "nav",
+    "prop": "borderTop"
+  },
+  {
+    "reason": "as above",
+    "page": "*",
+    "key": "nav",
+    "prop": "borderBottom"
+  },
+  {
+    "reason": "Brand weight moved from an inner <strong> to the link itself",
+    "page": "*",
+    "key": "navBrand",
+    "prop": "fontWeight"
+  },
+  {
+    "reason": "Inline SVG replaces the icon font (decision D2)",
+    "page": "*",
+    "key": "schemeIcon",
+    "prop": "*"
+  },
+  {
+    "reason": "Mobile: the old selector matched the hidden desktop link; the new one matches the menu label",
+    "page": "*",
+    "viewport": "mobile",
+    "key": "navLink",
+    "prop": "*"
+  },
+  {
+    "reason": "Masthead alignment moved from an inner mask to the masthead itself",
+    "page": "*",
+    "key": "masthead",
+    "prop": "display"
+  },
+  {
+    "reason": "as above",
+    "page": "*",
+    "key": "masthead",
+    "prop": "paddingBottom"
+  },
+  {
+    "reason": "Old wrapper font-size had no visible effect (title sets its own size)",
+    "page": "*",
+    "key": "mastheadInner",
+    "prop": "fontSize"
+  },
+  {
+    "reason": "as above",
+    "page": "*",
+    "key": "mastheadInner",
+    "prop": "lineHeight"
+  },
+  {
+    "reason": "The page body no longer sits inside a Bootstrap container",
+    "page": "*",
+    "key": "pageBody",
+    "prop": "x"
+  },
+  {
+    "reason": "as above",
+    "page": "*",
+    "key": "pageBody",
+    "prop": "width"
+  },
+  {
+    "reason": "as above",
+    "page": "*",
+    "key": "pageBody",
+    "prop": "height"
+  },
+  {
+    "reason": "as above",
+    "page": "*",
+    "key": "column",
+    "prop": "height"
+  },
+  {
+    "reason": "as above",
+    "page": "*",
+    "key": "column",
+    "prop": "marginLeft"
+  },
+  {
+    "reason": "as above",
+    "page": "*",
+    "key": "column",
+    "prop": "marginRight"
+  },
+  {
+    "reason": "About: the avatar now lives inside the column",
+    "page": "about",
+    "key": "column",
+    "prop": "y"
+  },
+  {
+    "reason": "as above",
+    "page": "about",
+    "key": "aboutAvatar",
+    "prop": "textAlign"
+  },
+  {
+    "reason": "as above",
+    "page": "about",
+    "key": "aboutAvatar",
+    "prop": "marginLeft"
+  },
+  {
+    "reason": "as above",
+    "page": "about",
+    "key": "aboutAvatar",
+    "prop": "marginRight"
+  },
+  {
+    "reason": "as above",
+    "page": "about",
+    "key": "aboutAvatarImg",
+    "prop": "textAlign"
+  },
+  {
+    "reason": "Article padding moved from percentage padding to a fixed reading column (decision D1)",
+    "pageStartsWith": "post-",
+    "key": "postContent",
+    "prop": "paddingLeft"
+  },
+  {
+    "reason": "as above",
+    "pageStartsWith": "post-",
+    "key": "postContent",
+    "prop": "paddingRight"
+  },
+  {
+    "reason": "as above",
+    "pageStartsWith": "post-",
+    "key": "postContent",
+    "prop": "x"
+  },
+  {
+    "reason": "as above",
+    "pageStartsWith": "post-",
+    "key": "postContent",
+    "prop": "width"
+  },
+  {
+    "reason": "as above",
+    "pageStartsWith": "post-",
+    "key": "postContent",
+    "prop": "height"
+  },
+  {
+    "reason": "Home wrappers: inherited colour/border and the solid fallback behind the cover image",
+    "page": "home",
+    "key": "homeCover",
+    "prop": "color"
+  },
+  {
+    "reason": "as above",
+    "page": "home",
+    "key": "homeCover",
+    "prop": "backgroundColor"
+  },
+  {
+    "reason": "as above",
+    "page": "home",
+    "key": "homeCover",
+    "prop": "borderTop"
+  },
+  {
+    "reason": "as above",
+    "page": "home",
+    "key": "homeCover",
+    "prop": "borderBottom"
+  },
+  {
+    "reason": "as above",
+    "page": "home",
+    "key": "homeMask",
+    "prop": "color"
+  },
+  {
+    "reason": "as above",
+    "page": "home",
+    "key": "homeMask",
+    "prop": "borderTop"
+  },
+  {
+    "reason": "as above",
+    "page": "home",
+    "key": "homeMask",
+    "prop": "borderBottom"
+  },
+  {
+    "reason": "as above",
+    "page": "home",
+    "key": "homeMain",
+    "prop": "color"
+  },
+  {
+    "reason": "as above",
+    "page": "home",
+    "key": "homeMain",
+    "prop": "borderTop"
+  },
+  {
+    "reason": "as above",
+    "page": "home",
+    "key": "homeMain",
+    "prop": "borderBottom"
+  },
+  {
+    "reason": "as above",
+    "page": "home",
+    "key": "homeGrid",
+    "prop": "color"
+  },
+  {
+    "reason": "as above",
+    "page": "home",
+    "key": "homeGrid",
+    "prop": "borderTop"
+  },
+  {
+    "reason": "as above",
+    "page": "home",
+    "key": "homeGrid",
+    "prop": "borderBottom"
+  },
+  {
+    "reason": "Card padding moved from an inner article to the card",
+    "page": "home",
+    "key": "card",
+    "prop": "paddingTop"
+  },
+  {
+    "reason": "as above",
+    "page": "home",
+    "key": "card",
+    "prop": "paddingRight"
+  },
+  {
+    "reason": "as above",
+    "page": "home",
+    "key": "card",
+    "prop": "paddingBottom"
+  },
+  {
+    "reason": "as above",
+    "page": "home",
+    "key": "card",
+    "prop": "paddingLeft"
+  },
+  {
+    "reason": "as above",
+    "page": "home",
+    "key": "card",
+    "prop": "display"
+  },
+  {
+    "reason": "as above",
+    "page": "home",
+    "key": "card",
+    "prop": "color"
+  },
+  {
+    "reason": "as above",
+    "page": "home",
+    "key": "card",
+    "prop": "borderTop"
+  },
+  {
+    "reason": "as above",
+    "page": "home",
+    "key": "card",
+    "prop": "borderBottom"
+  },
+  {
+    "reason": "Inline SVG replaces the icon font (decision D2)",
+    "page": "home",
+    "key": "cardMetaIcon",
+    "prop": "fontFamily"
+  },
+  {
+    "reason": "as above",
+    "page": "home",
+    "key": "cardMetaIcon",
+    "prop": "lineHeight"
+  },
+  {
+    "reason": "Code blocks now use the prose colour instead of Bootstrap's #212529 (legible in dark mode)",
+    "page": "design",
+    "key": "docPre",
+    "prop": "color"
+  },
+  {
+    "reason": "as above",
+    "page": "design",
+    "key": "docCode",
+    "prop": "color"
+  },
+  {
+    "reason": "as above",
+    "page": "design",
+    "key": "docCode",
+    "prop": "borderTop"
+  },
+  {
+    "reason": "as above",
+    "page": "design",
+    "key": "docCode",
+    "prop": "borderBottom"
+  },
+  {
+    "reason": "Fluid's code-widget language label (TEXT) is not part of the design and was dropped",
+    "page": "design",
+    "textIgnore": [
+      "TEXT"
+    ]
+  },
+  {
+    "reason": "Gallery column follows DESIGN.md 8.3 (1160px); the old value was capped by a Bootstrap container",
+    "pageStartsWith": "gallery",
+    "key": "column",
+    "prop": "x"
+  },
+  {
+    "reason": "as above",
+    "pageStartsWith": "gallery",
+    "key": "column",
+    "prop": "width"
+  },
+  {
+    "reason": "as above",
+    "pageStartsWith": "gallery",
+    "key": "galleryToolbar",
+    "prop": "x"
+  },
+  {
+    "reason": "as above",
+    "pageStartsWith": "gallery",
+    "key": "galleryToolbar",
+    "prop": "width"
+  },
+  {
+    "reason": "as above",
+    "pageStartsWith": "gallery",
+    "key": "galleryBay",
+    "prop": "x"
+  },
+  {
+    "reason": "as above",
+    "pageStartsWith": "gallery",
+    "key": "galleryBay",
+    "prop": "width"
+  },
+  {
+    "reason": "as above",
+    "pageStartsWith": "gallery",
+    "key": "galleryImg",
+    "prop": "x"
+  },
+  {
+    "reason": "as above",
+    "pageStartsWith": "gallery",
+    "key": "galleryImg",
+    "prop": "y"
+  },
+  {
+    "reason": "as above",
+    "pageStartsWith": "gallery",
+    "key": "galleryImg",
+    "prop": "width"
+  },
+  {
+    "reason": "as above",
+    "pageStartsWith": "gallery",
+    "key": "galleryImg",
+    "prop": "height"
+  },
+  {
+    "reason": "Random small exhibition differs between builds",
+    "page": "gallery",
+    "key": "galleryBay",
+    "prop": "*"
+  },
+  {
+    "reason": "as above",
+    "page": "gallery",
+    "key": "galleryImg",
+    "prop": "*"
+  },
+  {
+    "reason": "Mobile menu: padding moved from an inner wrapper to the list; inherited line-height/colour is not visible",
+    "page": "*",
+    "key": "menu",
+    "prop": "paddingTop"
+  },
+  {
+    "reason": "Mobile menu: padding moved from an inner wrapper to the list; inherited line-height/colour is not visible",
+    "page": "*",
+    "key": "menu",
+    "prop": "paddingBottom"
+  },
+  {
+    "reason": "Mobile menu: padding moved from an inner wrapper to the list; inherited line-height/colour is not visible",
+    "page": "*",
+    "key": "menu",
+    "prop": "lineHeight"
+  },
+  {
+    "reason": "Mobile menu: padding moved from an inner wrapper to the list; inherited line-height/colour is not visible",
+    "page": "*",
+    "key": "menu",
+    "prop": "color"
+  },
+  {
+    "reason": "Mobile menu: padding moved from an inner wrapper to the list; inherited line-height/colour is not visible",
+    "page": "*",
+    "key": "menu",
+    "prop": "borderTop"
+  },
+  {
+    "reason": "Mobile menu: padding moved from an inner wrapper to the list; inherited line-height/colour is not visible",
+    "page": "*",
+    "key": "menu",
+    "prop": "borderBottom"
+  },
+  {
+    "reason": "Mobile menu item inherits from the nav; the label sets its own metrics",
+    "page": "*",
+    "key": "menuItem",
+    "prop": "lineHeight"
+  },
+  {
+    "reason": "Mobile menu item inherits from the nav; the label sets its own metrics",
+    "page": "*",
+    "key": "menuItem",
+    "prop": "letterSpacing"
+  },
+  {
+    "reason": "Inline SVG replaces the icon font (decision D2)",
+    "page": "*",
+    "key": "menuSearchIcon",
+    "prop": "*"
+  },
+  {
+    "reason": "Inline SVG replaces the icon font (decision D2)",
+    "page": "*",
+    "key": "menuSchemeIcon",
+    "prop": "*"
+  },
+  {
+    "reason": "Article column contains child margins (flow-root)",
+    "page": "*",
+    "key": "postContent",
+    "prop": "display"
+  },
+  {
+    "reason": "Photo post column no longer carries Bootstrap column margins",
+    "page": "post-photo",
+    "key": "postContent",
+    "prop": "marginLeft"
+  },
+  {
+    "reason": "as above",
+    "page": "post-photo",
+    "key": "postContent",
+    "prop": "marginRight"
+  },
+  {
+    "reason": "Photo-post images are no longer wrapped in a fancybox link; inherited colour is not visible",
+    "page": "post-photo",
+    "key": "postImage",
+    "prop": "color"
+  },
+  {
+    "reason": "Photo-post images are no longer wrapped in a fancybox link; inherited colour is not visible",
+    "page": "post-photo",
+    "key": "postImage",
+    "prop": "borderTop"
+  },
+  {
+    "reason": "Photo-post images are no longer wrapped in a fancybox link; inherited colour is not visible",
+    "page": "post-photo",
+    "key": "postImage",
+    "prop": "borderBottom"
+  },
+  {
+    "reason": "Content column contains child margins (flow-root)",
+    "page": "*",
+    "key": "column",
+    "prop": "display"
+  },
+  {
+    "reason": "Gallery column follows DESIGN.md 8.3 (1160px), decision D14",
+    "pageStartsWith": "gallery",
+    "key": "galleryMode",
+    "prop": "x"
+  },
+  {
+    "reason": "DESIGN.md text changed in this migration; later blocks move down",
+    "page": "design",
+    "key": "docPre",
+    "prop": "y"
+  },
+  {
+    "reason": "DESIGN.md text changed in this migration; later blocks move down",
+    "page": "design",
+    "key": "docCode",
+    "prop": "y"
+  },
+  {
+    "reason": "DESIGN.md text changed in this migration; later blocks move down",
+    "page": "design",
+    "key": "docUl",
+    "prop": "y"
+  }
+]

@@ -1,0 +1,55 @@
+/* Editorial masthead: a solid band with the page title resting on its baseline. */
+.masthead {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  height: var(--masthead-height);
+  padding: 0 0 2.65rem;
+  overflow: hidden;
+  background: var(--masthead);
+  cursor: default;
+}
+
+.masthead__inner {
+  width: min(100% - 2rem, var(--column-width));
+  margin: 0;
+  color: var(--masthead-text);
+  text-align: left;
+  overflow-wrap: break-word;
+}
+
+.masthead__title {
+  margin: 0;
+  color: inherit;
+  font-family: var(--font-ui);
+  font-size: clamp(1.72rem, 2.15vw, 2.05rem);
+  font-weight: 400;
+  letter-spacing: 0.035em;
+  line-height: 1.25;
+}
+
+.masthead__inner::after {
+  display: block;
+  width: 2.75rem;
+  height: 1px;
+  margin-top: 0.95rem;
+  background: var(--masthead-line);
+  content: "";
+}
+
+@media (max-width: 767px) {
+  .masthead {
+    height: var(--masthead-height-mobile);
+    padding-bottom: 1.9rem;
+  }
+
+  .masthead__title {
+    font-size: 1.5rem;
+  }
+
+  .masthead__inner::after {
+    width: 2.25rem;
+    margin-top: 0.75rem;
+  }
+}

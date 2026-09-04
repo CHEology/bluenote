@@ -1,0 +1,64 @@
+# Blue Note — site overrides for the bluenote theme.
+# Colour and font tokens use the theme defaults (themes/bluenote/_config.yml);
+# docs/DESIGN.md is the authority for any change to them.
+
+brand: Blue Note
+favicon: /images/theme_fluid_bg/机动警察 和平保卫战 猫 头像.png
+apple_touch_icon: /images/theme_fluid_bg/机动警察 和平保卫战 猫 头像.png
+
+nav:
+  menu:
+    - { name: Home, link: / }
+    - { name: Archives, link: /archives/ }
+    - { name: Gallery, link: /gallery/ }
+    - { name: About, link: /about/ }
+    - { name: Search, link: "#site-search", icon: search }
+  scheme_toggle: true
+
+home:
+  cover: /images/theme_fluid_bg/2021.11-2880.jpg
+  preload_cover: true
+  slogan: Dream to be a tranquil spectator.
+  typing:
+    enable: true
+    speed: 70
+    cursor: "_"
+  cards: 12
+
+post:
+  toc:
+    enable: true
+  prev_next: true
+  show_tags: false
+  photo_layout:
+    enable: true
+    min_images: 3
+
+archive:
+  extra_entries:
+    - { section: SITE, kind: DOC, title: Design Doc, summary: 颜色、字体、排版与组件规范, link: /design/ }
+
+about:
+  avatar: /images/theme_fluid_bg/机动警察 和平保卫战 猫 头像.png
+  name: cheology
+  intro: 语言的边界划定思绪的历史与领地。
+
+tags:
+  enable: true
+categories:
+  enable: false
+page404:
+  enable: true
+  cover: /images/theme_fluid_bg/videoCover-穿梭在暴雨中的武汉杨泗港大桥..1213717019.jpeg
+
+search:
+  enable: true
+  path: /local-search.xml
+
+custom_css:
+  - /css/site.css
+  - /css/design-doc.css
+  - /css/thought-notes.css
+  - /css/private.css
+custom_js:
+  - /js/private.js

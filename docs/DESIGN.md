@@ -64,6 +64,8 @@ Blue Note 是以文字为中心的个人笔记站。视觉应当安静、克制�
 | 卡片悬停 | `#0d202b` |
 | 卡片标题 | `#e9e8e2` |
 | 卡片摘要 | `rgba(220, 221, 216, 0.72)` |
+| 首页导航 | `#2f4154`（深色模式 `#1f3144`） |
+| 首页标语 | `#ffffff`（深色模式 `#d0d0d0`） |
 
 ### 2.4 用色规则
 
@@ -122,7 +124,7 @@ font-family: Charter, Georgia, "Times New Roman",
 
 ### 4.1 正文行宽
 
-- 普通文章的目标视觉行宽为约 `38rem`，即通常每行约 34–40 个汉字；可接受范围为 `36–42rem`。
+- 普通文章的目标视觉行宽为约 `38rem`，即通常每行约 34–40 个汉字；可接受范围为 `36–42rem`。当前实现为固定的 `39.667rem`（634px），不随视口变宽而拉宽。
 - 同一篇普通文章中的段落、标题、列表与行内公式必须共享同一文字列，不得给个别段落任意缩窄、居中或加宽。
 - 页眉文字容器和普通列表页最大宽度为 `760px`，与文章的整体编辑式网格对齐。
 - 独立 Gallery 的图片区最大为 `1160px`；《秋之纽约_2023.11》作为含多张照片的普通博客特例，保持既有 `1080px` 图片区，导语仍回到普通 `760px` 内容列。
@@ -195,7 +197,7 @@ max-width: 48rem;
 margin: 0 auto 2.5rem;
 padding: 1.75rem 1.65rem 1.6rem;
 background: rgba(99, 117, 131, 0.08);
-border: 1px solid var(--line-color);
+border: 1px solid var(--line);
 border-radius: 0;
 box-shadow: none;
 ```
@@ -209,7 +211,7 @@ box-shadow: none;
 ### 6.3 横线
 
 - 普通主题转换优先使用留白；作者希望更明确分隔时，可以使用左对齐的 `4rem × 1px` 短横线。
-- 主题分隔线的标准间距是上 `3.6rem`、下 `2rem`，颜色使用 `--line-color`。
+- 主题分隔线的标准间距是上 `3.6rem`、下 `2rem`，颜色使用 `--line`。
 - 横线不能把下一段暗示成标题，也不能在每个普通段落之间重复使用。
 - 诗歌等独立结构可以使用贯穿内容块的上下边线，但不使用完整方框。
 
@@ -293,7 +295,7 @@ box-shadow: none;
 - 首页的 `home-root`、`home-page` 与内容页、摄影文章的布局类必须在构建时写入 HTML；首屏不得等待页面底部的 JavaScript 才切换到当前设计。
 - 布局所需 CSS 在文档头部正常加载，不用隐藏整个页面或延时显示的方式掩盖旧样式闪现。
 - 首页使用同一封面的 2880px 渐进式 JPEG 预览，并在文档头部预加载；原始封面保留，构图与现有背景展示方式不变。
-- 首页共用的 Bootstrap、图标字体、jQuery、打字效果及进度条依赖由本站托管，保持既有版本，减少首屏对第三方连接的等待。
+- 站点不依赖 Bootstrap、jQuery 或图标字体；打字效果使用主题内置的 typed.js 副本，图标为内联 SVG。所有 CSS、JS、字体与图片由本站托管，任何页面不得请求第三方资源。
 
 ## 10. 响应式与无障碍
 
@@ -310,23 +312,24 @@ box-shadow: none;
 
 样式职责固定如下：
 
-- `source/css/custom.css`：站点级颜色、字体、页眉、普通内容网格和共享页面结构；
-- `source/css/home.css`：仅首页；
-- `source/css/literary-blocks.css`：方框、诗歌、引文等可复用文学内容块；
+- `themes/bluenote/assets/css/`：主题样式，按文件名顺序合并为一个 `css/bluenote.css`：`00-tokens` 结构尺寸（760px 列、39.667rem 文章列、1080px 照片列、1160px 宽版、页眉高度）、`01-base` 基础重置与滚动条、`10-nav` 导航与手机菜单、`20-masthead` 编辑式页眉、`30-home` 首页封面与卡片、`40-editorial` 内容容器、列表、分页、About、404、`50-post` 文章列、目录、上下篇、照片文章、标题锚点、灯箱、`60-markdown` 与 `65-markdown-overrides` 正文排版、`70-panels` 方框、诗歌等可复用文学内容块、`80-highlight` 代码配色、`85-search` 搜索面板、`90-print` 打印；
+- `themes/bluenote/_config.yml` 与站点 `_config.bluenote.yml`：颜色与字体 token（`--paper`、`--text`、`--prose`、`--heading`、`--muted`、`--link`、`--link-hover`、`--line`、`--masthead`、`--masthead-text`、`--accent`、`--panel`、`--home-*` 等）及主题开关；颜色值以本文第 2 节为准，主题默认值即 Blue Note 的取值；
+- `themes/bluenote/layout/`：全部页面模板；首页、内容页与摄影文章的布局类在构建时写入 `<body>`；
+- `themes/bluenote/scripts/`：主题构建期脚本——布局类、标题锚点、图注（文件名 alt 不生成图注）、原生懒加载、CSS/JS 合并与内容版本号；第三方副本来源见 `docs/VENDORED-ASSETS.md`；
+- `source/css/site.css`：仅 Blue Note 专属的例外（《小蓝本》解锁后的首个代码块按通用方框呈现）；
+- `source/css/design-doc.css`：Design Doc 页面；
 - `source/css/thought-notes.css`：随想中的公式排列和主题分隔，不重定义通用方框；
-- `source/css/private.css`：私密文章界面；
-- `source/css/search.css`：搜索界面；
+- `source/css/private.css`、`source/js/private.js`：私密文章界面；
 - `source/css/gallery.css`、`source/js/gallery.js`：独立 Gallery 排列和大图观看，仅 Gallery 页面加载；
 - `source/_data/gallery.json`：Gallery 的照片清单与作者顺序，不从博客文章推断收录；
 - `scripts/gallery-page.js`：生成独立 Gallery 页面，不生成照片文章；
-- `_config.fluid.yml`：主题开关与自定义资源加载。
-- `scripts/design-document.js`：从本文件生成公开 Design Doc 页面；不得另存第二份网页正文。
-- `scripts/editorial-layout.js`：在构建时确定首页、内容页与摄影文章的布局；
-- `scripts/page-loading.js`：封面预加载、图标依赖本地化及生成资源的内容版本号；第三方副本来源见 `docs/VENDORED-ASSETS.md`。
+- `scripts/design-document.js`：从本文件生成公开 Design Doc 页面；不得另存第二份网页正文；
+- `scripts/private-links.js`：在构建时标记指向私密文章的链接。
 
 实现规则：
 
 - 共享视觉值优先使用现有 CSS 变量，不在文章 Markdown 中写内联颜色、字号、边框或间距。
+- 主题 CSS 不使用 `!important`（仅 `[hidden]`、`.markdown-body` 首尾元素外边距归零与打印样式三处例外）；主题不得包含 Blue Note 专属的内容、路径或文案，站点专属规则放在 `source/css`。
 - 新文章默认不需要专属 CSS；确有特殊结构时，先判断能否使用已有组件。
 - 新增专属类只能解决该内容的内部布局，不能复制或覆盖通用组件外观。
 - HTML 引用的本站 CSS 与 JavaScript 由构建流程按最终文件内容自动附加版本号；内容改变才更新版本，不再手工维护日期查询参数。
@@ -337,7 +340,7 @@ box-shadow: none;
 
 每次视觉修改至少完成：
 
-1. 运行 `npm run check`；
+1. 运行 `npm run check`；涉及版式或主题的修改另运行 `npm run visual:capture && npm run visual:compare`，与 `tooling/visual/baseline/` 中的基线截图、计算样式和正文文本对比（基线用 `npm run visual:baseline` 从上一个已验收的构建生成，有意的差异登记在 `tooling/visual/allowed-differences.json`）；
 2. 检查文章页桌面与手机宽度；
 3. 检查浅色与深色模式；
 4. 检查一段同时含中文、英文、数字、斜体和链接的正文；

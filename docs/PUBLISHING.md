@@ -82,7 +82,7 @@ Markdown 中使用以站点根目录为基准的路径：
 npm run gallery:prepare -- --input "/本机/原图目录" --year 2026 --slug gallery-name
 ```
 
-命令保留一份与交付图相同像素尺寸、比例和完整画面的高清主文件，并生成长边 `800px`、`1600px` 与 `2880px` 的 sRGB 渐进式预览 JPEG。所有发布文件删除 EXIF 元数据，但高清主文件不进行有损缩小。Markdown 只引用不带尺寸后缀的高清主文件；构建时自动加入响应式 `srcset`、固有宽高、首图优先加载和其余图片懒加载。图集文章的 Front Matter 设为 `lazyload: false`，避免主题旧式懒加载与响应式图片冲突。
+命令保留一份与交付图相同像素尺寸、比例和完整画面的高清主文件，并生成长边 `800px`、`1600px` 与 `2880px` 的 sRGB 渐进式预览 JPEG。所有发布文件删除 EXIF 元数据，但高清主文件不进行有损缩小。Markdown 只引用不带尺寸后缀的高清主文件；构建时自动加入响应式 `srcset`、固有宽高、首图优先加载和其余图片原生懒加载。图集文章不需要额外的 Front Matter 字段。
 
 更新已经存在的图集时，在确认原图目录与目标图集无误后添加 `--force`；工具会先完整生成新文件，再替换旧目录：
 
@@ -165,10 +165,19 @@ npm run check
 
 - 主页、404、About、归档和搜索索引存在，已停用的 Links 页面不会生成；
 - 所有预期文章成功生成；
-- 首页能找到文章标题并载入自定义样式；
+- 首页能找到文章标题并载入主题与站点样式；
+- 任何页面都不请求第三方 CSS、JavaScript 或字体，也不再引用旧主题依赖；
 - HTML 中指向 `/bluenote/` 的本地资源均存在。
 
 命令失败时不得发布。先修复首个明确错误，再重新运行完整检查。
+
+涉及版式或主题的修改，另运行视觉对比：
+
+```bash
+npm run visual:capture && npm run visual:compare
+```
+
+对比结果写入 `tooling/visual/report.md`，差异图在 `tooling/visual/diff/`。基线由 `npm run visual:baseline` 从上一个已验收的构建生成（截图不入库）；有意的差异记录在 `tooling/visual/allowed-differences.json`。
 
 ## 6. 提交和自动发布
 
@@ -182,7 +191,7 @@ git diff --check
 提交并推送：
 
 ```bash
-git add source scaffolds tooling docs _config.yml _config.fluid.yml package.json package-lock.json .github README.md
+git add source scaffolds tooling docs themes _config.yml _config.bluenote.yml package.json package-lock.json .github README.md AGENTS.md
 git commit -m "Publish <文章标题>"
 git push origin master
 ```
