@@ -682,3 +682,8 @@ custom_js:
 
 - 把 `github-markdown-css` 精简为主题实际用到的规则（D5 第二步）。
 - 把主题发布到 npm registry（目前通过 git 标签安装已足够）。
+
+**线上验证（2026-09-04）**
+
+- GitHub Actions 运行 33918068824（build、deploy）成功；线上 `css/bluenote.css` 的内容版本与本地构建一致（`00221f7a90f4`）。
+- 首页、文章、归档、Gallery、标签、About、Design Doc 均返回 200，页面中只有本站 CSS/JS 引用，没有 Bootstrap、jQuery、iconfont 或 Fluid 脚本；不存在的地址返回编辑式 404。
