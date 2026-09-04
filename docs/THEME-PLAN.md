@@ -672,9 +672,13 @@ custom_js:
 - `typed.js` 若在构造后立刻 `stop()` 再 `start()`，会启动第二个退格循环；主题改为直接构造。
 - Hexo 对主题配置里的数组按下标合并，因此主题默认菜单必须为空数组，回退菜单写在模板中。
 
-**待作者决定的后续**
+**后续处理（2026-09-04 同日）**
 
-1. 合并 `theme/bluenote` 到 `master` 并推送，观察 Actions 与线上。
-2. 是否把 `themes/bluenote` 拆为独立仓库或发布 npm（D12 第二步）。
-3. 是否把 `github-markdown-css` 精简为主题实际用到的规则（D5 第二步）。
-4. 私密对话框与搜索面板目前只跟随系统深色、不跟随手动切换（与迁移前一致），可作为下一项改进。
+1. 私密对话框与搜索面板已改为同时响应系统深色与手动选择（`:root:not([data-scheme="light"])` 加 `:root[data-scheme="dark"]` 双轨），在三种组合下验证通过。
+2. 主题已用 `git subtree split` 拆为独立仓库 <https://github.com/CHEology/hexo-theme-bluenote>（保留两次提交的历史，标签 `v1.0.0`）。博客删除 `themes/bluenote`，改以 npm 依赖 `hexo-theme-bluenote`（`git+https://…#v1.0.0`）引入；`themes/` 已加入 `.gitignore` 供本地调试用的克隆使用。拆分后 `npm ci`（禁用 ssh、只走 https）、`npm run check`、视觉对比均通过，生成结果与拆分前一致。
+3. `theme/bluenote` 已合并到 `master` 并推送；线上验证记录见本节末尾。
+
+**仍开放的选项**
+
+- 把 `github-markdown-css` 精简为主题实际用到的规则（D5 第二步）。
+- 把主题发布到 npm registry（目前通过 git 标签安装已足够）。
