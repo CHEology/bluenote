@@ -130,6 +130,8 @@ font-family: Charter, Georgia, "Times New Roman",
 - 独立 Gallery 的图片区最大为 `1160px`；《秋之纽约_2023.11》作为含多张照片的普通博客特例，保持既有 `1080px` 图片区，导语仍回到普通 `760px` 内容列。
 - 超宽图片、表格或代码可以暂时突破正文行宽；前后正文必须恢复到统一文字列。
 
+- 摄影文章由 Front Matter 的 `photo_layout: true` 明确选择，不按图片数量推断；普通长文即使包含多张图，也保持统一正文列、已有目录与作者提供的图注。
+
 ### 4.2 行距与段距
 
 - 正文行距统一为 `1.78`，约 30px；不得逐段调整。
@@ -287,13 +289,16 @@ box-shadow: none;
 - 首页卡片保持方形、无圆角、低阴影；一张卡只表达标题、摘要和必要元信息。
 - 导航以文字为主，不恢复装饰性分类图标。
 - 动效仅用于短暂反馈，常规时长为 `160–260ms`；正文、方框和公式不做入场动画。
-- 现有首页标语打字效果是特例，不扩展到文章标题或正文。
+- 首页标语在桌面保留打字效果，手机（≤767px）直接显示完整文字；无 JavaScript 时也显示完整标语。动效不扩展到文章标题或正文。
 - 归档、搜索、标签和 About 共享编辑式字体、颜色和 `760px` 内容网格。
+
+- Gallery 的视图切换与重抽按钮使用 `--text`，当前视图用底线区分；不使用对比度不足的次要文字色作为操作文字。
 
 ### 9.1 首屏与加载
 
 - 首页的 `home-root`、`home-page` 与内容页、摄影文章的布局类必须在构建时写入 HTML；首屏不得等待页面底部的 JavaScript 才切换到当前设计。
 - 布局所需 CSS 在文档头部正常加载，不用隐藏整个页面或延时显示的方式掩盖旧样式闪现。
+- 网站小图标使用 64px 副本，Apple touch icon 使用 180px 副本，About 头像使用 256px 副本；原图保留，不让小图标请求原分辨率文件。
 - 首页使用同一封面的 2880px 渐进式 JPEG 预览，并在文档头部预加载；原始封面保留，构图与现有背景展示方式不变。
 - 站点不依赖 Bootstrap、jQuery 或图标字体；打字效果使用主题内置的 typed.js 副本，图标为内联 SVG。所有 CSS、JS、字体与图片由本站托管，任何页面不得请求第三方资源。
 
@@ -304,6 +309,8 @@ box-shadow: none;
 - 窄屏文章左右内边距：常规手机 `1rem`，较宽移动设备可用 `2rem`。
 - 页面不得出现无意的横向滚动；公式组在窄屏应缩小间距或改为纵向，但不得截断。
 - 键盘焦点必须可见；hover 反馈必须有对应的 focus 状态。
+- 手机菜单关闭时不可获得焦点；搜索打开时背景不可操作，Tab 在弹窗内部循环，关闭后恢复触发入口的焦点。搜索须区分加载中、无结果与加载失败，并提供重试。
+- 文章通过主题的 `post.language` 或逐页 `content_language` 声明正文语言；界面语言仍由站点 `language` 决定。
 - 遵守 `prefers-reduced-motion`，关闭非必要过渡和动画。
 - 深色模式必须与浅色模式同时验收；不得只在一种模式中可读。
 - 语义 HTML 优先于视觉模拟：段落用段落、标题用标题、引文用引文、主题分隔用 `hr`。
@@ -320,9 +327,9 @@ box-shadow: none;
 - `source/css/design-doc.css`：Design Doc 页面；
 - `source/css/thought-notes.css`：随想中的公式排列和主题分隔，不重定义通用方框；
 - `source/css/private.css`、`source/js/private.js`：私密文章界面；
-- `source/css/gallery.css`、`source/js/gallery.js`：独立 Gallery 排列和大图观看，仅 Gallery 页面加载；
+- 主题的 `modules/gallery/`：可选 Gallery 的排列、抽取、验证与大图观看，默认关闭；启用后仅 Gallery 页面加载 CSS/JS。网站通过 `gallery.language` 与 `gallery.labels` 设置界面文案；
 - `source/_data/gallery.json`：Gallery 的照片清单与作者顺序，不从博客文章推断收录；
-- `scripts/gallery-page.js`：生成独立 Gallery 页面，不生成照片文章；
+- 主题的 `scripts/gallery.js`：从站点清单生成独立 Gallery 页面，不生成照片文章；
 - `scripts/design-document.js`：从本文件生成公开 Design Doc 页面；不得另存第二份网页正文；
 - `scripts/private-links.js`：在构建时标记指向私密文章的链接。
 

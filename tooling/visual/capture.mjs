@@ -96,7 +96,10 @@ for (const pageConfig of config.pages) {
       const styles = await page.evaluate(({ selectorMap, props }) => {
         const out = {};
         for (const [key, selector] of Object.entries(selectorMap)) {
-          const element = document.querySelector(selector);
+          let element = document.querySelector(selector);
+          if (key === 'homeSlogan' && element && getComputedStyle(element).display === 'none') {
+            element = document.querySelector('.home-slogan-static') || element;
+          }
           if (!element) { out[key] = null; continue; }
           const computed = getComputedStyle(element);
           const rect = element.getBoundingClientRect();

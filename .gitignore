@@ -11,3 +11,6 @@ npm-debug.log*
 
 # Local theme checkouts (the theme is an npm dependency; a checkout here takes precedence for development)
 themes/
+
+# Local browser/performance evidence
+tooling/audit/

@@ -1,7 +1,8 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
-const { mountGallery, drawSelection } = require('../source/js/gallery.js');
-const { pickSelection, composeSelection } = require('../source/js/gallery-selection.js');
+const { themeFile } = require('./lib/theme.cjs');
+const { mountGallery, drawSelection } = require(themeFile('modules/gallery/assets/gallery.js'));
+const { pickSelection, composeSelection } = require(themeFile('modules/gallery/assets/gallery-selection.js'));
 const { validateGallery, renderGallery, curatedRows } = require('./lib/gallery.cjs');
 
 function photo(id = 'photo-001', width = 6000, height = 4000) {
@@ -18,7 +19,7 @@ function photo(id = 'photo-001', width = 6000, height = 4000) {
 test('empty Gallery is intentional and contains no sample photos or inactive controls', () => {
   assert.deepEqual(validateGallery({ version: 1, photos: [] }), []);
   const html = renderGallery([], '/bluenote/');
-  assert.match(html, /尚未收录照片。/);
+  assert.match(html, /No photographs yet./);
   assert.doesNotMatch(html, /<img|<dialog|data-gallery-open|DSC_/);
 });
 
@@ -145,12 +146,12 @@ test('small-exhibition HTML loads no unselected photos and safely embeds its mod
 });
 
 test('single portraits fill their centered row without a second flex shrink', () => {
-  const css = require('node:fs').readFileSync(require('node:path').join(__dirname, '../source/css/gallery.css'), 'utf8');
+  const css = require('node:fs').readFileSync(themeFile('modules/gallery/assets/gallery.css'), 'utf8');
   assert.match(css, /\.gallery-row > \.gallery-item:only-child\s*\{\s*flex: 1 1 0%;/);
 });
 
 test('every spread receives a full-height centered exhibition bay', () => {
-  const css = require('node:fs').readFileSync(require('node:path').join(__dirname, '../source/css/gallery.css'), 'utf8');
+  const css = require('node:fs').readFileSync(themeFile('modules/gallery/assets/gallery.css'), 'utf8');
   const bay = css.match(/\.gallery-bay\s*\{([^}]*)\}/)[1];
   assert.match(bay, /display: flex/);
   assert.match(bay, /align-items: center/);
@@ -160,7 +161,7 @@ test('every spread receives a full-height centered exhibition bay', () => {
 });
 
 test('loading feedback cannot paint a dark strip across a visible photograph', () => {
-  const css = require('node:fs').readFileSync(require('node:path').join(__dirname, '../source/css/gallery.css'), 'utf8');
+  const css = require('node:fs').readFileSync(themeFile('modules/gallery/assets/gallery.css'), 'utf8');
   const loading = css.match(/\.has-preview \.gallery-viewer-status\s*\{([^}]*)\}/)[1];
   const failure = css.match(/\.has-preview\.has-error \.gallery-viewer-status\s*\{([^}]*)\}/)[1];
   assert.match(loading, /width: max-content/);
@@ -431,7 +432,7 @@ test('opening is on-demand; switching ignores stale load events; errors offer th
   stale.emit('load');
   assert.equal(f.control('zoom').hidden, true);
   f.image().emit('error');
-  assert.equal(f.control('message').textContent, '原图加载失败。');
+  assert.equal(f.control('message').textContent, 'Original image could not load.');
   assert.equal(f.control('original').href, '/full/1.jpg');
   assert.equal(f.control('original').hidden, false);
   f.control('next').emit('click');

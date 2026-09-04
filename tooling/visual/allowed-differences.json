@@ -528,5 +528,38 @@
     "page": "design",
     "key": "docUl",
     "prop": "y"
+  },
+  {
+    "page": "home",
+    "viewport": "mobile",
+    "shot": "top",
+    "maxDiffPercent": 1,
+    "reason": "Mobile now renders the complete unchanged slogan immediately, without the typing cursor."
+  },
+  {
+    "page": "home",
+    "viewport": "mobile",
+    "key": "homeSlogan",
+    "prop": "x",
+    "reason": "The static mobile slogan is centred without the desktop typing cursor."
+  },
+  {
+    "page": "home",
+    "viewport": "mobile",
+    "key": "homeSlogan",
+    "prop": "width",
+    "reason": "The static mobile slogan is centred without the desktop typing cursor."
+  },
+  {
+    "page": "gallery-all",
+    "key": "galleryMode",
+    "prop": "color",
+    "reason": "Gallery controls use --text for readable contrast; the active view keeps its underline (DESIGN §9)."
+  },
+  {
+    "page": "gallery-all",
+    "key": "galleryMode",
+    "prop": "borderTop",
+    "reason": "Gallery controls use --text for readable contrast; the active view keeps its underline (DESIGN §9)."
   }
 ]

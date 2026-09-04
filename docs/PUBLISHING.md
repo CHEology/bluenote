@@ -82,7 +82,7 @@ Markdown 中使用以站点根目录为基准的路径：
 npm run gallery:prepare -- --input "/本机/原图目录" --year 2026 --slug gallery-name
 ```
 
-命令保留一份与交付图相同像素尺寸、比例和完整画面的高清主文件，并生成长边 `800px`、`1600px` 与 `2880px` 的 sRGB 渐进式预览 JPEG。所有发布文件删除 EXIF 元数据，但高清主文件不进行有损缩小。Markdown 只引用不带尺寸后缀的高清主文件；构建时自动加入响应式 `srcset`、固有宽高、首图优先加载和其余图片原生懒加载。图集文章不需要额外的 Front Matter 字段。
+命令保留一份与交付图相同像素尺寸、比例和完整画面的高清主文件，并生成长边 `800px`、`1600px` 与 `2880px` 的 sRGB 渐进式预览 JPEG。所有发布文件删除 EXIF 元数据，但高清主文件不进行有损缩小。Markdown 只引用不带尺寸后缀的高清主文件；构建时自动加入响应式 `srcset`、固有宽高、首图优先加载和其余图片原生懒加载。图集文章通过 Front Matter 的 `photo_layout: true` 明确选择摄影版式；普通长文不根据图片数量自动切换。
 
 更新已经存在的图集时，在确认原图目录与目标图集无误后添加 `--force`；工具会先完整生成新文件，再替换旧目录：
 
@@ -278,7 +278,7 @@ npm run private:restore
 主题 [`hexo-theme-bluenote`](https://github.com/CHEology/hexo-theme-bluenote) 是独立仓库，博客在 `package.json` 中以 git 标签锁定版本：
 
 ```json
-"hexo-theme-bluenote": "git+https://github.com/CHEology/hexo-theme-bluenote.git#v1.0.0"
+"hexo-theme-bluenote": "github:CHEology/hexo-theme-bluenote#v1.1.0"
 ```
 
 升级主题：
@@ -290,3 +290,7 @@ npm run visual:capture && npm run visual:compare
 ```
 
 修改主题：在主题仓库中改动、验证并打新标签，再按上面的步骤更新博客。需要边改边看时，把主题仓库克隆到 `themes/bluenote`（该目录已被 `.gitignore` 忽略，且优先于 `node_modules` 中的副本），完成后删除该目录或确认它与已发布标签一致，以免本地构建与 Actions 不一致。
+
+主题仓库用 `npm test` 和 `npm run test:browser` 做本地验证；暂不增加主题 CI。博客的完整浏览器检查用 `npm run audit:browser`，覆盖 Chromium 和 WebKit、五种屏宽、明暗模式下的全部生成页面，报告在 `tooling/audit/browser.json`。浏览器仿真不能代替真机和线上真实访问数据。
+
+Gallery 模块由主题提供，在 `_config.bluenote.yml` 中设置 `gallery.enable: true` 后读取本站的 `source/_data/gallery.json`；主题示例站使用独立的原创几何图形，不带入本站照片或文章。
