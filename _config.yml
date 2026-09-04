@@ -1,5 +1,5 @@
 # Blue Note / Hexo site configuration
-# Theme-specific settings live in _config.fluid.yml.
+# Theme-specific settings live in _config.bluenote.yml.
 
 title: Blue Note
 subtitle: Dream to be a tranquil spectator.

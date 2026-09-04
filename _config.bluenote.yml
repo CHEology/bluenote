@@ -3,8 +3,8 @@
 # docs/DESIGN.md is the authority for any change to them.
 
 brand: Blue Note
-favicon: /images/theme_fluid_bg/机动警察 和平保卫战 猫 头像.png
-apple_touch_icon: /images/theme_fluid_bg/机动警察 和平保卫战 猫 头像.png
+favicon: /images/favicon-64.png
+apple_touch_icon: /images/apple-touch-icon.png
 
 nav:
   menu:
@@ -21,25 +21,26 @@ home:
   slogan: Dream to be a tranquil spectator.
   typing:
     enable: true
+    mobile: false
     speed: 70
     cursor: "_"
   cards: 12
 
 post:
+  language: zh-CN
   toc:
     enable: true
   prev_next: true
   show_tags: false
   photo_layout:
     enable: true
-    min_images: 3
 
 archive:
   extra_entries:
     - { section: SITE, kind: DOC, title: Design Doc, summary: 颜色、字体、排版与组件规范, link: /design/ }
 
 about:
-  avatar: /images/theme_fluid_bg/机动警察 和平保卫战 猫 头像.png
+  avatar: /images/avatar-256.png
   name: cheology
   intro: 语言的边界划定思绪的历史与领地。
 
@@ -54,6 +55,7 @@ page404:
 search:
   enable: true
   path: /local-search.xml
+  private_manifest: /private/posts.public.json
 
 custom_css:
   - /css/site.css
@@ -62,3 +64,15 @@ custom_css:
   - /css/private.css
 custom_js:
   - /js/private.js
+
+gallery:
+  enable: true
+  language: zh-CN
+  labels:
+    view: Gallery view
+    few: A few
+    all: All photographs
+    reshuffle: Reshuffle
+    view_all: View all photographs
+    selection: "{count} photographs. New selection."
+    reshuffle_error: Unable to reshuffle. Please try again.

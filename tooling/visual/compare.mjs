@@ -98,7 +98,9 @@ for (const pageConfig of config.pages) {
         if (pageConfig.compareShots === false) { shotRows.push(`| ${file} | skipped (${pageConfig.skipReason || 'not comparable'}) | | |`); continue; }
         if (!existsSync(join(currentRoot, file))) { shotRows.push(`| ${file} | missing current | | |`); failures++; continue; }
         const result = compareShot(file);
-        const limit = pageConfig.shotThreshold !== undefined ? Number(pageConfig.shotThreshold) : threshold;
+        const shotName = file.replace(id + '--', '').replace(/\.png$/, '');
+        const accepted = allowed.find(rule => rule.page === pageConfig.key && rule.viewport === viewportName && rule.shot === shotName);
+        const limit = accepted ? accepted.maxDiffPercent : (pageConfig.shotThreshold !== undefined ? Number(pageConfig.shotThreshold) : threshold);
         const ok = result.ratio <= limit;
         if (!ok) failures++;
         shotRows.push(`| ${file} | ${result.ratio.toFixed(3)}% | ${result.sizeA} → ${result.sizeB} | ${ok ? 'ok' : 'CHECK'} |`);
