@@ -1,7 +1,7 @@
 # Blue Note 设计规范
 
 状态：生效中  
-最后更新：2026-09-04\
+最后更新：2026-09-05\
 适用范围：Blue Note 的首页、文章页、Gallery、归档、搜索、About、私密文章及后续新增页面
 
 本文是 Blue Note 视觉、排版与页面组件的主要设计规范。涉及网页外观的新增或修改必须遵守本文；若实现与本文不一致，应先更新规范并说明理由，再修改代码。发布流程见 [`docs/PUBLISHING.md`](./PUBLISHING.md)，作者文字的硬性边界同时受根目录 [`AGENTS.md`](../AGENTS.md) 约束。
@@ -129,6 +129,7 @@ font-family: Charter, Georgia, "Times New Roman",
 - 页眉文字容器和普通列表页最大宽度为 `760px`，与文章的整体编辑式网格对齐。
 - 独立 Gallery 的图片区最大为 `1160px`；《秋之纽约_2023.11》作为含多张照片的普通博客特例，保持既有 `1080px` 图片区，导语仍回到普通 `760px` 内容列。
 - 超宽图片、表格或代码可以暂时突破正文行宽；前后正文必须恢复到统一文字列。
+- 文末上一篇／下一篇导航独立按普通文章的 `39.667rem` 阅读列居中，不随摄影文章或宽图拉宽；保留两侧箭头各 `0.35rem` 的既有外伸量。窄屏随内容区收窄，上下外边距统一为 `1rem`。
 
 - 摄影文章由 Front Matter 的 `photo_layout: true` 明确选择，不按图片数量推断；普通长文即使包含多张图，也保持统一正文列、已有目录与作者提供的图注。
 
@@ -167,6 +168,15 @@ font-family: Charter, Georgia, "Times New Roman",
 可以不经额外确认处理的内容仅限：明确错字、机械性的中英文空格与标点、忠实的公式排版，以及作者已经明确要求的视觉调整。如果事实或措辞有疑问，保留原文并向作者提出。
 
 视觉层级必须来自原稿已有语义。无法判断时，默认使用普通段落。
+
+### 5.1 文章末尾的关联文字入口
+
+- 作者明确选择的文章可以通过 Front Matter 的 `companion` 链接到另一篇相关文字或 AI 回应。入口只出现一次，位于 `.markdown-body` 之后、标签与上一篇／下一篇导航之前；页眉和正文开头不添加切换条。
+- 入口与正文左边缘对齐，上方留 `2.5rem`，用宽 `4rem`、高 `1px` 的 `--line` 短线隔开。线下留 `0.75rem`，入口下方留 `1.5rem`。
+- 使用既有衬线字体、`0.875rem` 字号、`1.6` 行距与 `--link` 色；悬停使用 `--link-hover` 和细下划线。文字尾部可以使用一个正常字号的 `↗`。链接的触控高度至少 `44px`。
+- 不使用填色按钮、方框、胶囊、固定悬浮入口、页内 tab 或当前版本比较。它是普通的同标签页链接，无脚本也能跳转；键盘焦点沿用主题样式。
+- URL、可见标签和无障碍描述由文章元数据提供，通用主题不写入 AI Lab 域名或本站标题。未配置及私密文章不输出该组件。
+- 本站首批选择《布涅星》《Z.A.T.O. 随想》《0902 - 随想》《修图》，链接文案为 `AI Lab · 回应`；AI Lab 页面的末级地址使用对应原文标题，包括中文、空格与原有标点。
 
 ## 6. 方框与特殊内容块
 
@@ -321,7 +331,7 @@ box-shadow: none;
 
 - 主题仓库 [`hexo-theme-bluenote`](https://github.com/CHEology/hexo-theme-bluenote)（本地安装在 `node_modules/hexo-theme-bluenote/`）的 `assets/css/`：主题样式，按文件名顺序合并为一个 `css/bluenote.css`：`00-tokens` 结构尺寸（760px 列、39.667rem 文章列、1080px 照片列、1160px 宽版、页眉高度）、`01-base` 基础重置与滚动条、`10-nav` 导航与手机菜单、`20-masthead` 编辑式页眉、`30-home` 首页封面与卡片、`40-editorial` 内容容器、列表、分页、About、404、`50-post` 文章列、目录、上下篇、照片文章、标题锚点、灯箱、`60-markdown` 与 `65-markdown-overrides` 正文排版、`70-panels` 方框、诗歌等可复用文学内容块、`80-highlight` 代码配色、`85-search` 搜索面板、`90-print` 打印；
 - 主题的 `_config.yml` 与站点 `_config.bluenote.yml`：颜色与字体 token（`--paper`、`--text`、`--prose`、`--heading`、`--muted`、`--link`、`--link-hover`、`--line`、`--masthead`、`--masthead-text`、`--accent`、`--panel`、`--home-*` 等）及主题开关；颜色值以本文第 2 节为准，主题默认值即 Blue Note 的取值；
-- 主题的 `layout/`：全部页面模板；首页、内容页与摄影文章的布局类在构建时写入 `<body>`；
+- 主题的 `layout/`：全部页面模板；首页、内容页与摄影文章的布局类在构建时写入 `<body>`；`_partials/post-companion.ejs` 负责正文末尾的可选关联文字入口，样式归 `assets/css/50-post.css`；
 - 主题的 `scripts/`：主题构建期脚本——布局类、标题锚点、图注（文件名 alt 不生成图注）、原生懒加载、CSS/JS 合并与内容版本号；第三方副本来源见 `docs/VENDORED-ASSETS.md`；
 - `source/css/site.css`：仅 Blue Note 专属的例外（《小蓝本》解锁后的首个代码块按通用方框呈现）；
 - `source/css/design-doc.css`：Design Doc 页面；

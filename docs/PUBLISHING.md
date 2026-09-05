@@ -278,13 +278,13 @@ npm run private:restore
 主题 [`hexo-theme-bluenote`](https://github.com/CHEology/hexo-theme-bluenote) 是独立仓库，博客在 `package.json` 中以 git 标签锁定版本：
 
 ```json
-"hexo-theme-bluenote": "github:CHEology/hexo-theme-bluenote#v1.1.0"
+"hexo-theme-bluenote": "github:CHEology/hexo-theme-bluenote#v1.2.0"
 ```
 
 升级主题：
 
 ```bash
-npm install --save "git+https://github.com/CHEology/hexo-theme-bluenote.git#v1.1.0"
+npm install --save "git+https://github.com/CHEology/hexo-theme-bluenote.git#v1.2.0"
 npm run check
 npm run visual:capture && npm run visual:compare
 ```
@@ -293,4 +293,23 @@ npm run visual:capture && npm run visual:compare
 
 主题仓库用 `npm test` 和 `npm run test:browser` 做本地验证；暂不增加主题 CI。博客的完整浏览器检查用 `npm run audit:browser`，覆盖 Chromium 和 WebKit、五种屏宽、明暗模式下的全部生成页面，报告在 `tooling/audit/browser.json`。浏览器仿真不能代替真机和线上真实访问数据。
 
+本地主题 checkout 中不要保留另一个示例站安装的旧主题副本（例如 `themes/bluenote/example/node_modules/hexo-theme-bluenote`）：Hexo 的模板扫描可能把嵌套模板当成当前主题文件。示例站应在独立临时目录运行；发布验收必须使用锁定标签的 npm 安装版本。
+
 Gallery 模块由主题提供，在 `_config.bluenote.yml` 中设置 `gallery.enable: true` 后读取本站的 `source/_data/gallery.json`；主题示例站使用独立的原创几何图形，不带入本站照片或文章。
+
+## 11. AI Lab 回应与文末链接
+
+目录及对应页在独立 AI Lab 仓库维护（`writing/entries.json`），首批原文为《布涅星》《Z.A.T.O. 随想》《0902 - 随想》《修图》。回应地址的末级目录必须沿用原文标题，不换成拼音。结构与状态详见 `docs/AI-LAB-LINK-PLAN.md`。
+
+先在 AI Lab 建立页面并验证可访问，然后仅在明确选择的原文 Front Matter 添加：
+
+```yaml
+companion:
+  url: https://cheology.github.io/ai-lab/writing/bluenote/修图/
+  label: AI Lab · 回应
+  aria_label: 前往 AI Lab 查看《修图》的回应页
+```
+
+需要主题 1.2.0 或更新版本。入口只在正文末尾出现；不在原文开头插入导航，不修改正文或已有发布日期。待写页面明确告知尚未发布回应，避免填写虚构内容和署名；真正完成后在 AI Lab 填写正文、实际署名和发布日期，双方 URL 不变。
+
+发布前分别检查两个站点，并逐对验证原文→回应→原文，确认原文正文未变。先发布 AI Lab，再发布 Blue Note 的入口。发布后验证两个 Actions 与线上响应、CSS 版本及普通链接。使用原生链接，切换不依赖 JavaScript、数据库或跨站 API。
