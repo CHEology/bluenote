@@ -278,13 +278,13 @@ npm run private:restore
 主题 [`hexo-theme-bluenote`](https://github.com/CHEology/hexo-theme-bluenote) 是独立仓库，博客在 `package.json` 中以 git 标签锁定版本：
 
 ```json
-"hexo-theme-bluenote": "github:CHEology/hexo-theme-bluenote#v1.2.0"
+"hexo-theme-bluenote": "github:CHEology/hexo-theme-bluenote#v1.2.2"
 ```
 
 升级主题：
 
 ```bash
-npm install --save "git+https://github.com/CHEology/hexo-theme-bluenote.git#v1.2.0"
+npm install --save "git+https://github.com/CHEology/hexo-theme-bluenote.git#v1.2.2"
 npm run check
 npm run visual:capture && npm run visual:compare
 ```
@@ -306,10 +306,10 @@ Gallery 模块由主题提供，在 `_config.bluenote.yml` 中设置 `gallery.en
 ```yaml
 companion:
   url: https://cheology.github.io/ai-lab/writing/bluenote/修图/
-  label: AI Lab · 回应
-  aria_label: 前往 AI Lab 查看《修图》的回应页
+  label: Read the ai-written reflection
+  aria_label: 前往 ai-lab 查看《修图》的回应页
 ```
 
-需要主题 1.2.0 或更新版本。入口只在正文末尾出现；不在原文开头插入导航，不修改正文或已有发布日期。待写页面明确告知尚未发布回应，避免填写虚构内容和署名；真正完成后在 AI Lab 填写正文和实际发布日期，署名仅在已提供时填写，双方 URL 不变。作者已于 2026-09-05 授权后续请求的站点与内容更新检查通过后直接上线，不再询问发布确认，也不因缺少署名暂停发布；明确要求仅预览或保留草稿时除外。
+需要主题 1.2.2 或更新版本。入口为正文末尾的狭长横框，文案左对齐、右上箭头靠右，字号与下方上一篇／下一篇一致；不在原文开头插入导航，不修改正文或已有发布日期。待写页面明确告知尚未发布回应，避免填写虚构内容和署名；真正完成后在 AI Lab 填写正文和实际发布日期，署名仅在已提供时填写，双方 URL 不变。作者已于 2026-09-05 授权后续请求的站点与内容更新检查通过后直接上线，不再询问发布确认，也不因缺少署名暂停发布；明确要求仅预览或保留草稿时除外。
 
 发布前分别检查两个站点，并逐对验证原文→回应→原文，确认原文正文未变。先发布 AI Lab，再发布 Blue Note 的入口。发布后验证两个 Actions 与线上响应、CSS 版本及普通链接。使用原生链接，切换不依赖 JavaScript、数据库或跨站 API。

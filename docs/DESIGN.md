@@ -171,12 +171,14 @@ font-family: Charter, Georgia, "Times New Roman",
 
 ### 5.1 文章末尾的关联文字入口
 
-- 作者明确选择的文章可以通过 Front Matter 的 `companion` 链接到另一篇相关文字或 AI 回应。入口只出现一次，位于 `.markdown-body` 之后、标签与上一篇／下一篇导航之前；页眉和正文开头不添加切换条。
-- 入口与正文左边缘对齐，上方留 `2.5rem`，用宽 `4rem`、高 `1px` 的 `--line` 短线隔开。线下留 `0.75rem`，入口下方留 `1.5rem`。
-- 使用既有衬线字体、`0.875rem` 字号、`1.6` 行距与 `--link` 色；悬停使用 `--link-hover` 和细下划线。文字尾部可以使用一个正常字号的 `↗`。链接的触控高度至少 `44px`。
-- 不使用填色按钮、方框、胶囊、固定悬浮入口、页内 tab 或当前版本比较。它是普通的同标签页链接，无脚本也能跳转；键盘焦点沿用主题样式。
-- URL、可见标签和无障碍描述由文章元数据提供，通用主题不写入 AI Lab 域名或本站标题。未配置及私密文章不输出该组件。
-- 本站首批选择《布涅星》《Z.A.T.O. 随想》《0902 - 随想》《修图》，链接文案为 `AI Lab · 回应`；AI Lab 页面的末级地址使用对应原文标题，包括中文、空格与原有标点。
+- 作者明确选择的文章通过 Front Matter 的 `companion` 链接到相关文字或 AI 回应。按最新确认，入口为正文与可选标签之后、上一篇／下一篇之前的狭长横框；不再使用三列合并导航。页眉和正文开头不添加入口。
+- 横框与普通正文列等宽，最大为 `--reading-width`（39.667rem），居中；上方留 `2.5rem`，下方留 `1.5rem`。普通上下篇导航继续沿用 §4.1 的宽度和两侧箭头留白。
+- 整框是一条原生 HTTPS 链接，最小高度 `3.5rem`（56px）、内边距 `0.75rem 1rem`，文字左对齐、右上箭头靠右，间距 `1rem`。窄屏必要时文字自然换行、框高随内容增长，箭头不收缩，不缩小字号。
+- 沿用文学框的 `--panel` 低饱和透明底色与 `1px solid var(--line)` 边线；直角、无阴影。它是独立导航控件，使用自己的紧凑高度，不套用正文 `.literary-panel` 的内容型内边距，也不改变既有文学框。
+- 文字沿用衬线字体，字号与上下篇导航一致，均为 `0.9rem`（14.4px），继承行距；文字与箭头使用现有的较深链接色 `--link-hover`，保证在 `--panel` 底色上的小字对比度。箭头为主题 SVG 图标 `arrow-up-right`，大小 1rem，保持明确的外站跳转含义。
+- 悬停仅将边线加深至 `--link`、文字与箭头变为 `--heading`，并给文案细下划线；键盘焦点沿用主题样式。不加动效、渐变、胶囊或额外说明。
+- 入口同标签页打开，无 JavaScript 也可跳转。URL、文案和无障碍描述由元数据提供，主题不写死 ai-lab 域名；未配置及私密文章不显示横框。上下篇导航保持原有双列结构和既有行为。
+- 首批四篇为《布涅星》《Z.A.T.O. 随想》《0902 - 随想》《修图》。文案为 `Read the ai-written reflection`，单数 reflection 指对应的一篇回应；末级地址沿用原文标题，包括中文、空格与标点。
 
 ## 6. 方框与特殊内容块
 
@@ -331,7 +333,7 @@ box-shadow: none;
 
 - 主题仓库 [`hexo-theme-bluenote`](https://github.com/CHEology/hexo-theme-bluenote)（本地安装在 `node_modules/hexo-theme-bluenote/`）的 `assets/css/`：主题样式，按文件名顺序合并为一个 `css/bluenote.css`：`00-tokens` 结构尺寸（760px 列、39.667rem 文章列、1080px 照片列、1160px 宽版、页眉高度）、`01-base` 基础重置与滚动条、`10-nav` 导航与手机菜单、`20-masthead` 编辑式页眉、`30-home` 首页封面与卡片、`40-editorial` 内容容器、列表、分页、About、404、`50-post` 文章列、目录、上下篇、照片文章、标题锚点、灯箱、`60-markdown` 与 `65-markdown-overrides` 正文排版、`70-panels` 方框、诗歌等可复用文学内容块、`80-highlight` 代码配色、`85-search` 搜索面板、`90-print` 打印；
 - 主题的 `_config.yml` 与站点 `_config.bluenote.yml`：颜色与字体 token（`--paper`、`--text`、`--prose`、`--heading`、`--muted`、`--link`、`--link-hover`、`--line`、`--masthead`、`--masthead-text`、`--accent`、`--panel`、`--home-*` 等）及主题开关；颜色值以本文第 2 节为准，主题默认值即 Blue Note 的取值；
-- 主题的 `layout/`：全部页面模板；首页、内容页与摄影文章的布局类在构建时写入 `<body>`；`_partials/post-companion.ejs` 负责正文末尾的可选关联文字入口，样式归 `assets/css/50-post.css`；
+- 主题的 `layout/`：全部页面模板；首页、内容页与摄影文章的布局类在构建时写入 `<body>`；`_partials/post-companion.ejs` 负责正文之后、上下篇导航之前的可选关联阅读横框，样式归 `assets/css/50-post.css`；
 - 主题的 `scripts/`：主题构建期脚本——布局类、标题锚点、图注（文件名 alt 不生成图注）、原生懒加载、CSS/JS 合并与内容版本号；第三方副本来源见 `docs/VENDORED-ASSETS.md`；
 - `source/css/site.css`：仅 Blue Note 专属的例外（《小蓝本》解锁后的首个代码块按通用方框呈现）；
 - `source/css/design-doc.css`：Design Doc 页面；

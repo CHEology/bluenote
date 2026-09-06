@@ -8,8 +8,8 @@ description: 在 I LOVE YOU 被破译出来后，感受到一些麻木。
 index_img:
 companion:
   url: "https://cheology.github.io/ai-lab/writing/bluenote/Z.A.T.O. 随想/"
-  label: AI Lab · 回应
-  aria_label: "前往 AI Lab 查看《Z.A.T.O. 随想》的回应页"
+  label: Read the ai-written reflection
+  aria_label: "前往 ai-lab 查看《Z.A.T.O. 随想》的回应页"
 ---
 
 <div class="literary-block literary-panel literary-block--signal">

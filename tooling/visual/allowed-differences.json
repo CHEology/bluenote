@@ -1,81 +1,17 @@
 [
   {
-    "reason": "DESIGN §5.1: verified end-of-article companion link and resulting footer shift; authored text is unchanged.",
+    "reason": "DESIGN §5.1: approved reading-width companion strip replaces the short-rule link; body and adjacent navigation remain unchanged.",
     "page": "post-story",
     "viewport": "mobile",
     "shot": "end",
-    "maxDiffPercent": 7.2
-  },
-  {
-    "reason": "DESIGN §5.1: verified end-of-article companion link and resulting footer shift; authored text is unchanged.",
-    "page": "post-story",
-    "viewport": "desktop",
-    "shot": "end",
-    "maxDiffPercent": 3.2
-  },
-  {
-    "reason": "DESIGN §5.1: verified end-of-article companion link and resulting footer shift; authored text is unchanged.",
-    "page": "post-zato",
-    "viewport": "mobile",
-    "shot": "full",
     "maxDiffPercent": 4.4
   },
   {
-    "reason": "DESIGN §5.1: verified end-of-article companion link and resulting footer shift; authored text is unchanged.",
-    "page": "post-zato",
-    "viewport": "desktop",
-    "shot": "full",
-    "maxDiffPercent": 5.1
-  },
-  {
-    "reason": "DESIGN §5.1: verified end-of-article companion link and resulting footer shift; authored text is unchanged.",
-    "page": "post-text",
-    "viewport": "mobile",
-    "shot": "full",
-    "maxDiffPercent": 3.3
-  },
-  {
-    "reason": "DESIGN §5.1: verified end-of-article companion link and resulting footer shift; authored text is unchanged.",
-    "page": "post-text",
-    "viewport": "desktop",
-    "shot": "full",
-    "maxDiffPercent": 4.3
-  },
-  {
-    "reason": "DESIGN §5.1: the approved article-end AI Lab link adds 89px after the authored text; previous/next navigation moves down accordingly.",
+    "reason": "DESIGN §5.1: approved reading-width companion strip replaces the short-rule link; body and adjacent navigation remain unchanged.",
     "page": "post-story",
-    "key": "postPrev",
-    "prop": "y"
-  },
-  {
-    "reason": "DESIGN §5.1: the approved article-end AI Lab link adds 89px after the authored text; previous/next navigation moves down accordingly.",
-    "page": "post-story",
-    "key": "postNav",
-    "prop": "y"
-  },
-  {
-    "reason": "DESIGN §5.1: the approved article-end AI Lab link adds 89px after the authored text; previous/next navigation moves down accordingly.",
-    "page": "post-zato",
-    "key": "postPrev",
-    "prop": "y"
-  },
-  {
-    "reason": "DESIGN §5.1: the approved article-end AI Lab link adds 89px after the authored text; previous/next navigation moves down accordingly.",
-    "page": "post-zato",
-    "key": "postNav",
-    "prop": "y"
-  },
-  {
-    "reason": "DESIGN §5.1: the approved article-end AI Lab link adds 89px after the authored text; previous/next navigation moves down accordingly.",
-    "page": "post-text",
-    "key": "postPrev",
-    "prop": "y"
-  },
-  {
-    "reason": "DESIGN §5.1: the approved article-end AI Lab link adds 89px after the authored text; previous/next navigation moves down accordingly.",
-    "page": "post-text",
-    "key": "postNav",
-    "prop": "y"
+    "viewport": "desktop",
+    "shot": "end",
+    "maxDiffPercent": 1.9
   },
   {
     "reason": "DESIGN §4.1: photo-post navigation is centred on the ordinary reading column, independently of the wider photographs.",
