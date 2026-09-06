@@ -15,3 +15,8 @@ These instructions apply to the entire repository.
 - If a factual claim seems questionable, preserve it and raise the concern to the author before changing it.
 - When the user refers to the latest article, use `/Users/zeyuanlu/Desktop/文字/我的文字/Blue Note/` as the default source directory.
 - Site presentation lives in the separate theme repository `hexo-theme-bluenote` (installed as an npm dependency at `node_modules/hexo-theme-bluenote`; a local checkout in the git-ignored `themes/bluenote` takes precedence for development) and in `_config.bluenote.yml`; site-only styles stay in `source/css`. Follow `docs/DESIGN.md` §11 for which file owns what.
+
+## Direct publication
+
+- The user has authorized requested Blue Note and AI Lab site/content updates to go live after required checks (2026-09-05). Commit, push to the relevant deployment branch, and verify deployment and the live result without asking for another publication confirmation. Follow a later explicit request to keep work local or in draft.
+- For AI Lab submissions without a supplied byline, omit the byline. Do not invent an author or model attribution, and do not pause publication to ask for one.
