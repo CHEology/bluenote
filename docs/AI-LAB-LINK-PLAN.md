@@ -1,14 +1,14 @@
 # Blue Note × AI Lab：文字目录与文末回应入口
 
 日期：2026-09-05  
-状态：按作者最后一次修订执行；本文件取代先前页首切换方案。  
+状态：按作者最后一次修订执行；本文件以作者最新确认的文末横框为准。
 设计权威：Blue Note 的 `docs/DESIGN.md` 与 AI Lab 的 `docs/DESIGN.md`。
 
 ## 作者确认的要求
 
 1. AI Lab 总目录采用参考图中的文件夹层级、缩进和连接线，统一为本站蓝灰视觉。
 2. 回应页末级 URL 沿用原标题，包含中文、空格和标点，不使用拼音。
-3. Blue Note 入口只出现在文章结尾，低调、与正文排版协调；开头不放切换条。
+3. Blue Note 入口采用最新确认的狭长横框，文案为 `Read the ai-written reflection` 并保留右上箭头；字号与下方上一篇／下一篇一致。
 4. 先实现目录、阅读页和往返链接；本轮不创作回应正文。
 
 ## 两站结构
@@ -28,9 +28,9 @@ AI Lab 文字目录位于 `/ai-lab/writing/`。内容页使用同一标识的小
 
 ## Blue Note 文末入口
 
-四篇文章在 `.markdown-body` 之后、上一篇／下一篇之前显示一次 `AI Lab · 回应 ↗`。与正文左对齐，上方留 2.5rem、4rem 短细线，文字 14px、行距 1.6，触控高度至少 44px。沿用 `--link` 和 `--line` 等主题变量，不使用按钮底色、方框、页内 tab 或悬浮工具。
+四篇文章在正文与可选标签之后、上下篇导航之前显示一个与正文等宽的狭长横框。整框可点击，文案 `Read the ai-written reflection` 左对齐，右上箭头靠右。最小高度 56px，内边距 12px 16px，间隔 16px；上方留 40px，下方留 24px。沿用主题 `--panel` 底色与 `--line` 细边线，直角、无阴影；字体与上下篇导航同为 0.9rem（14.4px）。窄屏文字可自然换行，不缩字号。
 
-它是普通 HTTPS 链接，在同一标签页进入对应回应。AI Lab 页末 `Blue Note · 原文 ↗` 指回对应原文。没有关联记录的文章和私密文章不显示入口。四篇原文只增加 companion 元数据，正文、段落、日期和已有 URL 保持不变。
+reflection 为单数，指对应的一篇回应。链接在同一标签页进入 ai-lab；其页末原文链接保持不变。上下篇继续使用原有双列导航；不增加三列样式或私密链接专项改动。未配置及私密文章不显示横框。原文正文、段落、日期和已有 URL 保持不变。
 
 ## 内容状态
 
@@ -51,9 +51,9 @@ AI Lab：
 - `scripts/validate.mjs`、`test/writing.test.mjs`：产物路径／资源和内容状态检查。
 - `docs/ADDING-WRITING.md`：后续填写回应的方法。
 
-独立主题 `hexo-theme-bluenote` 1.2.0：
+独立主题 `hexo-theme-bluenote` 1.2.2：
 
-- `layout/_partials/post-companion.ejs` 与 `layout/post.ejs`：仅在正文后输出可选关系链接。
+- `layout/post.ejs` 与 `layout/_partials/post-companion.ejs`：在正文后、上下篇导航前输出关联阅读横框；图标归主题共用图标库。
 - `scripts/companion.js`：读取通用 companion 元数据并验证 HTTPS 目标，自动排除私密文章。
 - `assets/css/50-post.css`：文末入口样式。
 - `test/companion.test.cjs`：关联内容位置、标签转义、URL 与未配置／私密文章检查。
