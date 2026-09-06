@@ -25,6 +25,7 @@ home:
     speed: 70
     cursor: "_"
   cards: 12
+  layout: split
 
 post:
   language: zh-CN
