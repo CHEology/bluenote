@@ -73,7 +73,7 @@ gallery:
     view: Gallery view
     few: A few
     all: All photographs
-    reshuffle: Reshuffle
+    reshuffle: Shuffle
     view_all: View all photographs
     selection: "{count} photographs. New selection."
-    reshuffle_error: Unable to reshuffle. Please try again.
+    reshuffle_error: Unable to shuffle. Please try again.
