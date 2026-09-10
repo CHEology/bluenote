@@ -308,7 +308,7 @@ box-shadow: none;
 
 - Gallery 的视图切换与重抽按钮使用 `--text`，当前视图用底线区分；不使用对比度不足的次要文字色作为操作文字。
 
-- About 简介下方提供唯一可见的 `RSS` 订阅入口，复用主题既有 `.about-links` 与 `.about-links__item`：居中、0.9rem 衬线文字，使用 `--link-hover` 保证小字对比度；悬停或键盘焦点时使用 `--heading` 与细下划线。不加图标、按钮底色、边框或额外说明。其余页面只提供不可见的订阅自动发现元数据，不增加导航入口。
+- About 的唯一可见 `RSS` 入口位于页面底部，与头像及简介分开。上方用 `1px solid var(--line)` 细横线分隔，线宽不超过普通阅读列；线下留 1rem，再居中放置 16px 单色细线 RSS 图标与 0.875rem 衬线文字，间距 0.5rem。链接使用 `--link-hover`，悬停或键盘焦点时使用 `--heading` 与细下划线，键盘焦点另有细轮廓；触控高度至少 44px。页底保留正文外边距与页面各 2rem 留白，短页通过弹性布局靠近视窗底部，内容增加时自然下移，不使用固定定位。不加按钮底色、卡片或说明文字。其余页面只提供不可见的订阅自动发现元数据，不增加导航入口。
 
 ### 9.1 首屏与加载
 
@@ -339,7 +339,7 @@ box-shadow: none;
 - 主题的 `_config.yml` 与站点 `_config.bluenote.yml`：颜色与字体 token（`--paper`、`--text`、`--prose`、`--heading`、`--muted`、`--link`、`--link-hover`、`--line`、`--masthead`、`--masthead-text`、`--accent`、`--panel`、`--home-*` 等）及主题开关；颜色值以本文第 2 节为准，主题默认值即 Blue Note 的取值；
 - 主题的 `layout/`：全部页面模板；首页、内容页与摄影文章的布局类在构建时写入 `<body>`；`_partials/post-companion.ejs` 负责正文之后、上下篇导航之前的可选关联阅读横框，样式归 `assets/css/50-post.css`；
 - 主题的 `scripts/`：主题构建期脚本——布局类、标题锚点、图注（文件名 alt 不生成图注）、原生懒加载、CSS/JS 合并与内容版本号；第三方副本来源见 `docs/VENDORED-ASSETS.md`；
-- `source/css/site.css`：仅 Blue Note 专属的例外（《小蓝本》解锁后的首个代码块按通用方框呈现，以及 About 的 RSS 链接颜色与焦点反馈）；
+- `source/css/site.css`：仅 Blue Note 专属的例外（《小蓝本》解锁后的首个代码块按通用方框呈现，以及 About 页底 RSS 的布局、分隔线、图标和交互反馈）；
 - `source/css/design-doc.css`：Design Doc 页面；
 - `source/css/thought-notes.css`：随想中的公式排列和主题分隔，不重定义通用方框；
 - `source/css/private.css`、`source/js/private.js`：私密文章界面；
