@@ -1,5 +1,11 @@
 [
   {
+    "reason": "DESIGN §9: the requested RSS text link below the About introduction moves the empty content area down by one link row.",
+    "page": "about",
+    "key": "aboutContent",
+    "prop": "y"
+  },
+  {
     "reason": "DESIGN §5.1: approved reading-width companion strip replaces the short-rule link; body and adjacent navigation remain unchanged.",
     "page": "post-story",
     "viewport": "mobile",
