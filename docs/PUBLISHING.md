@@ -316,7 +316,7 @@ companion:
 
 ## 12. RSS 订阅
 
-`/bluenote/rss.xml` 提供 RSS 2.0，About 简介下方的 `RSS` 文字链接为唯一可见入口。订阅只包含公开文章的原有标题、发布日期、description 摘要和原文链接；不读取全文、私密档案或本机私密源文件，不收录 Gallery、About、Design Doc 等页面。
+`/bluenote/rss.xml` 提供 RSS 2.0，About 页面底部细横线下的图标与 `RSS` 文字链接为唯一可见入口。订阅只包含公开文章的原有标题、发布日期、description 摘要和原文链接；不读取全文、私密档案或本机私密源文件，不收录 Gallery、About、Design Doc 等页面。
 
 生成器同时检查私密标记、私密 ID 和公开私密清单中的文件名／网址；清单缺失或损坏时构建失败。私密文章的新增、修改、删除均不改变 RSS 内容；文件没有构建时间、私密更新时间或私密条目占位，文章 GUID 使用稳定原文网址。`npm run check` 包含 RSS 隔离与内容稳定性测试。
 

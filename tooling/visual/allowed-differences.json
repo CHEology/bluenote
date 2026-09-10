@@ -1,9 +1,39 @@
 [
   {
-    "reason": "DESIGN §9: the requested RSS text link below the About introduction moves the empty content area down by one link row.",
+    "reason": "DESIGN §9: move RSS from the introduction into the requested page-bottom footer.",
     "page": "about",
     "key": "aboutContent",
     "prop": "y"
+  },
+  {
+    "reason": "DESIGN §9: the About RSS footer uses normal-flow flex layout, a separating rule and page-bottom spacing.",
+    "page": "about",
+    "key": "pageBody",
+    "prop": "paddingBottom"
+  },
+  {
+    "reason": "DESIGN §9: the About RSS footer uses normal-flow flex layout, a separating rule and page-bottom spacing.",
+    "page": "about",
+    "key": "pageBody",
+    "prop": "display"
+  },
+  {
+    "reason": "DESIGN §9: the About RSS footer uses normal-flow flex layout, a separating rule and page-bottom spacing.",
+    "page": "about",
+    "key": "aboutContent",
+    "prop": "height"
+  },
+  {
+    "reason": "DESIGN §9: the About RSS footer uses normal-flow flex layout, a separating rule and page-bottom spacing.",
+    "page": "about",
+    "key": "aboutContent",
+    "prop": "paddingTop"
+  },
+  {
+    "reason": "DESIGN §9: the About RSS footer uses normal-flow flex layout, a separating rule and page-bottom spacing.",
+    "page": "about",
+    "key": "aboutContent",
+    "prop": "marginTop"
   },
   {
     "reason": "DESIGN §5.1: approved reading-width companion strip replaces the short-rule link; body and adjacent navigation remain unchanged.",

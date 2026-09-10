@@ -1,15 +1,67 @@
 /* Blue Note site-specific rules that do not belong to the theme. */
 
-/* The About subscription link uses the existing darker link token for small text. */
-.about-page .about-links__item[href="/bluenote/rss.xml"] {
-  color: var(--link-hover);
+/* About's subscription footer rests at the page bottom, in normal document flow. */
+.about-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100svh;
+  height: auto;
 }
 
-.about-page .about-links__item[href="/bluenote/rss.xml"]:hover,
-.about-page .about-links__item[href="/bluenote/rss.xml"]:focus-visible {
+.about-page .page-body {
+  display: flex;
+  flex: 1;
+  padding-bottom: 2rem;
+}
+
+.about-page .content-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.about-page .about-content {
+  margin-top: auto;
+  padding-top: 4rem;
+}
+
+.about-rss {
+  width: 100%;
+  max-width: var(--reading-width);
+  margin: 0 auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
+  text-align: center;
+}
+
+.about-page .about-rss__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  color: var(--link-hover);
+  font-family: var(--font-prose);
+  font-size: 0.875rem;
+  line-height: 1.5;
+  letter-spacing: 0.055em;
+}
+
+.about-rss__icon {
+  flex: none;
+  width: 1rem;
+  height: 1rem;
+}
+
+.about-page .about-rss__link:hover,
+.about-page .about-rss__link:focus-visible {
   color: var(--heading);
   text-decoration: underline;
   text-underline-offset: 0.2em;
+}
+
+.about-page .about-rss__link:focus-visible {
+  outline: 1px solid currentColor;
+  outline-offset: 4px;
 }
 
 /* The encrypted 小蓝本 source predates literary blocks and renders its opening as code;
