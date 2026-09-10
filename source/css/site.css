@@ -1,5 +1,17 @@
 /* Blue Note site-specific rules that do not belong to the theme. */
 
+/* The About subscription link uses the existing darker link token for small text. */
+.about-page .about-links__item[href="/bluenote/rss.xml"] {
+  color: var(--link-hover);
+}
+
+.about-page .about-links__item[href="/bluenote/rss.xml"]:hover,
+.about-page .about-links__item[href="/bluenote/rss.xml"]:focus-visible {
+  color: var(--heading);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
 /* The encrypted 小蓝本 source predates literary blocks and renders its opening as code;
    present that first block as the shared literary panel. */
 .post-page .markdown-body [data-private-post-id="eeddfa74ef298a0c"] .private-post-shell__content > pre:first-child {

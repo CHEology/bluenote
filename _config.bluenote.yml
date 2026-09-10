@@ -44,6 +44,8 @@ about:
   avatar: /images/avatar-256.png
   name: cheology
   intro: 语言的边界划定思绪的历史与领地。
+  links:
+    - { name: RSS, link: /bluenote/rss.xml }
 
 tags:
   enable: true
