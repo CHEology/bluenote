@@ -630,8 +630,8 @@
     "page": "home",
     "viewport": "desktop",
     "shot": "grid",
-    "maxDiffPercent": 6,
-    "reason": "DESIGN §9 (2026-09-16): navigation scrolls out of view. Verified pixel differences are confined to the top 80px; the rest of each screenshot is unchanged."
+    "maxDiffPercent": 8.5,
+    "reason": "DESIGN §9: wider equal desktop card gaps and symmetric vertical padding; the complete twelve-position stage stays centred and fills the left six slots first."
   },
   {
     "page": "home",
@@ -730,5 +730,117 @@
     "key": "nav",
     "prop": "paddingBottom",
     "reason": "DESIGN §9 (2026-09-16): open mobile navigation keeps its original 66px height and 8px padding; the former solid-state shrinking is removed."
+  },
+  {
+    "page": "home",
+    "viewport": "desktop",
+    "key": "homeMain",
+    "prop": "paddingTop",
+    "reason": "DESIGN §9: wider equal desktop card gaps and symmetric vertical padding; the complete twelve-position stage stays centred and fills the left six slots first."
+  },
+  {
+    "page": "home",
+    "viewport": "desktop",
+    "key": "homeMain",
+    "prop": "paddingBottom",
+    "reason": "DESIGN §9: wider equal desktop card gaps and symmetric vertical padding; the complete twelve-position stage stays centred and fills the left six slots first."
+  },
+  {
+    "page": "home",
+    "viewport": "desktop",
+    "key": "homeGrid",
+    "prop": "x",
+    "reason": "DESIGN §9: wider equal desktop card gaps and symmetric vertical padding; the complete twelve-position stage stays centred and fills the left six slots first."
+  },
+  {
+    "page": "home",
+    "viewport": "desktop",
+    "key": "homeGrid",
+    "prop": "y",
+    "reason": "DESIGN §9: wider equal desktop card gaps and symmetric vertical padding; the complete twelve-position stage stays centred and fills the left six slots first."
+  },
+  {
+    "page": "home",
+    "viewport": "desktop",
+    "key": "homeGrid",
+    "prop": "width",
+    "reason": "DESIGN §9: wider equal desktop card gaps and symmetric vertical padding; the complete twelve-position stage stays centred and fills the left six slots first."
+  },
+  {
+    "page": "home",
+    "viewport": "desktop",
+    "key": "homeGrid",
+    "prop": "height",
+    "reason": "DESIGN §9: wider equal desktop card gaps and symmetric vertical padding; the complete twelve-position stage stays centred and fills the left six slots first."
+  },
+  {
+    "page": "home",
+    "viewport": "desktop",
+    "key": "card",
+    "prop": "x",
+    "reason": "DESIGN §9: wider equal desktop card gaps and symmetric vertical padding; the complete twelve-position stage stays centred and fills the left six slots first."
+  },
+  {
+    "page": "home",
+    "viewport": "desktop",
+    "key": "card",
+    "prop": "y",
+    "reason": "DESIGN §9: wider equal desktop card gaps and symmetric vertical padding; the complete twelve-position stage stays centred and fills the left six slots first."
+  },
+  {
+    "page": "home",
+    "viewport": "desktop",
+    "key": "cardTitle",
+    "prop": "x",
+    "reason": "DESIGN §9: wider equal desktop card gaps and symmetric vertical padding; the complete twelve-position stage stays centred and fills the left six slots first."
+  },
+  {
+    "page": "home",
+    "viewport": "desktop",
+    "key": "cardTitle",
+    "prop": "y",
+    "reason": "DESIGN §9: wider equal desktop card gaps and symmetric vertical padding; the complete twelve-position stage stays centred and fills the left six slots first."
+  },
+  {
+    "page": "home",
+    "viewport": "desktop",
+    "key": "cardExcerpt",
+    "prop": "x",
+    "reason": "DESIGN §9: wider equal desktop card gaps and symmetric vertical padding; the complete twelve-position stage stays centred and fills the left six slots first."
+  },
+  {
+    "page": "home",
+    "viewport": "desktop",
+    "key": "cardExcerpt",
+    "prop": "y",
+    "reason": "DESIGN §9: wider equal desktop card gaps and symmetric vertical padding; the complete twelve-position stage stays centred and fills the left six slots first."
+  },
+  {
+    "page": "home",
+    "viewport": "desktop",
+    "key": "cardMeta",
+    "prop": "x",
+    "reason": "DESIGN §9: wider equal desktop card gaps and symmetric vertical padding; the complete twelve-position stage stays centred and fills the left six slots first."
+  },
+  {
+    "page": "home",
+    "viewport": "desktop",
+    "key": "cardMeta",
+    "prop": "y",
+    "reason": "DESIGN §9: wider equal desktop card gaps and symmetric vertical padding; the complete twelve-position stage stays centred and fills the left six slots first."
+  },
+  {
+    "page": "home",
+    "viewport": "desktop",
+    "key": "cardMetaIcon",
+    "prop": "x",
+    "reason": "DESIGN §9: wider equal desktop card gaps and symmetric vertical padding; the complete twelve-position stage stays centred and fills the left six slots first."
+  },
+  {
+    "page": "home",
+    "viewport": "desktop",
+    "key": "cardMetaIcon",
+    "prop": "y",
+    "reason": "DESIGN §9: wider equal desktop card gaps and symmetric vertical padding; the complete twelve-position stage stays centred and fills the left six slots first."
   }
 ]
