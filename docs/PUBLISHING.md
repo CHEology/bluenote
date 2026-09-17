@@ -177,7 +177,7 @@ npm run check
 npm run visual:capture && npm run visual:compare
 ```
 
-对比结果写入 `tooling/visual/report.md`，差异图在 `tooling/visual/diff/`。基线由 `npm run visual:baseline` 从上一个已验收的构建生成（截图不入库）；有意的差异记录在 `tooling/visual/allowed-differences.json`。
+对比结果写入 `tooling/visual/report.md`，差异图在 `tooling/visual/diff/`。基线由 `npm run visual:baseline` 从上一个已验收的构建生成（截图不入库）；有意的差异记录在 `tooling/visual/allowed-differences.json`。导航改动须同时检查首页与文章页：下滚移出视窗、稍向上滚动不弹回、回到页首恢复；桌面／手机及明暗模式均验收，并检查手机菜单关闭按钮、搜索和焦点恢复。
 
 ## 6. 提交和自动发布
 
@@ -278,13 +278,13 @@ npm run private:restore
 主题 [`hexo-theme-bluenote`](https://github.com/CHEology/hexo-theme-bluenote) 是独立仓库，博客在 `package.json` 中以 git 标签锁定版本：
 
 ```json
-"hexo-theme-bluenote": "github:CHEology/hexo-theme-bluenote#v1.2.2"
+"hexo-theme-bluenote": "github:CHEology/hexo-theme-bluenote#v1.4.0"
 ```
 
 升级主题：
 
 ```bash
-npm install --save "git+https://github.com/CHEology/hexo-theme-bluenote.git#v1.2.2"
+npm install --save "git+https://github.com/CHEology/hexo-theme-bluenote.git#v1.4.0"
 npm run check
 npm run visual:capture && npm run visual:compare
 ```

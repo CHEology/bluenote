@@ -36,20 +36,6 @@
     "prop": "marginTop"
   },
   {
-    "reason": "DESIGN §5.1: approved reading-width companion strip replaces the short-rule link; body and adjacent navigation remain unchanged.",
-    "page": "post-story",
-    "viewport": "mobile",
-    "shot": "end",
-    "maxDiffPercent": 4.4
-  },
-  {
-    "reason": "DESIGN §5.1: approved reading-width companion strip replaces the short-rule link; body and adjacent navigation remain unchanged.",
-    "page": "post-story",
-    "viewport": "desktop",
-    "shot": "end",
-    "maxDiffPercent": 1.9
-  },
-  {
     "reason": "DESIGN §4.1: photo-post navigation is centred on the ordinary reading column, independently of the wider photographs.",
     "page": "post-photo",
     "viewport": "desktop",
@@ -639,5 +625,110 @@
     "key": "galleryMode",
     "prop": "borderTop",
     "reason": "Gallery controls use --text for readable contrast; the active view keeps its underline (DESIGN §9)."
+  },
+  {
+    "page": "home",
+    "viewport": "desktop",
+    "shot": "grid",
+    "maxDiffPercent": 6,
+    "reason": "DESIGN §9 (2026-09-16): navigation scrolls out of view. Verified pixel differences are confined to the top 80px; the rest of each screenshot is unchanged."
+  },
+  {
+    "page": "home",
+    "viewport": "mobile",
+    "shot": "grid",
+    "maxDiffPercent": 8,
+    "reason": "DESIGN §9 (2026-09-16): navigation scrolls out of view. Verified pixel differences are confined to the top 80px; the rest of each screenshot is unchanged."
+  },
+  {
+    "page": "post-story",
+    "viewport": "desktop",
+    "shot": "end",
+    "maxDiffPercent": 6,
+    "reason": "DESIGN §9 (2026-09-16): navigation scrolls out of view. Verified pixel differences are confined to the top 80px; the rest of each screenshot is unchanged."
+  },
+  {
+    "page": "post-story",
+    "viewport": "mobile",
+    "shot": "end",
+    "maxDiffPercent": 8,
+    "reason": "DESIGN §9 (2026-09-16): navigation scrolls out of view. Verified pixel differences are confined to the top 80px; the rest of each screenshot is unchanged."
+  },
+  {
+    "page": "post-photo",
+    "viewport": "desktop",
+    "shot": "second",
+    "maxDiffPercent": 6,
+    "reason": "DESIGN §9 (2026-09-16): navigation scrolls out of view. Verified pixel differences are confined to the top 80px; the rest of each screenshot is unchanged."
+  },
+  {
+    "page": "post-photo",
+    "viewport": "mobile",
+    "shot": "second",
+    "maxDiffPercent": 8,
+    "reason": "DESIGN §9 (2026-09-16): navigation scrolls out of view. Verified pixel differences are confined to the top 80px; the rest of each screenshot is unchanged."
+  },
+  {
+    "page": "gallery-all",
+    "viewport": "desktop",
+    "shot": "bay3",
+    "maxDiffPercent": 6,
+    "reason": "DESIGN §9 (2026-09-16): navigation scrolls out of view. Verified pixel differences are confined to the top 80px; the rest of each screenshot is unchanged."
+  },
+  {
+    "page": "gallery-all",
+    "viewport": "mobile",
+    "shot": "bay3",
+    "maxDiffPercent": 8,
+    "reason": "DESIGN §9 (2026-09-16): navigation scrolls out of view. Verified pixel differences are confined to the top 80px; the rest of each screenshot is unchanged."
+  },
+  {
+    "page": "design",
+    "viewport": "desktop",
+    "shot": "table",
+    "maxDiffPercent": 6,
+    "reason": "DESIGN §9 (2026-09-16): navigation scrolls out of view. Verified pixel differences are confined to the top 80px; the rest of each screenshot is unchanged."
+  },
+  {
+    "page": "design",
+    "viewport": "mobile",
+    "shot": "table",
+    "maxDiffPercent": 8,
+    "reason": "DESIGN §9 (2026-09-16): navigation scrolls out of view. Verified pixel differences are confined to the top 80px; the rest of each screenshot is unchanged."
+  },
+  {
+    "page": "design",
+    "viewport": "desktop",
+    "shot": "code",
+    "maxDiffPercent": 6,
+    "reason": "DESIGN §9 (2026-09-16): navigation scrolls out of view. Verified pixel differences are confined to the top 80px; the rest of each screenshot is unchanged."
+  },
+  {
+    "page": "design",
+    "viewport": "mobile",
+    "shot": "code",
+    "maxDiffPercent": 8,
+    "reason": "DESIGN §9 (2026-09-16): navigation scrolls out of view. Verified pixel differences are confined to the top 80px; the rest of each screenshot is unchanged."
+  },
+  {
+    "page": "post-menu",
+    "viewport": "mobile",
+    "key": "nav",
+    "prop": "height",
+    "reason": "DESIGN §9 (2026-09-16): open mobile navigation keeps its original 66px height and 8px padding; the former solid-state shrinking is removed."
+  },
+  {
+    "page": "post-menu",
+    "viewport": "mobile",
+    "key": "nav",
+    "prop": "paddingTop",
+    "reason": "DESIGN §9 (2026-09-16): open mobile navigation keeps its original 66px height and 8px padding; the former solid-state shrinking is removed."
+  },
+  {
+    "page": "post-menu",
+    "viewport": "mobile",
+    "key": "nav",
+    "prop": "paddingBottom",
+    "reason": "DESIGN §9 (2026-09-16): open mobile navigation keeps its original 66px height and 8px padding; the former solid-state shrinking is removed."
   }
 ]
