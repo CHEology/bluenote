@@ -630,8 +630,8 @@
     "page": "home",
     "viewport": "desktop",
     "shot": "grid",
-    "maxDiffPercent": 8.5,
-    "reason": "DESIGN §9: wider equal desktop card gaps and symmetric vertical padding; the complete twelve-position stage stays centred and fills the left six slots first."
+    "maxDiffPercent": 15.2,
+    "reason": "Content publication: 《根与冠》思绪·壹 and 《根与冠》思绪·贰 add two public entries since the baseline; the new first card has a two-line title and a shorter excerpt, while archive/tag lists grow. Shared typography and layout CSS are unchanged."
   },
   {
     "page": "home",
@@ -842,5 +842,152 @@
     "key": "cardMetaIcon",
     "prop": "y",
     "reason": "DESIGN §9: wider equal desktop card gaps and symmetric vertical padding; the complete twelve-position stage stays centred and fills the left six slots first."
+  },
+  {
+    "page": "archives",
+    "viewport": "desktop",
+    "shot": "full",
+    "maxDiffPercent": 9.7,
+    "reason": "Content publication: 《根与冠》思绪·壹 and 《根与冠》思绪·贰 add two public entries since the baseline; the new first card has a two-line title and a shorter excerpt, while archive/tag lists grow. Shared typography and layout CSS are unchanged."
+  },
+  {
+    "page": "archives",
+    "viewport": "mobile",
+    "shot": "full",
+    "maxDiffPercent": 9.6,
+    "reason": "Content publication: 《根与冠》思绪·壹 and 《根与冠》思绪·贰 add two public entries since the baseline; the new first card has a two-line title and a shorter excerpt, while archive/tag lists grow. Shared typography and layout CSS are unchanged."
+  },
+  {
+    "page": "tag",
+    "viewport": "desktop",
+    "shot": "full",
+    "maxDiffPercent": 0.8,
+    "reason": "Content publication: 《根与冠》思绪·壹 and 《根与冠》思绪·贰 add two public entries since the baseline; the new first card has a two-line title and a shorter excerpt, while archive/tag lists grow. Shared typography and layout CSS are unchanged."
+  },
+  {
+    "page": "tag",
+    "viewport": "mobile",
+    "shot": "full",
+    "maxDiffPercent": 1.5,
+    "reason": "Content publication: 《根与冠》思绪·壹 and 《根与冠》思绪·贰 add two public entries since the baseline; the new first card has a two-line title and a shorter excerpt, while archive/tag lists grow. Shared typography and layout CSS are unchanged."
+  },
+  {
+    "page": "home",
+    "viewport": "desktop",
+    "key": "cardTitle",
+    "prop": "height",
+    "reason": "Content publication: 《根与冠》思绪·壹 and 《根与冠》思绪·贰 add two public entries since the baseline; the new first card has a two-line title and a shorter excerpt, while archive/tag lists grow. Shared typography and layout CSS are unchanged."
+  },
+  {
+    "page": "home",
+    "viewport": "desktop",
+    "key": "cardExcerpt",
+    "prop": "height",
+    "reason": "Content publication: 《根与冠》思绪·壹 and 《根与冠》思绪·贰 add two public entries since the baseline; the new first card has a two-line title and a shorter excerpt, while archive/tag lists grow. Shared typography and layout CSS are unchanged."
+  },
+  {
+    "page": "home",
+    "viewport": "desktop",
+    "key": "cardMeta",
+    "prop": "marginTop",
+    "reason": "Content publication: 《根与冠》思绪·壹 and 《根与冠》思绪·贰 add two public entries since the baseline; the new first card has a two-line title and a shorter excerpt, while archive/tag lists grow. Shared typography and layout CSS are unchanged."
+  },
+  {
+    "page": "home",
+    "viewport": "mobile",
+    "key": "homeMain",
+    "prop": "height",
+    "reason": "Content publication: 《根与冠》思绪·壹 and 《根与冠》思绪·贰 add two public entries since the baseline; the new first card has a two-line title and a shorter excerpt, while archive/tag lists grow. Shared typography and layout CSS are unchanged."
+  },
+  {
+    "page": "home",
+    "viewport": "mobile",
+    "key": "homeGrid",
+    "prop": "height",
+    "reason": "Content publication: 《根与冠》思绪·壹 and 《根与冠》思绪·贰 add two public entries since the baseline; the new first card has a two-line title and a shorter excerpt, while archive/tag lists grow. Shared typography and layout CSS are unchanged."
+  },
+  {
+    "page": "home",
+    "viewport": "mobile",
+    "key": "cardExcerpt",
+    "prop": "height",
+    "reason": "Content publication: 《根与冠》思绪·壹 and 《根与冠》思绪·贰 add two public entries since the baseline; the new first card has a two-line title and a shorter excerpt, while archive/tag lists grow. Shared typography and layout CSS are unchanged."
+  },
+  {
+    "page": "home",
+    "viewport": "mobile",
+    "key": "cardMeta",
+    "prop": "marginTop",
+    "reason": "Content publication: 《根与冠》思绪·壹 and 《根与冠》思绪·贰 add two public entries since the baseline; the new first card has a two-line title and a shorter excerpt, while archive/tag lists grow. Shared typography and layout CSS are unchanged."
+  },
+  {
+    "page": "archives",
+    "viewport": "desktop",
+    "key": "listTitle",
+    "prop": "width",
+    "reason": "Content publication: 《根与冠》思绪·壹 and 《根与冠》思绪·贰 add two public entries since the baseline; the new first card has a two-line title and a shorter excerpt, while archive/tag lists grow. Shared typography and layout CSS are unchanged."
+  },
+  {
+    "page": "archives",
+    "viewport": "desktop",
+    "key": "listSection",
+    "prop": "y",
+    "reason": "Content publication: 《根与冠》思绪·壹 and 《根与冠》思绪·贰 add two public entries since the baseline; the new first card has a two-line title and a shorter excerpt, while archive/tag lists grow. Shared typography and layout CSS are unchanged."
+  },
+  {
+    "page": "archives",
+    "viewport": "desktop",
+    "key": "listKind",
+    "prop": "y",
+    "reason": "Content publication: 《根与冠》思绪·壹 and 《根与冠》思绪·贰 add two public entries since the baseline; the new first card has a two-line title and a shorter excerpt, while archive/tag lists grow. Shared typography and layout CSS are unchanged."
+  },
+  {
+    "page": "archives",
+    "viewport": "desktop",
+    "key": "listSummary",
+    "prop": "y",
+    "reason": "Content publication: 《根与冠》思绪·壹 and 《根与冠》思绪·贰 add two public entries since the baseline; the new first card has a two-line title and a shorter excerpt, while archive/tag lists grow. Shared typography and layout CSS are unchanged."
+  },
+  {
+    "page": "archives",
+    "viewport": "mobile",
+    "key": "listTitle",
+    "prop": "width",
+    "reason": "Content publication: 《根与冠》思绪·壹 and 《根与冠》思绪·贰 add two public entries since the baseline; the new first card has a two-line title and a shorter excerpt, while archive/tag lists grow. Shared typography and layout CSS are unchanged."
+  },
+  {
+    "page": "archives",
+    "viewport": "mobile",
+    "key": "listSection",
+    "prop": "y",
+    "reason": "Content publication: 《根与冠》思绪·壹 and 《根与冠》思绪·贰 add two public entries since the baseline; the new first card has a two-line title and a shorter excerpt, while archive/tag lists grow. Shared typography and layout CSS are unchanged."
+  },
+  {
+    "page": "archives",
+    "viewport": "mobile",
+    "key": "listKind",
+    "prop": "y",
+    "reason": "Content publication: 《根与冠》思绪·壹 and 《根与冠》思绪·贰 add two public entries since the baseline; the new first card has a two-line title and a shorter excerpt, while archive/tag lists grow. Shared typography and layout CSS are unchanged."
+  },
+  {
+    "page": "archives",
+    "viewport": "mobile",
+    "key": "listSummary",
+    "prop": "y",
+    "reason": "Content publication: 《根与冠》思绪·壹 and 《根与冠》思绪·贰 add two public entries since the baseline; the new first card has a two-line title and a shorter excerpt, while archive/tag lists grow. Shared typography and layout CSS are unchanged."
+  },
+  {
+    "page": "tag",
+    "viewport": "desktop",
+    "key": "listTitle",
+    "prop": "width",
+    "reason": "Content publication: 《根与冠》思绪·壹 and 《根与冠》思绪·贰 add two public entries since the baseline; the new first card has a two-line title and a shorter excerpt, while archive/tag lists grow. Shared typography and layout CSS are unchanged."
+  },
+  {
+    "page": "tag",
+    "viewport": "mobile",
+    "key": "listTitle",
+    "prop": "width",
+    "reason": "Content publication: 《根与冠》思绪·壹 and 《根与冠》思绪·贰 add two public entries since the baseline; the new first card has a two-line title and a shorter excerpt, while archive/tag lists grow. Shared typography and layout CSS are unchanged."
   }
 ]
