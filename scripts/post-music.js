@@ -29,22 +29,22 @@ hexo.extend.filter.register('before_post_render', function (data) {
 <div class="post-music__title" lang="ja">${title}</div>
 <div class="post-music__metadata">
 <div class="post-music__artist"><span lang="ja">${artist}</span> · <span lang="en">${album}</span></div>
-<div class="post-music__loading" role="status" hidden></div>
 </div>
+<div class="post-music__loading visually-hidden" role="status"></div>
 <audio class="post-music__audio" src="${audio}" controls preload="none" aria-label="${title} — ${artist}"><a href="${audio}">打开音频</a></audio>
-<div class="post-music__controls" hidden>
-<button class="post-music__play" type="button" aria-label="播放">
+<div class="post-music__controls">
+<button class="post-music__play" type="button" disabled aria-label="播放">
 <svg class="post-music__play-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4.5v15l12-7.5z"/></svg>
 <svg class="post-music__pause-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4h4v16H6zm8 0h4v16h-4z"/></svg>
 </button>
-<input class="post-music__seek" type="range" min="0" max="${music.duration}" step="0.1" value="0" aria-label="播放进度" aria-valuetext="0:00 / ${duration}">
+<input class="post-music__seek" type="range" disabled min="0" max="${music.duration}" step="0.1" value="0" aria-label="播放进度" aria-valuetext="0:00 / ${duration}">
 <span class="post-music__time"><span data-music-current>0:00</span> / <span data-music-duration>${duration}</span></span>
 <div class="post-music__volume-controls">
-<button class="post-music__mute" type="button" aria-label="静音" aria-pressed="false">
+<button class="post-music__mute" type="button" disabled aria-label="静音" aria-pressed="false">
 <svg class="post-music__sound-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9h4l5-4v14l-5-4H3z"/><path d="M16 8c2 2 2 6 0 8m3-11c4 4 4 10 0 14" fill="none" stroke="currentColor" stroke-width="1.3"/></svg>
 <svg class="post-music__muted-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9h4l5-4v14l-5-4H3z"/><path d="m16 9 6 6m0-6-6 6" fill="none" stroke="currentColor" stroke-width="1.3"/></svg>
 </button>
-<input class="post-music__volume" type="range" min="0" max="1" step="0.05" value="0.7" aria-label="音量">
+<input class="post-music__volume" type="range" disabled min="0" max="1" step="0.05" value="0.7" aria-label="音量">
 </div>
 </div>
 <div class="post-music__status" role="status" hidden><span data-music-status></span> <a href="${audio}" data-music-fallback hidden>打开音频</a></div>
@@ -58,6 +58,6 @@ hexo.extend.filter.register('before_post_render', function (data) {
 hexo.extend.filter.register('after_render:html', function (html) {
   if (!html.includes('data-post-music')) return html;
   const root = this.config.root.replace(/\/$/, '');
-  return html.replace('</head>', `<link rel="stylesheet" href="${root}/css/post-music.css">\n</head>`)
-    .replace('</body>', `<script defer src="${root}/js/post-music.js"></script>\n</body>`);
+  return html.replace('</head>', `<link rel="stylesheet" href="${root}/css/post-music.css">\n<noscript><style>.post-music__audio { display: block; } .post-music__controls { display: none; }</style></noscript>\n</head>`)
+    .replace('</body>', `<script defer src="${root}/js/post-music.js" onerror="document.documentElement.classList.add('post-music-fallback')"></script>\n</body>`);
 }, 30);

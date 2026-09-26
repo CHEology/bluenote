@@ -596,13 +596,6 @@
   {
     "page": "home",
     "viewport": "mobile",
-    "shot": "top",
-    "maxDiffPercent": 1,
-    "reason": "Mobile now renders the complete unchanged slogan immediately, without the typing cursor."
-  },
-  {
-    "page": "home",
-    "viewport": "mobile",
     "key": "homeSlogan",
     "prop": "x",
     "reason": "The static mobile slogan is centred without the desktop typing cursor."
@@ -632,13 +625,6 @@
     "shot": "grid",
     "maxDiffPercent": 15.2,
     "reason": "Content publication: 《根与冠》思绪·壹 and 《根与冠》思绪·贰 add two public entries since the baseline; the new first card has a two-line title and a shorter excerpt, while archive/tag lists grow. Shared typography and layout CSS are unchanged."
-  },
-  {
-    "page": "home",
-    "viewport": "mobile",
-    "shot": "grid",
-    "maxDiffPercent": 8,
-    "reason": "DESIGN §9 (2026-09-16): navigation scrolls out of view. Verified pixel differences are confined to the top 80px; the rest of each screenshot is unchanged."
   },
   {
     "page": "post-story",
@@ -1003,5 +989,264 @@
     "shot": "top",
     "maxDiffPercent": 0.05,
     "reason": "DESIGN §6.4 (2026-09-25): document date updated with the approved D cover player. Article player layouts are separately verified in tooling/music.browser.mjs; existing article text and shared layout remain unchanged."
+  },
+  {
+    "page": "home",
+    "viewport": "mobile",
+    "key": "homeMain",
+    "prop": "backgroundImage",
+    "reason": "DESIGN §9: approved A mobile reading list replaces square cards with date, full title, two-line excerpt, fine separators and a dark gradient; desktop and tablet are unchanged."
+  },
+  {
+    "page": "home",
+    "viewport": "mobile",
+    "key": "homeMain",
+    "prop": "paddingTop",
+    "reason": "DESIGN §9: approved A mobile reading list replaces square cards with date, full title, two-line excerpt, fine separators and a dark gradient; desktop and tablet are unchanged."
+  },
+  {
+    "page": "home",
+    "viewport": "mobile",
+    "key": "homeMain",
+    "prop": "paddingBottom",
+    "reason": "DESIGN §9: approved A mobile reading list replaces square cards with date, full title, two-line excerpt, fine separators and a dark gradient; desktop and tablet are unchanged."
+  },
+  {
+    "page": "home",
+    "viewport": "mobile",
+    "key": "homeGrid",
+    "prop": "x",
+    "reason": "DESIGN §9: approved A mobile reading list replaces square cards with date, full title, two-line excerpt, fine separators and a dark gradient; desktop and tablet are unchanged."
+  },
+  {
+    "page": "home",
+    "viewport": "mobile",
+    "key": "homeGrid",
+    "prop": "y",
+    "reason": "DESIGN §9: approved A mobile reading list replaces square cards with date, full title, two-line excerpt, fine separators and a dark gradient; desktop and tablet are unchanged."
+  },
+  {
+    "page": "home",
+    "viewport": "mobile",
+    "key": "homeGrid",
+    "prop": "width",
+    "reason": "DESIGN §9: approved A mobile reading list replaces square cards with date, full title, two-line excerpt, fine separators and a dark gradient; desktop and tablet are unchanged."
+  },
+  {
+    "page": "home",
+    "viewport": "mobile",
+    "key": "homeGrid",
+    "prop": "display",
+    "reason": "DESIGN §9: approved A mobile reading list replaces square cards with date, full title, two-line excerpt, fine separators and a dark gradient; desktop and tablet are unchanged."
+  },
+  {
+    "page": "home",
+    "viewport": "mobile",
+    "key": "card",
+    "prop": "x",
+    "reason": "DESIGN §9: approved A mobile reading list replaces square cards with date, full title, two-line excerpt, fine separators and a dark gradient; desktop and tablet are unchanged."
+  },
+  {
+    "page": "home",
+    "viewport": "mobile",
+    "key": "card",
+    "prop": "y",
+    "reason": "DESIGN §9: approved A mobile reading list replaces square cards with date, full title, two-line excerpt, fine separators and a dark gradient; desktop and tablet are unchanged."
+  },
+  {
+    "page": "home",
+    "viewport": "mobile",
+    "key": "card",
+    "prop": "width",
+    "reason": "DESIGN §9: approved A mobile reading list replaces square cards with date, full title, two-line excerpt, fine separators and a dark gradient; desktop and tablet are unchanged."
+  },
+  {
+    "page": "home",
+    "viewport": "mobile",
+    "key": "card",
+    "prop": "height",
+    "reason": "DESIGN §9: approved A mobile reading list replaces square cards with date, full title, two-line excerpt, fine separators and a dark gradient; desktop and tablet are unchanged."
+  },
+  {
+    "page": "home",
+    "viewport": "mobile",
+    "key": "card",
+    "prop": "backgroundColor",
+    "reason": "DESIGN §9: approved A mobile reading list replaces square cards with date, full title, two-line excerpt, fine separators and a dark gradient; desktop and tablet are unchanged."
+  },
+  {
+    "page": "home",
+    "viewport": "mobile",
+    "key": "card",
+    "prop": "boxShadow",
+    "reason": "DESIGN §9: approved A mobile reading list replaces square cards with date, full title, two-line excerpt, fine separators and a dark gradient; desktop and tablet are unchanged."
+  },
+  {
+    "page": "home",
+    "viewport": "mobile",
+    "key": "cardTitle",
+    "prop": "x",
+    "reason": "DESIGN §9: approved A mobile reading list replaces square cards with date, full title, two-line excerpt, fine separators and a dark gradient; desktop and tablet are unchanged."
+  },
+  {
+    "page": "home",
+    "viewport": "mobile",
+    "key": "cardTitle",
+    "prop": "y",
+    "reason": "DESIGN §9: approved A mobile reading list replaces square cards with date, full title, two-line excerpt, fine separators and a dark gradient; desktop and tablet are unchanged."
+  },
+  {
+    "page": "home",
+    "viewport": "mobile",
+    "key": "cardTitle",
+    "prop": "width",
+    "reason": "DESIGN §9: approved A mobile reading list replaces square cards with date, full title, two-line excerpt, fine separators and a dark gradient; desktop and tablet are unchanged."
+  },
+  {
+    "page": "home",
+    "viewport": "mobile",
+    "key": "cardTitle",
+    "prop": "height",
+    "reason": "DESIGN §9: approved A mobile reading list replaces square cards with date, full title, two-line excerpt, fine separators and a dark gradient; desktop and tablet are unchanged."
+  },
+  {
+    "page": "home",
+    "viewport": "mobile",
+    "key": "cardTitle",
+    "prop": "fontWeight",
+    "reason": "DESIGN §9: approved A mobile reading list replaces square cards with date, full title, two-line excerpt, fine separators and a dark gradient; desktop and tablet are unchanged."
+  },
+  {
+    "page": "home",
+    "viewport": "mobile",
+    "key": "cardTitle",
+    "prop": "lineHeight",
+    "reason": "DESIGN §9: approved A mobile reading list replaces square cards with date, full title, two-line excerpt, fine separators and a dark gradient; desktop and tablet are unchanged."
+  },
+  {
+    "page": "home",
+    "viewport": "mobile",
+    "key": "cardTitle",
+    "prop": "display",
+    "reason": "DESIGN §9: approved A mobile reading list replaces square cards with date, full title, two-line excerpt, fine separators and a dark gradient; desktop and tablet are unchanged."
+  },
+  {
+    "page": "home",
+    "viewport": "mobile",
+    "key": "cardExcerpt",
+    "prop": "x",
+    "reason": "DESIGN §9: approved A mobile reading list replaces square cards with date, full title, two-line excerpt, fine separators and a dark gradient; desktop and tablet are unchanged."
+  },
+  {
+    "page": "home",
+    "viewport": "mobile",
+    "key": "cardExcerpt",
+    "prop": "y",
+    "reason": "DESIGN §9: approved A mobile reading list replaces square cards with date, full title, two-line excerpt, fine separators and a dark gradient; desktop and tablet are unchanged."
+  },
+  {
+    "page": "home",
+    "viewport": "mobile",
+    "key": "cardExcerpt",
+    "prop": "width",
+    "reason": "DESIGN §9: approved A mobile reading list replaces square cards with date, full title, two-line excerpt, fine separators and a dark gradient; desktop and tablet are unchanged."
+  },
+  {
+    "page": "home",
+    "viewport": "mobile",
+    "key": "cardExcerpt",
+    "prop": "lineHeight",
+    "reason": "DESIGN §9: approved A mobile reading list replaces square cards with date, full title, two-line excerpt, fine separators and a dark gradient; desktop and tablet are unchanged."
+  },
+  {
+    "page": "home",
+    "viewport": "mobile",
+    "key": "cardMeta",
+    "prop": "x",
+    "reason": "DESIGN §9: approved A mobile reading list replaces square cards with date, full title, two-line excerpt, fine separators and a dark gradient; desktop and tablet are unchanged."
+  },
+  {
+    "page": "home",
+    "viewport": "mobile",
+    "key": "cardMeta",
+    "prop": "y",
+    "reason": "DESIGN §9: approved A mobile reading list replaces square cards with date, full title, two-line excerpt, fine separators and a dark gradient; desktop and tablet are unchanged."
+  },
+  {
+    "page": "home",
+    "viewport": "mobile",
+    "key": "cardMeta",
+    "prop": "width",
+    "reason": "DESIGN §9: approved A mobile reading list replaces square cards with date, full title, two-line excerpt, fine separators and a dark gradient; desktop and tablet are unchanged."
+  },
+  {
+    "page": "home",
+    "viewport": "mobile",
+    "key": "cardMeta",
+    "prop": "lineHeight",
+    "reason": "DESIGN §9: approved A mobile reading list replaces square cards with date, full title, two-line excerpt, fine separators and a dark gradient; desktop and tablet are unchanged."
+  },
+  {
+    "page": "home",
+    "viewport": "mobile",
+    "key": "cardMeta",
+    "prop": "marginBottom",
+    "reason": "DESIGN §9: approved A mobile reading list replaces square cards with date, full title, two-line excerpt, fine separators and a dark gradient; desktop and tablet are unchanged."
+  },
+  {
+    "page": "home",
+    "viewport": "mobile",
+    "key": "cardMetaIcon",
+    "prop": "x",
+    "reason": "DESIGN §9: approved A mobile reading list replaces square cards with date, full title, two-line excerpt, fine separators and a dark gradient; desktop and tablet are unchanged."
+  },
+  {
+    "page": "home",
+    "viewport": "mobile",
+    "key": "cardMetaIcon",
+    "prop": "y",
+    "reason": "DESIGN §9: approved A mobile reading list replaces square cards with date, full title, two-line excerpt, fine separators and a dark gradient; desktop and tablet are unchanged."
+  },
+  {
+    "page": "home",
+    "viewport": "mobile",
+    "key": "cardMetaIcon",
+    "prop": "width",
+    "reason": "DESIGN §9: approved A mobile reading list replaces square cards with date, full title, two-line excerpt, fine separators and a dark gradient; desktop and tablet are unchanged."
+  },
+  {
+    "page": "home",
+    "viewport": "mobile",
+    "key": "cardMetaIcon",
+    "prop": "height",
+    "reason": "DESIGN §9: approved A mobile reading list replaces square cards with date, full title, two-line excerpt, fine separators and a dark gradient; desktop and tablet are unchanged."
+  },
+  {
+    "page": "home",
+    "viewport": "mobile",
+    "key": "cardMetaIcon",
+    "prop": "marginRight",
+    "reason": "DESIGN §9: approved A mobile reading list replaces square cards with date, full title, two-line excerpt, fine separators and a dark gradient; desktop and tablet are unchanged."
+  },
+  {
+    "page": "home",
+    "viewport": "mobile",
+    "key": "cardMetaIcon",
+    "prop": "display",
+    "reason": "DESIGN §9: approved A mobile reading list replaces square cards with date, full title, two-line excerpt, fine separators and a dark gradient; desktop and tablet are unchanged."
+  },
+  {
+    "page": "home",
+    "viewport": "mobile",
+    "shot": "top",
+    "maxDiffPercent": 5,
+    "reason": "DESIGN §9: approved A mobile reading list and its 96px cover-to-list gradient; desktop shots remain pixel-identical."
+  },
+  {
+    "page": "home",
+    "viewport": "mobile",
+    "shot": "grid",
+    "maxDiffPercent": 20,
+    "reason": "DESIGN §9: approved A mobile reading list and its 96px cover-to-list gradient; desktop shots remain pixel-identical."
   }
 ]

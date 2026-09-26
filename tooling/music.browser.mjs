@@ -5,6 +5,11 @@ import { createReadStream, existsSync, readFileSync, statSync, mkdirSync } from 
 import { resolve, extname, sep } from 'node:path';
 import { chromium, webkit } from 'playwright';
 
+// WebKit's fonts.ready waits for deferred scripts even when all local fonts are
+// already loaded. During the deliberately held script, use FontFaceSet.status
+// instead so the screenshot itself does not release or deadlock the test gate.
+process.env.PW_TEST_SCREENSHOT_NO_FONTS_READY = '1';
+
 const root = resolve('public');
 const output = resolve('tooling/audit/music');
 mkdirSync(output, { recursive: true });
@@ -36,6 +41,35 @@ const base = `http://127.0.0.1:${server.address().port}/bluenote/`;
 const article = base + '2026/09/25/一些想象/';
 const original = readFileSync('source/_posts/一些想象.md', 'utf8').split(/^---\s*$/m)[2].trim().split(/\n\n+/).filter(p => !p.startsWith('<p aria-hidden'));
 
+// Hold the actual player script across several paints to reproduce cold entry
+// and refresh. The D controls must already look exactly as they will when ready.
+async function checkStartup(page, navigate) {
+  let release;
+  const gate = new Promise(resolve => { release = resolve; });
+  const delay = async route => { await gate; await route.continue(); };
+  await page.route('**/js/post-music.js*', delay);
+  try {
+    await navigate();
+    await page.locator('.post-music__title').waitFor();
+    await page.waitForFunction(() => document.fonts.status === 'loaded');
+    await page.locator('.post-music__cover').evaluate(img => img.decode());
+    await page.locator('.post-music').scrollIntoViewIfNeeded();
+    assert.equal(await page.locator('.post-music__controls').isVisible(), true, 'D controls present before JS arrives');
+    assert.equal(await page.locator('audio').isVisible(), false, 'Native controls never flash before initialization');
+    assert.equal(await page.locator('.post-music__play').isDisabled(), true);
+    const before = await page.locator('.post-music').screenshot();
+    const box = await page.locator('.post-music').boundingBox();
+    release();
+    await page.waitForFunction(() => !document.querySelector('.post-music__play').disabled);
+    assert.deepEqual(await page.locator('.post-music').boundingBox(), box, 'Initialization does not move or resize the player');
+    assert.deepEqual(await page.locator('.post-music').screenshot(), before, 'Initialization does not change player pixels');
+    await page.waitForLoadState('networkidle');
+  } finally {
+    release();
+    await page.unroute('**/js/post-music.js*', delay);
+  }
+}
+
 try {
   for (const engine of [chromium, webkit]) {
     const browser = await engine.launch();
@@ -47,7 +81,8 @@ try {
         const requests = [], errors = [];
         page.on('request', r => requests.push(r.url()));
         page.on('pageerror', e => errors.push(e.message));
-        await page.goto(article, { waitUntil: 'networkidle' });
+        await checkStartup(page, () => page.goto(article, { waitUntil: 'commit' }));
+        await checkStartup(page, () => page.reload({ waitUntil: 'commit' }));
         assert.equal(requests.some(u => u.endsWith('.mp3')), false, 'No audio request before interaction');
         assert.deepEqual(requests.filter(u => /^https?:/.test(u) && new URL(u).origin !== new URL(base).origin), [], 'No third-party network requests');
         assert.deepEqual((await page.locator('.markdown-body > p').allTextContents()).filter(t => t.trim()), original, 'Original paragraphs unchanged');
@@ -106,21 +141,25 @@ try {
         // Observe events as well as frames, so cached resumes cannot hide a
         // short-lived insertion/removal between screenshots.
         await page.route('**/*.mp3', async route => {
-          await new Promise(r => setTimeout(r, 350));
+          await new Promise(r => setTimeout(r, 650));
           await route.continue();
         });
         await page.reload({ waitUntil: 'networkidle' });
         await page.evaluate(() => {
-          const selectors = ['.post-music', '.post-music__cover', '.post-music__controls', '.markdown-body > p'];
+          const selectors = ['.post-music', '.post-music__cover', '.post-music__controls', '.post-music__artist', '.markdown-body > p'];
           const measure = () => selectors.map(selector => {
             const r = document.querySelector(selector).getBoundingClientRect();
             return [r.x, r.y + scrollY, r.width, r.height];
           });
           const baseline = measure();
-          const result = { maxMovement: 0, samples: 0, loadingSeen: false, cachedResumeFlashed: false, running: true };
+          const artistText = document.querySelector('.post-music__artist').textContent;
+          const result = { maxMovement: 0, samples: 0, loadingSeen: false, cachedResumeFlashed: false, artistFlashed: false, running: true };
           const sample = () => {
             const player = document.querySelector('[data-post-music]');
             result.loadingSeen ||= player.dataset.loading === 'true' || !player.querySelector('.post-music__status').hidden;
+            const artist = player.querySelector('.post-music__artist');
+            const style = getComputedStyle(artist);
+            result.artistFlashed ||= style.visibility !== 'visible' || style.display === 'none' || Number(style.opacity) !== 1 || artist.textContent !== artistText;
             measure().forEach((box, i) => box.forEach((n, j) => { result.maxMovement = Math.max(result.maxMovement, Math.abs(n - baseline[i][j])); }));
             result.samples++;
           };
@@ -143,8 +182,11 @@ try {
           await button.click();
           await page.waitForFunction(t => document.querySelector('audio').currentTime > t + 0.1, position);
           if (cycle === 0) {
+            await page.locator('.post-music__seek').fill('140');
+            await page.waitForFunction(() => { const a = document.querySelector('audio'); return !a.seeking && a.readyState >= 3 && a.currentTime > 140.1; });
             // Exercise the same handler for a later buffering notification.
             await page.locator('audio').evaluate(a => a.dispatchEvent(new Event('waiting')));
+            await page.waitForFunction(() => document.querySelector('[data-post-music]').dataset.buffering === 'true');
             await page.screenshot({ path: `${output}/${engine.name()}-${width}-${colorScheme}-buffering.png`, fullPage: true });
           }
           await button.click();
@@ -154,6 +196,7 @@ try {
         assert.ok(layout.samples > 10, 'Playback layout was observed over multiple frames');
         assert.ok(layout.maxMovement <= 0.5, `${engine.name()} ${width} ${colorScheme}: playback shifted layout by ${layout.maxMovement}px`);
         assert.equal(layout.cachedResumeFlashed, false, 'Cached resumes do not flash loading text');
+        assert.equal(layout.artistFlashed, false, 'Artist and album remain visible during loading, seeking and buffering');
         await page.unroute('**/*.mp3');
         assert.deepEqual(errors, []);
         await context.close();
@@ -165,6 +208,13 @@ try {
       assert.equal(await page.locator('.post-music__controls').isVisible(), false);
       assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false);
       await context.close();
+      const failedScriptContext = await browser.newContext({ viewport: { width: 390, height: 844 } });
+      const failedScriptPage = await failedScriptContext.newPage();
+      await failedScriptPage.route('**/js/post-music.js*', route => route.abort());
+      await failedScriptPage.goto(article);
+      assert.equal(await failedScriptPage.locator('audio[controls]').isVisible(), true, 'Native fallback when the player script fails');
+      assert.equal(await failedScriptPage.locator('.post-music__controls').isVisible(), false);
+      await failedScriptContext.close();
       console.log(`${engine.name()}: 3 widths, 2 themes; stable playback layout, initial seek, keyboard, volume, end, retry and no-JS fallback passed.`);
     } finally { await browser.close(); }
   }
