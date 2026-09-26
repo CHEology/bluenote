@@ -19,11 +19,26 @@
     var statusText = player.querySelector('[data-music-status]');
     var fallback = player.querySelector('[data-music-fallback]');
     var pendingSeek = null;
+    var loadingTimer = null;
     function message(text, failed) {
       var isLoading = Boolean(text && !failed);
       player.dataset.loading = String(isLoading);
-      loading.textContent = isLoading ? text : '';
-      loading.hidden = !isLoading;
+      if (isLoading) {
+        if (loadingTimer === null && player.dataset.buffering !== 'true') {
+          loadingTimer = setTimeout(function () {
+            loadingTimer = null;
+            player.dataset.buffering = 'true';
+            play.setAttribute('aria-busy', 'true');
+            loading.textContent = text;
+          }, 400);
+        }
+      } else {
+        clearTimeout(loadingTimer);
+        loadingTimer = null;
+        player.dataset.buffering = 'false';
+        play.removeAttribute('aria-busy');
+        loading.textContent = '';
+      }
       statusText.textContent = failed ? text : '';
       status.hidden = !failed;
       fallback.hidden = !failed;
@@ -85,7 +100,6 @@
     ['timeupdate', 'durationchange', 'seeked', 'ended', 'volumechange'].forEach(function (event) { audio.addEventListener(event, update); });
     audio.volume = 0.7;
     update();
-    controls.hidden = false;
-    audio.hidden = true;
+    controls.querySelectorAll('button, input').forEach(function (control) { control.disabled = false; });
   });
 })();

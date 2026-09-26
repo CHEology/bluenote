@@ -23,11 +23,9 @@
 }
 .post-music__body { flex: 1; min-width: 0; }
 .post-music__title { color: var(--heading); font-size: 1rem; letter-spacing: 0.02em; overflow-wrap: anywhere; }
-.post-music__metadata { display: grid; margin-top: 2px; color: var(--muted); font-size: 0.8125rem; }
-.post-music__artist, .post-music__loading { grid-area: 1 / 1; }
-/* Keep the artist's wrapping and height while the loading text occupies its row. */
-.post-music[data-loading="true"] .post-music__artist { visibility: hidden; }
+.post-music__metadata { margin-top: 2px; color: var(--muted); font-size: 0.8125rem; }
 .post-music__controls { display: flex; align-items: center; gap: 0.625rem; min-width: 0; }
+.post-music__controls :disabled { opacity: 1; }
 .post-music__play, .post-music__mute {
   display: flex;
   align-items: center;
@@ -42,7 +40,23 @@
   color: inherit;
   cursor: pointer;
 }
-.post-music__play { margin-left: -0.625rem; }
+.post-music__play { position: relative; margin-left: -0.625rem; }
+/* Long waits are reported inside the fixed button, never in the metadata. */
+.post-music[data-buffering="true"] .post-music__play::after {
+  content: "";
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  border: 1px solid var(--line);
+  border-top-color: currentColor;
+  border-radius: 50%;
+  animation: post-music-buffering 1s linear infinite;
+  pointer-events: none;
+}
+@keyframes post-music-buffering { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) {
+  .post-music[data-buffering="true"] .post-music__play::after { animation: none; }
+}
 .post-music__play:hover, .post-music__mute:hover { color: var(--link-hover); }
 .post-music__play svg, .post-music__mute svg { display: block; width: 18px; height: 18px; fill: currentColor; }
 .post-music__play .post-music__pause-icon, .post-music__mute .post-music__muted-icon { display: none; }
@@ -89,7 +103,7 @@
 .post-music__time { color: var(--muted); font-size: 0.8125rem; font-variant-numeric: tabular-nums; white-space: nowrap; }
 .post-music__volume-controls { display: flex; align-items: center; gap: 2px; }
 .post-music__volume { width: 56px; flex: none; }
-.post-music__audio { width: 100%; margin-top: 0.5rem; }
+.post-music__audio { display: none; width: 100%; margin-top: 0.5rem; }
 .post-music__status { margin-top: 0.5rem; font-size: 0.8125rem; }
 .post-music button:focus-visible, .post-music input:focus-visible, .post-music a:focus-visible {
   outline: 2px solid var(--link-hover);
@@ -102,3 +116,7 @@
   .post-music__controls { gap: 0.375rem; }
   .post-music__volume-controls { display: none; }
 }
+
+/* A failed script restores native controls; no-JS uses the same rules in the head. */
+.post-music-fallback .post-music__audio { display: block; }
+.post-music-fallback .post-music__controls { display: none; }

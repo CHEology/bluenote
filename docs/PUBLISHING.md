@@ -120,7 +120,7 @@ music:
 
 当前《一些想象》的发布音频与用户交付 MP3 的 SHA-256 一致，为完整 281.704478 秒曲目；封面直接提取自该文件。音频没有自动播放、循环、波形解码或后台预下载，其他文章不加载播放器资源。
 
-除第 5 节通用检查外，在完成构建后运行 `npm run test:music`（本机需已安装 Playwright 的 Chromium、WebKit）。它验证桌面与手机、明暗模式；慢速首次加载、暂停、已缓存音频恢复及缓冲期间逐帧检查播放器、封面、控制条和首段位置不变；键盘与拖动进度（含首次播放前跳转）、接近曲末播放及结束状态；桌面音量／静音；无脚本原生控件与加载失败回退；首次阅读不请求 MP3；正文与文章 Markdown 逐段一致。截图写入不入库的 `tooling/audit/music/`，用于人工视觉验收。新文章仍须另行核对其原始文档；发布后在真实文章 URL 再验证封面、带版本号的 CSS/JS、完整音频时长和拖动播放。
+除第 5 节通用检查外，在完成构建后运行 `npm run test:music`（本机需已安装 Playwright 的 Chromium、WebKit）。它验证桌面与手机、明暗模式；慢速脚本首次加载与刷新时检查 D 版首屏和初始化后的外观、位置一致；慢速音频首次加载、暂停、已缓存音频恢复及拖动缓冲期间逐帧检查播放器、封面、控制条和首段位置不变，艺人／专辑信息始终可见；键盘与拖动进度（含首次播放前跳转）、接近曲末播放及结束状态；桌面音量／静音；无脚本、播放器脚本加载失败时的原生控件，以及音频加载失败回退；首次阅读不请求 MP3；正文与文章 Markdown 逐段一致。截图写入不入库的 `tooling/audit/music/`，用于人工视觉验收。新文章仍须另行核对其原始文档；发布后在真实文章 URL 再验证封面、带版本号的 CSS/JS、完整音频时长和拖动播放。
 
 ## 4. 创建和编辑
 
@@ -302,13 +302,13 @@ npm run private:restore
 主题 [`hexo-theme-bluenote`](https://github.com/CHEology/hexo-theme-bluenote) 是独立仓库，博客在 `package.json` 中以 git 标签锁定版本：
 
 ```json
-"hexo-theme-bluenote": "github:CHEology/hexo-theme-bluenote#v1.4.1"
+"hexo-theme-bluenote": "github:CHEology/hexo-theme-bluenote#v1.5.0"
 ```
 
 升级主题：
 
 ```bash
-npm install --save "git+https://github.com/CHEology/hexo-theme-bluenote.git#v1.4.1"
+npm install --save "git+https://github.com/CHEology/hexo-theme-bluenote.git#v1.5.0"
 npm run check
 npm run visual:capture && npm run visual:compare
 ```
