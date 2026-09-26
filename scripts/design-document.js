@@ -7,8 +7,8 @@ function publicMarkdown() {
   return readFileSync(designSource, 'utf8')
     .replace(/^# Blue Note 设计规范\s*\n/, '')
     .replace(
-      '](./PUBLISHING.md)',
-      '](https://github.com/CHEology/bluenote/blob/master/docs/PUBLISHING.md)'
+      /\]\(\.\/PUBLISHING\.md(#[^)]*)?\)/g,
+      (_, fragment = '') => '](https://github.com/CHEology/bluenote/blob/master/docs/PUBLISHING.md' + fragment + ')'
     )
     .replace(
       '](../AGENTS.md)',

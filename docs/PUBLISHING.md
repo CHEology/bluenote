@@ -98,6 +98,30 @@ npm run gallery:prepare -- --input "/本机/原图目录" --year 2026 --slug gal
 - 每张有意义的图片都有替代文字；
 - 线上正文不得直接热链第三方图床；外部地址只作为原图传递或正文链接使用。
 
+### 3.1 文章配乐
+
+作者已选用 **D 封面式播放器**。唯一视觉与交互规范是 [`DESIGN.md` §6.4](./DESIGN.md#64-文章配乐)；本节只维护录入与验收方法。没有作者明确选曲时，不自动添加音乐。
+
+将作者交付的完整音频放入 `source/audio/posts/<年份>/<文章短名>/`，封面放入 `source/images/posts/<年份>/<文章短名>/`。使用 MP3 等浏览器可播放文件，保留完整曲目和作者原文件；不要把预览截段或 Spotify 链接当作音频。封面使用作者提供的版本或音频内嵌封面，不另造封面或可见图注。
+
+在文章 Front Matter 配置（以下是《一些想象》的实际值）：
+
+```yaml
+music:
+  title: ウヲアイニ・ゴンドラ
+  artist: ヘクとパスカル
+  album: fish in the pool
+  audio: /audio/posts/2026/some-imaginings/gondola.mp3
+  cover: /images/posts/2026/some-imaginings/cover.jpg
+  duration: 281.704478
+```
+
+`duration` 是从音频测得的秒数，不能估填；`audio`、`cover` 使用站点根目录相对路径，不手写 `/bluenote/` 前缀。构建时校验必填字段、正数时长及文件存在性，由 `scripts/post-music.js` 统一生成正文前的播放器。不要在正文里复制播放器 HTML，也不要为不同文章另外写播放器样式。只增改元数据，不改变原文文字、分段、日期或链接；更新文章 `updated`。
+
+当前《一些想象》的发布音频与用户交付 MP3 的 SHA-256 一致，为完整 281.704478 秒曲目；封面直接提取自该文件。音频没有自动播放、循环、波形解码或后台预下载，其他文章不加载播放器资源。
+
+除第 5 节通用检查外，在完成构建后运行 `npm run test:music`（本机需已安装 Playwright 的 Chromium、WebKit）。它验证桌面与手机、明暗模式；播放／暂停、键盘与拖动进度（含首次播放前跳转）、接近曲末播放及结束状态；桌面音量／静音；无脚本原生控件与加载失败回退；首次阅读不请求 MP3；正文与文章 Markdown 逐段一致。截图写入不入库的 `tooling/audit/music/`，用于人工视觉验收。新文章仍须另行核对其原始文档；发布后在真实文章 URL 再验证封面、带版本号的 CSS/JS、完整音频时长和拖动播放。
+
 ## 4. 创建和编辑
 
 ### 独立 Gallery 的照片录入
