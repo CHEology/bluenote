@@ -102,6 +102,59 @@ try {
           });
           await page.locator('.post-music__play').click();
         }
+        // A real delayed first request catches loading-message layout shifts.
+        // Observe events as well as frames, so cached resumes cannot hide a
+        // short-lived insertion/removal between screenshots.
+        await page.route('**/*.mp3', async route => {
+          await new Promise(r => setTimeout(r, 350));
+          await route.continue();
+        });
+        await page.reload({ waitUntil: 'networkidle' });
+        await page.evaluate(() => {
+          const selectors = ['.post-music', '.post-music__cover', '.post-music__controls', '.markdown-body > p'];
+          const measure = () => selectors.map(selector => {
+            const r = document.querySelector(selector).getBoundingClientRect();
+            return [r.x, r.y + scrollY, r.width, r.height];
+          });
+          const baseline = measure();
+          const result = { maxMovement: 0, samples: 0, loadingSeen: false, cachedResumeFlashed: false, running: true };
+          const sample = () => {
+            const player = document.querySelector('[data-post-music]');
+            result.loadingSeen ||= player.dataset.loading === 'true' || !player.querySelector('.post-music__status').hidden;
+            measure().forEach((box, i) => box.forEach((n, j) => { result.maxMovement = Math.max(result.maxMovement, Math.abs(n - baseline[i][j])); }));
+            result.samples++;
+          };
+          document.querySelector('.post-music__play').addEventListener('click', () => {
+            sample();
+            const audio = document.querySelector('audio');
+            if (!audio.paused && audio.readyState >= 3 && document.querySelector('[data-post-music]').dataset.loading === 'true') result.cachedResumeFlashed = true;
+          });
+          ['waiting', 'playing', 'pause', 'loadedmetadata', 'timeupdate'].forEach(name => document.querySelector('audio').addEventListener(name, sample));
+          const frame = () => { if (result.running) { sample(); requestAnimationFrame(frame); } };
+          requestAnimationFrame(frame);
+          window.musicLayoutCheck = result;
+        });
+        const button = page.locator('.post-music__play');
+        await button.click();
+        await page.waitForFunction(() => document.querySelector('audio').currentTime > 0.15);
+        await button.click();
+        for (let cycle = 0; cycle < 3; cycle++) {
+          const position = await page.locator('audio').evaluate(a => a.currentTime);
+          await button.click();
+          await page.waitForFunction(t => document.querySelector('audio').currentTime > t + 0.1, position);
+          if (cycle === 0) {
+            // Exercise the same handler for a later buffering notification.
+            await page.locator('audio').evaluate(a => a.dispatchEvent(new Event('waiting')));
+            await page.screenshot({ path: `${output}/${engine.name()}-${width}-${colorScheme}-buffering.png`, fullPage: true });
+          }
+          await button.click();
+        }
+        const layout = await page.evaluate(() => { window.musicLayoutCheck.running = false; return window.musicLayoutCheck; });
+        assert.equal(layout.loadingSeen, true, 'The delayed load exercised the loading state');
+        assert.ok(layout.samples > 10, 'Playback layout was observed over multiple frames');
+        assert.ok(layout.maxMovement <= 0.5, `${engine.name()} ${width} ${colorScheme}: playback shifted layout by ${layout.maxMovement}px`);
+        assert.equal(layout.cachedResumeFlashed, false, 'Cached resumes do not flash loading text');
+        await page.unroute('**/*.mp3');
         assert.deepEqual(errors, []);
         await context.close();
       }
@@ -112,7 +165,7 @@ try {
       assert.equal(await page.locator('.post-music__controls').isVisible(), false);
       assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false);
       await context.close();
-      console.log(`${engine.name()}: 3 widths, 2 themes; playback, initial seek, keyboard, volume, end, retry and no-JS fallback passed.`);
+      console.log(`${engine.name()}: 3 widths, 2 themes; stable playback layout, initial seek, keyboard, volume, end, retry and no-JS fallback passed.`);
     } finally { await browser.close(); }
   }
   const home = await fetch(base).then(r => r.text());
