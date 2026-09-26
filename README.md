@@ -12,6 +12,8 @@
 
 首页和内容页的导航均随页眉自然滚走，回到页首时重新可见；手机菜单主动展开时保留全屏面板。首页桌面卡片以完整 12 位网格居中，先填左侧六位；横纵间距统一、上下留白对称。具体交互与验收要求见设计规范第 9、12 节。
 
+文章配乐统一使用 D 封面式播放器，音频与封面由本站托管。视觉和播放行为以 [设计规范 §6.4](docs/DESIGN.md#64-文章配乐) 为准；资源位置、`music` 元数据和检查方法见 [发文流程 §3.1](docs/PUBLISHING.md#31-文章配乐)。
+
 ## Repository structure
 
 ```text
@@ -19,10 +21,11 @@
 ├── node_modules/hexo-theme-bluenote/  # 主题（npm 依赖；源码见 github.com/CHEology/hexo-theme-bluenote）
 ├── source/
 │   ├── _posts/        # Markdown 文章
-│   ├── css/           # 站点专属样式（私密文章、Design Doc、随想公式）
-│   ├── js/            # 站点专属交互（私密文章）
+│   ├── css/           # 站点专属样式（私密文章、Design Doc、随想公式、配乐）
+│   ├── js/            # 站点专属交互（私密文章、配乐）
+│   ├── audio/posts/   # 作者选择的完整文章配乐
 │   └── images/, img/  # 图片资源
-├── scripts/           # 站点构建处理（Design Doc、私密链接标记）
+├── scripts/           # 站点构建处理（Design Doc、私密链接标记、配乐组件）
 ├── tooling/           # 内容、构建与视觉对比检查
 ├── _config.yml        # Hexo 配置
 ├── _config.bluenote.yml # 主题站点配置

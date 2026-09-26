@@ -989,5 +989,19 @@
     "key": "listTitle",
     "prop": "width",
     "reason": "Content publication: 《根与冠》思绪·壹 and 《根与冠》思绪·贰 add two public entries since the baseline; the new first card has a two-line title and a shorter excerpt, while archive/tag lists grow. Shared typography and layout CSS are unchanged."
+  },
+  {
+    "page": "design",
+    "viewport": "desktop",
+    "shot": "top",
+    "maxDiffPercent": 0.05,
+    "reason": "DESIGN §6.4 (2026-09-25): document date updated with the approved D cover player. Article player layouts are separately verified in tooling/music.browser.mjs; existing article text and shared layout remain unchanged."
+  },
+  {
+    "page": "design",
+    "viewport": "mobile",
+    "shot": "top",
+    "maxDiffPercent": 0.05,
+    "reason": "DESIGN §6.4 (2026-09-25): document date updated with the approved D cover player. Article player layouts are separately verified in tooling/music.browser.mjs; existing article text and shared layout remain unchanged."
   }
 ]
