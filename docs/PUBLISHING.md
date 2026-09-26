@@ -302,13 +302,13 @@ npm run private:restore
 主题 [`hexo-theme-bluenote`](https://github.com/CHEology/hexo-theme-bluenote) 是独立仓库，博客在 `package.json` 中以 git 标签锁定版本：
 
 ```json
-"hexo-theme-bluenote": "github:CHEology/hexo-theme-bluenote#v1.5.0"
+"hexo-theme-bluenote": "github:CHEology/hexo-theme-bluenote#v1.5.1"
 ```
 
 升级主题：
 
 ```bash
-npm install --save "git+https://github.com/CHEology/hexo-theme-bluenote.git#v1.5.0"
+npm install --save "git+https://github.com/CHEology/hexo-theme-bluenote.git#v1.5.1"
 npm run check
 npm run visual:capture && npm run visual:compare
 ```
