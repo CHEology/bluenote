@@ -23,7 +23,10 @@
 }
 .post-music__body { flex: 1; min-width: 0; }
 .post-music__title { color: var(--heading); font-size: 1rem; letter-spacing: 0.02em; overflow-wrap: anywhere; }
-.post-music__artist { margin-top: 2px; color: var(--muted); font-size: 0.8125rem; }
+.post-music__metadata { display: grid; margin-top: 2px; color: var(--muted); font-size: 0.8125rem; }
+.post-music__artist, .post-music__loading { grid-area: 1 / 1; }
+/* Keep the artist's wrapping and height while the loading text occupies its row. */
+.post-music[data-loading="true"] .post-music__artist { visibility: hidden; }
 .post-music__controls { display: flex; align-items: center; gap: 0.625rem; min-width: 0; }
 .post-music__play, .post-music__mute {
   display: flex;

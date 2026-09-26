@@ -27,7 +27,10 @@ hexo.extend.filter.register('before_post_render', function (data) {
 <img class="post-music__cover" src="${cover}" width="100" height="100" alt="${album} 专辑封面" loading="eager" decoding="async">
 <div class="post-music__body">
 <div class="post-music__title" lang="ja">${title}</div>
+<div class="post-music__metadata">
 <div class="post-music__artist"><span lang="ja">${artist}</span> · <span lang="en">${album}</span></div>
+<div class="post-music__loading" role="status" hidden></div>
+</div>
 <audio class="post-music__audio" src="${audio}" controls preload="none" aria-label="${title} — ${artist}"><a href="${audio}">打开音频</a></audio>
 <div class="post-music__controls" hidden>
 <button class="post-music__play" type="button" aria-label="播放">

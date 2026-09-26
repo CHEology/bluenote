@@ -14,13 +14,18 @@
     var volume = player.querySelector('.post-music__volume');
     var current = player.querySelector('[data-music-current]');
     var total = player.querySelector('[data-music-duration]');
+    var loading = player.querySelector('.post-music__loading');
     var status = player.querySelector('.post-music__status');
     var statusText = player.querySelector('[data-music-status]');
     var fallback = player.querySelector('[data-music-fallback]');
     var pendingSeek = null;
     function message(text, failed) {
-      statusText.textContent = text;
-      status.hidden = !text;
+      var isLoading = Boolean(text && !failed);
+      player.dataset.loading = String(isLoading);
+      loading.textContent = isLoading ? text : '';
+      loading.hidden = !isLoading;
+      statusText.textContent = failed ? text : '';
+      status.hidden = !failed;
       fallback.hidden = !failed;
     }
     function duration() {
@@ -47,7 +52,7 @@
       // Handle the error before interpreting a click as a pause request.
       if (!audio.paused && !audio.error) { audio.pause(); return; }
       if (audio.error) audio.load();
-      message('正在加载音频…', false);
+      message(audio.readyState < 3 ? '正在加载音频…' : '', false);
       audio.play().catch(function (error) {
         if (error.name !== 'AbortError') message('音频暂时无法播放，请重试，或', true);
         else message('', false);
