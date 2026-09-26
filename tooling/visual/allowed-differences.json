@@ -995,258 +995,265 @@
     "viewport": "mobile",
     "key": "homeMain",
     "prop": "backgroundImage",
-    "reason": "DESIGN §9: approved A mobile reading list replaces square cards with date, full title, two-line excerpt, fine separators and a dark gradient; desktop and tablet are unchanged."
+    "reason": "DESIGN §9: approved A mobile reading list with a uniform translucent dark blue background and a direct upper edge; no gradient or fade. Desktop and tablet are unchanged."
   },
   {
     "page": "home",
     "viewport": "mobile",
     "key": "homeMain",
     "prop": "paddingTop",
-    "reason": "DESIGN §9: approved A mobile reading list replaces square cards with date, full title, two-line excerpt, fine separators and a dark gradient; desktop and tablet are unchanged."
+    "reason": "DESIGN §9: approved A mobile reading list with a uniform translucent dark blue background and a direct upper edge; no gradient or fade. Desktop and tablet are unchanged."
   },
   {
     "page": "home",
     "viewport": "mobile",
     "key": "homeMain",
     "prop": "paddingBottom",
-    "reason": "DESIGN §9: approved A mobile reading list replaces square cards with date, full title, two-line excerpt, fine separators and a dark gradient; desktop and tablet are unchanged."
+    "reason": "DESIGN §9: approved A mobile reading list with a uniform translucent dark blue background and a direct upper edge; no gradient or fade. Desktop and tablet are unchanged."
   },
   {
     "page": "home",
     "viewport": "mobile",
     "key": "homeGrid",
     "prop": "x",
-    "reason": "DESIGN §9: approved A mobile reading list replaces square cards with date, full title, two-line excerpt, fine separators and a dark gradient; desktop and tablet are unchanged."
+    "reason": "DESIGN §9: approved A mobile reading list with a uniform translucent dark blue background and a direct upper edge; no gradient or fade. Desktop and tablet are unchanged."
   },
   {
     "page": "home",
     "viewport": "mobile",
     "key": "homeGrid",
     "prop": "y",
-    "reason": "DESIGN §9: approved A mobile reading list replaces square cards with date, full title, two-line excerpt, fine separators and a dark gradient; desktop and tablet are unchanged."
+    "reason": "DESIGN §9: approved A mobile reading list with a uniform translucent dark blue background and a direct upper edge; no gradient or fade. Desktop and tablet are unchanged."
   },
   {
     "page": "home",
     "viewport": "mobile",
     "key": "homeGrid",
     "prop": "width",
-    "reason": "DESIGN §9: approved A mobile reading list replaces square cards with date, full title, two-line excerpt, fine separators and a dark gradient; desktop and tablet are unchanged."
+    "reason": "DESIGN §9: approved A mobile reading list with a uniform translucent dark blue background and a direct upper edge; no gradient or fade. Desktop and tablet are unchanged."
   },
   {
     "page": "home",
     "viewport": "mobile",
     "key": "homeGrid",
     "prop": "display",
-    "reason": "DESIGN §9: approved A mobile reading list replaces square cards with date, full title, two-line excerpt, fine separators and a dark gradient; desktop and tablet are unchanged."
+    "reason": "DESIGN §9: approved A mobile reading list with a uniform translucent dark blue background and a direct upper edge; no gradient or fade. Desktop and tablet are unchanged."
   },
   {
     "page": "home",
     "viewport": "mobile",
     "key": "card",
     "prop": "x",
-    "reason": "DESIGN §9: approved A mobile reading list replaces square cards with date, full title, two-line excerpt, fine separators and a dark gradient; desktop and tablet are unchanged."
+    "reason": "DESIGN §9: approved A mobile reading list with a uniform translucent dark blue background and a direct upper edge; no gradient or fade. Desktop and tablet are unchanged."
   },
   {
     "page": "home",
     "viewport": "mobile",
     "key": "card",
     "prop": "y",
-    "reason": "DESIGN §9: approved A mobile reading list replaces square cards with date, full title, two-line excerpt, fine separators and a dark gradient; desktop and tablet are unchanged."
+    "reason": "DESIGN §9: approved A mobile reading list with a uniform translucent dark blue background and a direct upper edge; no gradient or fade. Desktop and tablet are unchanged."
   },
   {
     "page": "home",
     "viewport": "mobile",
     "key": "card",
     "prop": "width",
-    "reason": "DESIGN §9: approved A mobile reading list replaces square cards with date, full title, two-line excerpt, fine separators and a dark gradient; desktop and tablet are unchanged."
+    "reason": "DESIGN §9: approved A mobile reading list with a uniform translucent dark blue background and a direct upper edge; no gradient or fade. Desktop and tablet are unchanged."
   },
   {
     "page": "home",
     "viewport": "mobile",
     "key": "card",
     "prop": "height",
-    "reason": "DESIGN §9: approved A mobile reading list replaces square cards with date, full title, two-line excerpt, fine separators and a dark gradient; desktop and tablet are unchanged."
+    "reason": "DESIGN §9: approved A mobile reading list with a uniform translucent dark blue background and a direct upper edge; no gradient or fade. Desktop and tablet are unchanged."
   },
   {
     "page": "home",
     "viewport": "mobile",
     "key": "card",
     "prop": "backgroundColor",
-    "reason": "DESIGN §9: approved A mobile reading list replaces square cards with date, full title, two-line excerpt, fine separators and a dark gradient; desktop and tablet are unchanged."
+    "reason": "DESIGN §9: approved A mobile reading list with a uniform translucent dark blue background and a direct upper edge; no gradient or fade. Desktop and tablet are unchanged."
   },
   {
     "page": "home",
     "viewport": "mobile",
     "key": "card",
     "prop": "boxShadow",
-    "reason": "DESIGN §9: approved A mobile reading list replaces square cards with date, full title, two-line excerpt, fine separators and a dark gradient; desktop and tablet are unchanged."
+    "reason": "DESIGN §9: approved A mobile reading list with a uniform translucent dark blue background and a direct upper edge; no gradient or fade. Desktop and tablet are unchanged."
   },
   {
     "page": "home",
     "viewport": "mobile",
     "key": "cardTitle",
     "prop": "x",
-    "reason": "DESIGN §9: approved A mobile reading list replaces square cards with date, full title, two-line excerpt, fine separators and a dark gradient; desktop and tablet are unchanged."
+    "reason": "DESIGN §9: approved A mobile reading list with a uniform translucent dark blue background and a direct upper edge; no gradient or fade. Desktop and tablet are unchanged."
   },
   {
     "page": "home",
     "viewport": "mobile",
     "key": "cardTitle",
     "prop": "y",
-    "reason": "DESIGN §9: approved A mobile reading list replaces square cards with date, full title, two-line excerpt, fine separators and a dark gradient; desktop and tablet are unchanged."
+    "reason": "DESIGN §9: approved A mobile reading list with a uniform translucent dark blue background and a direct upper edge; no gradient or fade. Desktop and tablet are unchanged."
   },
   {
     "page": "home",
     "viewport": "mobile",
     "key": "cardTitle",
     "prop": "width",
-    "reason": "DESIGN §9: approved A mobile reading list replaces square cards with date, full title, two-line excerpt, fine separators and a dark gradient; desktop and tablet are unchanged."
+    "reason": "DESIGN §9: approved A mobile reading list with a uniform translucent dark blue background and a direct upper edge; no gradient or fade. Desktop and tablet are unchanged."
   },
   {
     "page": "home",
     "viewport": "mobile",
     "key": "cardTitle",
     "prop": "height",
-    "reason": "DESIGN §9: approved A mobile reading list replaces square cards with date, full title, two-line excerpt, fine separators and a dark gradient; desktop and tablet are unchanged."
+    "reason": "DESIGN §9: approved A mobile reading list with a uniform translucent dark blue background and a direct upper edge; no gradient or fade. Desktop and tablet are unchanged."
   },
   {
     "page": "home",
     "viewport": "mobile",
     "key": "cardTitle",
     "prop": "fontWeight",
-    "reason": "DESIGN §9: approved A mobile reading list replaces square cards with date, full title, two-line excerpt, fine separators and a dark gradient; desktop and tablet are unchanged."
+    "reason": "DESIGN §9: approved A mobile reading list with a uniform translucent dark blue background and a direct upper edge; no gradient or fade. Desktop and tablet are unchanged."
   },
   {
     "page": "home",
     "viewport": "mobile",
     "key": "cardTitle",
     "prop": "lineHeight",
-    "reason": "DESIGN §9: approved A mobile reading list replaces square cards with date, full title, two-line excerpt, fine separators and a dark gradient; desktop and tablet are unchanged."
+    "reason": "DESIGN §9: approved A mobile reading list with a uniform translucent dark blue background and a direct upper edge; no gradient or fade. Desktop and tablet are unchanged."
   },
   {
     "page": "home",
     "viewport": "mobile",
     "key": "cardTitle",
     "prop": "display",
-    "reason": "DESIGN §9: approved A mobile reading list replaces square cards with date, full title, two-line excerpt, fine separators and a dark gradient; desktop and tablet are unchanged."
+    "reason": "DESIGN §9: approved A mobile reading list with a uniform translucent dark blue background and a direct upper edge; no gradient or fade. Desktop and tablet are unchanged."
   },
   {
     "page": "home",
     "viewport": "mobile",
     "key": "cardExcerpt",
     "prop": "x",
-    "reason": "DESIGN §9: approved A mobile reading list replaces square cards with date, full title, two-line excerpt, fine separators and a dark gradient; desktop and tablet are unchanged."
+    "reason": "DESIGN §9: approved A mobile reading list with a uniform translucent dark blue background and a direct upper edge; no gradient or fade. Desktop and tablet are unchanged."
   },
   {
     "page": "home",
     "viewport": "mobile",
     "key": "cardExcerpt",
     "prop": "y",
-    "reason": "DESIGN §9: approved A mobile reading list replaces square cards with date, full title, two-line excerpt, fine separators and a dark gradient; desktop and tablet are unchanged."
+    "reason": "DESIGN §9: approved A mobile reading list with a uniform translucent dark blue background and a direct upper edge; no gradient or fade. Desktop and tablet are unchanged."
   },
   {
     "page": "home",
     "viewport": "mobile",
     "key": "cardExcerpt",
     "prop": "width",
-    "reason": "DESIGN §9: approved A mobile reading list replaces square cards with date, full title, two-line excerpt, fine separators and a dark gradient; desktop and tablet are unchanged."
+    "reason": "DESIGN §9: approved A mobile reading list with a uniform translucent dark blue background and a direct upper edge; no gradient or fade. Desktop and tablet are unchanged."
   },
   {
     "page": "home",
     "viewport": "mobile",
     "key": "cardExcerpt",
     "prop": "lineHeight",
-    "reason": "DESIGN §9: approved A mobile reading list replaces square cards with date, full title, two-line excerpt, fine separators and a dark gradient; desktop and tablet are unchanged."
+    "reason": "DESIGN §9: approved A mobile reading list with a uniform translucent dark blue background and a direct upper edge; no gradient or fade. Desktop and tablet are unchanged."
   },
   {
     "page": "home",
     "viewport": "mobile",
     "key": "cardMeta",
     "prop": "x",
-    "reason": "DESIGN §9: approved A mobile reading list replaces square cards with date, full title, two-line excerpt, fine separators and a dark gradient; desktop and tablet are unchanged."
+    "reason": "DESIGN §9: approved A mobile reading list with a uniform translucent dark blue background and a direct upper edge; no gradient or fade. Desktop and tablet are unchanged."
   },
   {
     "page": "home",
     "viewport": "mobile",
     "key": "cardMeta",
     "prop": "y",
-    "reason": "DESIGN §9: approved A mobile reading list replaces square cards with date, full title, two-line excerpt, fine separators and a dark gradient; desktop and tablet are unchanged."
+    "reason": "DESIGN §9: approved A mobile reading list with a uniform translucent dark blue background and a direct upper edge; no gradient or fade. Desktop and tablet are unchanged."
   },
   {
     "page": "home",
     "viewport": "mobile",
     "key": "cardMeta",
     "prop": "width",
-    "reason": "DESIGN §9: approved A mobile reading list replaces square cards with date, full title, two-line excerpt, fine separators and a dark gradient; desktop and tablet are unchanged."
+    "reason": "DESIGN §9: approved A mobile reading list with a uniform translucent dark blue background and a direct upper edge; no gradient or fade. Desktop and tablet are unchanged."
   },
   {
     "page": "home",
     "viewport": "mobile",
     "key": "cardMeta",
     "prop": "lineHeight",
-    "reason": "DESIGN §9: approved A mobile reading list replaces square cards with date, full title, two-line excerpt, fine separators and a dark gradient; desktop and tablet are unchanged."
+    "reason": "DESIGN §9: approved A mobile reading list with a uniform translucent dark blue background and a direct upper edge; no gradient or fade. Desktop and tablet are unchanged."
   },
   {
     "page": "home",
     "viewport": "mobile",
     "key": "cardMeta",
     "prop": "marginBottom",
-    "reason": "DESIGN §9: approved A mobile reading list replaces square cards with date, full title, two-line excerpt, fine separators and a dark gradient; desktop and tablet are unchanged."
+    "reason": "DESIGN §9: approved A mobile reading list with a uniform translucent dark blue background and a direct upper edge; no gradient or fade. Desktop and tablet are unchanged."
   },
   {
     "page": "home",
     "viewport": "mobile",
     "key": "cardMetaIcon",
     "prop": "x",
-    "reason": "DESIGN §9: approved A mobile reading list replaces square cards with date, full title, two-line excerpt, fine separators and a dark gradient; desktop and tablet are unchanged."
+    "reason": "DESIGN §9: approved A mobile reading list with a uniform translucent dark blue background and a direct upper edge; no gradient or fade. Desktop and tablet are unchanged."
   },
   {
     "page": "home",
     "viewport": "mobile",
     "key": "cardMetaIcon",
     "prop": "y",
-    "reason": "DESIGN §9: approved A mobile reading list replaces square cards with date, full title, two-line excerpt, fine separators and a dark gradient; desktop and tablet are unchanged."
+    "reason": "DESIGN §9: approved A mobile reading list with a uniform translucent dark blue background and a direct upper edge; no gradient or fade. Desktop and tablet are unchanged."
   },
   {
     "page": "home",
     "viewport": "mobile",
     "key": "cardMetaIcon",
     "prop": "width",
-    "reason": "DESIGN §9: approved A mobile reading list replaces square cards with date, full title, two-line excerpt, fine separators and a dark gradient; desktop and tablet are unchanged."
+    "reason": "DESIGN §9: approved A mobile reading list with a uniform translucent dark blue background and a direct upper edge; no gradient or fade. Desktop and tablet are unchanged."
   },
   {
     "page": "home",
     "viewport": "mobile",
     "key": "cardMetaIcon",
     "prop": "height",
-    "reason": "DESIGN §9: approved A mobile reading list replaces square cards with date, full title, two-line excerpt, fine separators and a dark gradient; desktop and tablet are unchanged."
+    "reason": "DESIGN §9: approved A mobile reading list with a uniform translucent dark blue background and a direct upper edge; no gradient or fade. Desktop and tablet are unchanged."
   },
   {
     "page": "home",
     "viewport": "mobile",
     "key": "cardMetaIcon",
     "prop": "marginRight",
-    "reason": "DESIGN §9: approved A mobile reading list replaces square cards with date, full title, two-line excerpt, fine separators and a dark gradient; desktop and tablet are unchanged."
+    "reason": "DESIGN §9: approved A mobile reading list with a uniform translucent dark blue background and a direct upper edge; no gradient or fade. Desktop and tablet are unchanged."
   },
   {
     "page": "home",
     "viewport": "mobile",
     "key": "cardMetaIcon",
     "prop": "display",
-    "reason": "DESIGN §9: approved A mobile reading list replaces square cards with date, full title, two-line excerpt, fine separators and a dark gradient; desktop and tablet are unchanged."
+    "reason": "DESIGN §9: approved A mobile reading list with a uniform translucent dark blue background and a direct upper edge; no gradient or fade. Desktop and tablet are unchanged."
   },
   {
     "page": "home",
     "viewport": "mobile",
     "shot": "top",
     "maxDiffPercent": 5,
-    "reason": "DESIGN §9: approved A mobile reading list and its 96px cover-to-list gradient; desktop shots remain pixel-identical."
+    "reason": "DESIGN §9: approved A mobile reading list with a uniform translucent dark blue background and a direct upper edge; no gradient or fade. Desktop and tablet are unchanged."
   },
   {
     "page": "home",
     "viewport": "mobile",
     "shot": "grid",
     "maxDiffPercent": 20,
-    "reason": "DESIGN §9: approved A mobile reading list and its 96px cover-to-list gradient; desktop shots remain pixel-identical."
+    "reason": "DESIGN §9: approved A mobile reading list with a uniform translucent dark blue background and a direct upper edge; no gradient or fade. Desktop and tablet are unchanged."
+  },
+  {
+    "page": "home",
+    "viewport": "mobile",
+    "key": "homeMain",
+    "prop": "backgroundColor",
+    "reason": "DESIGN §9: replace the mobile gradient with uniform rgba(6,21,33,.94); the upper edge directly meets the cover."
   }
 ]
