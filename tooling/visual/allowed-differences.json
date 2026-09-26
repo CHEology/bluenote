@@ -1255,5 +1255,51 @@
     "key": "homeMain",
     "prop": "backgroundColor",
     "reason": "DESIGN §9: replace the mobile gradient with uniform rgba(6,21,33,.94); the upper edge directly meets the cover."
+  },
+  {
+    "pageStartsWith": "post-",
+    "key": "postNav",
+    "prop": "height",
+    "reason": "DESIGN §4.1: approved centred back-to-top chevron and three-column navigation with 44px hit targets; only the footer grows by 20px, with article text unchanged."
+  },
+  {
+    "pageStartsWith": "post-",
+    "key": "postNav",
+    "prop": "display",
+    "reason": "DESIGN §4.1: approved centred back-to-top chevron and three-column navigation with 44px hit targets; only the footer grows by 20px, with article text unchanged."
+  },
+  {
+    "pageStartsWith": "post-",
+    "key": "postPrev",
+    "prop": "height",
+    "reason": "DESIGN §4.1: approved centred back-to-top chevron and three-column navigation with 44px hit targets; only the footer grows by 20px, with article text unchanged."
+  },
+  {
+    "page": "post-text",
+    "viewport": "desktop",
+    "shot": "full",
+    "maxDiffPercent": 1.2,
+    "reason": "DESIGN §4.1: approved centred back-to-top chevron and three-column navigation with 44px hit targets; only the footer grows by 20px, with article text unchanged."
+  },
+  {
+    "page": "post-text",
+    "viewport": "mobile",
+    "shot": "full",
+    "maxDiffPercent": 1.2,
+    "reason": "DESIGN §4.1: approved centred back-to-top chevron and three-column navigation with 44px hit targets; only the footer grows by 20px, with article text unchanged."
+  },
+  {
+    "page": "post-zato",
+    "viewport": "desktop",
+    "shot": "full",
+    "maxDiffPercent": 1.2,
+    "reason": "DESIGN §4.1: approved centred back-to-top chevron and three-column navigation with 44px hit targets; only the footer grows by 20px, with article text unchanged."
+  },
+  {
+    "page": "post-zato",
+    "viewport": "mobile",
+    "shot": "full",
+    "maxDiffPercent": 1.2,
+    "reason": "DESIGN §4.1: approved centred back-to-top chevron and three-column navigation with 44px hit targets; only the footer grows by 20px, with article text unchanged."
   }
 ]
