@@ -833,15 +833,15 @@
     "page": "archives",
     "viewport": "desktop",
     "shot": "full",
-    "maxDiffPercent": 9.7,
-    "reason": "Content publication: 《根与冠》思绪·壹 and 《根与冠》思绪·贰 add two public entries since the baseline; the new first card has a two-line title and a shorter excerpt, while archive/tag lists grow. Shared typography and layout CSS are unchanged."
+    "maxDiffPercent": 14.0,
+    "reason": "DESIGN §9: move Design Doc from the SITE section to About, display all 11 articles on one archive page (capacity 50), and remove the now-unused pager. The archive is 162px shorter; the dark screenshot comparison includes the removed bottom area."
   },
   {
     "page": "archives",
     "viewport": "mobile",
     "shot": "full",
-    "maxDiffPercent": 9.6,
-    "reason": "Content publication: 《根与冠》思绪·壹 and 《根与冠》思绪·贰 add two public entries since the baseline; the new first card has a two-line title and a shorter excerpt, while archive/tag lists grow. Shared typography and layout CSS are unchanged."
+    "maxDiffPercent": 15.2,
+    "reason": "DESIGN §9: move Design Doc from the SITE section to About, display all 11 articles on one archive page (capacity 50), and remove the now-unused pager. The archive is 162px shorter; the dark screenshot comparison includes the removed bottom area."
   },
   {
     "page": "tag",
@@ -915,51 +915,9 @@
   },
   {
     "page": "archives",
-    "viewport": "desktop",
-    "key": "listSection",
-    "prop": "y",
-    "reason": "Content publication: 《根与冠》思绪·壹 and 《根与冠》思绪·贰 add two public entries since the baseline; the new first card has a two-line title and a shorter excerpt, while archive/tag lists grow. Shared typography and layout CSS are unchanged."
-  },
-  {
-    "page": "archives",
-    "viewport": "desktop",
-    "key": "listKind",
-    "prop": "y",
-    "reason": "Content publication: 《根与冠》思绪·壹 and 《根与冠》思绪·贰 add two public entries since the baseline; the new first card has a two-line title and a shorter excerpt, while archive/tag lists grow. Shared typography and layout CSS are unchanged."
-  },
-  {
-    "page": "archives",
-    "viewport": "desktop",
-    "key": "listSummary",
-    "prop": "y",
-    "reason": "Content publication: 《根与冠》思绪·壹 and 《根与冠》思绪·贰 add two public entries since the baseline; the new first card has a two-line title and a shorter excerpt, while archive/tag lists grow. Shared typography and layout CSS are unchanged."
-  },
-  {
-    "page": "archives",
     "viewport": "mobile",
     "key": "listTitle",
     "prop": "width",
-    "reason": "Content publication: 《根与冠》思绪·壹 and 《根与冠》思绪·贰 add two public entries since the baseline; the new first card has a two-line title and a shorter excerpt, while archive/tag lists grow. Shared typography and layout CSS are unchanged."
-  },
-  {
-    "page": "archives",
-    "viewport": "mobile",
-    "key": "listSection",
-    "prop": "y",
-    "reason": "Content publication: 《根与冠》思绪·壹 and 《根与冠》思绪·贰 add two public entries since the baseline; the new first card has a two-line title and a shorter excerpt, while archive/tag lists grow. Shared typography and layout CSS are unchanged."
-  },
-  {
-    "page": "archives",
-    "viewport": "mobile",
-    "key": "listKind",
-    "prop": "y",
-    "reason": "Content publication: 《根与冠》思绪·壹 and 《根与冠》思绪·贰 add two public entries since the baseline; the new first card has a two-line title and a shorter excerpt, while archive/tag lists grow. Shared typography and layout CSS are unchanged."
-  },
-  {
-    "page": "archives",
-    "viewport": "mobile",
-    "key": "listSummary",
-    "prop": "y",
     "reason": "Content publication: 《根与冠》思绪·壹 and 《根与冠》思绪·贰 add two public entries since the baseline; the new first card has a two-line title and a shorter excerpt, while archive/tag lists grow. Shared typography and layout CSS are unchanged."
   },
   {
@@ -1301,5 +1259,23 @@
     "shot": "full",
     "maxDiffPercent": 1.2,
     "reason": "DESIGN §4.1: approved centred back-to-top chevron and three-column navigation with 44px hit targets; only the footer grows by 20px, with article text unchanged."
+  },
+  {
+    "page": "archives",
+    "key": "listSection",
+    "prop": "*",
+    "reason": "DESIGN §9: remove the SITE section, DOC label and documentation summary from article archives; the Design Doc entry now lives beside RSS in About."
+  },
+  {
+    "page": "archives",
+    "key": "listKind",
+    "prop": "*",
+    "reason": "DESIGN §9: remove the SITE section, DOC label and documentation summary from article archives; the Design Doc entry now lives beside RSS in About."
+  },
+  {
+    "page": "archives",
+    "key": "listSummary",
+    "prop": "*",
+    "reason": "DESIGN §9: remove the SITE section, DOC label and documentation summary from article archives; the Design Doc entry now lives beside RSS in About."
   }
 ]
