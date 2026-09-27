@@ -184,6 +184,14 @@ font-family: Charter, Georgia, "Times New Roman",
 - 入口同标签页打开，无 JavaScript 也可跳转。URL、文案和无障碍描述由元数据提供，主题不写死 ai-lab 域名；未配置及私密文章不显示横框。上下篇与页首导航遵循 §4.1。
 - 首批四篇为《布涅星》《Z.A.T.O. 随想》《0902 - 随想》《修图》。文案为 `Read the ai-written reflection`，单数 reflection 指对应的一篇回应；末级地址沿用原文标题，包括中文、空格与标点。
 
+### 5.2 经作者授权的手稿目录与篇章
+
+- 只有作者明确要求时才增加目录。目录按原稿顺序列出篇名，使用正文内的原生折叠区域，默认收起；只标“目录”，不加摘要、页码、进度条或操作面板。
+- 连续手稿按原有篇章组织，接合跨照片的续文，不把每张照片当作一篇文章。保留原有小节、日期、注释、诗行和图示。
+- 正文沿用全站衬线字体、行宽、字号与行距。篇章间距为 `3.5rem`；篇名为 `1.375rem`、行距 `1.5`，下留 `1.5rem`，无边框或底色。小节层级沿用原稿语义，不由句式自动增设。
+- 目录条目为 `0.9375rem`、行距 `1.65`，单列自然换行；原注与日期为 `0.875rem`、行距 `1.65`，使用 `--muted`，日期右对齐。保留换行的诗文行距为 `1.95`。原稿图示依 §8 保持比例，最大占正文宽度的 90%。
+- 私密文章的目录、篇名、正文与图示一并加密，仅在解锁后进入页面；通用设计文档与截图基线不包含其内容。
+
 ## 6. 方框与特殊内容块
 
 ### 6.1 何时可以使用方框
@@ -359,7 +367,7 @@ box-shadow: none;
 - 主题的 `_config.yml` 与站点 `_config.bluenote.yml`：颜色与字体 token（`--paper`、`--text`、`--prose`、`--heading`、`--muted`、`--link`、`--link-hover`、`--line`、`--masthead`、`--masthead-text`、`--accent`、`--panel`、`--home-*` 等）及主题开关；颜色值以本文第 2 节为准，主题默认值即 Blue Note 的取值；
 - 主题的 `layout/`：全部页面模板；首页、内容页与摄影文章的布局类在构建时写入 `<body>`；`_partials/post-companion.ejs` 负责正文之后、上下篇导航之前的可选关联阅读横框，样式归 `assets/css/50-post.css`；
 - 主题的 `scripts/`：主题构建期脚本——布局类、标题锚点、图注（文件名 alt 不生成图注）、原生懒加载、CSS/JS 合并与内容版本号；第三方副本来源见 `docs/VENDORED-ASSETS.md`；
-- `source/css/site.css`：仅 Blue Note 专属的例外（《小蓝本》解锁后的首个代码块按通用方框呈现，以及 About 页底 RSS 的布局、分隔线、图标和交互反馈）；
+- `source/css/site.css`：仅 Blue Note 专属的手稿篇章排版（§5.2），以及 About 页底 RSS 的布局、分隔线、图标和交互反馈；
 - `source/css/design-doc.css`：Design Doc 页面；
 - `source/css/thought-notes.css`：随想中的公式排列和主题分隔，不重定义通用方框；
 - `source/css/post-music.css`、`source/js/post-music.js`：本站统一的 D 封面式配乐组件；只在配置了 `music` 的文章页加载，视觉以 §6.4 为准；
