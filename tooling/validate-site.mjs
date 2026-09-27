@@ -164,6 +164,20 @@ if (archiveArticles !== Math.min(50, markdownPosts.length)) {
 if (markdownPosts.length <= 50 && existsSync(join(publicRoot, 'archives/page/2/index.html'))) {
   fail('Archives must not paginate before exceeding 50 articles');
 }
+// The manuscript's composition year governs chronology; its upload URL stays stable.
+const manuscriptId = 'eeddfa74ef298a0c';
+const archiveRows = [...archive.matchAll(/<a class="listing__item"[^>]*>[\s\S]*?<\/a>/g)].map(match => match[0]);
+const manuscriptRow = archiveRows.find(row => row.includes(`data-private-link="${manuscriptId}"`)) || '';
+if (archiveRows.at(-1) !== manuscriptRow || !archive.includes('<p class="listing__year">2018</p>') ||
+    !manuscriptRow.includes('datetime="2018">2018</time>') ||
+    !manuscriptRow.includes('<small class="listing__note">（2026.09.27 ChatGPT整理并上传）</small>')) {
+  fail('The historical manuscript must be earliest, year-only, with the approved archive annotation');
+}
+const homeCards = [...home.matchAll(/<article class="index-card">[\s\S]*?<\/article>/g)].map(match => match[0]);
+if (!homeCards.at(-1)?.includes(`data-private-link="${manuscriptId}"`) ||
+    !homeCards.at(-1)?.includes('datetime="2018">2018</time>') || home.includes('listing__note')) {
+  fail('The historical manuscript must be earliest on Home, with a year-only date and no archive annotation');
+}
 const aboutResources = readFileSync(join(publicRoot, 'about/index.html'), 'utf8')
   .match(/<footer class="about-resources">[\s\S]*?<\/footer>/)?.[0] || '';
 if (!aboutResources.includes('href="/bluenote/design/"') || !aboutResources.includes('href="/bluenote/rss.xml"')) {
