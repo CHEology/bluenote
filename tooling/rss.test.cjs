@@ -71,12 +71,17 @@ test('generated RSS includes every public article, excludes private identities a
   const posts = readdirSync(join(root, 'source/_posts')).filter(f => f.endsWith('.md'))
     .map(f => frontMatter.parse(readFileSync(join(root, 'source/_posts', f), 'utf8')));
   const visible = posts.filter(p => !p.private_post && !p.private_id);
+  const items = (feed.match(/<item>[\s\S]*?<\/item>/g) || []).join('\n');
   assert.equal((feed.match(/<item>/g) || []).length, visible.length);
   for (const post of visible) assert.ok(feed.includes('<title>' + xml(post.title) + '</title>'));
   const privateManifest = JSON.parse(readFileSync(join(root, 'source/private/posts.public.json'), 'utf8'));
   for (const post of privateManifest.posts) {
-    for (const secret of [post.title, post.id, post.filename, post.url, decodeURIComponent(post.url)]) {
+    for (const secret of [post.id, post.filename, post.url, decodeURIComponent(post.url)]) {
       assert.ok(!feed.includes(secret), 'Private metadata entered RSS');
+    }
+    // A private title may also be the channel name or a public article's title.
+    if (!visible.some(publicPost => publicPost.title === post.title)) {
+      assert.ok(!items.includes('<title>' + xml(post.title) + '</title>'), 'Private article entered RSS');
     }
   }
   assert.doesNotMatch(feed, /private-post|posts\.enc|posts\.public|<script|<enclosure|<content:encoded/);

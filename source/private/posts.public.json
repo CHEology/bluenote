@@ -2,11 +2,18 @@
   "version": 1,
   "posts": [
     {
+      "id": "ab7a258be3f5f5b2",
+      "filename": "Blue Note.md",
+      "title": "Blue Note",
+      "date": "2023-07-31",
+      "url": "/bluenote/2023/07/31/%E5%B0%8F%E8%93%9D%E6%9C%AC/"
+    },
+    {
       "id": "eeddfa74ef298a0c",
       "filename": "小蓝本.md",
       "title": "小蓝本",
-      "date": "2023-07-31",
-      "url": "/bluenote/2023/07/31/%E5%B0%8F%E8%93%9D%E6%9C%AC/"
+      "date": "2026-09-27",
+      "url": "/bluenote/2026/09/27/%E5%B0%8F%E8%93%9D%E6%9C%AC/"
     }
   ]
 }

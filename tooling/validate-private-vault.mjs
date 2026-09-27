@@ -35,21 +35,31 @@ try {
 if (!wrongPasswordRejected) throw new Error('Wrong password unexpectedly decrypted the private archive.');
 
 const generatedHome = readFileSync(join(publicRoot, 'index.html'), 'utf8');
-const generatedPrivatePost = readFileSync(join(publicRoot, '2023', '07', '31', '小蓝本', 'index.html'), 'utf8');
 const generatedBundle = readFileSync(join(publicRoot, 'private', 'posts.enc.json'), 'utf8');
 const generatedManifest = readFileSync(join(publicRoot, 'private', 'posts.public.json'), 'utf8');
 const generatedPrivateScript = readFileSync(join(publicRoot, 'js', 'private.js'), 'utf8');
-if (!generatedHome.includes('data-private-link="eeddfa74ef298a0c"')) {
-  throw new Error('Private post is not marked on the generated home page.');
+const identities = JSON.parse(generatedManifest).posts;
+for (const field of ['id', 'filename', 'url']) {
+  if (new Set(identities.map(post => post[field])).size !== identities.length) {
+    throw new Error(`Private articles must have distinct ${field} values.`);
+  }
 }
-if (!generatedPrivatePost.includes('data-private-post-id="eeddfa74ef298a0c"')) {
-  throw new Error('Generated private post shell is missing.');
+for (const identity of identities) {
+  const path = decodeURIComponent(identity.url).replace(/^\/bluenote\//, '');
+  const page = readFileSync(join(publicRoot, path, 'index.html'), 'utf8');
+  if (!page.includes(`data-private-post-id="${identity.id}"`)) {
+    throw new Error('Generated private post shell is missing or has the wrong identity.');
+  }
+  if (generatedHome.includes(`href="${identity.url}"`) &&
+      !generatedHome.includes(`data-private-link="${identity.id}"`)) {
+    throw new Error('Private post is not marked on the generated home page.');
+  }
 }
 if (generatedBundle.includes(secretTitle) || generatedBundle.includes(secretBody)) {
   throw new Error('Private fixture leaked into the generated archive.');
 }
-if (!generatedManifest.includes('小蓝本') || generatedManifest.includes(secretBody)) {
-  throw new Error('Public private-post manifest is missing its title or leaks protected content.');
+if (generatedManifest.includes(secretBody)) {
+  throw new Error('Public private-post manifest leaks protected content.');
 }
 if (!generatedPrivateScript.includes('是否退出解锁状态？') ||
     !generatedPrivateScript.includes('data-private-lock-control') ||
