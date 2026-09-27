@@ -1,17 +1,17 @@
 ---
-title: 小蓝本
-permalink: 2026/09/27/小蓝本/
-date: 2026-09-27 11:12:59
-updated: 2026-09-27 11:12:59
+title: Blue Note
+permalink: 2023/07/31/小蓝本/
+date: 2023-07-31 21:00:00
+updated: 2023-07-31 22:50:22
 tags:
   - 其他
 description: Private reading.
 index_img:
 private_post: true
-private_id: eeddfa74ef298a0c
+private_id: ab7a258be3f5f5b2
 ---
 
-<section class="private-post-shell" data-private-post-id="eeddfa74ef298a0c">
+<section class="private-post-shell" data-private-post-id="ab7a258be3f5f5b2">
   <div class="private-post-shell__locked" data-private-post-locked>
     <span class="private-post-shell__lock" aria-hidden="true"></span>
     <p class="private-post-shell__label">Locked</p>
