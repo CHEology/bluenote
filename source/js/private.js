@@ -4,11 +4,31 @@
   if (!siteRoot.endsWith('/')) siteRoot += '/';
 
   var archive;
+  var archivePromise;
   var manifest = { posts: [] };
   var unlockedPayload;
   var activeKeyBytes;
   var previousFocus;
   var lockPreviousFocus;
+
+  function loadArchive() {
+    if (archive) return Promise.resolve(archive);
+    if (!archivePromise) {
+      archivePromise = fetch(siteRoot + 'private/posts.enc.json', { cache: 'no-store' })
+        .then(function(response) {
+          if (!response.ok) throw new Error('archive-unavailable');
+          return response.json();
+        }).then(function(bundle) {
+          if (!bundle.ciphertext) throw new Error('archive-unavailable');
+          archive = bundle;
+          return archive;
+        }).catch(function() {
+          archivePromise = undefined;
+          throw new Error('archive-unavailable');
+        });
+    }
+    return archivePromise;
+  }
 
   function bytesFromBase64(value) {
     var binary = window.atob(value);
@@ -140,6 +160,10 @@
     content.hidden = false;
     locked.hidden = true;
     document.body.classList.add('private-post-unlocked');
+    try {
+      var target = document.getElementById(decodeURIComponent(window.location.hash.slice(1)));
+      if (target && content.contains(target)) target.scrollIntoView();
+    } catch (error) {}
   }
 
   function announceUnlocked() {
@@ -285,14 +309,11 @@
 
   form.addEventListener('submit', async function(event) {
     event.preventDefault();
-    if (!archive || !archive.ciphertext) {
-      status.textContent = 'Unavailable';
-      return;
-    }
     var submit = form.querySelector('button[type="submit"]');
     submit.disabled = true;
     status.textContent = 'Checking…';
     try {
+      await loadArchive();
       var keyBytes = await deriveKeyBytes(passwordInput.value, archive);
       var payload = await decryptWithKeyBytes(archive, keyBytes);
       activeKeyBytes = keyBytes;
@@ -305,33 +326,35 @@
       announceUnlocked();
       closeDialog();
     } catch (error) {
-      status.textContent = 'Incorrect password';
+      status.textContent = error.message === 'archive-unavailable' ? 'Unavailable' : 'Incorrect password';
       passwordInput.select();
     } finally {
       submit.disabled = false;
     }
   });
 
-  Promise.all([
-    fetch(siteRoot + 'private/posts.enc.json', { cache: 'no-store' }).then(function(response) {
-      if (!response.ok) throw new Error('archive-unavailable');
-      return response.json();
-    }),
-    fetch(siteRoot + 'private/posts.public.json', { cache: 'no-store' }).then(function(response) {
-      if (!response.ok) return { posts: [] };
-      return response.json();
-    })
-  ]).then(async function(results) {
-    archive = results[0];
-    manifest = results[1];
+  fetch(siteRoot + 'private/posts.public.json', { cache: 'no-store' }).then(function(response) {
+    if (!response.ok) return { posts: [] };
+    return response.json();
+  }).then(async function(result) {
+    manifest = result;
     markPrivateLinks();
 
     var saved;
     try {
       saved = JSON.parse(window.localStorage.getItem(storageKey));
     } catch (error) {}
-    if (!saved || saved.fingerprint !== archiveFingerprint(archive)) return;
+    if (!saved) return;
 
+    try {
+      await loadArchive();
+    } catch (error) {
+      return;
+    }
+    if (saved.fingerprint !== archiveFingerprint(archive)) {
+      window.localStorage.removeItem(storageKey);
+      return;
+    }
     try {
       activeKeyBytes = bytesFromBase64(saved.key);
       unlockedPayload = await decryptWithKeyBytes(archive, activeKeyBytes);

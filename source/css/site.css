@@ -64,44 +64,84 @@
   outline-offset: 4px;
 }
 
-/* The encrypted 小蓝本 source predates literary blocks and renders its opening as code;
-   present that first block as the shared literary panel. */
-.post-page .markdown-body [data-private-post-id="eeddfa74ef298a0c"] .private-post-shell__content > pre:first-child {
-  box-sizing: border-box;
-  max-width: 48rem;
-  margin: 0 auto 2.5rem;
-  padding: 1.75rem 1.65rem 1.6rem;
-  overflow: visible;
+/* Long manuscripts retain their own chapters inside the encrypted reading area. */
+.post-page .markdown-body .manuscript-toc {
+  margin: 0 0 2.5rem;
   color: var(--prose);
-  background: var(--panel);
-  border: 1px solid var(--line);
-  border-radius: 0;
-  white-space: normal;
-  text-align: center;
+  font-family: var(--font-prose);
 }
 
-.post-page .markdown-body [data-private-post-id="eeddfa74ef298a0c"] .private-post-shell__content > pre:first-child > code {
-  display: block;
+.post-page .markdown-body .manuscript-toc > summary {
+  width: fit-content;
+  padding: 0.5rem 0;
+  color: var(--link-hover);
+  cursor: pointer;
+}
+
+.post-page .markdown-body .manuscript-toc > summary:focus-visible {
+  outline: 1px solid currentColor;
+  outline-offset: 4px;
+}
+
+.post-page .markdown-body .manuscript-toc ol {
+  margin: 0.75rem 0 0;
   padding: 0;
-  color: inherit;
-  background: transparent;
-  font-family: "Songti SC", "Noto Serif CJK SC", "Source Han Serif SC", STSong, Georgia, serif;
-  font-size: 1.02rem;
-  font-weight: 400;
-  letter-spacing: 0.045em;
-  line-height: 1.95;
-  white-space: normal;
-  text-wrap: balance;
+  list-style: none;
 }
 
-@media (max-width: 767px) {
-  .post-page .markdown-body [data-private-post-id="eeddfa74ef298a0c"] .private-post-shell__content > pre:first-child {
-    padding: 1.45rem 1.1rem 1.35rem;
-  }
+.post-page .markdown-body .manuscript-toc li {
+  margin: 0 0 0.5rem;
+  font-size: 0.9375rem;
+  line-height: 1.65;
+}
 
-  .post-page .markdown-body [data-private-post-id="eeddfa74ef298a0c"] .private-post-shell__content > pre:first-child > code {
-    font-size: 0.98rem;
-    letter-spacing: 0.025em;
-    line-height: 1.9;
-  }
+.post-page .markdown-body .manuscript-chapter {
+  margin-top: 3.5rem;
+}
+
+.post-page .markdown-body .manuscript-chapter > h2 {
+  margin: 0 0 1.5rem;
+  padding: 0;
+  border: 0;
+  font-size: 1.375rem;
+  line-height: 1.5;
+  scroll-margin-top: 2rem;
+}
+
+.post-page .markdown-body .manuscript-chapter > h3 {
+  font-size: 1.125rem;
+  line-height: 1.65;
+}
+
+.post-page .markdown-body .manuscript-chapter > h4 {
+  font-size: 1.0625rem;
+  line-height: 1.65;
+}
+
+.post-page .markdown-body .manuscript-verse {
+  white-space: pre-line;
+  line-height: 1.95;
+}
+
+.post-page .markdown-body .manuscript-note,
+.post-page .markdown-body .manuscript-date {
+  color: var(--muted);
+  font-size: 0.875rem;
+  line-height: 1.65;
+}
+
+.post-page .markdown-body .manuscript-date {
+  text-align: right;
+}
+
+.post-page .markdown-body .manuscript-figure {
+  margin: 2rem 0;
+}
+
+.post-page .markdown-body .manuscript-figure img {
+  display: block;
+  width: auto;
+  max-width: 90%;
+  height: auto;
+  margin: 0 auto;
 }
