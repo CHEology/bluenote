@@ -51,6 +51,9 @@ index_generator:
   per_page: 12
   order_by: -date
 
+archive_generator:
+  per_page: 50
+
 default_category: uncategorized
 category_map:
 tag_map:

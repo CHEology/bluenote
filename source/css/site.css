@@ -1,6 +1,6 @@
 /* Blue Note site-specific rules that do not belong to the theme. */
 
-/* About's subscription footer rests at the page bottom, in normal document flow. */
+/* About's site resources rest at the page bottom, in normal document flow. */
 .about-page {
   display: flex;
   flex-direction: column;
@@ -25,7 +25,12 @@
   padding-top: 4rem;
 }
 
-.about-rss {
+.about-resources {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem 1.5rem;
   width: 100%;
   max-width: var(--reading-width);
   margin: 0 auto;
@@ -34,7 +39,7 @@
   text-align: center;
 }
 
-.about-page .about-rss__link {
+.about-page .about-resources__link {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
@@ -46,20 +51,20 @@
   letter-spacing: 0.055em;
 }
 
-.about-rss__icon {
+.about-resources__icon {
   flex: none;
   width: 1rem;
   height: 1rem;
 }
 
-.about-page .about-rss__link:hover,
-.about-page .about-rss__link:focus-visible {
+.about-page .about-resources__link:hover,
+.about-page .about-resources__link:focus-visible {
   color: var(--heading);
   text-decoration: underline;
   text-underline-offset: 0.2em;
 }
 
-.about-page .about-rss__link:focus-visible {
+.about-page .about-resources__link:focus-visible {
   outline: 1px solid currentColor;
   outline-offset: 4px;
 }

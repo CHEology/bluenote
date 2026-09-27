@@ -333,10 +333,11 @@ box-shadow: none;
 - 动效仅用于短暂反馈，常规时长为 `160–260ms`；正文、方框和公式不做入场动画。
 - 首页标语在桌面保留打字效果，手机（≤767px）直接显示完整文字；无 JavaScript 时也显示完整标语。动效不扩展到文章标题或正文。
 - 归档、搜索、标签和 About 共享编辑式字体、颜色和 `760px` 内容网格。
+- Archives 仅列文章，按年份分组、日期倒序排列；站点规范不作为文章条目或 SITE 分区混入归档。归档每页容纳 50 篇，当前所有文章在同一页显示，超过 50 篇后才出现分页；首页与标签页容量分别沿用各自配置。
 
 - Gallery 的视图切换与重抽按钮使用 `--text`，当前视图用底线区分；不使用对比度不足的次要文字色作为操作文字。
 
-- About 的唯一可见 `RSS` 入口位于页面底部，与头像及简介分开。上方用 `1px solid var(--line)` 细横线分隔，线宽不超过普通阅读列；线下留 1rem，再居中放置 16px 单色细线 RSS 图标与 0.875rem 衬线文字，间距 0.5rem。链接使用 `--link-hover`，悬停或键盘焦点时使用 `--heading` 与细下划线，键盘焦点另有细轮廓；触控高度至少 44px。页底保留正文外边距与页面各 2rem 留白，短页通过弹性布局靠近视窗底部，内容增加时自然下移，不使用固定定位。不加按钮底色、卡片或说明文字。其余页面只提供不可见的订阅自动发现元数据，不增加导航入口。
+- About 页面底部并列放置 `RSS` 与 `Design Doc` 入口，与头像及简介分开；站点设计文档的入口归于此处。这里仍是 `RSS` 的唯一可见入口。上方用 `1px solid var(--line)` 细横线分隔，线宽不超过普通阅读列；线下留 1rem，再居中放置两个链接；链接间距为 1.5rem，窄屏可自然换行、行间距 0.5rem。每项使用 16px 单色细线图标与 0.875rem 衬线文字，图标与文字间距 0.5rem。链接使用 `--link-hover`，悬停或键盘焦点时使用 `--heading` 与细下划线，键盘焦点另有细轮廓；触控高度至少 44px。页底保留正文外边距与页面各 2rem 留白，短页通过弹性布局靠近视窗底部，内容增加时自然下移，不使用固定定位。不加按钮底色、卡片或说明文字。其余页面只提供不可见的订阅自动发现元数据，不增加导航入口。
 
 ### 9.1 首屏与加载
 
@@ -367,7 +368,7 @@ box-shadow: none;
 - 主题的 `_config.yml` 与站点 `_config.bluenote.yml`：颜色与字体 token（`--paper`、`--text`、`--prose`、`--heading`、`--muted`、`--link`、`--link-hover`、`--line`、`--masthead`、`--masthead-text`、`--accent`、`--panel`、`--home-*` 等）及主题开关；颜色值以本文第 2 节为准，主题默认值即 Blue Note 的取值；
 - 主题的 `layout/`：全部页面模板；首页、内容页与摄影文章的布局类在构建时写入 `<body>`；`_partials/post-companion.ejs` 负责正文之后、上下篇导航之前的可选关联阅读横框，样式归 `assets/css/50-post.css`；
 - 主题的 `scripts/`：主题构建期脚本——布局类、标题锚点、图注（文件名 alt 不生成图注）、原生懒加载、CSS/JS 合并与内容版本号；第三方副本来源见 `docs/VENDORED-ASSETS.md`；
-- `source/css/site.css`：仅 Blue Note 专属的手稿篇章排版（§5.2），以及 About 页底 RSS 的布局、分隔线、图标和交互反馈；
+- `source/css/site.css`：仅 Blue Note 专属的手稿篇章排版（§5.2），以及 About 页底 RSS／Design Doc 入口的布局、分隔线、图标和交互反馈；
 - `source/css/design-doc.css`：Design Doc 页面；
 - `source/css/thought-notes.css`：随想中的公式排列和主题分隔，不重定义通用方框；
 - `source/css/post-music.css`、`source/js/post-music.js`：本站统一的 D 封面式配乐组件；只在配置了 `music` 的文章页加载，视觉以 §6.4 为准；

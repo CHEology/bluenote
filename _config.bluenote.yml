@@ -37,8 +37,7 @@ post:
     enable: true
 
 archive:
-  extra_entries:
-    - { section: SITE, kind: DOC, title: Design Doc, summary: 颜色、字体、排版与组件规范, link: /design/ }
+  extra_entries: []
 
 about:
   avatar: /images/avatar-256.png

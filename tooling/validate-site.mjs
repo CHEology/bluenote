@@ -154,8 +154,20 @@ if (archive.includes('posts in total')) fail('Archives page still contains the p
 if (/<div class="masthead"[^>]*style=/.test(archive)) {
   fail('Archives page still contains an image masthead');
 }
-if (!archive.includes('href="/bluenote/design/"') || !archive.includes('Design Doc') || !archive.includes('listing__item--entry')) {
-  fail('Archives page does not contain the Design Doc entry');
+if (archive.includes('href="/bluenote/design/"') || archive.includes('listing__item--entry')) {
+  fail('Archives must contain articles only, without site documentation entries');
+}
+const archiveArticles = (archive.match(/class="listing__item"/g) || []).length;
+if (archiveArticles !== Math.min(50, markdownPosts.length)) {
+  fail('Archives must display up to 50 articles on the first page');
+}
+if (markdownPosts.length <= 50 && existsSync(join(publicRoot, 'archives/page/2/index.html'))) {
+  fail('Archives must not paginate before exceeding 50 articles');
+}
+const aboutResources = readFileSync(join(publicRoot, 'about/index.html'), 'utf8')
+  .match(/<footer class="about-resources">[\s\S]*?<\/footer>/)?.[0] || '';
+if (!aboutResources.includes('href="/bluenote/design/"') || !aboutResources.includes('href="/bluenote/rss.xml"')) {
+  fail('About must group Design Doc and RSS in its footer');
 }
 
 const tags = readFileSync(join(publicRoot, 'tags', 'index.html'), 'utf8');
