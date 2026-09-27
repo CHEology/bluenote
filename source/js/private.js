@@ -3,6 +3,7 @@
   var siteRoot = document.documentElement.getAttribute('data-root') || '/';
   if (!siteRoot.endsWith('/')) siteRoot += '/';
 
+  var boot = window.BlueNotePrivateBoot || {};
   var archive;
   var archivePromise;
   var manifest = { posts: [] };
@@ -14,12 +15,14 @@
   function loadArchive() {
     if (archive) return Promise.resolve(archive);
     if (!archivePromise) {
-      archivePromise = fetch(siteRoot + 'private/posts.enc.json', { cache: 'no-store' })
+      var initialRequest = boot.archivePromise;
+      boot.archivePromise = undefined;
+      archivePromise = (initialRequest || fetch(boot.url || siteRoot + 'private/posts.enc.json', { cache: boot.url ? 'force-cache' : 'no-store' })
         .then(function(response) {
           if (!response.ok) throw new Error('archive-unavailable');
           return response.json();
-        }).then(function(bundle) {
-          if (!bundle.ciphertext) throw new Error('archive-unavailable');
+        })).then(function(bundle) {
+          if (!bundle || !bundle.ciphertext) throw new Error('archive-unavailable');
           archive = bundle;
           return archive;
         }).catch(function() {
@@ -105,7 +108,7 @@
         var listing = link.closest('.listing__item');
         if (listing) listing.classList.add('private-entry');
         var lockTarget = listing ? link.querySelector('.listing__title') : null;
-        if (!lockTarget && (link.closest('.index-header') || link.closest('.post-nav'))) lockTarget = link;
+        if (!lockTarget && link.closest('.index-header')) lockTarget = link;
         if (listing && lockTarget && !lockTarget.querySelector('[data-private-lock-control]')) {
           var state = document.createElement('span');
           state.className = 'private-archive-state';
@@ -333,23 +336,23 @@
     }
   });
 
+  // Link decoration must not delay restoring an already-authorized reading session.
   fetch(siteRoot + 'private/posts.public.json', { cache: 'no-store' }).then(function(response) {
     if (!response.ok) return { posts: [] };
     return response.json();
-  }).then(async function(result) {
+  }).then(function(result) {
     manifest = result;
     markPrivateLinks();
+  }).catch(function() {});
 
+  async function restoreSavedAccess() {
     var saved;
-    try {
-      saved = JSON.parse(window.localStorage.getItem(storageKey));
-    } catch (error) {}
-    if (!saved) return;
-
+    try { saved = JSON.parse(window.localStorage.getItem(storageKey)); } catch (error) {}
+    if (!saved || typeof saved.key !== 'string' || typeof saved.fingerprint !== 'string') return;
     try {
       await loadArchive();
     } catch (error) {
-      return;
+      return; // A temporary network failure must not erase saved access.
     }
     if (saved.fingerprint !== archiveFingerprint(archive)) {
       window.localStorage.removeItem(storageKey);
@@ -364,5 +367,6 @@
       activeKeyBytes = undefined;
       unlockedPayload = undefined;
     }
-  }).catch(function() {});
+  }
+  restoreSavedAccess().finally(function() { if (boot.finish) boot.finish(); });
 })();

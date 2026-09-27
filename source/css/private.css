@@ -48,27 +48,27 @@ html:not(.private-reading-unlocked) body.home-page .index-card:has(a[data-privat
   max-width: calc(100% - 1.8rem);
 }
 
-.post-nav a[data-private-link]::before {
-  display: inline-flex;
-  align-items: center;
-  margin-right: 0.5rem;
-  color: currentColor;
+.post-nav a[data-private-link] .post-nav__title::after,
+.post-nav a[data-private-link] .post-nav__label::after {
+  display: block;
+  margin-top: 0.15rem;
+  color: var(--muted);
   font-size: 0.68em;
   font-weight: 400;
   letter-spacing: 0.04em;
-  opacity: 0.62;
+  line-height: 1.4;
   content: "LOCKED";
 }
 
-.home-page .index-header a[data-private-link]::before {
-  display: block;
-  margin: 0 0 0.55rem;
-  font-size: 0.52em;
-  letter-spacing: 0.12em;
+.private-reading-unlocked .post-nav a[data-private-link] .post-nav__title::after,
+.private-reading-unlocked .post-nav a[data-private-link] .post-nav__label::after {
+  content: "UNLOCKED";
 }
 
-.private-reading-unlocked .post-nav a[data-private-link]::before {
-  content: "UNLOCKED";
+.private-reading-restoring [data-private-post-locked],
+.private-reading-restoring .post-nav a[data-private-link] .post-nav__title::after,
+.private-reading-restoring .post-nav a[data-private-link] .post-nav__label::after {
+  visibility: hidden;
 }
 
 .private-archive-state {

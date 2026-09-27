@@ -190,6 +190,7 @@ font-family: Charter, Georgia, "Times New Roman",
 - 连续手稿按原有篇章组织，接合跨照片的续文，不把每张照片当作一篇文章。保留原有小节、日期、注释、诗行和图示。
 - 正文沿用全站衬线字体、行宽、字号与行距。篇章间距为 `3.5rem`；篇名为 `1.375rem`、行距 `1.5`，下留 `1.5rem`，无边框或底色。小节层级沿用原稿语义，不由句式自动增设。
 - 目录条目为 `0.9375rem`、行距 `1.65`，单列自然换行；原注与日期为 `0.875rem`、行距 `1.65`，使用 `--muted`，日期右对齐。保留换行的诗文行距为 `1.95`。原稿图示依 §8 保持比例，最大占正文宽度的 90%。
+- 已保存解锁状态时，在首屏绘制前进入恢复状态，恢复期间不展示 Locked 密码面板；密文按内容版本缓存，解密成功后直接显示正文，失败或脚本不可用时恢复解锁入口。不得缓存明文。相邻文章的 LOCKED／UNLOCKED 标记位于标题下方，手机上位于“上一篇／下一篇”下方，箭头始终在导航外侧。
 - 私密文章的目录、篇名、正文与图示一并加密，仅在解锁后进入页面；通用设计文档与截图基线不包含其内容。
 
 ## 6. 方框与特殊内容块
@@ -373,7 +374,7 @@ box-shadow: none;
 - `source/css/design-doc.css`：Design Doc 页面；
 - `source/css/thought-notes.css`：随想中的公式排列和主题分隔，不重定义通用方框；
 - `source/css/post-music.css`、`source/js/post-music.js`：本站统一的 D 封面式配乐组件；只在配置了 `music` 的文章页加载，视觉以 §6.4 为准；
-- `source/css/private.css`、`source/js/private.js`：私密文章界面；
+- `source/css/private.css`、`source/js/private.js`：私密文章界面；`source/js/private-boot.js` 由构建脚本内联到页头，提前恢复已保存的访问状态；
 - 主题的 `modules/gallery/`：可选 Gallery 的排列、抽取、验证与大图观看，默认关闭；启用后仅 Gallery 页面加载 CSS/JS。网站通过 `gallery.language` 与 `gallery.labels` 设置界面文案；
 - `source/_data/gallery.json`：Gallery 的照片清单与作者顺序，不从博客文章推断收录；
 - 主题的 `scripts/gallery.js`：从站点清单生成独立 Gallery 页面，不生成照片文章；
