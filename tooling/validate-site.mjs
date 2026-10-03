@@ -96,8 +96,16 @@ const preloadedCover = home.match(/<link rel="preload" as="image"[^>]*href="([^"
 if (!preloadedCover?.startsWith('/bluenote/images/')) {
   fail('Preloaded cover must be a site image URL without CSS quoting');
 }
-for (const title of ['小蓝本', '布涅星', '秋之纽约_2023.11']) {
-  if (!home.includes(title)) fail(`Home page does not contain post title: ${title}`);
+{
+  // The home lists only the latest posts; the newest must be there, and every post in the archive.
+  const archivePage = readFileSync(join(publicRoot, 'archives', 'index.html'), 'utf8');
+  const newest = archivePage.match(/<span class="listing__title">([^<]+)<\/span>/)?.[1];
+  if (!newest || !home.includes(`<span class="letterbox-entry__title">${newest}</span>`)) {
+    fail(`Home page does not contain the newest post: ${newest}`);
+  }
+  for (const title of ['小蓝本', '布涅星', '秋之纽约_2023.11']) {
+    if (!archivePage.includes(title)) fail(`Archive does not contain post title: ${title}`);
+  }
 }
 for (const asset of ['/bluenote/css/bluenote.css', '/bluenote/js/bluenote.js', '/bluenote/css/site.css', '/bluenote/js/private.js']) {
   if (!home.includes(asset)) fail(`Home page does not load asset: ${asset}`);
@@ -188,15 +196,21 @@ const manuscriptId = 'eeddfa74ef298a0c';
 const archiveRows = [...archive.matchAll(/<a class="listing__item"[^>]*>[\s\S]*?<\/a>/g)].map(match => match[0]);
 const manuscriptRow = archiveRows.find(row => row.includes(`data-private-link="${manuscriptId}"`)) || '';
 if (archiveRows.at(-1) !== manuscriptRow || !archive.includes('<p class="listing__year">2018</p>') ||
-    !manuscriptRow.includes('datetime="2018">2018</time>') ||
-    !manuscriptRow.includes('<small class="listing__note">（2026.09.27 ChatGPT整理并上传）</small>')) {
-  fail('The historical manuscript must be earliest, year-only, with the approved archive annotation');
+    !manuscriptRow.includes('datetime="2018"></time>') ||
+    !/<small class="listing__note[^"]*">（2026\.09\.27 ChatGPT整理并上传）<\/small>/.test(manuscriptRow)) {
+  fail('The historical manuscript must be earliest, filed under its year with no day, with the approved archive annotation');
 }
 const homeEntries = home.match(/<li class="letterbox-entry"[^>]*>[\s\S]*?<\/li>/g) || [];
 const homeYears = [...home.matchAll(/<h2 class="letterbox-year__title">(\d{4})<\/h2>/g)].map(match => match[1]);
-if (!homeEntries.at(-1)?.includes(`data-private-link="${manuscriptId}"`) ||
-    !homeEntries.at(-1)?.includes('datetime="2018"></time>') || homeYears.at(-1) !== '2018' || home.includes('listing__note')) {
-  fail('The historical manuscript must be earliest on Home, filed under its year alone, with no archive annotation');
+// The home holds a fixed amount: at most two years and three rows of four public posts.
+const publicHomeEntries = homeEntries.filter(entry => !entry.includes('data-private-entry'));
+const homeRows = [...home.matchAll(/<section class="letterbox-year"[^>]*>[\s\S]*?<\/section>/g)]
+  .map(match => Math.ceil((match[0].match(/<li class="letterbox-entry">/g) || []).length / 4))
+  .reduce((sum, rows) => sum + rows, 0);
+if (homeYears.length > 2 || homeRows > 3 || publicHomeEntries.length > 12 || publicHomeEntries.length === 0 ||
+    homeYears[0] !== String(new Date(Math.max(...[...home.matchAll(/<time class="letterbox-entry__date" datetime="(\d{4}-\d{2}-\d{2})/g)].map(m => Date.parse(m[1])))).getUTCFullYear()) ||
+    home.includes('listing__note')) {
+  fail('The home index must show the latest posts in at most two years and three rows of four, without archive annotations');
 }
 const aboutResources = readFileSync(join(publicRoot, 'about/index.html'), 'utf8')
   .match(/<footer class="about-resources">[\s\S]*?<\/footer>/)?.[0] || '';

@@ -88,6 +88,27 @@ html:not(.private-reading-unlocked) body.home-page .index-card:has(a[data-privat
   margin: 0 0 0.03rem;
 }
 
+/* In the contents-style archive only the lock (or unlock) icon shows; the control keeps its
+   accessible name, and unlocked readers can still click it to lock again. */
+.listing .private-archive-state {
+  margin-left: 0.45rem;
+  opacity: 0.7;
+}
+
+.listing .private-archive-state__label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
+.listing .private-archive-state .private-link-lock {
+  width: 0.78rem;
+  height: 0.78rem;
+}
+
 .private-reading-unlocked .private-archive-state {
   cursor: pointer;
   opacity: 0.78;
