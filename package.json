@@ -2,7 +2,7 @@
   "name": "bluenote-blog",
   "version": "2.0.0",
   "private": true,
-  "description": "Blue Note — Markdown-first Hexo blog with its own bluenote theme, published with GitHub Pages",
+  "description": "Blue Note \u2014 Markdown-first Hexo blog with its own bluenote theme, published with GitHub Pages",
   "scripts": {
     "clean": "cross-env TZ=America/New_York hexo clean",
     "build": "cross-env TZ=America/New_York hexo clean && cross-env TZ=America/New_York hexo generate",
@@ -21,7 +21,8 @@
     "visual:baseline": "node tooling/visual/capture.mjs --out baseline",
     "visual:capture": "node tooling/visual/capture.mjs --out current",
     "visual:compare": "node tooling/visual/compare.mjs",
-    "audit:browser": "node tooling/audit-site.mjs"
+    "audit:browser": "node tooling/audit-site.mjs",
+    "test:home": "node tooling/home-folio.browser.mjs"
   },
   "engines": {
     "node": ">=20.19.0"
@@ -41,7 +42,7 @@
     "hexo-renderer-ejs": "2.0.0",
     "hexo-renderer-marked": "7.0.1",
     "hexo-server": "3.0.0",
-    "hexo-theme-bluenote": "github:CHEology/hexo-theme-bluenote#v1.6.1",
+    "hexo-theme-bluenote": "github:CHEology/hexo-theme-bluenote#v1.7.0",
     "marked": "15.0.12"
   },
   "devDependencies": {

@@ -16,6 +16,7 @@ nav:
   scheme_toggle: true
 
 home:
+  desktop_style: fog
   cover: /images/theme_fluid_bg/2021.11-2880.jpg
   preload_cover: true
   slogan: Dream to be a tranquil spectator.
