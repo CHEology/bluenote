@@ -91,7 +91,7 @@ font-family: "EB Garamond", Charter, Georgia,
 
 - 英文和阿拉伯数字使用本站自托管的 `EB Garamond`（拉丁子集，400/500 正体与斜体，`size-adjust: 108%` 使其与宋体同高）；缺字时回退到 `Charter`、`Georgia`；
 - 中文优先使用 `Songti SC`，其他平台回退到系统已安装的思源/Noto 宋体；两者都没有时（Windows、多数 Android）使用本站自托管的 `Blue Note Serif SC`（Noto Serif SC 常规体，按 Google 的 unicode-range 分片，只下载页面用到的分片；样式表以不阻塞首屏的方式加载），最后才是 `STSong` 与系统衬线字体；
-- 中文语境中的引号、破折号与省略号（`“ ” ‘ ’ — …`）在构建时标记为 `.cjk-punct`，改用只含中文字体的 `--font-cjk`（`"Songti SC", "Noto Serif CJK SC", "Source Han Serif SC", "Blue Note Serif SC", STSong, serif`），呈现全角形态，`——` 连成一线；判断依据是相邻文字是否为中文，或引号所含首尾字母是否为中文。英文中的同类字符（如 `can’t` 的撇号、英文引语）保持 EB Garamond。只改变显示，不改动原文字符；代码、公式等原样块不处理；
+- 中文语境中的引号、破折号与省略号（`“ ” ‘ ’ — …`）在构建时标记为 `.cjk-punct`，改用只含中文字体的 `--font-cjk`（`"Blue Note CJK Quotes", "Songti SC", "Noto Serif CJK SC", "Source Han Serif SC", "Blue Note Serif SC", STSong, serif`），呈现全角形态，`——` 连成一线。Songti SC 的弯引号是西文宽度，因此引号统一取自只含四个引号字符的 Noto Serif CJK SC 子集 `Blue Note CJK Quotes`（约 3 KB，随首屏加载），破折号与省略号仍用宋体；判断依据是相邻文字是否为中文，或引号所含首尾字母是否为中文。英文中的同类字符（如 `can’t` 的撇号、英文引语）保持 EB Garamond。只改变显示，不改动原文字符；代码、公式等原样块不处理；
 - 英文斜体使用字体自带 italic，不用人工倾斜模拟；首页与列表的日期使用斜体、等高数字（`lining-nums`）；
 - 中文、英文和普通数字共享同一基线与 CSS 字号，不得为“看起来齐”而单独使用 `vertical-align`、相对定位或缩放；
 - `TA`、`AI`、`GDP` 等缩写按普通正文呈现，不设小型大写，不单独缩小或加字距；
@@ -379,7 +379,7 @@ box-shadow: none;
 - 主题的 `assets/js/05-scroll-lock.js`：Letterbox 页面弹窗共用的背景滚动锁，保存及恢复阅读位置；导航位置完全由 CSS 决定，脚本不监听滚动。
 - 主题的 `scripts/`：主题构建期脚本——布局类、标题锚点、图注（文件名 alt 不生成图注）、原生懒加载、CSS/JS 合并与内容版本号；第三方副本来源见 `docs/VENDORED-ASSETS.md`；
 - `source/fonts/eb-garamond/`：EB Garamond 拉丁子集与 `@font-face`，经 `custom_css` 在所有页面加载；
-- `source/fonts/noto-serif-sc/`：Noto Serif SC 常规体的 unicode-range 分片（SIL OFL 1.1，许可随附）与以 `Blue Note Serif SC` 命名的 `@font-face`，经 `custom_css_deferred` 不阻塞首屏地加载；
+- `source/fonts/noto-serif-sc/`：Noto Serif SC 常规体的 unicode-range 分片（SIL OFL 1.1，许可随附）与以 `Blue Note Serif SC` 命名的 `@font-face`，经 `custom_css_deferred` 不阻塞首屏地加载；同目录的 `quotes.css` 与 `noto-serif-sc-quotes.woff2` 是中文引号子集，经 `custom_css` 正常加载；
 - 主题的 `scripts/cjk-punctuation.js`：`cjk_punctuation` 开启时，在构建期把中文语境中的引号、破折号与省略号包进 `.cjk-punct`，样式在 `assets/css/60-markdown.css`；
 - `source/css/site.css`：仅 Blue Note 专属的手稿篇章排版（§5.2），以及 About 页底 RSS／Design Doc 入口的布局、分隔线、图标和交互反馈；
 - `source/css/design-doc.css`：Design Doc 页面；
