@@ -233,6 +233,7 @@
   function openLockConfirmation() {
     lockPreviousFocus = document.activeElement;
     lockConfirmation.hidden = false;
+    if (window.BlueNote && window.BlueNote.lockPage) window.BlueNote.lockPage('private');
     document.body.classList.add('private-dialog-open');
     window.setTimeout(function() {
       lockConfirmation.querySelector('[data-private-lock-confirm-action]').focus();
@@ -242,6 +243,7 @@
   function closeLockConfirmation() {
     lockConfirmation.hidden = true;
     document.body.classList.remove('private-dialog-open');
+    if (window.BlueNote && window.BlueNote.unlockPage) window.BlueNote.unlockPage('private');
     if (lockPreviousFocus && lockPreviousFocus.focus) lockPreviousFocus.focus();
   }
 
@@ -256,6 +258,7 @@
     previousFocus = document.activeElement;
     closeMobileMenu();
     overlay.hidden = false;
+    if (window.BlueNote && window.BlueNote.lockPage) window.BlueNote.lockPage('private');
     document.body.classList.add('private-dialog-open');
     form.hidden = Boolean(unlockedPayload);
     status.textContent = '';
@@ -265,6 +268,7 @@
   function closeDialog() {
     overlay.hidden = true;
     document.body.classList.remove('private-dialog-open');
+    if (window.BlueNote && window.BlueNote.unlockPage) window.BlueNote.unlockPage('private');
     passwordInput.value = '';
     status.textContent = '';
     if (previousFocus && previousFocus.focus) previousFocus.focus();

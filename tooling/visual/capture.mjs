@@ -39,7 +39,7 @@ const server = createServer((request, response) => {
   createReadStream(file).pipe(response);
 });
 await new Promise((resolve) => server.listen(0, '127.0.0.1', resolve));
-const origin = `http://127.0.0.1:${server.address().port}`;
+const origin = option('--origin', `http://127.0.0.1:${server.address().port}`);
 
 const browser = await chromium.launch();
 const results = { site: outName, capturedAt: new Date().toISOString(), pages: {} };
