@@ -147,7 +147,8 @@ if (!themeScript.includes('Fluid_Color_Scheme') && !home.includes('data-scheme-l
 }
 
 const themeCss = readFileSync(join(publicRoot, 'css', 'bluenote.css'), 'utf8');
-if (!themeCss.includes('--lb-bar-h: 88px') || !themeCss.includes('--lb-bar-h: 64px') || !themeCss.includes('scrollbar-gutter: stable')) {
+if (!themeCss.includes('--lb-bar-h: 88px') || !themeCss.includes('--lb-bar-h: 64px') || !themeCss.includes('scrollbar-gutter: stable') ||
+    !themeCss.includes('min-height: calc(100svh - var(--lb-bar-h))')) {
   fail('The bar must keep one fixed height (88px, 64px on phones) and the same width on every page');
 }
 if (!themeCss.includes('--reading-width: 39.667rem')) {
