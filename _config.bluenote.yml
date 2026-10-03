@@ -1,14 +1,14 @@
 # Blue Note — site overrides for the bluenote theme.
-# Colour and font tokens use the theme defaults (themes/bluenote/_config.yml);
-# docs/DESIGN.md is the authority for any change to them.
+# docs/DESIGN.md is the authority for every value below.
 
 brand: Blue Note
+# One bar of fixed height on every page; the home page is held between two fixed bars.
+design: letterbox
 favicon: /images/favicon-64.png
 apple_touch_icon: /images/apple-touch-icon.png
 
 nav:
   menu:
-    - { name: Home, link: / }
     - { name: Archives, link: /archives/ }
     - { name: Gallery, link: /gallery/ }
     - { name: About, link: /about/ }
@@ -16,17 +16,50 @@ nav:
   scheme_toggle: true
 
 home:
-  desktop_style: fog
   cover: /images/theme_fluid_bg/2021.11-2880.jpg
   preload_cover: true
   slogan: Dream to be a tranquil spectator.
-  typing:
-    enable: true
-    mobile: false
-    speed: 70
-    cursor: "_"
-  cards: 12
-  layout: split
+
+fonts:
+  ui: '"EB Garamond", Charter, Georgia, "Songti SC", "Noto Serif CJK SC", "Source Han Serif SC", STSong, serif'
+  prose: '"EB Garamond", Charter, Georgia, "Songti SC", "Noto Serif CJK SC", "Source Han Serif SC", STSong, serif'
+
+# Paper by day, blue hour by night; the bar keeps the home's blue-black in both.
+colors:
+  light:
+    paper: "#ecebe6"
+    text: "#34393d"
+    prose: "#34393d"
+    heading: "#1d2226"
+    muted: "#62686d"
+    link: "#3d5a73"
+    link-hover: "#243c50"
+    link-hover-bg: "rgba(61, 90, 115, 0.08)"
+    line: "rgba(52, 57, 61, 0.15)"
+    masthead: "#061521"
+    masthead-text: "#eeebe3"
+    panel: "rgba(61, 90, 115, 0.06)"
+  dark:
+    paper: "#0e1922"
+    text: "#d3dade"
+    prose: "#cdd5d9"
+    heading: "#edf0ec"
+    muted: "#8d9ba4"
+    link: "#a4c0d6"
+    link-hover: "#d6e2ea"
+    link-hover-bg: "rgba(164, 192, 214, 0.08)"
+    line: "rgba(205, 213, 217, 0.14)"
+    masthead: "#061521"
+    masthead-text: "#eeebe3"
+    panel: "rgba(164, 192, 214, 0.06)"
+    code-bg: "#13212c"
+    inline-code-bg: "rgba(164, 192, 214, 0.14)"
+    scrollbar: "#3a4a57"
+    scrollbar-hover: "#5a6b78"
+  home:
+    bg: "#061521"
+    nav: "#061521"
+    nav-dark: "#061521"
 
 post:
   language: zh-CN
@@ -65,6 +98,7 @@ search:
   private_manifest: /private/posts.public.json
 
 custom_css:
+  - /fonts/eb-garamond/eb-garamond.css
   - /css/site.css
   - /css/design-doc.css
   - /css/thought-notes.css

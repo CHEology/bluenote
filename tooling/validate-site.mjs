@@ -85,9 +85,12 @@ const home = readFileSync(join(publicRoot, 'index.html'), 'utf8');
 if (!/<html\b[^>]*class="home-root"/.test(home) || !home.includes('<body class="home-page">')) {
   fail('Homepage must have its current layout before any JavaScript executes');
 }
-const homeCover = home.match(/<div id="banner" class="home-cover"[^>]*style="background-image: url\(['"]?([^)'" ]+)['"]?\)/)?.[1];
+if (!/<html\b[^>]*data-design="letterbox"/.test(home)) {
+  fail('Homepage must declare the letterbox design before any JavaScript executes');
+}
+const homeCover = home.match(/<img class="letterbox-frame__image" src="([^"]+)"/)?.[1];
 if (!homeCover || !home.includes('rel="preload" as="image" fetchpriority="high" href="' + homeCover + '"')) {
-  fail('Homepage must preload the same cover that its banner displays');
+  fail('Homepage must preload the same cover that its frame displays');
 }
 const preloadedCover = home.match(/<link rel="preload" as="image"[^>]*href="([^"]+)"/)?.[1];
 if (!preloadedCover?.startsWith('/bluenote/images/')) {
@@ -104,17 +107,32 @@ if (!home.includes('href="/bluenote/gallery/"')) fail('Home navigation is missin
 if (home.includes('/css/gallery.css') || home.includes('/js/gallery.js')) {
   fail('Gallery assets must not load on the article homepage');
 }
-if (!home.includes('<style id="bluenote-tokens">') || !home.includes('--masthead:#53616b') || !home.includes('--accent:#f3dca6') ||
-    !home.includes('--home-nav:#2f4154')) {
-  fail('Design tokens (masthead #53616b, accent #f3dca6, home navigation #2f4154) are not emitted in the document head');
+if (!home.includes('<style id="bluenote-tokens">') || !home.includes('--masthead:#061521') || !home.includes('--accent:#f3dca6') ||
+    !home.includes('--home-bg:#061521') || !home.includes('--paper:#0e1922')) {
+  fail('Design tokens (bar #061521, accent #f3dca6, blue-hour paper #0e1922) are not emitted in the document head');
 }
-if (!home.includes('data-typed-text="Dream to be a tranquil spectator."')) {
-  fail('Home slogan is missing');
+if (!/<p class="letterbox-dock__line"><span>Dream to be a tranquil spectator\.<\/span><\/p>/.test(home)) {
+  fail('Home slogan is missing from the lower bar');
+}
+if (home.includes('typed.min.js')) {
+  fail('The letterbox home shows its slogan whole; typed.js must not load');
+}
+if (!home.includes('/bluenote/fonts/eb-garamond/eb-garamond.css')) {
+  fail('EB Garamond is not loaded');
 }
 
-const privateCss = readFileSync(join(publicRoot, 'css', 'private.css'), 'utf8');
-if (!privateCss.includes('html:not(.private-reading-unlocked) body.home-page .index-card:has(a[data-private-link])')) {
+const homeThemeCss = readFileSync(join(publicRoot, 'css', 'bluenote.css'), 'utf8');
+if (!homeThemeCss.includes('html:not(.private-reading-unlocked) .letterbox-entry[data-private-entry]') ||
+    !homeThemeCss.includes('html:not(.private-reading-unlocked) .letterbox-year[data-private-year]')) {
   fail('Locked visitors can still see private posts on the homepage');
+}
+for (const entry of home.match(/<li class="letterbox-entry"[^>]*>[\s\S]*?<\/li>/g) || []) {
+  if (entry.includes('data-private-link=') !== entry.includes('data-private-entry="true"')) {
+    fail('Every private post on the homepage, and only those, must be marked for locked readers');
+  }
+  if (entry.includes('data-private-entry="true"') && !entry.includes('data-excerpt=""')) {
+    fail('A private post must not expose an excerpt on the homepage');
+  }
 }
 
 const themeScript = readFileSync(join(publicRoot, 'js', 'bluenote.js'), 'utf8');
@@ -129,8 +147,8 @@ if (!themeScript.includes('Fluid_Color_Scheme') && !home.includes('data-scheme-l
 }
 
 const themeCss = readFileSync(join(publicRoot, 'css', 'bluenote.css'), 'utf8');
-if (!themeCss.includes('--masthead-height: 216px') || !themeCss.includes('--masthead-height-mobile: 176px')) {
-  fail('Editorial masthead no longer uses its established heights');
+if (!themeCss.includes('--lb-bar-h: 88px') || !themeCss.includes('--lb-bar-h: 64px') || !themeCss.includes('scrollbar-gutter: stable')) {
+  fail('The bar must keep one fixed height (88px, 64px on phones) and the same width on every page');
 }
 if (!themeCss.includes('--reading-width: 39.667rem')) {
   fail('Article reading column is not the agreed fixed width');
@@ -173,10 +191,11 @@ if (archiveRows.at(-1) !== manuscriptRow || !archive.includes('<p class="listing
     !manuscriptRow.includes('<small class="listing__note">（2026.09.27 ChatGPT整理并上传）</small>')) {
   fail('The historical manuscript must be earliest, year-only, with the approved archive annotation');
 }
-const homeCards = [...home.matchAll(/<article class="index-card">[\s\S]*?<\/article>/g)].map(match => match[0]);
-if (!homeCards.at(-1)?.includes(`data-private-link="${manuscriptId}"`) ||
-    !homeCards.at(-1)?.includes('datetime="2018">2018</time>') || home.includes('listing__note')) {
-  fail('The historical manuscript must be earliest on Home, with a year-only date and no archive annotation');
+const homeEntries = home.match(/<li class="letterbox-entry"[^>]*>[\s\S]*?<\/li>/g) || [];
+const homeYears = [...home.matchAll(/<h2 class="letterbox-year__title">(\d{4})<\/h2>/g)].map(match => match[1]);
+if (!homeEntries.at(-1)?.includes(`data-private-link="${manuscriptId}"`) ||
+    !homeEntries.at(-1)?.includes('datetime="2018"></time>') || homeYears.at(-1) !== '2018' || home.includes('listing__note')) {
+  fail('The historical manuscript must be earliest on Home, filed under its year alone, with no archive annotation');
 }
 const aboutResources = readFileSync(join(publicRoot, 'about/index.html'), 'utf8')
   .match(/<footer class="about-resources">[\s\S]*?<\/footer>/)?.[0] || '';
