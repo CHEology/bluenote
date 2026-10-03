@@ -32,7 +32,7 @@ fonts:
   prose: '"EB Garamond", Charter, Georgia, "Songti SC", "Noto Serif CJK SC", "Source Han Serif SC", "Blue Note Serif SC", STSong, serif'
   # Formulas share the prose face; EB Garamond has no ∝ or →, which fall back to Times.
   math: '"EB Garamond", Times, "Times New Roman", Georgia, serif'
-  cjk: '"Songti SC", "Noto Serif CJK SC", "Source Han Serif SC", "Blue Note Serif SC", STSong, serif'
+  cjk: '"Blue Note CJK Quotes", "Songti SC", "Noto Serif CJK SC", "Source Han Serif SC", "Blue Note Serif SC", STSong, serif'
 
 # Paper by day, blue hour by night; the bar keeps the home's blue-black in both.
 colors:
@@ -119,6 +119,7 @@ search:
 
 custom_css:
   - /fonts/eb-garamond/eb-garamond.css
+  - /fonts/noto-serif-sc/quotes.css
   - /css/site.css
   - /css/design-doc.css
   - /css/thought-notes.css

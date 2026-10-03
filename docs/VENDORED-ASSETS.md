@@ -32,3 +32,4 @@ Site-hosted fonts:
 | --- | --- | --- |
 | EB Garamond (`source/fonts/eb-garamond/`) | @fontsource/eb-garamond 5.3.0 (SIL OFL 1.1) | Latin text and numerals |
 | Noto Serif SC (`source/fonts/noto-serif-sc/`) | @fontsource/noto-serif-sc 5.3.0 (SIL OFL 1.1) | Regular-weight Chinese fallback, named `Blue Note Serif SC`, for systems without Songti or a system Noto/Source Han serif; Google's unicode-range slices, plus the Latin slice limited to U+2018–2019 for Chinese single quotes |
+| Noto Serif CJK SC quotes (`source/fonts/noto-serif-sc/noto-serif-sc-quotes.woff2`) | Noto Serif CJK 2.002 (SIL OFL 1.1) | Full-width Chinese quotation marks U+2018–2019, U+201C–201D, subset with fontTools; Songti SC draws them at Latin width |
