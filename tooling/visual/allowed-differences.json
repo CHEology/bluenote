@@ -1588,5 +1588,16 @@
     "key": "listTitle",
     "prop": "*",
     "reason": "DESIGN §9 (2026-10-03, later): Archives and tag listings show year counts, each post's length and its first sentence."
+  },
+  {
+    "page": "*",
+    "key": "*",
+    "prop": "textAlign",
+    "reason": "DESIGN §3.1 (2026-10-03, evening): article paragraphs are justified."
+  },
+  {
+    "page": "*",
+    "textNormalize": "cjk-quote-spaces",
+    "reason": "DESIGN §3.1 (2026-10-03, evening): typed spaces between a Chinese quote and Chinese text or punctuation are not rendered; the source is unchanged."
   }
 ]

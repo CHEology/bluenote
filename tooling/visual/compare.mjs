@@ -124,7 +124,10 @@ for (const pageConfig of config.pages) {
 
       if (pageConfig.markdown && pageConfig.compareText !== false) {
         const ignore = allowed.filter((rule) => rule.textIgnore && (rule.page === '*' || rule.page === pageConfig.key)).flatMap((rule) => rule.textIgnore);
-        const strip = (text) => ignore.reduce((value, word) => value.split(` ${word} `).join(' ').split(` ${word}`).join(''), text);
+        const quoteSpaces = allowed.some((rule) => rule.textNormalize === 'cjk-quote-spaces' && (rule.page === '*' || rule.page === pageConfig.key));
+        /* Spaces typed between a Chinese quote and Chinese text are hidden in rendering (DESIGN §3.1). */
+        const normalize = (text) => quoteSpaces ? text.replace(/ +(?=[“‘][\u3000-\u303f\u3400-\u9fff\uff00-\uffef])|(?<=[\u3000-\u303f\u3400-\u9fff\uff00-\uffef][”’]) +(?=[\u3000-\u303f\u3400-\u9fff\uff00-\uffef])|(?<=[\u3400-\u9fff]) +(?=[“‘])/g, '') : text;
+        const strip = (text) => normalize(ignore.reduce((value, word) => value.split(` ${word} `).join(' ').split(` ${word}`).join(''), text));
         if (strip(a.text.markdownText) !== strip(b.text.markdownText)) {
           textRows.push(`| ${id} | markdown text differs (${a.text.markdownText.length} → ${b.text.markdownText.length} chars) |`);
           failures++;

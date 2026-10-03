@@ -98,7 +98,8 @@ font-family: "EB Garamond", Charter, Georgia,
 - 中文语境中的引号、破折号与省略号（`“ ” ‘ ’ — …`）在构建时标记为 `.cjk-punct`，改用只含中文字体的 `--font-cjk`（`"Blue Note CJK Quotes", "Songti SC", "Noto Serif CJK SC", "Source Han Serif SC", "Blue Note Serif SC", STSong, serif`），呈现全角形态，`——` 连成一线。Songti SC 的弯引号是西文宽度，因此引号统一取自只含四个引号字符的 Noto Serif CJK SC 子集 `Blue Note CJK Quotes`（约 3 KB，随首屏加载），破折号与省略号仍用宋体；判断依据是相邻文字是否为中文，或引号所含首尾字母是否为中文。英文中的同类字符（如 `can’t` 的撇号、英文引语）保持 EB Garamond。只改变显示，不改动原文字符；代码、公式等原样块不处理；
 - 英文斜体使用字体自带 italic，不用人工倾斜模拟；首页与列表的日期使用斜体、等高数字（`lining-nums`）；
 - 中文、英文和普通数字共享同一基线与 CSS 字号，不得为“看起来齐”而单独使用 `vertical-align`、相对定位或缩放；
-- 正文（`.markdown-body`）使用 `text-autospace: normal`：汉字与西文字母、数字相接且作者未输入空格时，由浏览器加入约 1/8 字宽的间距；作者已输入的空格保持原样，不在源文中插入或删除空格。段落使用 `text-wrap: pretty`，避免末行只剩一两个字。不支持的浏览器保持原有排版；
+- 正文（`.markdown-body`）使用 `text-autospace: normal`：汉字与西文字母、数字相接且作者未输入空格时，由浏览器加入约 1/8 字宽的间距；作者已输入的空格保持原样，不在源文中插入或删除空格。正文段落（`.markdown-body > p`）两端对齐（`text-align: justify`），左右边缘齐平；不使用 `text-wrap: pretty`，因为 WebKit 会据此重排整段，把中文行提前截断，造成右缘参差。手机上长英文单词折行时个别行字距会被拉开，属两端对齐的正常代价。方框、诗行、居中内容保持各自的对齐。不支持的浏览器保持原有排版；
+- 中文引号与相邻的全角标点（如 `”，` `，“` `）“`）相接时，该引号使用半宽字形（OpenType `halt`），避免两段半角空白叠在一起；作者在中文引号与中文或全角标点之间键入的空格不显示（如 `或是 “认清……” ，`），源文不改；
 - `TA`、`AI`、`GDP` 等缩写按普通正文呈现，不设小型大写，不单独缩小或加字距；
 - 英文诗行与引文框使用正文字体；公式仍使用第 7 节的数学字体。
 
