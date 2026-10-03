@@ -43,7 +43,7 @@
     "hexo-renderer-ejs": "2.0.0",
     "hexo-renderer-marked": "7.0.1",
     "hexo-server": "3.0.0",
-    "hexo-theme-bluenote": "github:CHEology/hexo-theme-bluenote#e359352d29bf0d1d7fae257dbcdb912110e1ddc7",
+    "hexo-theme-bluenote": "github:CHEology/hexo-theme-bluenote#a7e8652e847794b14775b98e00cbdd5e9399aeab",
     "marked": "15.0.12"
   },
   "devDependencies": {
