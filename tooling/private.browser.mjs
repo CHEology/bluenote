@@ -73,8 +73,13 @@ try {
   await submit(password);
   await fixture.waitFor({ state: 'visible' });
   assert.equal(requests, 2, 'Password retries reuse the downloaded ciphertext');
-  const anchored = await page.locator('#fixture-section').evaluate(el => el.getBoundingClientRect().top);
-  assert(Math.abs(anchored) < 2, 'A chapter fragment must resolve after decryption');
+  const anchored = await page.locator('#fixture-section').evaluate(el => ({
+    top: el.getBoundingClientRect().top,
+    inset: parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop) || 0,
+    navBottom: document.querySelector('.site-nav').getBoundingClientRect().bottom
+  }));
+  assert(Math.abs(anchored.top - anchored.inset) < 2 && anchored.top >= anchored.navBottom,
+    'A chapter fragment must resolve below the fixed navigation after decryption: ' + JSON.stringify(anchored));
   const stored = await page.evaluate(() => localStorage.getItem('bluenote.private-key.v1'));
   assert(stored && !stored.includes(password), 'Only a derived key may be saved');
   await context.addInitScript(() => {
