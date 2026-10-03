@@ -57,7 +57,7 @@ for(const [engine,browserType] of (process.env.BLUE_NOTE_ENGINE==='webkit'?[['we
    const nav=await box(p,'.site-nav'),brand=await box(p,'.site-nav__brand');
    const dockFixed=await p.evaluate(()=>matchMedia('(min-width: 768px) and (min-height: 521px)').matches);
    assert.equal(nav.y,0);assert.equal(nav.h,dockFixed?88:64,`${engine} ${w} ${path}: initial navigation height`);
-   assert.equal(await p.locator('.site-nav').evaluate(e=>getComputedStyle(e).position),'fixed');
+   assert.equal(await p.locator('.site-nav').evaluate(e=>getComputedStyle(e).position),'absolute');
    if(baseline)assert.deepEqual({nav,brand},baseline,`${engine} ${w} ${path} chrome differs`);else baseline={nav,brand};
    assert(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),`${path} overflows ${w}`);
    if(!['','404.html'].includes(path)){
@@ -65,19 +65,23 @@ for(const [engine,browserType] of (process.env.BLUE_NOTE_ENGINE==='webkit'?[['we
     if(titleY!==undefined)assert(Math.abs(title.y-titleY)<1,`${path} title baseline changed at ${w}`);else titleY=title.y;
     assert.equal(await p.locator('.masthead__inner').evaluate(e=>getComputedStyle(e,'::after').content),'none');
    }
+   // The bar belongs to the document: it leaves with the page and never comes back on scroll-up.
    for(const delta of [650,-90,1e6,-1e6]){
     await p.mouse.wheel(0,delta);await p.waitForTimeout(65);
-    assert.deepEqual(await box(p,'.site-nav'),nav,`${engine} ${w} ${path} nav moved`);
-    assert.deepEqual(await box(p,'.site-nav__brand'),brand,`${path} brand moved`);
+    const y=await p.evaluate(()=>scrollY),moved=await box(p,'.site-nav');
+    assert.deepEqual({...moved,y:moved.y+y},nav,`${engine} ${w} ${path} nav is not fixed to the document`);
    }
+   await p.evaluate(()=>scrollTo(0,0));
    if(path===''){
     assert.equal(await p.locator('.letterbox-entry:visible').count(),publicCount);
     assert.equal(await p.locator('[data-private-entry]:visible').count(),0);
     assert.equal(await p.locator('[data-private-year]:visible').count(),0);
     await p.evaluate(()=>scrollTo(0,document.querySelector('.letterbox-frame').offsetHeight));
     const dock=await box(p,'.letterbox-dock');
+    assert.equal(await p.locator('.letterbox-dock').evaluate(e=>getComputedStyle(e).position),'static');
     if(dockFixed){
-     assert.equal(dock.y,h-nav.h);await p.locator('.letterbox-entry__link').first().hover();await p.waitForTimeout(250);
+     assert.equal(dock.y,nav.h,'the lower bar follows the cover in the document');assert.equal(dock.h,nav.h);
+     await p.locator('.letterbox-entry__link').first().hover();await p.waitForTimeout(250);
      assert.deepEqual(await box(p,'.letterbox-dock'),dock);
      assert.equal((await p.locator('.letterbox-dock').innerText()).trim(),await p.locator('.letterbox-entry__link').first().getAttribute('data-excerpt'));
     }
@@ -96,8 +100,9 @@ for(const [engine,browserType] of (process.env.BLUE_NOTE_ENGINE==='webkit'?[['we
     assert.equal(await row.locator('time').innerText(),'');assert.equal(await row.locator('.listing__note').count(),0);
     await p.screenshot({path:join(shots,`${engine}-${w}-${h}-${scheme}-archives.png`),fullPage:true});
    }
-   if(path==='about/'&&w<992){
-    await p.evaluate(()=>scrollTo(0,80));const y=await p.evaluate(()=>scrollY);
+   if(path==='about/'&&w<768){
+    // The bar scrolls with the page, so the menu button is reachable only near the top.
+    await p.evaluate(()=>scrollTo(0,0));const y=await p.evaluate(()=>scrollY);
     const contentBefore=await box(p,'.page-body');
     await p.locator('.site-nav__toggle').click();assert.equal(await p.locator('.site-nav__toggle').getAttribute('aria-expanded'),'true');
     assert.deepEqual(await box(p,'.site-nav'),nav);await p.mouse.wheel(0,200);await p.waitForTimeout(100);assert.deepEqual(await box(p,'.page-body'),contentBefore);await p.keyboard.press('Escape');assert.equal(await p.evaluate(()=>scrollY),y);
@@ -107,7 +112,7 @@ for(const [engine,browserType] of (process.env.BLUE_NOTE_ENGINE==='webkit'?[['we
     assert.equal(await p.evaluate(()=>scrollY),y);assert(await p.locator('.site-nav__toggle').evaluate(e=>e===document.activeElement));
    }
   }
-  results.push(`${engine} ${w}×${h} ${scheme}: ${paths.length} pages, fixed navigation and shared title baseline, no overflow`);
+  results.push(`${engine} ${w}×${h} ${scheme}: ${paths.length} pages, document-anchored navigation and shared title baseline, no overflow`);
   await p.close();
  }
  }

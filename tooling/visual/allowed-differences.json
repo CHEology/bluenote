@@ -630,8 +630,8 @@
     "page": "post-story",
     "viewport": "mobile",
     "shot": "end",
-    "maxDiffPercent": 9,
-    "reason": "DESIGN §9 (2026-10-03): proposal one uses a shared blue-black title card, reserved date row, no decorative rule, and fixed navigation. Article text and archive row layout stay unchanged. Screenshots checked alongside browser geometry and unchanged body-text assertions."
+    "maxDiffPercent": 15,
+    "reason": "DESIGN §9 (2026-10-03): proposal one uses a shared blue-black title card, reserved date row, no decorative rule, and fixed navigation. Article text and archive row layout stay unchanged. Screenshots checked alongside browser geometry and unchanged body-text assertions. DESIGN §3.1 (2026-10-03, later): quotation marks, dashes and ellipses in Chinese text use the Chinese face (full width), which changes line breaks. DESIGN §9 (2026-10-03, later): the top bar and the home lower bar scroll away with the document; scrolled shots no longer show a fixed bar."
   },
   {
     "page": "post-photo",
@@ -833,8 +833,8 @@
     "page": "archives",
     "viewport": "mobile",
     "shot": "full",
-    "maxDiffPercent": 25,
-    "reason": "DESIGN §9 (2026-10-03): proposal one uses a shared blue-black title card, reserved date row, no decorative rule, and fixed navigation. Article text and archive row layout stay unchanged. Screenshots checked alongside browser geometry and unchanged body-text assertions."
+    "maxDiffPercent": 30,
+    "reason": "DESIGN §9 (2026-10-03): proposal one uses a shared blue-black title card, reserved date row, no decorative rule, and fixed navigation. Article text and archive row layout stay unchanged. Screenshots checked alongside browser geometry and unchanged body-text assertions. DESIGN §9 (2026-10-03, later): Archives and tag listings show year counts, each post's length and its first sentence."
   },
   {
     "page": "tag",
@@ -1197,8 +1197,8 @@
     "page": "home",
     "viewport": "mobile",
     "shot": "grid",
-    "maxDiffPercent": 2,
-    "reason": "DESIGN §9 (2026-10-03): approved credits axis. Years and titles share the page centre; dates occupy a balanced left track. Verified at 320–1440px in Chromium/WebKit, including undated private titles, wrapped titles, 200% text and unchanged fixed bars. Baseline is v1.10.1."
+    "maxDiffPercent": 8,
+    "reason": "DESIGN §9 (2026-10-03): approved credits axis. Years and titles share the page centre; dates occupy a balanced left track. Verified at 320–1440px in Chromium/WebKit, including undated private titles, wrapped titles, 200% text and unchanged fixed bars. Baseline is v1.10.1. DESIGN §9 (2026-10-03, later): on phones each home date sits above its title on the shared centre axis."
   },
   {
     "page": "home",
@@ -1352,8 +1352,8 @@
     "page": "home",
     "viewport": "desktop",
     "shot": "grid",
-    "maxDiffPercent": 1,
-    "reason": "DESIGN §9 (2026-10-03): approved credits axis. Years and titles share the page centre; dates occupy a balanced left track. Verified at 320–1440px in Chromium/WebKit, including undated private titles, wrapped titles, 200% text and unchanged fixed bars. Baseline is v1.10.1."
+    "maxDiffPercent": 3,
+    "reason": "DESIGN §9 (2026-10-03): approved credits axis. Years and titles share the page centre; dates occupy a balanced left track. Verified at 320–1440px in Chromium/WebKit, including undated private titles, wrapped titles, 200% text and unchanged fixed bars. Baseline is v1.10.1. DESIGN §9 (2026-10-03, later): the top bar and the home lower bar scroll away with the document; scrolled shots no longer show a fixed bar."
   },
   {
     "page": "*",
@@ -1435,8 +1435,8 @@
     "page": "post-photo",
     "viewport": "mobile",
     "shot": "top",
-    "maxDiffPercent": 71,
-    "reason": "DESIGN §9 (2026-10-03): proposal one uses a shared blue-black title card, reserved date row, no decorative rule, and fixed navigation. Article text and archive row layout stay unchanged. Screenshots checked alongside browser geometry and unchanged body-text assertions."
+    "maxDiffPercent": 74,
+    "reason": "DESIGN §9 (2026-10-03): proposal one uses a shared blue-black title card, reserved date row, no decorative rule, and fixed navigation. Article text and archive row layout stay unchanged. Screenshots checked alongside browser geometry and unchanged body-text assertions. DESIGN §9 (2026-10-03, later): the title block sits on the page paper below the bar (no band), with a Chinese date and the text close beneath."
   },
   {
     "page": "post-private",
@@ -1528,5 +1528,65 @@
     "shot": "top",
     "maxDiffPercent": 56,
     "reason": "DESIGN §9 (2026-10-03): proposal one uses a shared blue-black title card, reserved date row, no decorative rule, and fixed navigation. Article text and archive row layout stay unchanged. Screenshots checked alongside browser geometry and unchanged body-text assertions."
+  },
+  {
+    "page": "*",
+    "key": "*",
+    "prop": "fontFamily",
+    "reason": "DESIGN §3.1 (2026-10-03, later): the self-hosted \"Blue Note Serif SC\" joins the Chinese fallback chain for systems without a Chinese serif."
+  },
+  {
+    "page": "post-text",
+    "key": "markdown",
+    "prop": "height",
+    "reason": "DESIGN §3.1 (2026-10-03, later): quotation marks, dashes and ellipses in Chinese text use the Chinese face (full width), which changes line breaks."
+  },
+  {
+    "page": "post-zato",
+    "key": "markdown",
+    "prop": "height",
+    "reason": "DESIGN §3.1 (2026-10-03, later): quotation marks, dashes and ellipses in Chinese text use the Chinese face (full width), which changes line breaks."
+  },
+  {
+    "page": "post-story",
+    "key": "markdown",
+    "prop": "height",
+    "reason": "DESIGN §3.1 (2026-10-03, later): quotation marks, dashes and ellipses in Chinese text use the Chinese face (full width), which changes line breaks."
+  },
+  {
+    "pageStartsWith": "archive",
+    "key": "listItem",
+    "prop": "*",
+    "reason": "DESIGN §9 (2026-10-03, later): Archives and tag listings show year counts, each post's length and its first sentence."
+  },
+  {
+    "pageStartsWith": "archive",
+    "key": "listTitle",
+    "prop": "*",
+    "reason": "DESIGN §9 (2026-10-03, later): Archives and tag listings show year counts, each post's length and its first sentence."
+  },
+  {
+    "page": "design",
+    "key": "docCode",
+    "prop": "width",
+    "reason": "Design Doc is generated from DESIGN.md, whose font-stack example and wording changed."
+  },
+  {
+    "page": "design",
+    "key": "docFirstP",
+    "prop": "height",
+    "reason": "Design Doc is generated from DESIGN.md, whose font-stack example and wording changed."
+  },
+  {
+    "page": "tag",
+    "key": "listItem",
+    "prop": "*",
+    "reason": "DESIGN §9 (2026-10-03, later): Archives and tag listings show year counts, each post's length and its first sentence."
+  },
+  {
+    "page": "tag",
+    "key": "listTitle",
+    "prop": "*",
+    "reason": "DESIGN §9 (2026-10-03, later): Archives and tag listings show year counts, each post's length and its first sentence."
   }
 ]

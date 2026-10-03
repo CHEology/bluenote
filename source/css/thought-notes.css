@@ -1,7 +1,7 @@
 /* Minimal typesetting for notes containing mathematical relationships. */
 .post-page .markdown-body .thought-note__math,
 .post-page .markdown-body .thought-note__equation {
-  font-family: Times, "Times New Roman", Georgia, serif;
+  font-family: var(--font-math);
   font-variant-numeric: lining-nums;
 }
 

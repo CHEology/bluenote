@@ -18,11 +18,21 @@ nav:
 home:
   cover: /images/theme_fluid_bg/2021.11-2880.jpg
   preload_cover: true
+  # Portrait phones: the same picture cropped to 9:10 around the figure on the central axis.
+  cover_portrait:
+    base: /images/theme_fluid_bg/2021.11-portrait
+    widths: [720, 1080, 1440]
+  cover_placeholder: 'data:image/webp;base64,UklGRnAAAABXRUJQVlA4IGQAAACwAwCdASogAA4APu1iqk2ppaQiMAgBMB2JYgCdMoADTa17LfVbgADLJdeSTIQlMftxGmWOqqPY22vDzhmSkE/bN0sKezrBcFo2M3YhVWSH+LAbuw/nmKAOrrJO6hMq8/AJsSQA'
   slogan: Dream to be a tranquil spectator.
 
+cjk_punctuation: true
+
 fonts:
-  ui: '"EB Garamond", Charter, Georgia, "Songti SC", "Noto Serif CJK SC", "Source Han Serif SC", STSong, serif'
-  prose: '"EB Garamond", Charter, Georgia, "Songti SC", "Noto Serif CJK SC", "Source Han Serif SC", STSong, serif'
+  ui: '"EB Garamond", Charter, Georgia, "Songti SC", "Noto Serif CJK SC", "Source Han Serif SC", "Blue Note Serif SC", STSong, serif'
+  prose: '"EB Garamond", Charter, Georgia, "Songti SC", "Noto Serif CJK SC", "Source Han Serif SC", "Blue Note Serif SC", STSong, serif'
+  # Formulas share the prose face; EB Garamond has no ∝ or →, which fall back to Times.
+  math: '"EB Garamond", Times, "Times New Roman", Georgia, serif'
+  cjk: '"Songti SC", "Noto Serif CJK SC", "Source Han Serif SC", "Blue Note Serif SC", STSong, serif'
 
 # Paper by day, blue hour by night; the bar keeps the home's blue-black in both.
 colors:
@@ -63,6 +73,8 @@ colors:
 
 post:
   language: zh-CN
+  date_format: YYYY 年 M 月 D 日
+  year_format: YYYY 年
   toc:
     enable: true
   prev_next: true
@@ -72,6 +84,15 @@ post:
 
 archive:
   extra_entries: []
+  # Year counts, each post's length on the right and its first sentence below the title.
+  details: true
+  details_labels:
+    posts: '{n} 篇'
+    length: '{n} 字'
+    length_large: '约 {n} 万字'
+    large_from: 10000
+    large_divisor: 10000
+    photos: '{n} 幅'
 
 # Composition year is separate from the encrypted source's upload timestamp.
 historical_posts:
@@ -102,6 +123,10 @@ custom_css:
   - /css/design-doc.css
   - /css/thought-notes.css
   - /css/private.css
+# The Chinese web font is only a fallback for systems without a Chinese serif, so its
+# long list of slices loads without holding up the first paint.
+custom_css_deferred:
+  - /fonts/noto-serif-sc/noto-serif-sc.css
 custom_js:
   - /js/private.js
 
