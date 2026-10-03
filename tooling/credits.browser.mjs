@@ -83,7 +83,7 @@ for(const [engine,browserType] of (process.env.BLUE_NOTE_ENGINE==='webkit'?[['we
      assert.equal(dock.y,nav.h,'the lower bar follows the cover in the document');assert.equal(dock.h,nav.h);
      await p.locator('.letterbox-entry__link').first().hover();await p.waitForTimeout(250);
      assert.deepEqual(await box(p,'.letterbox-dock'),dock);
-     assert.equal((await p.locator('.letterbox-dock').innerText()).trim(),await p.locator('.letterbox-entry__link').first().getAttribute('data-excerpt'));
+     assert.equal((await p.locator('.letterbox-dock').innerText()).trim(),'Dream to be a tranquil spectator.');
     }
     await p.screenshot({path:join(shots,`${engine}-${w}-${h}-${scheme}-index.png`)});
     await p.locator('.letterbox-entry[data-private-entry] .private-link-lock').first().waitFor({state:'attached'});

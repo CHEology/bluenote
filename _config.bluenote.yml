@@ -24,6 +24,8 @@ home:
     widths: [720, 1080, 1440]
   cover_placeholder: 'data:image/webp;base64,UklGRnAAAABXRUJQVlA4IGQAAACwAwCdASogAA4APu1iqk2ppaQiMAgBMB2JYgCdMoADTa17LfVbgADLJdeSTIQlMftxGmWOqqPY22vDzhmSkE/bN0sKezrBcFo2M3YhVWSH+LAbuw/nmKAOrrJO6hMq8/AJsSQA'
   slogan: Dream to be a tranquil spectator.
+  # The lower bar always shows the slogan; it does not preview other posts.
+  subtitle_excerpts: false
 
 cjk_punctuation: true
 
@@ -84,15 +86,13 @@ post:
 
 archive:
   extra_entries: []
-  # Year counts, each post's length on the right and its first sentence below the title.
+  # Each post's length on the right and its first sentence below the title.
   details: true
   details_labels:
-    posts: '{n} 篇'
     length: '{n} 字'
     length_large: '约 {n} 万字'
     large_from: 10000
     large_divisor: 10000
-    photos: '{n} 幅'
 
 # Composition year is separate from the encrypted source's upload timestamp.
 historical_posts:
