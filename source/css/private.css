@@ -125,7 +125,7 @@ html:not(.private-reading-unlocked) body.home-page .index-card:has(a[data-privat
 .private-post-shell__label {
   margin: 0 0 1.1rem !important;
   color: var(--muted);
-  font-family: Times, "Times New Roman", serif;
+  font-family: var(--font-ui);
   font-size: 0.8rem;
   letter-spacing: 0.14em;
 }
@@ -203,7 +203,7 @@ html:not(.private-reading-unlocked) body.home-page .index-card:has(a[data-privat
 .private-unlock-dialog h2 {
   margin: 0;
   color: #2d2b27;
-  font-family: Times, "Times New Roman", serif;
+  font-family: var(--font-ui);
   font-size: 1rem;
   font-weight: 500;
   letter-spacing: 0.12em;
