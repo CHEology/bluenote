@@ -28,34 +28,25 @@ try {
         const page = await browser.newPage({viewport: {width: 1440, height: 900}, reducedMotion});
         await page.goto(url);
         const line = page.locator('.letterbox-dock__line span');
-        const idle = await line.innerText();
+        const slogan = 'Dream to be a tranquil spectator.';
         const links = page.locator('.letterbox-entry__link');
         const first = links.nth(0), second = links.nth(1);
-        const excerpt = await first.getAttribute('data-excerpt');
-        async function expectLine(text) {
+        async function expectSlogan() {
           await page.waitForTimeout(300);
-          assert.equal(await line.innerText(), text);
-          assert.equal(await page.locator('.letterbox-dock').evaluate(e => e.classList.contains('is-swapping')), false);
+          assert.equal(await line.innerText(), slogan);
+          assert.equal(await page.locator('.letterbox-dock').evaluate(e => e.classList.contains('is-idle')), true);
         }
-        await first.hover(); await expectLine(excerpt);
-        // The year heading is inside the index, outside any article link.
-        await page.locator('.letterbox-year__title').first().hover(); await expectLine(idle);
-        await first.locator('time').hover(); await expectLine(excerpt);
-        await first.locator('.letterbox-entry__title').hover(); await expectLine(excerpt);
-        await second.hover(); await expectLine(await second.getAttribute('data-excerpt'));
-        await page.mouse.move(30, 300); await expectLine(idle);
-        // Leaving during either stage of the text transition must not leave stale text.
-        for (const delay of [10, 110]) {
-          await first.hover(); await page.waitForTimeout(delay);
-          await page.locator('.letterbox-year__title').first().hover(); await expectLine(idle);
-        }
-        await first.focus(); await expectLine(excerpt);
-        await second.focus(); await expectLine(await second.getAttribute('data-excerpt'));
-        await second.evaluate(e => e.blur()); await expectLine(idle);
-        await first.hover(); await expectLine(excerpt);
-        await page.setViewportSize({width: 390, height: 844}); await expectLine(idle);
+        // The lower bar keeps the slogan: no previews on pointer, focus or narrow screens.
+        assert.equal(await links.evaluateAll(all => all.filter(a => a.hasAttribute('data-excerpt')).length), 0);
+        await expectSlogan();
+        await first.hover(); await expectSlogan();
+        await first.locator('.letterbox-entry__title').hover(); await expectSlogan();
+        await second.hover(); await expectSlogan();
+        await first.focus(); await expectSlogan();
+        await second.focus(); await expectSlogan();
+        await page.setViewportSize({width: 390, height: 844}); await expectSlogan();
         await page.close();
-        console.log(`${name}, ${reducedMotion}: article exits, child transitions, rapid movement, keyboard and mobile passed`);
+        console.log(`${name}, ${reducedMotion}: the slogan stays under pointer, keyboard and on phones`);
       }
     } finally { await browser.close(); }
   }

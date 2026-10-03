@@ -138,7 +138,7 @@ for (const entry of home.match(/<li class="letterbox-entry"[^>]*>[\s\S]*?<\/li>/
   if (entry.includes('data-private-link=') !== entry.includes('data-private-entry="true"')) {
     fail('Every private post on the homepage, and only those, must be marked for locked readers');
   }
-  if (entry.includes('data-private-entry="true"') && !entry.includes('data-excerpt=""')) {
+  if (entry.includes('data-private-entry="true"') && (/data-excerpt="[^"]/.test(entry) || entry.includes('letterbox-entry__excerpt'))) {
     fail('A private post must not expose an excerpt on the homepage');
   }
 }
