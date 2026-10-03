@@ -18,10 +18,10 @@ nav:
 home:
   cover: /images/theme_fluid_bg/2021.11-2880.jpg
   preload_cover: true
-  # Portrait phones: the same picture cropped to 9:10 around the figure on the central axis.
+  # Portrait phones: the same picture cropped to 1:2 (full height) around the figure on the central axis.
   cover_portrait:
     base: /images/theme_fluid_bg/2021.11-portrait
-    widths: [720, 1080, 1440]
+    widths: [600, 900, 1200]
   cover_placeholder: 'data:image/webp;base64,UklGRnAAAABXRUJQVlA4IGQAAACwAwCdASogAA4APu1iqk2ppaQiMAgBMB2JYgCdMoADTa17LfVbgADLJdeSTIQlMftxGmWOqqPY22vDzhmSkE/bN0sKezrBcFo2M3YhVWSH+LAbuw/nmKAOrrJO6hMq8/AJsSQA'
   slogan: Dream to be a tranquil spectator.
   # The lower bar always shows the slogan; it does not preview other posts.

@@ -1190,8 +1190,8 @@
     "page": "home",
     "viewport": "mobile",
     "shot": "top",
-    "maxDiffPercent": 28,
-    "reason": "DESIGN §9 (2026-10-03): approved credits axis. Years and titles share the page centre; dates occupy a balanced left track. Verified at 320–1440px in Chromium/WebKit, including undated private titles, wrapped titles, 200% text and unchanged fixed bars. Baseline is v1.10.1. DESIGN §2.3/§9 (2026-10-03, later): in light mode the home index below the lower bar sits on the article paper with article text colours; dark mode keeps the night colours."
+    "maxDiffPercent": 55,
+    "reason": "DESIGN §9 (2026-10-03): approved credits axis. Years and titles share the page centre; dates occupy a balanced left track. Verified at 320–1440px in Chromium/WebKit, including undated private titles, wrapped titles, 200% text and unchanged fixed bars. Baseline is v1.10.1. DESIGN §2.3/§9 (2026-10-03, later): in light mode the home index below the lower bar sits on the article paper with article text colours; dark mode keeps the night colours. DESIGN §9 (2026-10-03, evening): phones open on top bar, full-height cover and lower bar filling 100svh; the portrait cover is a 1:2 crop. DESIGN §9 (2026-10-03, evening): phones open on top bar, full-height cover and lower bar filling 100svh; the portrait cover is a 1:2 crop."
   },
   {
     "page": "home",

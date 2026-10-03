@@ -20,7 +20,7 @@ the untouched `2021.11.jpg` with macOS `sips` (long edge 2880px, JPEG quality 86
 then `jpegtran -copy none -optimize -progressive`. The complete frame and aspect
 ratio are preserved; this does not change article or Gallery photo masters.
 
-The portrait phone covers `2021.11-portrait-{720,1080,1440}.{jpg,webp}` are a 9:10
+The portrait phone covers `2021.11-portrait-{600,900,1200}.{jpg,webp}` are a 1:2
 crop centred on the figure, cut from the untouched `2021.11.jpg` (5640×2400, full
 height) and resized with Pillow (Lanczos): progressive JPEG quality 82 and WebP
 quality 80, both carrying the original sRGB profile. The 32×14 WebP placeholder in
