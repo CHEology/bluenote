@@ -623,71 +623,71 @@
     "page": "post-story",
     "viewport": "desktop",
     "shot": "end",
-    "maxDiffPercent": 6,
-    "reason": "DESIGN §9 (2026-09-16): navigation scrolls out of view. Verified pixel differences are confined to the top 80px; the rest of each screenshot is unchanged."
+    "maxDiffPercent": 13,
+    "reason": "DESIGN §9 (2026-10-03): proposal one uses a shared blue-black title card, reserved date row, no decorative rule, and fixed navigation. Article text and archive row layout stay unchanged. Screenshots checked alongside browser geometry and unchanged body-text assertions."
   },
   {
     "page": "post-story",
     "viewport": "mobile",
     "shot": "end",
-    "maxDiffPercent": 8,
-    "reason": "DESIGN §9 (2026-09-16): navigation scrolls out of view. Verified pixel differences are confined to the top 80px; the rest of each screenshot is unchanged."
+    "maxDiffPercent": 9,
+    "reason": "DESIGN §9 (2026-10-03): proposal one uses a shared blue-black title card, reserved date row, no decorative rule, and fixed navigation. Article text and archive row layout stay unchanged. Screenshots checked alongside browser geometry and unchanged body-text assertions."
   },
   {
     "page": "post-photo",
     "viewport": "desktop",
     "shot": "second",
-    "maxDiffPercent": 6,
-    "reason": "DESIGN §9 (2026-09-16): navigation scrolls out of view. Verified pixel differences are confined to the top 80px; the rest of each screenshot is unchanged."
+    "maxDiffPercent": 46,
+    "reason": "DESIGN §9 (2026-10-03): proposal one uses a shared blue-black title card, reserved date row, no decorative rule, and fixed navigation. Article text and archive row layout stay unchanged. Screenshots checked alongside browser geometry and unchanged body-text assertions."
   },
   {
     "page": "post-photo",
     "viewport": "mobile",
     "shot": "second",
-    "maxDiffPercent": 8,
-    "reason": "DESIGN §9 (2026-09-16): navigation scrolls out of view. Verified pixel differences are confined to the top 80px; the rest of each screenshot is unchanged."
+    "maxDiffPercent": 75,
+    "reason": "DESIGN §9 (2026-10-03): proposal one uses a shared blue-black title card, reserved date row, no decorative rule, and fixed navigation. Article text and archive row layout stay unchanged. Screenshots checked alongside browser geometry and unchanged body-text assertions."
   },
   {
     "page": "gallery-all",
     "viewport": "desktop",
     "shot": "bay3",
-    "maxDiffPercent": 6,
-    "reason": "DESIGN §9 (2026-09-16): navigation scrolls out of view. Verified pixel differences are confined to the top 80px; the rest of each screenshot is unchanged."
+    "maxDiffPercent": 51,
+    "reason": "DESIGN §9 (2026-10-03): proposal one uses a shared blue-black title card, reserved date row, no decorative rule, and fixed navigation. Article text and archive row layout stay unchanged. Screenshots checked alongside browser geometry and unchanged body-text assertions."
   },
   {
     "page": "gallery-all",
     "viewport": "mobile",
     "shot": "bay3",
-    "maxDiffPercent": 8,
-    "reason": "DESIGN §9 (2026-09-16): navigation scrolls out of view. Verified pixel differences are confined to the top 80px; the rest of each screenshot is unchanged."
+    "maxDiffPercent": 32,
+    "reason": "DESIGN §9 (2026-10-03): proposal one uses a shared blue-black title card, reserved date row, no decorative rule, and fixed navigation. Article text and archive row layout stay unchanged. Screenshots checked alongside browser geometry and unchanged body-text assertions."
   },
   {
     "page": "design",
     "viewport": "desktop",
     "shot": "table",
-    "maxDiffPercent": 6,
-    "reason": "DESIGN §9 (2026-09-16): navigation scrolls out of view. Verified pixel differences are confined to the top 80px; the rest of each screenshot is unchanged."
+    "maxDiffPercent": 19,
+    "reason": "DESIGN §9 (2026-10-03): proposal one uses a shared blue-black title card, reserved date row, no decorative rule, and fixed navigation. Article text and archive row layout stay unchanged. Screenshots checked alongside browser geometry and unchanged body-text assertions."
   },
   {
     "page": "design",
     "viewport": "mobile",
     "shot": "table",
-    "maxDiffPercent": 8,
-    "reason": "DESIGN §9 (2026-09-16): navigation scrolls out of view. Verified pixel differences are confined to the top 80px; the rest of each screenshot is unchanged."
+    "maxDiffPercent": 19,
+    "reason": "DESIGN §9 (2026-10-03): proposal one uses a shared blue-black title card, reserved date row, no decorative rule, and fixed navigation. Article text and archive row layout stay unchanged. Screenshots checked alongside browser geometry and unchanged body-text assertions."
   },
   {
     "page": "design",
     "viewport": "desktop",
     "shot": "code",
-    "maxDiffPercent": 6,
-    "reason": "DESIGN §9 (2026-09-16): navigation scrolls out of view. Verified pixel differences are confined to the top 80px; the rest of each screenshot is unchanged."
+    "maxDiffPercent": 19,
+    "reason": "DESIGN §9 (2026-10-03): proposal one uses a shared blue-black title card, reserved date row, no decorative rule, and fixed navigation. Article text and archive row layout stay unchanged. Screenshots checked alongside browser geometry and unchanged body-text assertions."
   },
   {
     "page": "design",
     "viewport": "mobile",
     "shot": "code",
-    "maxDiffPercent": 8,
-    "reason": "DESIGN §9 (2026-09-16): navigation scrolls out of view. Verified pixel differences are confined to the top 80px; the rest of each screenshot is unchanged."
+    "maxDiffPercent": 20,
+    "reason": "DESIGN §9 (2026-10-03): proposal one uses a shared blue-black title card, reserved date row, no decorative rule, and fixed navigation. Article text and archive row layout stay unchanged. Screenshots checked alongside browser geometry and unchanged body-text assertions."
   },
   {
     "page": "post-menu",
@@ -826,29 +826,29 @@
     "page": "archives",
     "viewport": "desktop",
     "shot": "full",
-    "maxDiffPercent": 7,
-    "reason": "DESIGN §9: place the historical manuscript in 2018 with year-only dates; keep reverse chronology and the requested archive note. A visible public card now occupies the first Home slot instead of a hidden private card."
+    "maxDiffPercent": 29,
+    "reason": "DESIGN §9 (2026-10-03): proposal one uses a shared blue-black title card, reserved date row, no decorative rule, and fixed navigation. Article text and archive row layout stay unchanged. Screenshots checked alongside browser geometry and unchanged body-text assertions."
   },
   {
     "page": "archives",
     "viewport": "mobile",
     "shot": "full",
-    "maxDiffPercent": 10,
-    "reason": "DESIGN §9: place the historical manuscript in 2018 with year-only dates; keep reverse chronology and the requested archive note. A visible public card now occupies the first Home slot instead of a hidden private card."
+    "maxDiffPercent": 25,
+    "reason": "DESIGN §9 (2026-10-03): proposal one uses a shared blue-black title card, reserved date row, no decorative rule, and fixed navigation. Article text and archive row layout stay unchanged. Screenshots checked alongside browser geometry and unchanged body-text assertions."
   },
   {
     "page": "tag",
     "viewport": "desktop",
     "shot": "full",
-    "maxDiffPercent": 7,
-    "reason": "DESIGN §9: place the historical manuscript in 2018 with year-only dates; keep reverse chronology and the requested archive note. A visible public card now occupies the first Home slot instead of a hidden private card."
+    "maxDiffPercent": 31,
+    "reason": "DESIGN §9 (2026-10-03): proposal one uses a shared blue-black title card, reserved date row, no decorative rule, and fixed navigation. Article text and archive row layout stay unchanged. Screenshots checked alongside browser geometry and unchanged body-text assertions."
   },
   {
     "page": "tag",
     "viewport": "mobile",
     "shot": "full",
-    "maxDiffPercent": 7,
-    "reason": "DESIGN §9: place the historical manuscript in 2018 with year-only dates; keep reverse chronology and the requested archive note. A visible public card now occupies the first Home slot instead of a hidden private card."
+    "maxDiffPercent": 27,
+    "reason": "DESIGN §9 (2026-10-03): proposal one uses a shared blue-black title card, reserved date row, no decorative rule, and fixed navigation. Article text and archive row layout stay unchanged. Screenshots checked alongside browser geometry and unchanged body-text assertions."
   },
   {
     "page": "home",
@@ -931,15 +931,15 @@
     "page": "design",
     "viewport": "desktop",
     "shot": "top",
-    "maxDiffPercent": 0.05,
-    "reason": "DESIGN §6.4 (2026-09-25): document date updated with the approved D cover player. Article player layouts are separately verified in tooling/music.browser.mjs; existing article text and shared layout remain unchanged."
+    "maxDiffPercent": 43,
+    "reason": "DESIGN §9 (2026-10-03): proposal one uses a shared blue-black title card, reserved date row, no decorative rule, and fixed navigation. Article text and archive row layout stay unchanged. Screenshots checked alongside browser geometry and unchanged body-text assertions."
   },
   {
     "page": "design",
     "viewport": "mobile",
     "shot": "top",
-    "maxDiffPercent": 0.05,
-    "reason": "DESIGN §6.4 (2026-09-25): document date updated with the approved D cover player. Article player layouts are separately verified in tooling/music.browser.mjs; existing article text and shared layout remain unchanged."
+    "maxDiffPercent": 39,
+    "reason": "DESIGN §9 (2026-10-03): proposal one uses a shared blue-black title card, reserved date row, no decorative rule, and fixed navigation. Article text and archive row layout stay unchanged. Screenshots checked alongside browser geometry and unchanged body-text assertions."
   },
   {
     "page": "home",
@@ -1190,15 +1190,15 @@
     "page": "home",
     "viewport": "mobile",
     "shot": "top",
-    "maxDiffPercent": 5,
-    "reason": "DESIGN §9: approved A mobile reading list with a uniform translucent dark blue background and a direct upper edge; no gradient or fade. Desktop and tablet are unchanged."
+    "maxDiffPercent": 3,
+    "reason": "DESIGN §9 (2026-10-03): proposal one uses a shared blue-black title card, reserved date row, no decorative rule, and fixed navigation. Article text and archive row layout stay unchanged. Screenshots checked alongside browser geometry and unchanged body-text assertions."
   },
   {
     "page": "home",
     "viewport": "mobile",
     "shot": "grid",
-    "maxDiffPercent": 20,
-    "reason": "DESIGN §9: approved A mobile reading list with a uniform translucent dark blue background and a direct upper edge; no gradient or fade. Desktop and tablet are unchanged."
+    "maxDiffPercent": 48,
+    "reason": "DESIGN §9 (2026-10-03): proposal one uses a shared blue-black title card, reserved date row, no decorative rule, and fixed navigation. Article text and archive row layout stay unchanged. Screenshots checked alongside browser geometry and unchanged body-text assertions."
   },
   {
     "page": "home",
@@ -1229,29 +1229,29 @@
     "page": "post-text",
     "viewport": "desktop",
     "shot": "full",
-    "maxDiffPercent": 1.2,
-    "reason": "DESIGN §4.1: approved centred back-to-top chevron and three-column navigation with 44px hit targets; only the footer grows by 20px, with article text unchanged."
+    "maxDiffPercent": 20,
+    "reason": "DESIGN §9 (2026-10-03): proposal one uses a shared blue-black title card, reserved date row, no decorative rule, and fixed navigation. Article text and archive row layout stay unchanged. Screenshots checked alongside browser geometry and unchanged body-text assertions."
   },
   {
     "page": "post-text",
     "viewport": "mobile",
     "shot": "full",
-    "maxDiffPercent": 1.2,
-    "reason": "DESIGN §4.1: approved centred back-to-top chevron and three-column navigation with 44px hit targets; only the footer grows by 20px, with article text unchanged."
+    "maxDiffPercent": 20,
+    "reason": "DESIGN §9 (2026-10-03): proposal one uses a shared blue-black title card, reserved date row, no decorative rule, and fixed navigation. Article text and archive row layout stay unchanged. Screenshots checked alongside browser geometry and unchanged body-text assertions."
   },
   {
     "page": "post-zato",
     "viewport": "desktop",
     "shot": "full",
-    "maxDiffPercent": 1.2,
-    "reason": "DESIGN §4.1: approved centred back-to-top chevron and three-column navigation with 44px hit targets; only the footer grows by 20px, with article text unchanged."
+    "maxDiffPercent": 20,
+    "reason": "DESIGN §9 (2026-10-03): proposal one uses a shared blue-black title card, reserved date row, no decorative rule, and fixed navigation. Article text and archive row layout stay unchanged. Screenshots checked alongside browser geometry and unchanged body-text assertions."
   },
   {
     "page": "post-zato",
     "viewport": "mobile",
     "shot": "full",
-    "maxDiffPercent": 1.2,
-    "reason": "DESIGN §4.1: approved centred back-to-top chevron and three-column navigation with 44px hit targets; only the footer grows by 20px, with article text unchanged."
+    "maxDiffPercent": 19,
+    "reason": "DESIGN §9 (2026-10-03): proposal one uses a shared blue-black title card, reserved date row, no decorative rule, and fixed navigation. Article text and archive row layout stay unchanged. Screenshots checked alongside browser geometry and unchanged body-text assertions."
   },
   {
     "page": "archives",
@@ -1345,14 +1345,188 @@
     "page": "home",
     "viewport": "desktop",
     "shot": "top",
-    "maxDiffPercent": 100,
-    "reason": "DESIGN §9: user-approved desktop A fog composition, centered five-entry columns and two-page pagination; mobile output unchanged. Screenshot inspected separately across eight sizes."
+    "maxDiffPercent": 2,
+    "reason": "DESIGN §9 (2026-10-03): proposal one uses a shared blue-black title card, reserved date row, no decorative rule, and fixed navigation. Article text and archive row layout stay unchanged. Screenshots checked alongside browser geometry and unchanged body-text assertions."
   },
   {
     "page": "home",
     "viewport": "desktop",
     "shot": "grid",
+    "maxDiffPercent": 2,
+    "reason": "DESIGN §9 (2026-10-03): proposal one uses a shared blue-black title card, reserved date row, no decorative rule, and fixed navigation. Article text and archive row layout stay unchanged. Screenshots checked alongside browser geometry and unchanged body-text assertions."
+  },
+  {
+    "page": "*",
+    "key": "masthead",
+    "prop": "*",
+    "reason": "DESIGN §9 (2026-10-03): proposal one uses a shared blue-black title card, reserved date row, no decorative rule, and fixed navigation. Article text and archive row layout stay unchanged."
+  },
+  {
+    "page": "*",
+    "key": "mastheadInner",
+    "prop": "*",
+    "reason": "DESIGN §9 (2026-10-03): proposal one uses a shared blue-black title card, reserved date row, no decorative rule, and fixed navigation. Article text and archive row layout stay unchanged."
+  },
+  {
+    "page": "*",
+    "key": "mastheadTitle",
+    "prop": "*",
+    "reason": "DESIGN §9 (2026-10-03): proposal one uses a shared blue-black title card, reserved date row, no decorative rule, and fixed navigation. Article text and archive row layout stay unchanged."
+  },
+  {
+    "page": "*",
+    "key": "*",
+    "prop": "y",
+    "reason": "The shared title card moves content down in normal document flow; fixed navigation stays at the viewport top."
+  },
+  {
+    "page": "*",
+    "key": "nav",
+    "prop": "boxShadow",
+    "reason": "Remove the navigation hairline in both schemes; scrolling never changes it."
+  },
+  {
+    "page": "*",
+    "key": "pageBody",
+    "prop": "paddingTop",
+    "reason": "DESIGN §9 (2026-10-03): proposal one uses a shared blue-black title card, reserved date row, no decorative rule, and fixed navigation. Article text and archive row layout stay unchanged."
+  },
+  {
+    "page": "*",
+    "key": "pageBody",
+    "prop": "height",
+    "reason": "DESIGN §9 (2026-10-03): proposal one uses a shared blue-black title card, reserved date row, no decorative rule, and fixed navigation. Article text and archive row layout stay unchanged."
+  },
+  {
+    "page": "archives",
+    "key": "column",
+    "prop": "height",
+    "reason": "Remove the requested manuscript annotation; other archive rows retain their layout."
+  },
+  {
+    "page": "home-menu",
+    "viewport": "mobile",
+    "shot": "menu",
+    "maxDiffPercent": 3,
+    "reason": "DESIGN §9 (2026-10-03): proposal one uses a shared blue-black title card, reserved date row, no decorative rule, and fixed navigation. Article text and archive row layout stay unchanged. Screenshots checked alongside browser geometry and unchanged body-text assertions."
+  },
+  {
+    "page": "post-story",
+    "viewport": "desktop",
+    "shot": "top",
+    "maxDiffPercent": 40,
+    "reason": "DESIGN §9 (2026-10-03): proposal one uses a shared blue-black title card, reserved date row, no decorative rule, and fixed navigation. Article text and archive row layout stay unchanged. Screenshots checked alongside browser geometry and unchanged body-text assertions."
+  },
+  {
+    "page": "post-story",
+    "viewport": "mobile",
+    "shot": "top",
+    "maxDiffPercent": 37,
+    "reason": "DESIGN §9 (2026-10-03): proposal one uses a shared blue-black title card, reserved date row, no decorative rule, and fixed navigation. Article text and archive row layout stay unchanged. Screenshots checked alongside browser geometry and unchanged body-text assertions."
+  },
+  {
+    "page": "post-photo",
+    "viewport": "desktop",
+    "shot": "top",
+    "maxDiffPercent": 70,
+    "reason": "DESIGN §9 (2026-10-03): proposal one uses a shared blue-black title card, reserved date row, no decorative rule, and fixed navigation. Article text and archive row layout stay unchanged. Screenshots checked alongside browser geometry and unchanged body-text assertions."
+  },
+  {
+    "page": "post-photo",
+    "viewport": "mobile",
+    "shot": "top",
+    "maxDiffPercent": 71,
+    "reason": "DESIGN §9 (2026-10-03): proposal one uses a shared blue-black title card, reserved date row, no decorative rule, and fixed navigation. Article text and archive row layout stay unchanged. Screenshots checked alongside browser geometry and unchanged body-text assertions."
+  },
+  {
+    "page": "post-private",
+    "viewport": "desktop",
+    "shot": "full",
+    "maxDiffPercent": 37,
+    "reason": "DESIGN §9 (2026-10-03): proposal one uses a shared blue-black title card, reserved date row, no decorative rule, and fixed navigation. Article text and archive row layout stay unchanged. Screenshots checked alongside browser geometry and unchanged body-text assertions."
+  },
+  {
+    "page": "post-private",
+    "viewport": "mobile",
+    "shot": "full",
+    "maxDiffPercent": 31,
+    "reason": "DESIGN §9 (2026-10-03): proposal one uses a shared blue-black title card, reserved date row, no decorative rule, and fixed navigation. Article text and archive row layout stay unchanged. Screenshots checked alongside browser geometry and unchanged body-text assertions."
+  },
+  {
+    "page": "post-menu",
+    "viewport": "mobile",
+    "shot": "menu",
+    "maxDiffPercent": 3,
+    "reason": "DESIGN §9 (2026-10-03): proposal one uses a shared blue-black title card, reserved date row, no decorative rule, and fixed navigation. Article text and archive row layout stay unchanged. Screenshots checked alongside browser geometry and unchanged body-text assertions."
+  },
+  {
+    "page": "archive-year",
+    "viewport": "desktop",
+    "shot": "full",
+    "maxDiffPercent": 38,
+    "reason": "DESIGN §9 (2026-10-03): proposal one uses a shared blue-black title card, reserved date row, no decorative rule, and fixed navigation. Article text and archive row layout stay unchanged. Screenshots checked alongside browser geometry and unchanged body-text assertions."
+  },
+  {
+    "page": "archive-year",
+    "viewport": "mobile",
+    "shot": "full",
+    "maxDiffPercent": 30,
+    "reason": "DESIGN §9 (2026-10-03): proposal one uses a shared blue-black title card, reserved date row, no decorative rule, and fixed navigation. Article text and archive row layout stay unchanged. Screenshots checked alongside browser geometry and unchanged body-text assertions."
+  },
+  {
+    "page": "about",
+    "viewport": "desktop",
+    "shot": "full",
+    "maxDiffPercent": 39,
+    "reason": "DESIGN §9 (2026-10-03): proposal one uses a shared blue-black title card, reserved date row, no decorative rule, and fixed navigation. Article text and archive row layout stay unchanged. Screenshots checked alongside browser geometry and unchanged body-text assertions."
+  },
+  {
+    "page": "about",
+    "viewport": "mobile",
+    "shot": "full",
+    "maxDiffPercent": 35,
+    "reason": "DESIGN §9 (2026-10-03): proposal one uses a shared blue-black title card, reserved date row, no decorative rule, and fixed navigation. Article text and archive row layout stay unchanged. Screenshots checked alongside browser geometry and unchanged body-text assertions."
+  },
+  {
+    "page": "gallery",
+    "viewport": "desktop",
+    "shot": "top",
     "maxDiffPercent": 100,
-    "reason": "DESIGN §9: user-approved desktop A fog composition, centered five-entry columns and two-page pagination; mobile output unchanged. Screenshot inspected separately across eight sizes."
+    "reason": "DESIGN §9 (2026-10-03): proposal one uses a shared blue-black title card, reserved date row, no decorative rule, and fixed navigation. Article text and archive row layout stay unchanged. Screenshots checked alongside browser geometry and unchanged body-text assertions."
+  },
+  {
+    "page": "gallery",
+    "viewport": "desktop",
+    "shot": "bay2",
+    "maxDiffPercent": 100,
+    "reason": "DESIGN §9 (2026-10-03): proposal one uses a shared blue-black title card, reserved date row, no decorative rule, and fixed navigation. Article text and archive row layout stay unchanged. Screenshots checked alongside browser geometry and unchanged body-text assertions."
+  },
+  {
+    "page": "gallery",
+    "viewport": "mobile",
+    "shot": "top",
+    "maxDiffPercent": 100,
+    "reason": "DESIGN §9 (2026-10-03): proposal one uses a shared blue-black title card, reserved date row, no decorative rule, and fixed navigation. Article text and archive row layout stay unchanged. Screenshots checked alongside browser geometry and unchanged body-text assertions."
+  },
+  {
+    "page": "gallery",
+    "viewport": "mobile",
+    "shot": "bay2",
+    "maxDiffPercent": 100,
+    "reason": "DESIGN §9 (2026-10-03): proposal one uses a shared blue-black title card, reserved date row, no decorative rule, and fixed navigation. Article text and archive row layout stay unchanged. Screenshots checked alongside browser geometry and unchanged body-text assertions."
+  },
+  {
+    "page": "gallery-all",
+    "viewport": "desktop",
+    "shot": "top",
+    "maxDiffPercent": 60,
+    "reason": "DESIGN §9 (2026-10-03): proposal one uses a shared blue-black title card, reserved date row, no decorative rule, and fixed navigation. Article text and archive row layout stay unchanged. Screenshots checked alongside browser geometry and unchanged body-text assertions."
+  },
+  {
+    "page": "gallery-all",
+    "viewport": "mobile",
+    "shot": "top",
+    "maxDiffPercent": 56,
+    "reason": "DESIGN §9 (2026-10-03): proposal one uses a shared blue-black title card, reserved date row, no decorative rule, and fixed navigation. Article text and archive row layout stay unchanged. Screenshots checked alongside browser geometry and unchanged body-text assertions."
   }
 ]

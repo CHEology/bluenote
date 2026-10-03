@@ -201,7 +201,9 @@ npm run check
 npm run visual:capture && npm run visual:compare
 ```
 
-对比结果写入 `tooling/visual/report.md`，差异图在 `tooling/visual/diff/`。基线由 `npm run visual:baseline` 从上一个已验收的构建生成（截图不入库）；有意的差异记录在 `tooling/visual/allowed-differences.json`。导航改动须同时检查首页与文章页：下滚移出视窗、稍向上滚动不弹回、回到页首恢复；桌面／手机及明暗模式均验收，并检查手机菜单关闭按钮、搜索和焦点恢复。
+片尾式首页与固定导航另运行 `npm run test:home`，检查 Chromium、WebKit 的各页面滚动、菜单／搜索焦点恢复、长列表、200% 文字与无脚本显示。线上基线可用 `node tooling/visual/capture.mjs --out baseline --origin https://cheology.github.io` 采集。
+
+对比结果写入 `tooling/visual/report.md`，差异图在 `tooling/visual/diff/`。基线由 `npm run visual:baseline` 从上一个已验收的构建生成（截图不入库）；有意的差异记录在 `tooling/visual/allowed-differences.json`。导航改动须同时检查首页与文章页：上下滚动及抵达边界时导航位置、高度保持不变；桌面／手机及明暗模式均验收，并检查手机菜单关闭按钮、搜索和焦点恢复。
 
 ## 6. 提交和自动发布
 

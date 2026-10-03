@@ -48,7 +48,7 @@ highlight:
 
 index_generator:
   path: ""
-  per_page: 12
+  per_page: 0
   order_by: -date
 
 archive_generator:

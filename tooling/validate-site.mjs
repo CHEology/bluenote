@@ -155,7 +155,7 @@ if (!themeScript.includes('Fluid_Color_Scheme') && !home.includes('data-scheme-l
 }
 
 const themeCss = readFileSync(join(publicRoot, 'css', 'bluenote.css'), 'utf8');
-if (!themeCss.includes('--lb-bar-h: 88px') || !themeCss.includes('--lb-bar-h: 64px') || !themeCss.includes('scrollbar-gutter: stable') ||
+if (!themeCss.includes('--lb-bar-h: 88px') || !themeCss.includes('--lb-bar-h: 64px') || !themeCss.includes('overflow-y: scroll') ||
     !themeCss.includes('min-height: calc(100svh - var(--lb-bar-h))')) {
   fail('The bar must keep one fixed height (88px, 64px on phones) and the same width on every page');
 }
@@ -197,20 +197,15 @@ const archiveRows = [...archive.matchAll(/<a class="listing__item"[^>]*>[\s\S]*?
 const manuscriptRow = archiveRows.find(row => row.includes(`data-private-link="${manuscriptId}"`)) || '';
 if (archiveRows.at(-1) !== manuscriptRow || !archive.includes('<p class="listing__year">2018</p>') ||
     !manuscriptRow.includes('datetime="2018"></time>') ||
-    !/<small class="listing__note[^"]*">（2026\.09\.27 ChatGPT整理并上传）<\/small>/.test(manuscriptRow)) {
-  fail('The historical manuscript must be earliest, filed under its year with no day, with the approved archive annotation');
+    manuscriptRow.includes('listing__note')) {
+  fail('The historical manuscript must be earliest, filed under its year with no day, without an archive annotation');
 }
 const homeEntries = home.match(/<li class="letterbox-entry"[^>]*>[\s\S]*?<\/li>/g) || [];
 const homeYears = [...home.matchAll(/<h2 class="letterbox-year__title">(\d{4})<\/h2>/g)].map(match => match[1]);
-// The home holds a fixed amount: at most two years and three rows of four public posts.
-const publicHomeEntries = homeEntries.filter(entry => !entry.includes('data-private-entry'));
-const homeRows = [...home.matchAll(/<section class="letterbox-year"[^>]*>[\s\S]*?<\/section>/g)]
-  .map(match => Math.ceil((match[0].match(/<li class="letterbox-entry">/g) || []).length / 4))
-  .reduce((sum, rows) => sum + rows, 0);
-if (homeYears.length > 2 || homeRows > 3 || publicHomeEntries.length > 12 || publicHomeEntries.length === 0 ||
-    homeYears[0] !== String(new Date(Math.max(...[...home.matchAll(/<time class="letterbox-entry__date" datetime="(\d{4}-\d{2}-\d{2})/g)].map(m => Date.parse(m[1])))).getUTCFullYear()) ||
-    home.includes('listing__note')) {
-  fail('The home index must show the latest posts in at most two years and three rows of four, without archive annotations');
+// Every article remains reachable in the continuous home index; private rows stay gated.
+if (homeEntries.length !== markdownPosts.length || new Set(homeEntries.map(entry => entry.match(/href="([^"]+)"/)[1])).size !== markdownPosts.length ||
+    !homeEntries.at(-1)?.includes(`data-private-link="${manuscriptId}"`) || homeYears.at(-1) !== '2018' || home.includes('listing__note')) {
+  fail('The home must list every article once in chronological year groups, without a row or year limit');
 }
 const aboutResources = readFileSync(join(publicRoot, 'about/index.html'), 'utf8')
   .match(/<footer class="about-resources">[\s\S]*?<\/footer>/)?.[0] || '';
