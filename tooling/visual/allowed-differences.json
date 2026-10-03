@@ -1190,15 +1190,15 @@
     "page": "home",
     "viewport": "mobile",
     "shot": "top",
-    "maxDiffPercent": 3,
-    "reason": "DESIGN §9 (2026-10-03): proposal one uses a shared blue-black title card, reserved date row, no decorative rule, and fixed navigation. Article text and archive row layout stay unchanged. Screenshots checked alongside browser geometry and unchanged body-text assertions."
+    "maxDiffPercent": 1,
+    "reason": "DESIGN §9 (2026-10-03): approved credits axis. Years and titles share the page centre; dates occupy a balanced left track. Verified at 320–1440px in Chromium/WebKit, including undated private titles, wrapped titles, 200% text and unchanged fixed bars. Baseline is v1.10.1."
   },
   {
     "page": "home",
     "viewport": "mobile",
     "shot": "grid",
-    "maxDiffPercent": 48,
-    "reason": "DESIGN §9 (2026-10-03): proposal one uses a shared blue-black title card, reserved date row, no decorative rule, and fixed navigation. Article text and archive row layout stay unchanged. Screenshots checked alongside browser geometry and unchanged body-text assertions."
+    "maxDiffPercent": 2,
+    "reason": "DESIGN §9 (2026-10-03): approved credits axis. Years and titles share the page centre; dates occupy a balanced left track. Verified at 320–1440px in Chromium/WebKit, including undated private titles, wrapped titles, 200% text and unchanged fixed bars. Baseline is v1.10.1."
   },
   {
     "page": "home",
@@ -1352,8 +1352,8 @@
     "page": "home",
     "viewport": "desktop",
     "shot": "grid",
-    "maxDiffPercent": 2,
-    "reason": "DESIGN §9 (2026-10-03): proposal one uses a shared blue-black title card, reserved date row, no decorative rule, and fixed navigation. Article text and archive row layout stay unchanged. Screenshots checked alongside browser geometry and unchanged body-text assertions."
+    "maxDiffPercent": 1,
+    "reason": "DESIGN §9 (2026-10-03): approved credits axis. Years and titles share the page centre; dates occupy a balanced left track. Verified at 320–1440px in Chromium/WebKit, including undated private titles, wrapped titles, 200% text and unchanged fixed bars. Baseline is v1.10.1."
   },
   {
     "page": "*",

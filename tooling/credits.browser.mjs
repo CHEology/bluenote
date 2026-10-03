@@ -24,6 +24,25 @@ const publicCount=(builtHome.match(/<li class="letterbox-entry">/g)||[]).length;
 const totalCount=(builtHome.match(/<li class="letterbox-entry"/g)||[]).length;
 const results=[],errors=[];
 const box=async(p,s)=>p.locator(s).evaluate(e=>{const r=e.getBoundingClientRect();return {x:r.x,y:r.y,w:r.width,h:r.height};});
+async function checkCreditsAxis(p) {
+ const problems=await p.evaluate(()=>{
+  const axis=document.documentElement.clientWidth/2,problems=[];
+  document.querySelectorAll('.letterbox-year__title,.letterbox-entry__title').forEach(e=>{
+   if(!e.getClientRects().length)return;
+   const r=e.getBoundingClientRect();
+   if(Math.abs(r.x+r.width/2-axis)>0.75)problems.push(e.textContent+' is off the page axis');
+   if(e.matches('.letterbox-entry__title')){
+    const range=document.createRange();range.selectNode(e.firstChild);
+    for(const line of range.getClientRects())if(Math.abs(line.x+line.width/2-axis)>1)problems.push(e.textContent+' has an off-centre text line');
+    const lock=e.querySelector('.private-link-lock');
+    if(lock){const icon=lock.getBoundingClientRect(),row=e.closest('a').getBoundingClientRect();
+     if(icon.left<r.right||icon.right>row.right)problems.push('Lock overlaps title or escapes row');
+    }
+   }
+  });return problems;
+ });
+ assert.deepEqual(problems,[]);
+}
 try{
 for(const [engine,browserType] of (process.env.BLUE_NOTE_ENGINE==='webkit'?[['webkit',webkit]]:[['chromium',chromium],['webkit',webkit]])){
  const browser=await browserType.launch();
@@ -63,6 +82,14 @@ for(const [engine,browserType] of (process.env.BLUE_NOTE_ENGINE==='webkit'?[['we
      assert.equal((await p.locator('.letterbox-dock').innerText()).trim(),await p.locator('.letterbox-entry__link').first().getAttribute('data-excerpt'));
     }
     await p.screenshot({path:join(shots,`${engine}-${w}-${h}-${scheme}-index.png`)});
+    await p.locator('.letterbox-entry[data-private-entry] .private-link-lock').first().waitFor({state:'attached'});
+    await p.evaluate(()=>document.documentElement.classList.add('private-reading-unlocked'));
+    await checkCreditsAxis(p);
+    const undated=p.locator('.letterbox-entry__link[data-private-link="eeddfa74ef298a0c"]');
+    assert.equal(await undated.locator('time').innerText(),'');
+    await undated.scrollIntoViewIfNeeded();
+    await p.screenshot({path:join(shots,`${engine}-${w}-${h}-${scheme}-axis.png`)});
+    await p.evaluate(()=>document.documentElement.classList.remove('private-reading-unlocked'));
    }
    if(path==='archives/'){
     const row=p.locator('[data-private-link="eeddfa74ef298a0c"]');
@@ -114,6 +141,7 @@ for(const [engine,browserType] of (process.env.BLUE_NOTE_ENGINE==='webkit'?[['we
  await p.addStyleTag({content:'html{font-size:200%}'});assert(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
  await p.locator('.letterbox-entry:visible').last().scrollIntoViewIfNeeded();assert(await p.locator('.letterbox-entry:visible').last().evaluate(e=>{const r=e.getBoundingClientRect();return r.bottom>64&&r.top<innerHeight;}));
  await p.evaluate(()=>document.documentElement.classList.add('private-reading-unlocked'));assert.equal(await p.locator('.letterbox-entry:visible').count(),totalCount+45);
+ await checkCreditsAxis(p);
  await p.close();
  const n=await browser.newPage({javaScriptEnabled:false,viewport:{width:390,height:844}});await n.goto(origin+'/bluenote/');
  assert.equal(await n.locator('.letterbox-entry:visible').count(),publicCount);assert(await n.locator('.letterbox-dock').isVisible());await n.close();

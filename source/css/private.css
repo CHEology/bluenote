@@ -34,6 +34,15 @@
   opacity: 0.68;
 }
 
+/* The title alone defines the credits axis; its lock hangs in the spare right track. */
+.letterbox-entry__title > .private-link-lock {
+  position: absolute;
+  top: 0.5em;
+  left: calc(100% + 0.4375rem);
+  margin: 0;
+  color: var(--lb-on-3);
+}
+
 html:not(.private-reading-unlocked) body.home-page .index-card:has(a[data-private-link]) {
   display: none;
 }

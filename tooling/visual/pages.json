@@ -314,7 +314,7 @@
         },
         {
           "name": "grid",
-          "scrollTo": "main"
+          "scrollTo": ".letterbox-index, .index-grid"
         }
       ]
     },

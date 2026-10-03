@@ -107,7 +107,8 @@
         if (card) card.classList.add('private-entry');
         var listing = link.closest('.listing__item');
         if (listing) listing.classList.add('private-entry');
-        var lockTarget = listing ? link.querySelector('.listing__title') : null;
+        var creditsTitle = link.querySelector('.letterbox-entry__title');
+        var lockTarget = listing ? link.querySelector('.listing__title') : creditsTitle;
         if (!lockTarget && link.closest('.index-header')) lockTarget = link;
         if (listing && lockTarget && !lockTarget.querySelector('[data-private-lock-control]')) {
           var state = document.createElement('span');
@@ -125,7 +126,8 @@
           var lock = document.createElement('span');
           lock.className = 'private-lock-icon private-link-lock';
           lock.setAttribute('aria-hidden', 'true');
-          lockTarget.insertBefore(lock, lockTarget.firstChild);
+          if (creditsTitle) lockTarget.appendChild(lock);
+          else lockTarget.insertBefore(lock, lockTarget.firstChild);
         }
       });
     });
@@ -330,8 +332,9 @@
         key: base64FromBytes(keyBytes)
       }));
       passwordInput.value = '';
-      announceUnlocked();
       closeDialog();
+      // Restore document scrolling before following a chapter fragment in the new content.
+      announceUnlocked();
     } catch (error) {
       status.textContent = error.message === 'archive-unavailable' ? 'Unavailable' : 'Incorrect password';
       passwordInput.select();
