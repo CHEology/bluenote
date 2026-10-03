@@ -51,6 +51,11 @@ colors:
     masthead: "#061521"
     masthead-text: "#eeebe3"
     panel: "rgba(61, 90, 115, 0.06)"
+    # Home index below the lower bar: on the article paper in light mode.
+    index-bg: "var(--paper)"
+    index-title: "var(--heading)"
+    index-meta: "var(--muted)"
+    index-hover: "var(--link)"
   dark:
     paper: "#0e1922"
     text: "#d3dade"
@@ -68,6 +73,11 @@ colors:
     inline-code-bg: "rgba(164, 192, 214, 0.14)"
     scrollbar: "#3a4a57"
     scrollbar-hover: "#5a6b78"
+    # Home index keeps the night of the bars in dark mode.
+    index-bg: "#061521"
+    index-title: "#eeebe3"
+    index-meta: "#8b9aa3"
+    index-hover: "#f3dca6"
   home:
     bg: "#061521"
     nav: "#061521"

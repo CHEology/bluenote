@@ -1190,15 +1190,15 @@
     "page": "home",
     "viewport": "mobile",
     "shot": "top",
-    "maxDiffPercent": 1,
-    "reason": "DESIGN §9 (2026-10-03): approved credits axis. Years and titles share the page centre; dates occupy a balanced left track. Verified at 320–1440px in Chromium/WebKit, including undated private titles, wrapped titles, 200% text and unchanged fixed bars. Baseline is v1.10.1."
+    "maxDiffPercent": 28,
+    "reason": "DESIGN §9 (2026-10-03): approved credits axis. Years and titles share the page centre; dates occupy a balanced left track. Verified at 320–1440px in Chromium/WebKit, including undated private titles, wrapped titles, 200% text and unchanged fixed bars. Baseline is v1.10.1. DESIGN §2.3/§9 (2026-10-03, later): in light mode the home index below the lower bar sits on the article paper with article text colours; dark mode keeps the night colours."
   },
   {
     "page": "home",
     "viewport": "mobile",
     "shot": "grid",
-    "maxDiffPercent": 8,
-    "reason": "DESIGN §9 (2026-10-03): approved credits axis. Years and titles share the page centre; dates occupy a balanced left track. Verified at 320–1440px in Chromium/WebKit, including undated private titles, wrapped titles, 200% text and unchanged fixed bars. Baseline is v1.10.1. DESIGN §9 (2026-10-03, later): on phones each home date sits above its title on the shared centre axis."
+    "maxDiffPercent": 96,
+    "reason": "DESIGN §9 (2026-10-03): approved credits axis. Years and titles share the page centre; dates occupy a balanced left track. Verified at 320–1440px in Chromium/WebKit, including undated private titles, wrapped titles, 200% text and unchanged fixed bars. Baseline is v1.10.1. DESIGN §9 (2026-10-03, later): on phones each home date sits above its title on the shared centre axis. DESIGN §2.3/§9 (2026-10-03, later): in light mode the home index below the lower bar sits on the article paper with article text colours; dark mode keeps the night colours."
   },
   {
     "page": "home",
@@ -1352,8 +1352,8 @@
     "page": "home",
     "viewport": "desktop",
     "shot": "grid",
-    "maxDiffPercent": 3,
-    "reason": "DESIGN §9 (2026-10-03): approved credits axis. Years and titles share the page centre; dates occupy a balanced left track. Verified at 320–1440px in Chromium/WebKit, including undated private titles, wrapped titles, 200% text and unchanged fixed bars. Baseline is v1.10.1. DESIGN §9 (2026-10-03, later): the top bar and the home lower bar scroll away with the document; scrolled shots no longer show a fixed bar."
+    "maxDiffPercent": 92,
+    "reason": "DESIGN §9 (2026-10-03): approved credits axis. Years and titles share the page centre; dates occupy a balanced left track. Verified at 320–1440px in Chromium/WebKit, including undated private titles, wrapped titles, 200% text and unchanged fixed bars. Baseline is v1.10.1. DESIGN §9 (2026-10-03, later): the top bar and the home lower bar scroll away with the document; scrolled shots no longer show a fixed bar. DESIGN §2.3/§9 (2026-10-03, later): in light mode the home index below the lower bar sits on the article paper with article text colours; dark mode keeps the night colours."
   },
   {
     "page": "*",
