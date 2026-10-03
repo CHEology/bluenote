@@ -620,13 +620,6 @@
     "reason": "Gallery controls use --text for readable contrast; the active view keeps its underline (DESIGN §9)."
   },
   {
-    "page": "home",
-    "viewport": "desktop",
-    "shot": "grid",
-    "maxDiffPercent": 9,
-    "reason": "DESIGN §9: place the historical manuscript in 2018 with year-only dates; keep reverse chronology and the requested archive note. A visible public card now occupies the first Home slot instead of a hidden private card."
-  },
-  {
     "page": "post-story",
     "viewport": "desktop",
     "shot": "end",
@@ -1340,5 +1333,26 @@
     "key": "cardMeta",
     "prop": "height",
     "reason": "DESIGN §9: place the historical manuscript in 2018 with year-only dates; keep reverse chronology and the requested archive note. A visible public card now occupies the first Home slot instead of a hidden private card."
+  },
+  {
+    "page": "home",
+    "viewport": "desktop",
+    "key": "*",
+    "prop": "*",
+    "reason": "DESIGN §9: user-approved desktop A fog composition, centered five-entry columns and two-page pagination; mobile output unchanged."
+  },
+  {
+    "page": "home",
+    "viewport": "desktop",
+    "shot": "top",
+    "maxDiffPercent": 100,
+    "reason": "DESIGN §9: user-approved desktop A fog composition, centered five-entry columns and two-page pagination; mobile output unchanged. Screenshot inspected separately across eight sizes."
+  },
+  {
+    "page": "home",
+    "viewport": "desktop",
+    "shot": "grid",
+    "maxDiffPercent": 100,
+    "reason": "DESIGN §9: user-approved desktop A fog composition, centered five-entry columns and two-page pagination; mobile output unchanged. Screenshot inspected separately across eight sizes."
   }
 ]

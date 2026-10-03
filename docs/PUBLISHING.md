@@ -306,13 +306,13 @@ npm run private:restore
 主题 [`hexo-theme-bluenote`](https://github.com/CHEology/hexo-theme-bluenote) 是独立仓库，博客在 `package.json` 中以 git 标签锁定版本：
 
 ```json
-"hexo-theme-bluenote": "github:CHEology/hexo-theme-bluenote#v1.6.1"
+"hexo-theme-bluenote": "github:CHEology/hexo-theme-bluenote#v1.7.0"
 ```
 
 升级主题：
 
 ```bash
-npm install --save "git+https://github.com/CHEology/hexo-theme-bluenote.git#v1.6.1"
+npm install --save "git+https://github.com/CHEology/hexo-theme-bluenote.git#v1.7.0"
 npm run check
 npm run visual:capture && npm run visual:compare
 ```
@@ -349,3 +349,9 @@ companion:
 生成器同时检查私密标记、私密 ID 和公开私密清单中的文件名／网址；清单缺失或损坏时构建失败。私密文章的新增、修改、删除均不改变 RSS 内容；文件没有构建时间、私密更新时间或私密条目占位，文章 GUID 使用稳定原文网址。`npm run check` 包含 RSS 隔离与内容稳定性测试。
 
 已经公开并被订阅器缓存过的文章，后来转为私密时会从后续 RSS 中移除；站点无法撤回读者已保存的公开副本。静态托管的 HTTP 更新时间可能随部署刷新，但私密内容变更不会产生 RSS 条目或改变订阅文件内容。
+
+### 雾岸首页发布验收（主题 1.7.0）
+
+桌面首页使用 `home.desktop_style: fog`。在主题修改时运行 `npm test` 与 `npm run test:browser`，博客运行 `npm run check`、`npm run visual:capture && npm run visual:compare` 及 `BLUE_NOTE_BASELINE=/path/to/previous/public npm run test:home`。其中基线目录须来自修改前的正式版本。再添加 `BLUE_NOTE_ENGINE=webkit` 可检查 Safari 引擎；若本机 Chromium 位于自定义路径，设置 `BLUE_NOTE_CHROMIUM`。截图及报告在被忽略的 `tooling/audit/home-folio*` 中。
+
+检查 5×2 行列与页码的上下留白，使用测试环境中的 23 篇临时元信息验证逐列移动、双页高亮、末页、连续点击、历史前后和窗口缩放；这些测试文章不会写入源内容或发布产物。手机必须与上一发布版本保持一致，公开文字及私密正文边界不变。先推送主题提交及 `v1.7.0` 标签，再推送锁定同一提交的博客；两者未成功推送前不得称为已上线。
