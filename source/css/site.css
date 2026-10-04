@@ -1,5 +1,13 @@
 /* Blue Note site-specific rules that do not belong to the theme. */
 
+/* This cover's figure is low in the frame. Preserve her in wide, shallow windows;
+   the portrait crop and ordinary desktop composition keep their existing focus. */
+@media (min-aspect-ratio: 2/1) {
+  .letterbox-frame {
+    --lb-cover-position: 50% 70%;
+  }
+}
+
 /* About's site resources rest at the page bottom, in normal document flow. */
 .about-page {
   display: flex;
