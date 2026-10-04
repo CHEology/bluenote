@@ -1611,5 +1611,11 @@
     "page": "*",
     "textNormalize": "cjk-quote-spaces",
     "reason": "DESIGN §3.1 (2026-10-03, evening): typed spaces between a Chinese quote and Chinese text or punctuation are not rendered; the source is unchanged."
+  },
+  {
+    "page": "post-photo",
+    "key": "markdown",
+    "prop": "height",
+    "reason": "DESIGN §4.1 (2026-10-04): the author-selected solid square ends photo articles on a separate right-aligned line after the last image, adding 50px inside the reading body; prose and images are unchanged."
   }
 ]
