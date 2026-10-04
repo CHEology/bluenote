@@ -1223,19 +1223,19 @@
     "pageStartsWith": "post-",
     "key": "postNav",
     "prop": "height",
-    "reason": "DESIGN §4.1: approved centred back-to-top chevron and three-column navigation with 44px hit targets; only the footer grows by 20px, with article text unchanged."
+    "reason": "DESIGN §4.1: centred back-to-top control and three-column navigation with 44px hit targets; the original footer grew by 20px. On 2026-10-04 the chevron becomes a 12 × 16px hollow diamond with a 1.5px stroke and a 12px hover underline; layout and article text stay unchanged."
   },
   {
     "pageStartsWith": "post-",
     "key": "postNav",
     "prop": "display",
-    "reason": "DESIGN §4.1: approved centred back-to-top chevron and three-column navigation with 44px hit targets; only the footer grows by 20px, with article text unchanged."
+    "reason": "DESIGN §4.1: centred back-to-top control and three-column navigation with 44px hit targets; the original footer grew by 20px. On 2026-10-04 the chevron becomes a 12 × 16px hollow diamond with a 1.5px stroke and a 12px hover underline; layout and article text stay unchanged."
   },
   {
     "pageStartsWith": "post-",
     "key": "postPrev",
     "prop": "height",
-    "reason": "DESIGN §4.1: approved centred back-to-top chevron and three-column navigation with 44px hit targets; only the footer grows by 20px, with article text unchanged."
+    "reason": "DESIGN §4.1: centred back-to-top control and three-column navigation with 44px hit targets; the original footer grew by 20px. On 2026-10-04 the chevron becomes a 12 × 16px hollow diamond with a 1.5px stroke and a 12px hover underline; layout and article text stay unchanged."
   },
   {
     "page": "post-text",
