@@ -1,6 +1,30 @@
 [
   {
     "page": "*",
+    "key": "masthead",
+    "prop": "height",
+    "reason": "DESIGN §9 (2026-10-04, title option B): add 1rem below shared Letterbox titles and reduce following body padding by 0.5rem. Titles keep their position and typography; content moves down exactly 8px at the default root size. Chromium/WebKit pixel comparisons confirm descenders are unobscured at desktop, tablet, mobile and short-window sizes in both schemes."
+  },
+  {
+    "page": "*",
+    "key": "masthead",
+    "prop": "paddingBottom",
+    "reason": "DESIGN §9 (2026-10-04, title option B): add 1rem below shared Letterbox titles and reduce following body padding by 0.5rem. Titles keep their position and typography; content moves down exactly 8px at the default root size. Chromium/WebKit pixel comparisons confirm descenders are unobscured at desktop, tablet, mobile and short-window sizes in both schemes."
+  },
+  {
+    "page": "*",
+    "key": "pageBody",
+    "prop": "y",
+    "reason": "DESIGN §9 (2026-10-04, title option B): add 1rem below shared Letterbox titles and reduce following body padding by 0.5rem. Titles keep their position and typography; content moves down exactly 8px at the default root size. Chromium/WebKit pixel comparisons confirm descenders are unobscured at desktop, tablet, mobile and short-window sizes in both schemes."
+  },
+  {
+    "page": "*",
+    "key": "pageBody",
+    "prop": "paddingTop",
+    "reason": "DESIGN §9 (2026-10-04, title option B): add 1rem below shared Letterbox titles and reduce following body padding by 0.5rem. Titles keep their position and typography; content moves down exactly 8px at the default root size. Chromium/WebKit pixel comparisons confirm descenders are unobscured at desktop, tablet, mobile and short-window sizes in both schemes."
+  },
+  {
+    "page": "*",
     "key": "pageBody",
     "prop": "backgroundColor",
     "reason": "DESIGN §9.1 (2026-10-04, Home Screen correction): html and body both use the dark bar colour for iOS status-bar sampling; pageBody now paints the same paper explicitly instead of being transparent over a paper body. Ordinary page screenshots remain unchanged."
