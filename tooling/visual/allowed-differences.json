@@ -1,5 +1,11 @@
 [
   {
+    "page": "*",
+    "key": "pageBody",
+    "prop": "backgroundColor",
+    "reason": "DESIGN §9.1 (2026-10-04, Home Screen correction): html and body both use the dark bar colour for iOS status-bar sampling; pageBody now paints the same paper explicitly instead of being transparent over a paper body. Ordinary page screenshots remain unchanged."
+  },
+  {
     "pageStartsWith": "post-",
     "key": "postPrev",
     "prop": "*",
