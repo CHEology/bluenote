@@ -1,5 +1,11 @@
 [
   {
+    "pageStartsWith": "post-",
+    "key": "postPrev",
+    "prop": "*",
+    "reason": "DESIGN §4.1 (2026-10-04): Previous now opens the older neighbour and Next the newer one. Link titles and their text widths swap sides; the oldest post retains an empty left cell and the newest an empty right cell. Verified by following links through oldest, middle and newest posts at mobile and desktop widths."
+  },
+  {
     "reason": "DESIGN §9: move RSS from the introduction into the requested page-bottom footer.",
     "page": "about",
     "key": "aboutContent",
