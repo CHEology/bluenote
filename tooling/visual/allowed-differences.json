@@ -1640,6 +1640,6 @@
     "page": "post-photo",
     "key": "markdown",
     "prop": "height",
-    "reason": "DESIGN §4.1 (2026-10-04): the author-selected solid square ends photo articles on a separate right-aligned line after the last image, adding 50px inside the reading body; prose and images are unchanged."
+    "reason": "DESIGN §4.1 (2026-10-08): without a reliable final prose anchor, the solid square occupies a separate centred line after the last image; its leading prose separator has zero width. Prose and images are unchanged."
   }
 ]
