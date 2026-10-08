@@ -1641,5 +1641,11 @@
     "key": "markdown",
     "prop": "height",
     "reason": "DESIGN §4.1 (2026-10-08): without a reliable final prose anchor, the solid square occupies a separate centred line after the last image; its leading prose separator has zero width. Prose and images are unchanged."
+  },
+  {
+    "page": "design",
+    "key": "docUl",
+    "prop": "height",
+    "reason": "DESIGN §2.4 (2026-10-08): concise dark-mode interaction policy and the existing light-mode colour distinctions extend the colour-usage list."
   }
 ]
