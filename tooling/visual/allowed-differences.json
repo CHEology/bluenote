@@ -1647,5 +1647,11 @@
     "key": "docUl",
     "prop": "height",
     "reason": "DESIGN §2.4 (2026-10-08): concise dark-mode interaction policy and the existing light-mode colour distinctions extend the colour-usage list."
+  },
+  {
+    "pageStartsWith": "post-",
+    "key": "postPrev",
+    "prop": "width",
+    "reason": "DESIGN §4.1 (2026-10-09): the article navigation uses 16px mirrored chevrons with 6px text spacing; the mobile English label is Prev. Companion links and article prose stay unchanged."
   }
 ]
