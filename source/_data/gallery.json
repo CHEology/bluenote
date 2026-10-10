@@ -7,8 +7,8 @@
       "spread": "spread-01",
       "full": {
         "src": "/images/selected/2026-09/dsc-1501.jpg",
-        "height": 3712,
-        "width": 5568
+        "height": 2560,
+        "width": 3840
       },
       "previews": [
         {
@@ -34,8 +34,8 @@
       "spread": "spread-02",
       "full": {
         "src": "/images/selected/2026-09/dsc-1412.jpg",
-        "height": 3712,
-        "width": 5568
+        "height": 2560,
+        "width": 3840
       },
       "previews": [
         {
@@ -61,8 +61,8 @@
       "spread": "spread-02",
       "full": {
         "src": "/images/selected/2026-09/dsc-2068.jpg",
-        "height": 5501,
-        "width": 8252
+        "height": 2560,
+        "width": 3840
       },
       "previews": [
         {
@@ -88,8 +88,8 @@
       "spread": "spread-03",
       "full": {
         "src": "/images/selected/2026-09/dsc-1414.jpg",
-        "height": 3712,
-        "width": 5568
+        "height": 2560,
+        "width": 3840
       },
       "previews": [
         {
@@ -115,8 +115,8 @@
       "spread": "spread-04",
       "full": {
         "src": "/images/selected/2026-09/dsc-1482.jpg",
-        "height": 5568,
-        "width": 3712
+        "height": 3840,
+        "width": 2560
       },
       "previews": [
         {
@@ -142,8 +142,8 @@
       "spread": "spread-05",
       "full": {
         "src": "/images/selected/2026-09/dsc-0617.jpg",
-        "height": 5154,
-        "width": 7731
+        "height": 2560,
+        "width": 3840
       },
       "previews": [
         {
@@ -169,8 +169,8 @@
       "spread": "spread-06",
       "full": {
         "src": "/images/selected/2026-09/dsc-0481.jpg",
-        "height": 5504,
-        "width": 7986
+        "height": 2647,
+        "width": 3840
       },
       "previews": [
         {
@@ -223,8 +223,8 @@
       "spread": "spread-08",
       "full": {
         "src": "/images/selected/2026-09/dsc-1974.jpg",
-        "height": 5504,
-        "width": 8256
+        "height": 2560,
+        "width": 3840
       },
       "previews": [
         {
@@ -250,8 +250,8 @@
       "spread": "spread-08",
       "full": {
         "src": "/images/selected/2026-09/dsc-5969.jpg",
-        "height": 5495,
-        "width": 8243
+        "height": 2560,
+        "width": 3840
       },
       "previews": [
         {
@@ -277,8 +277,8 @@
       "spread": "spread-09",
       "full": {
         "src": "/images/selected/2026-09/dsc-2046.jpg",
-        "height": 5568,
-        "width": 3712
+        "height": 3840,
+        "width": 2560
       },
       "previews": [
         {
@@ -304,8 +304,8 @@
       "spread": "spread-10",
       "full": {
         "src": "/images/selected/2026-09/dsc-1236-denoise-2.jpg",
-        "height": 5165,
-        "width": 8072
+        "height": 2457,
+        "width": 3840
       },
       "previews": [
         {
@@ -331,8 +331,8 @@
       "spread": "spread-10",
       "full": {
         "src": "/images/selected/2026-09/dsc-4041.jpg",
-        "height": 4237,
-        "width": 8256
+        "height": 1971,
+        "width": 3840
       },
       "previews": [
         {
@@ -358,8 +358,8 @@
       "spread": "spread-11",
       "full": {
         "src": "/images/selected/2026-09/dsc-1763.jpg",
-        "height": 5300,
-        "width": 8256
+        "height": 2465,
+        "width": 3840
       },
       "previews": [
         {
@@ -385,8 +385,8 @@
       "spread": "spread-12",
       "full": {
         "src": "/images/selected/2026-09/dsc-2442.jpg",
-        "height": 3712,
-        "width": 5568
+        "height": 2560,
+        "width": 3840
       },
       "previews": [
         {
@@ -413,8 +413,8 @@
       "sequence": "snow",
       "full": {
         "src": "/images/selected/2026-09/dsc-3006.jpg",
-        "height": 5504,
-        "width": 8256
+        "height": 2560,
+        "width": 3840
       },
       "previews": [
         {
@@ -441,8 +441,8 @@
       "sequence": "snow",
       "full": {
         "src": "/images/selected/2026-09/dsc-3047.jpg",
-        "height": 7744,
-        "width": 5504
+        "height": 3840,
+        "width": 2729
       },
       "previews": [
         {
@@ -469,8 +469,8 @@
       "sequence": "snow",
       "full": {
         "src": "/images/selected/2026-09/dsc-3066.jpg",
-        "height": 8256,
-        "width": 5504
+        "height": 3840,
+        "width": 2560
       },
       "previews": [
         {
@@ -497,8 +497,8 @@
       "sequence": "snow",
       "full": {
         "src": "/images/selected/2026-09/dsc-3145.jpg",
-        "height": 3552,
-        "width": 7418
+        "height": 1839,
+        "width": 3840
       },
       "previews": [
         {
@@ -525,8 +525,8 @@
       "sequence": "snow",
       "full": {
         "src": "/images/selected/2026-09/dsc-4222.jpg",
-        "height": 4615,
-        "width": 7773
+        "height": 2280,
+        "width": 3840
       },
       "previews": [
         {
@@ -609,8 +609,8 @@
       "sequence": "snow",
       "full": {
         "src": "/images/selected/2026-09/dsc-3401-2.jpg",
-        "height": 8256,
-        "width": 5504
+        "height": 3840,
+        "width": 2560
       },
       "previews": [
         {
@@ -637,8 +637,8 @@
       "sequence": "snow",
       "full": {
         "src": "/images/selected/2026-09/dsc-3452.jpg",
-        "height": 8063,
-        "width": 5375
+        "height": 3840,
+        "width": 2560
       },
       "previews": [
         {
@@ -665,8 +665,8 @@
       "sequence": "snow",
       "full": {
         "src": "/images/selected/2026-09/dsc-3438.jpg",
-        "height": 5319,
-        "width": 7978
+        "height": 2560,
+        "width": 3840
       },
       "previews": [
         {
@@ -693,8 +693,8 @@
       "sequence": "snow",
       "full": {
         "src": "/images/selected/2026-09/dsc-3445.jpg",
-        "height": 5375,
-        "width": 8063
+        "height": 2560,
+        "width": 3840
       },
       "previews": [
         {
@@ -721,8 +721,8 @@
       "sequence": "snow",
       "full": {
         "src": "/images/selected/2026-09/dsc-3476.jpg",
-        "height": 3734,
-        "width": 6878
+        "height": 2085,
+        "width": 3840
       },
       "previews": [
         {
@@ -749,8 +749,8 @@
       "sequence": "snow",
       "full": {
         "src": "/images/selected/2026-09/dsc-3497.jpg",
-        "height": 5504,
-        "width": 8256
+        "height": 2560,
+        "width": 3840
       },
       "previews": [
         {
@@ -777,8 +777,8 @@
       "sequence": "snow",
       "full": {
         "src": "/images/selected/2026-09/dsc-3554.jpg",
-        "height": 5504,
-        "width": 8256
+        "height": 2560,
+        "width": 3840
       },
       "previews": [
         {
@@ -805,8 +805,8 @@
       "sequence": "snow",
       "full": {
         "src": "/images/selected/2026-09/dsc-4253.jpg",
-        "height": 3554,
-        "width": 7177
+        "height": 1902,
+        "width": 3840
       },
       "previews": [
         {
@@ -833,8 +833,8 @@
       "sequence": "snow",
       "full": {
         "src": "/images/selected/2026-09/dsc-4181-2.jpg",
-        "height": 5263,
-        "width": 8065
+        "height": 2506,
+        "width": 3840
       },
       "previews": [
         {
@@ -887,8 +887,8 @@
       "spread": "spread-26",
       "full": {
         "src": "/images/selected/2026-09/dsc-2180.jpg",
-        "height": 5504,
-        "width": 8256
+        "height": 2560,
+        "width": 3840
       },
       "previews": [
         {
@@ -914,8 +914,8 @@
       "spread": "spread-27",
       "full": {
         "src": "/images/selected/2026-09/dsc-5019.jpg",
-        "height": 4525,
-        "width": 7305
+        "height": 2379,
+        "width": 3840
       },
       "previews": [
         {
@@ -941,8 +941,8 @@
       "spread": "spread-27",
       "full": {
         "src": "/images/selected/2026-09/dsc-5091.jpg",
-        "height": 4171,
-        "width": 6674
+        "height": 2400,
+        "width": 3840
       },
       "previews": [
         {
@@ -969,8 +969,8 @@
       "sequence": "glass",
       "full": {
         "src": "/images/selected/2026-09/dsc-5180.jpg",
-        "height": 8256,
-        "width": 5504
+        "height": 3840,
+        "width": 2560
       },
       "previews": [
         {
@@ -997,8 +997,8 @@
       "sequence": "glass",
       "full": {
         "src": "/images/selected/2026-09/dsc-5182.jpg",
-        "height": 8256,
-        "width": 5504
+        "height": 3840,
+        "width": 2560
       },
       "previews": [
         {
@@ -1024,8 +1024,8 @@
       "spread": "spread-29",
       "full": {
         "src": "/images/selected/2026-09/dsc-6679.jpg",
-        "height": 8256,
-        "width": 5504
+        "height": 3840,
+        "width": 2560
       },
       "previews": [
         {
@@ -1051,8 +1051,8 @@
       "spread": "spread-30",
       "full": {
         "src": "/images/selected/2026-09/dsc-6029.jpg",
-        "height": 4909,
-        "width": 8256
+        "height": 2283,
+        "width": 3840
       },
       "previews": [
         {
@@ -1078,8 +1078,8 @@
       "spread": "spread-31",
       "full": {
         "src": "/images/selected/2026-09/dsc-0140.jpg",
-        "height": 5504,
-        "width": 8256
+        "height": 2560,
+        "width": 3840
       },
       "previews": [
         {
@@ -1105,8 +1105,8 @@
       "spread": "spread-32",
       "full": {
         "src": "/images/selected/2026-09/dsc-6493.jpg",
-        "height": 4370,
-        "width": 8256
+        "height": 2033,
+        "width": 3840
       },
       "previews": [
         {
@@ -1132,8 +1132,8 @@
       "spread": "spread-33",
       "full": {
         "src": "/images/selected/2026-09/dsc-6625.jpg",
-        "height": 4540,
-        "width": 8256
+        "height": 2112,
+        "width": 3840
       },
       "previews": [
         {
@@ -1159,8 +1159,8 @@
       "spread": "spread-34",
       "full": {
         "src": "/images/selected/2026-09/dsc-6700.jpg",
-        "height": 4171,
-        "width": 8003
+        "height": 2001,
+        "width": 3840
       },
       "previews": [
         {

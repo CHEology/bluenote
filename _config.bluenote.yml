@@ -153,3 +153,6 @@ gallery:
     view_all: View all photographs
     selection: "{count} photographs. New selection."
     reshuffle_error: Unable to shuffle. Please try again.
+    zoom: 放大到高清尺寸
+    original: 打开高清图片
+    error: 高清图片加载失败。
