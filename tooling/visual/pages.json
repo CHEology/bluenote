@@ -638,7 +638,6 @@
     {
       "key": "404",
       "path": "/404.html",
-      "newOnly": true,
       "keys": [
         "nav",
         "homeCover"

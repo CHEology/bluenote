@@ -1653,5 +1653,19 @@
     "key": "postPrev",
     "prop": "width",
     "reason": "DESIGN §4.1 (2026-10-09): the article navigation uses 16px mirrored chevrons with 6px text spacing; the mobile English label is Prev. Companion links and article prose stay unchanged."
+  },
+  {
+    "page": "404",
+    "viewport": "desktop",
+    "shot": "top",
+    "maxDiffPercent": 12,
+    "reason": "DESIGN §9.2 (2026-10-22): remove the paper gap below navigation and size the background to the remaining viewport, re-centring the existing text and image. Verified in both schemes and engines; other page screenshots remain unchanged."
+  },
+  {
+    "page": "404",
+    "viewport": "mobile",
+    "shot": "top",
+    "maxDiffPercent": 12,
+    "reason": "DESIGN §9.2 (2026-10-22): remove the paper gap below navigation and size the background to the remaining viewport, re-centring the existing text and image. Verified in both schemes and engines; other page screenshots remain unchanged."
   }
 ]
