@@ -397,10 +397,54 @@ for (const htmlFile of htmlFiles) {
   }
 }
 
+// Notes (DESIGN.md §9.3): a hidden, noindexed stream that never reaches articles' surfaces.
+const notesSource = join(projectRoot, 'source', '_notes');
+const noteFiles = existsSync(notesSource) ? readdirSync(notesSource).filter((name) => name.endsWith('.md')) : [];
+for (const path of ['notes/index.html', 'notes/search.json', 'notes/tags.json', 'css/notes.css', 'js/notes.js', 'css/notes-compose.css', 'js/notes-compose.js']) {
+  if (!existsSync(join(publicRoot, path))) fail(`Missing generated notes file: ${path}`);
+}
+if (existsSync(join(publicRoot, 'notes/search.json'))) {
+  const notesIndex = JSON.parse(readFileSync(join(publicRoot, 'notes/search.json'), 'utf8')).notes || [];
+  if (notesIndex.length !== noteFiles.length) fail(`Notes index has ${notesIndex.length} entries for ${noteFiles.length} note files`);
+  const surfaces = ['index.html', 'local-search.xml', 'rss.xml', ...htmlFiles.map((path) => relative(publicRoot, path)).filter((path) =>
+    /^(?:archives|tags)\//.test(path))].filter((path) => existsSync(join(publicRoot, path)));
+  for (const note of notesIndex) {
+    if (!existsSync(join(publicRoot, 'notes', note.id, 'index.html'))) fail(`Missing note page: notes/${note.id}/`);
+    for (const surface of surfaces) {
+      const text = readFileSync(join(publicRoot, surface), 'utf8');
+      if (text.includes(`notes/${note.id}`) || text.includes(`data-note-id="${note.id}"`)) fail(`Note ${note.id} leaks into ${surface}`);
+    }
+  }
+}
+if (!/<a class="about-avatar about-avatar--link" href="\/bluenote\/notes\/" aria-label="Notes">/.test(about)) {
+  fail('The About avatar must be the quiet entrance to Notes');
+}
+for (const htmlFile of htmlFiles) {
+  const html = readFileSync(htmlFile, 'utf8');
+  const name = relative(publicRoot, htmlFile);
+  const menu = (html.match(/<ul class="site-menu"[\s\S]*?<\/ul>/) || [''])[0];
+  if (menu.includes('/notes/')) fail(`Notes must not appear in the navigation: ${name}`);
+  if (!name.startsWith('notes/')) {
+    // Tags only: the Design Doc page names these files in its text.
+    if (/<div class="notes-composer"|<script\b[^>]*notes-compose\.js/.test(html)) fail(`The notes composer must stay on notes pages: ${name}`);
+    continue;
+  }
+  if (!html.includes('<meta name="robots" content="noindex">')) fail(`Notes page must be noindex: ${name}`);
+  const policy = html.indexOf('<meta http-equiv="Content-Security-Policy" content="default-src');
+  const firstScript = html.indexOf('<script');
+  if (policy === -1 || (firstScript !== -1 && policy > firstScript) || !/connect-src 'self' https:\/\/api\.github\.com;/.test(html)) {
+    fail(`Notes page lacks its Content-Security-Policy before the first script: ${name}`);
+  }
+  if (!/<script defer src="\/bluenote\/js\/notes-compose\.js\?v=[0-9a-f]{12}" data-repo="CHEology\/bluenote" data-branch="master"/.test(html)) {
+    fail(`Notes page lacks the composer script: ${name}`);
+  }
+  if (name !== 'notes/index.html' && html.includes('data-notes-composer')) fail(`Only the first notes page has a composer: ${name}`);
+}
+
 if (failures.length) {
   console.error(`Site validation failed with ${failures.length} error(s):`);
   failures.forEach((message) => console.error(`- ${message}`));
   process.exit(1);
 }
 
-console.log(`Validated ${markdownPosts.length} Markdown posts and ${htmlFiles.length} generated HTML pages.`);
+console.log(`Validated ${markdownPosts.length} Markdown posts, ${noteFiles.length} notes and ${htmlFiles.length} generated HTML pages.`);

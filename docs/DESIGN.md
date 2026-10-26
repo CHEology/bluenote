@@ -356,6 +356,7 @@ box-shadow: none;
 
 - Gallery 的视图切换与重抽按钮使用 `--text`，当前视图用底线区分；不使用对比度不足的次要文字色作为操作文字。
 
+- About 页的头像是通往 Notes 的唯一入口（§9.3），外观与未加链接时完全相同。
 - About 页面底部并列放置 `RSS` 与 `Design Doc` 入口，与头像及简介分开；站点设计文档的入口归于此处。这里仍是 `RSS` 的唯一可见入口。上方用 `1px solid var(--line)` 细横线分隔，线宽不超过普通阅读列；线下留 1rem，再居中放置两个链接；链接间距为 1.5rem，窄屏可自然换行、行间距 0.5rem。每项使用 16px 单色细线图标与 0.875rem 衬线文字，图标与文字间距 0.5rem。链接默认使用 `--link-hover`；悬停或键盘焦点时，浅色使用 `--heading`、深色使用统一金色（§2.4），并保留细下划线，键盘焦点另有细轮廓；触控高度至少 44px。页底保留正文外边距与页面各 2rem 留白，短页通过弹性布局靠近视窗底部，内容增加时自然下移，不使用固定定位。不加按钮底色、卡片或说明文字。其余页面只提供不可见的订阅自动发现元数据，不增加导航入口。
 
 ### 9.1 首屏与加载
@@ -375,6 +376,18 @@ box-shadow: none;
 - 沿用已有背景图片、“Page not found”与返回首页链接，背景紧接顶部导航，不继承正文页的顶部或侧边留白。
 - 背景最小高度为 `100svh` 减去导航高度及顶部安全区（回退 `100vh`），提示与链接在背景区域居中。普通字号时导航与背景恰好占满首屏；文字放大或窗口极矮时可自然增高，不截断内容。
 - 横屏安全区留白放在背景内部，背景仍铺满宽度；浅色和深色模式保持相同布局。
+
+### 9.3 Notes（短文）
+
+- Notes 是与文章分开的短文时间线，地址 `/notes/`。它**不出现在**导航、首页目录、归档、标签页、站内搜索、RSS 与上一篇／下一篇中；唯一入口是 About 页的头像（`about.avatar_link`），头像不加任何悬停变化或说明，只保留无障碍名称 `Notes` 与键盘焦点轮廓（`1px solid var(--link)`、外移 `4px`）。全部 notes 页面输出 `noindex`。入口隐蔽不等于私密：仓库与网址仍公开可读。
+- 页面沿用内容页标题区（标题 `Notes`，无日期行）与 760px 内容列；短文本身居中于文章行宽 `--reading-width`。原文措辞、分段与链接按 §5 保持不变；短文没有标题，不为其拟题。
+- 时间线自上而下依次为：可选的撰写框、搜索框、标签行、短文列表、较新／较早分页（每页 30 条）。搜索框为仅有 `1px solid var(--line)` 底线的透明输入框，`1rem` 衬线字体，聚焦时底线变为 `--link`；它只搜索短文（`/notes/search.json`，首次输入时加载），与站内搜索分开；无 JavaScript 时隐藏，时间线、标签与分页仍是普通链接。
+- 标签行与短文下的标签均为 `#标签` 文字链接，`0.875rem`（短文下 `0.8125rem`）`--muted`，悬停为 `--link-hover`，当前标签为 `--heading`；计数为 `0.75rem` 等宽数字。不加胶囊、底色或边框。
+- 每条短文上下内边距 `1.75rem`，相邻短文之间以 `1px solid var(--line)` 细线分隔（这是长短文混排时唯一的条目边界）；日期为斜体 `0.875rem`、字距 `0.04em` 的 `YYYY.MM.DD HH:mm`，即该条的永久链接；正文与文章正文相同（`1.0625rem`、行距 `1.78`），日期与正文间隔 `0.5rem`。
+- **撰写框只对已解锁的设备显示**：设备用私密文章密码解锁后，浏览器中保存的解密密钥同时打开 `private/notes-key.enc.json` 中加密保存的 GitHub 令牌（见 PUBLISHING.md §13）。未解锁时第一页右上角只有一个 `0.875rem` 的锁形图标按钮（静止色 `--line`，悬停 `--muted`，触控区 `44px`），打开既有的解锁弹窗；其他页面没有入口。
+- 撰写框使用与关联文字横框相同的 `--panel` 底色与 `1px solid var(--line)` 直角边框，聚焦时边线变为 `--link`；内边距 `0.75rem 1rem 0.5rem`。文本框无边框、透明底，字体与正文一致；可拖动增高。其下为标签切换：已有标签为 `0.8125rem` `--muted` 文字按钮，选中时为 `--link-hover` 并加 `1px` 下划线；末尾是只有底线的“+ tag”输入框，回车或逗号新建标签。底部以细线隔出状态文字（`0.8125rem` `--muted`）与按钮；按钮为透明底、`1px solid var(--line)` 直角边框、`0.9rem`，最小高度 `2.75rem`，悬停为 `--link-hover` 与 `--link-hover-bg`。`Ctrl／⌘ + Enter` 提交，未提交的草稿只保存在当前浏览器。
+- 发布后新短文立即以 `0.7` 透明度出现在列表顶部，日期下方以斜体 `0.8125rem` `--muted` 显示 `Publishing…`，构建完成后变为 `Live · Reload`，构建失败时说明短文已保存但未上线并给出详情链接。已解锁时每条短文的日期行右侧出现 `Edit`、`Delete` 文字按钮（`0.8125rem` `--muted`）；编辑在原位展开同样的撰写框，删除前须确认。
+- 短文页面带严格的内容安全策略：脚本只允许本站文件与构建时计算哈希的内联脚本，网络请求只允许本站与 `api.github.com`，图片只允许本站与 data URL。短文因此和文章一样不能热链外站图片。
 
 ## 10. 响应式与无障碍
 
@@ -411,6 +424,9 @@ box-shadow: none;
 - 主题的 `modules/gallery/`：可选 Gallery 的排列、抽取、验证与大图观看，默认关闭；启用后仅 Gallery 页面加载 CSS/JS。网站通过 `gallery.language` 与 `gallery.labels` 设置界面文案；
 - `source/_data/gallery.json`：Gallery 的照片清单与作者顺序，不从博客文章推断收录；
 - 主题的 `scripts/gallery.js`：从站点清单生成独立 Gallery 页面，不生成照片文章；
+- 主题的 `modules/notes/` 与 `scripts/notes.js`：可选 Notes 的读取与校验（`source/_notes/<id>.md`）、时间线、单条页、标签页、`search.json`／`tags.json`、短文搜索与 `noindex`，默认关闭；启用后仅 notes 页面加载 `notes.css`／`notes.js`。主题只输出空的撰写框挂载点，不含撰写功能；
+- `source/_notes/`：短文原稿，每条一个文件，文件名即编号（`YYYYMMDD-HHmmss.md`），Front Matter 只有 `date`、可选 `tags` 与 `updated`；
+- `scripts/notes-site.js`、`source/js/notes-compose.js`、`source/css/notes-compose.css`：本站的撰写框、编辑／删除与发布状态，以及 notes 页面的内容安全策略；`tooling/notes.mjs` 与 `tooling/lib/notes-key.mjs` 负责新建短文与加密保存发布令牌；
 - `scripts/design-document.js`：从本文件生成公开 Design Doc 页面；不得另存第二份网页正文；
 - `scripts/private-links.js`：在构建时标记指向私密文章的链接。
 - `scripts/post-music.js`：校验文章 `music` 元数据与本地资源、生成统一配乐标记，并按需注入样式和脚本；不改写作者正文。

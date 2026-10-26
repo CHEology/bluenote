@@ -112,6 +112,9 @@ historical_posts:
 
 about:
   avatar: /images/avatar-256.png
+  # The only way in to Notes: the avatar links there without any visible cue (DESIGN.md §9.3).
+  avatar_link: /notes/
+  avatar_label: Notes
   name: cheology
   intro: 语言的边界划定思绪的历史与领地。
 
@@ -127,6 +130,23 @@ search:
   enable: true
   path: /local-search.xml
   private_manifest: /private/posts.public.json
+
+# Short texts kept apart from articles (DESIGN.md §9.3). Not in the navigation, home,
+# archives, site search or RSS; reached only from the About avatar.
+notes:
+  enable: true
+  path: notes
+  dir: _notes
+  title: Notes
+  per_page: 30
+  date_format: YYYY.MM.DD HH:mm
+  noindex: true
+  search: true
+  language: zh-CN
+  # Devices unlocked with the vault password post through this repository (PUBLISHING.md §13).
+  compose:
+    repo: CHEology/bluenote
+    branch: master
 
 custom_css:
   - /fonts/eb-garamond/eb-garamond.css

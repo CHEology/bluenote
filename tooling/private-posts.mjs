@@ -17,6 +17,7 @@ import {
 import { basename, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import frontMatter from 'hexo-front-matter';
+import { resealNotesKey } from './lib/notes-key.mjs';
 import { marked } from 'marked';
 
 const projectRoot = fileURLToPath(new URL('..', import.meta.url));
@@ -180,7 +181,7 @@ function privateMarkdownFiles() {
   return readdirSync(privatePostsRoot).filter((name) => name.endsWith('.md')).sort();
 }
 
-async function hiddenPassword(message = 'Private password: ') {
+export async function hiddenPassword(message = 'Private password: ') {
   if (process.env.BLUENOTE_PRIVATE_PASSWORD) return process.env.BLUENOTE_PRIVATE_PASSWORD;
   if (!process.stdin.isTTY || !process.stdout.isTTY) {
     throw new Error('Set BLUENOTE_PRIVATE_PASSWORD when running without an interactive terminal.');
@@ -238,6 +239,8 @@ async function syncArchive(password, { allowEmpty = false } = {}) {
       cipher: { name: 'AES-256-GCM' }
     }, null, 2)}\n`);
     syncPublicPrivateFiles([]);
+    const notice = resealNotesKey(current, { empty: true }, password);
+    if (notice) console.log(notice);
     return 0;
   }
 
@@ -249,6 +252,9 @@ async function syncArchive(password, { allowEmpty = false } = {}) {
   const encrypted = encryptPrivateArchive(posts, password);
   writeFileSync(encryptedArchivePath, `${JSON.stringify(encrypted, null, 2)}\n`);
   syncPublicPrivateFiles(posts);
+  // A fresh salt changes the saved browser key, so the posting key follows it.
+  const notice = resealNotesKey(current, encrypted, password);
+  if (notice) console.log(notice);
   return posts.length;
 }
 

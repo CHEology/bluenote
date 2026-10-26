@@ -367,3 +367,66 @@ companion:
 桌面首页使用 `home.desktop_style: fog`。在主题修改时运行 `npm test` 与 `npm run test:browser`，博客运行 `npm run check`、`npm run visual:capture && npm run visual:compare` 及 `BLUE_NOTE_BASELINE=/path/to/previous/public npm run test:home`。其中基线目录须来自修改前的正式版本。再添加 `BLUE_NOTE_ENGINE=webkit` 可检查 Safari 引擎；若本机 Chromium 位于自定义路径，设置 `BLUE_NOTE_CHROMIUM`。截图及报告在被忽略的 `tooling/audit/home-folio*` 中。
 
 检查 5×2 行列与页码的上下留白，使用测试环境中的 23 篇临时元信息验证逐列移动、双页高亮、末页、连续点击、历史前后和窗口缩放；这些测试文章不会写入源内容或发布产物。手机必须与上一发布版本保持一致，公开文字及私密正文边界不变。先推送主题提交及 `v1.7.0` 标签，再推送锁定同一提交的博客；两者未成功推送前不得称为已上线。
+
+## 13. Notes（短文）
+
+Notes 是与文章分开的短文时间线（`/notes/`），视觉与入口见 [`DESIGN.md` §9.3](./DESIGN.md#93-notes短文)。它不进入导航、首页、归档、站内搜索与 RSS，只能从 About 页的头像进入；页面带 `noindex`。**入口隐蔽不等于私密**：短文原稿在公开仓库的 `source/_notes/` 中，任何知道网址的人都能读到。不要在短文中写需要保密的内容。
+
+### 13.1 原稿格式
+
+每条短文一个文件，文件名就是编号与网址：
+
+```text
+source/_notes/20261025-224130.md   →   /bluenote/notes/20261025-224130/
+```
+
+```yaml
+---
+date: 2026-10-25 22:41:30
+tags:
+  - "随想"
+---
+
+正文（Markdown）。
+```
+
+- `date` 必填，按站点时区 `America/New_York` 解读；编辑后由撰写框补上 `updated`。
+- `tags` 可省略；每个标签是不含空格、斜杠、引号的一个词，最长 40 个字符。新标签在第一次使用时自动出现。
+- 正文按作者原文保存，不改写；以 `/` 开头的站内链接（例如 `/2023/09/26/布涅星/`）会自动加上 `/bluenote/` 前缀。图片只能使用站内文件。
+- 本机新建：`npm run note -- "可选的正文"`，再编辑生成的文件并按 §6 提交。
+
+构建会拒绝缺少日期、日期格式错误、空正文、文件名或标签不合规的短文，并指出文件名。
+
+### 13.2 在网页上发布
+
+已用私密文章密码解锁过的设备，在 `/notes/` 第一页顶部会看到撰写框；其他人只能阅读。写好后点击 Post（或 `Ctrl／⌘ + Enter`），撰写框会：
+
+1. 通过 GitHub API 把短文提交为 `source/_notes/<编号>.md`；
+2. 立即在列表顶部显示，并跟踪 `Build and deploy Blue Note` 工作流，完成后显示 `Live`（通常一到两分钟）；构建失败时说明短文已保存但未上线。
+
+已解锁时，每条短文旁有 `Edit` 与 `Delete`。编辑保留原 `date` 并写入 `updated`；删除会先确认，被删除的短文仍留在 Git 历史中，可用 `git revert` 恢复。在归档中点击 `UNLOCKED` 退出解锁，同时退出私密阅读与发布。
+
+### 13.3 一次性设置发布令牌（只能由作者完成）
+
+发布权限来自一个**只对本仓库有效**的 GitHub fine-grained 令牌。令牌用私密文章的同一密钥加密后保存在公开的 `source/private/notes-key.enc.json`，仓库与网页中都不会出现明文。
+
+1. 在 GitHub 打开 Settings → Developer settings → Personal access tokens → **Fine-grained tokens** → Generate new token：
+   - Repository access：**Only select repositories** → `CHEology/bluenote`；
+   - Permissions → Repository permissions：**Contents: Read and write**，**Actions: Read-only**（Metadata 会自动为只读）；不要授予 Workflows 或其他权限；
+   - Expiration：自选（例如一年）。
+2. 在本机仓库运行 `npm run notes:setup`，依次粘贴私密文章密码与令牌。命令会先确认密码能打开私密档案、令牌能访问本仓库，再写入加密文件。
+3. 提交并推送 `source/private/notes-key.enc.json`。
+
+`npm run notes:status` 检查加密令牌是否与当前私密档案匹配，并显示令牌到期日。令牌到期或更换时，重新生成令牌并再次运行 `npm run notes:setup`。设备丢失时，立即在 GitHub 的同一页面删除（Revoke）该令牌，再按上述步骤设置新令牌。
+
+`private:hide`、`private:sync`、`private:publish` 每次用新的盐重新加密档案，同时会自动用新密钥重新加密发布令牌，并在终端说明；之后需要在各设备重新解锁一次。私密档案为空时无法派生密钥，命令会提示重新设置。
+
+安全边界：
+
+- 同一个密码同时保护私密阅读与发布权限。密码应足够长且包含真正随机生成的部分（至少约 10 个随机字符或 5 个随机单词），不得在其他地方使用；不要把密码给只需阅读私密文章的人。
+- 令牌只能读写本仓库内容，不能修改 `.github/workflows/`；即使泄露，也只能改动内容，所有改动都可在 Git 中恢复。
+- notes 页面带严格的内容安全策略（只允许本站脚本、按哈希许可的内联脚本，以及与 `api.github.com` 的连接），防止注入脚本读取已解密的令牌。不要在 notes 页面引入第三方脚本。
+
+### 13.4 检查
+
+`npm run check` 包含 Notes：时间线、单条页、标签页与索引生成正确，短文不进入首页、归档、站内搜索与 RSS，notes 页面带 `noindex`、内容安全策略和撰写框脚本，加密令牌文件与当前私密档案匹配且不含明文。修改撰写框或 notes 样式时，构建后另运行 `node tooling/notes.browser.mjs`：它用虚构的档案、令牌和模拟的 GitHub 接口检查未解锁视图、短文搜索、解锁、发布、编辑、删除、刷新后保持解锁、内容安全策略与桌面／手机明暗截图（写入被忽略的 `tooling/audit/notes/`）。Chromium 位于自定义路径时设置 `BLUE_NOTE_CHROMIUM`。

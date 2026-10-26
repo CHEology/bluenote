@@ -13,6 +13,9 @@
     "server": "cross-env TZ=America/New_York hexo server",
     "new": "cross-env TZ=America/New_York hexo new post",
     "gallery:prepare": "node tooling/prepare-gallery-images.mjs",
+    "note": "node tooling/notes.mjs new",
+    "notes:setup": "node tooling/notes.mjs setup",
+    "notes:status": "node tooling/notes.mjs status",
     "private:hide": "node tooling/private-posts.mjs hide",
     "private:publish": "node tooling/private-posts.mjs publish",
     "private:sync": "node tooling/private-posts.mjs sync",
@@ -43,7 +46,7 @@
     "hexo-renderer-ejs": "2.0.0",
     "hexo-renderer-marked": "7.0.1",
     "hexo-server": "3.0.0",
-    "hexo-theme-bluenote": "github:CHEology/hexo-theme-bluenote#v1.15.4",
+    "hexo-theme-bluenote": "github:CHEology/hexo-theme-bluenote#29bc23788eb2a385b6fd951abad9318722e1f0d8",
     "marked": "15.0.12"
   },
   "devDependencies": {
