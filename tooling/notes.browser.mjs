@@ -121,6 +121,8 @@ try {
   if (existingTag) assert.ok(posted.includes(`  - ${JSON.stringify(existingTag.name)}\n`));
   assert.ok(posted.endsWith('---\n\n' + text + '\n'), 'The note body is committed exactly as written');
   assert.equal(await composer.locator('textarea').inputValue(), '', 'The composer clears after posting');
+  assert.equal(await composer.locator('.notes-compose__tag[aria-pressed="true"]').count(), 0, 'No tag stays selected after posting');
+  assert.equal(await composer.locator('.notes-compose__new-tag').inputValue(), '', 'The new-tag field clears after posting');
 
   // Edit an existing note in place; its date and other front matter are kept.
   const target = page.locator(`article.note[data-note-file="${editedFile}"]`);
