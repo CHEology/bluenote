@@ -216,54 +216,106 @@
     var label = el('label', { class: 'visually-hidden', for: id, text: options.label });
     var area = el('textarea', { id: id, rows: '3', placeholder: options.placeholder || '', spellcheck: 'true' });
     area.value = options.text || '';
-    var tags = el('div', { class: 'notes-compose__tags', role: 'group', 'aria-label': 'Tags' });
-    var newTag = el('input', { class: 'notes-compose__new-tag', type: 'text', placeholder: '+ tag', 'aria-label': 'New tag', autocomplete: 'off', autocapitalize: 'off', spellcheck: 'false', enterkeyhint: 'done' });
+    // Tags attached to this note are listed as "#tag ×" (activate to remove). Existing tags
+    // appear only as suggestions while typing in the "+ tag" field.
+    var tags = el('div', { class: 'notes-compose__tags' });
+    var chosen = el('ul', { class: 'notes-compose__chosen', 'aria-label': 'Tags on this note' });
+    var newTag = el('input', { class: 'notes-compose__new-tag', type: 'text', placeholder: '+ tag', 'aria-label': 'Add a tag', autocomplete: 'off', autocapitalize: 'off', spellcheck: 'false', enterkeyhint: 'done' });
+    var suggestions = el('div', { class: 'notes-compose__suggestions', role: 'group', 'aria-label': 'Existing tags', hidden: true });
+    tags.appendChild(chosen);
+    tags.appendChild(newTag);
+    tags.appendChild(suggestions);
     var status = el('p', { class: 'notes-compose__status', 'aria-live': 'polite' });
     var cancel = options.onCancel ? el('button', { type: 'button', class: 'notes-compose__button', text: 'Cancel' }) : null;
     var submit = el('button', { type: 'submit', class: 'notes-compose__button notes-compose__button--primary', text: options.submit });
-    var bar = el('div', { class: 'notes-compose__bar' }, [status, el('div', { class: 'notes-compose__actions' }, [cancel, submit])]);
+    // Tags sit on the bar below the text, to the left of the buttons; messages go underneath.
+    var bar = el('div', { class: 'notes-compose__bar' }, [tags, el('div', { class: 'notes-compose__actions' }, [cancel, submit])]);
 
-    function renderTags() {
-      tags.textContent = '';
-      var names = knownTags.slice();
-      selected.forEach(function(tag) { if (names.indexOf(tag) === -1) names.push(tag); });
-      names.forEach(function(tag) {
-        var pressed = selected.indexOf(tag) !== -1;
-        var button = el('button', { type: 'button', class: 'notes-compose__tag', 'aria-pressed': String(pressed), text: '#' + tag });
-        button.addEventListener('click', function() {
-          var at = selected.indexOf(tag);
-          if (at === -1) selected.push(tag); else selected.splice(at, 1);
-          renderTags();
-          var again = tags.querySelectorAll('.notes-compose__tag')[names.indexOf(tag)];
-          if (again) again.focus();
+    function renderChosen() {
+      chosen.textContent = '';
+      chosen.hidden = !selected.length;
+      selected.forEach(function(tag) {
+        var remove = el('button', { type: 'button', class: 'notes-compose__chip', 'aria-label': 'Remove tag ' + tag, title: 'Remove' },
+          [document.createTextNode('#' + tag), el('span', { class: 'notes-compose__remove', 'aria-hidden': 'true', text: '×' })]);
+        remove.addEventListener('click', function() {
+          selected.splice(selected.indexOf(tag), 1);
+          renderChosen();
+          renderSuggestions();
+          newTag.focus();
         });
-        tags.appendChild(button);
+        chosen.appendChild(el('li', {}, [remove]));
       });
-      tags.appendChild(newTag);
+    }
+
+    function renderSuggestions() {
+      var query = normalizeTag(newTag.value).toLowerCase();
+      suggestions.textContent = '';
+      var matches = query ? knownTags.filter(function(tag) {
+        return selected.indexOf(tag) === -1 && tag.toLowerCase().indexOf(query) !== -1;
+      }).slice(0, 8) : [];
+      matches.forEach(function(tag) {
+        var button = el('button', { type: 'button', class: 'notes-compose__tag', text: '#' + tag });
+        button.addEventListener('click', function() { choose(tag); });
+        suggestions.appendChild(button);
+      });
+      suggestions.hidden = !matches.length;
+    }
+
+    function choose(tag) {
+      if (selected.indexOf(tag) === -1) selected.push(tag);
+      newTag.value = '';
+      status.textContent = '';
+      renderChosen();
+      renderSuggestions();
+      newTag.focus();
     }
 
     function addTag() {
       var tag = normalizeTag(newTag.value);
-      if (!tag) return;
+      if (!tag) return true;
       if (!TAG.test(tag)) {
         status.textContent = 'Tags are one word, without spaces, slashes or quotes.';
-        return;
+        return false;
       }
-      if (selected.indexOf(tag) === -1) selected.push(tag);
-      if (knownTags.indexOf(tag) === -1) knownTags.push(tag);
-      newTag.value = '';
-      status.textContent = '';
-      renderTags();
-      newTag.focus();
+      // Reuse an existing tag's spelling when only the letter case differs.
+      var existing = knownTags.filter(function(known) { return known.toLowerCase() === tag.toLowerCase(); })[0];
+      tag = existing || tag;
+      if (!existing) knownTags.push(tag);
+      choose(tag);
+      return true;
     }
 
+    newTag.addEventListener('input', renderSuggestions);
     newTag.addEventListener('keydown', function(event) {
+      // Enter also confirms a Chinese or Japanese input-method candidate; leave that alone.
+      if (event.isComposing || event.keyCode === 229) return;
       if (event.key === 'Enter' || event.key === ',' || event.key === '，') {
         event.preventDefault();
         addTag();
+      } else if (event.key === 'ArrowDown' && !suggestions.hidden) {
+        event.preventDefault();
+        suggestions.firstChild.focus();
+      } else if (event.key === 'Escape' && newTag.value) {
+        event.preventDefault();
+        newTag.value = '';
+        renderSuggestions();
+      } else if (event.key === 'Backspace' && !newTag.value && selected.length) {
+        selected.pop();
+        renderChosen();
       }
     });
-    newTag.addEventListener('blur', function() { if (newTag.value.trim()) addTag(); });
+    suggestions.addEventListener('keydown', function(event) {
+      var target = event.target;
+      if (event.key === 'ArrowRight' || event.key === 'ArrowDown') {
+        event.preventDefault();
+        if (target.nextSibling) target.nextSibling.focus();
+      } else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') {
+        event.preventDefault();
+        (target.previousSibling || newTag).focus();
+      } else if (event.key === 'Escape') {
+        newTag.focus();
+      }
+    });
     area.addEventListener('keydown', function(event) {
       if (event.key === 'Enter' && (event.metaKey || event.ctrlKey)) {
         event.preventDefault();
@@ -274,7 +326,7 @@
     if (cancel) cancel.addEventListener('click', options.onCancel);
     form.addEventListener('submit', function(event) {
       event.preventDefault();
-      if (newTag.value.trim()) addTag();
+      if (!addTag()) return;
       var text = area.value.replace(/\s+$/, '');
       if (!text.trim()) {
         status.textContent = 'Write something first.';
@@ -296,13 +348,15 @@
 
     form.appendChild(label);
     form.appendChild(area);
-    form.appendChild(tags);
     form.appendChild(bar);
-    renderTags();
+    form.appendChild(status);
+    renderChosen();
     form.clear = function(text) {
       area.value = text || '';
+      newTag.value = '';
       selected = [];
-      renderTags();
+      renderChosen();
+      renderSuggestions();
     };
     form.focusText = function() { area.focus(); };
     return form;

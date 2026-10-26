@@ -105,10 +105,26 @@ try {
   const text = 'QA 发一条短文\n\n第二段 https://example.com/x';
   await composer.locator('textarea').fill(text);
   const existingTag = JSON.parse(readFileSync(join(publicRoot, 'notes/tags.json'), 'utf8')).tags[0];
-  if (existingTag) await composer.locator('.notes-compose__tag', { hasText: '#' + existingTag.name }).click();
-  await composer.locator('.notes-compose__new-tag').fill('#新标签');
-  await composer.locator('.notes-compose__new-tag').press('Enter');
-  assert.equal(await composer.locator('.notes-compose__tag[aria-pressed="true"]').count(), existingTag ? 2 : 1);
+  const field = composer.locator('.notes-compose__new-tag');
+  assert.equal(await composer.locator('.notes-compose__tag').count(), 0, 'Existing tags appear only while typing');
+  assert.ok(await composer.locator('.notes-compose__bar .notes-compose__tags').isVisible(), 'Tags sit on the bar beside the buttons');
+  if (existingTag) {
+    await field.fill(existingTag.name.slice(0, 1));
+    await composer.locator('.notes-compose__suggestions .notes-compose__tag', { hasText: '#' + existingTag.name }).click();
+  }
+  await field.fill('#新标签');
+  await field.press('Enter');
+  await field.fill('临时');
+  await field.press('Enter');
+  await composer.locator('.notes-compose__chip', { hasText: '#临时' }).click();
+  assert.deepEqual(await composer.locator('.notes-compose__chip').evaluateAll((chips) => chips.map((chip) => chip.firstChild.textContent)),
+    existingTag ? ['#' + existingTag.name, '#新标签'] : ['#新标签'], 'A chosen tag can be removed before posting');
+  await field.fill(existingTag ? existingTag.name.slice(0, 1) : 'x');
+  await composer.screenshot({ path: join(auditRoot, 'composer-tags.png') });
+  await page.setViewportSize({ width: 390, height: 844 });
+  await composer.screenshot({ path: join(auditRoot, 'composer-tags-mobile.png') });
+  await page.setViewportSize({ width: 1280, height: 720 });
+  await field.fill('');
   await composer.locator('button[type="submit"]').click();
   await page.locator('.note--pending .note__state', { hasText: 'Live' }).waitFor({ timeout: 30000 });
   const put = github.find((entry) => entry.method === 'PUT');
@@ -120,8 +136,9 @@ try {
   assert.ok(posted.includes('  - "新标签"\n'));
   if (existingTag) assert.ok(posted.includes(`  - ${JSON.stringify(existingTag.name)}\n`));
   assert.ok(posted.endsWith('---\n\n' + text + '\n'), 'The note body is committed exactly as written');
+  assert.ok(!posted.includes('临时'), 'A removed tag is not committed');
   assert.equal(await composer.locator('textarea').inputValue(), '', 'The composer clears after posting');
-  assert.equal(await composer.locator('.notes-compose__tag[aria-pressed="true"]').count(), 0, 'No tag stays selected after posting');
+  assert.equal(await composer.locator('.notes-compose__chip').count(), 0, 'No tag stays on the composer after posting');
   assert.equal(await composer.locator('.notes-compose__new-tag').inputValue(), '', 'The new-tag field clears after posting');
 
   // Edit an existing note in place; its date and other front matter are kept.
@@ -130,6 +147,9 @@ try {
   const edit = target.locator('.notes-compose');
   await edit.waitFor();
   await edit.locator('textarea').fill('QA edited body');
+  const editedTags = (editedSource.match(/^\s+-\s*"?([^"\n]+)"?$/gm) || []).length;
+  assert.equal(await edit.locator('.notes-compose__chip').count(), editedTags, 'Editing shows the note\'s tags');
+  while (await edit.locator('.notes-compose__chip').count()) await edit.locator('.notes-compose__chip').first().click();
   await edit.locator('button[type="submit"]').click();
   await target.locator('.note__state', { hasText: 'Live' }).waitFor({ timeout: 30000 });
   const save = github.filter((entry) => entry.method === 'PUT').pop();
@@ -138,6 +158,7 @@ try {
   assert.ok(saved.includes(editedSource.match(/^date: .+$/m)[0]), 'Editing keeps the original date');
   assert.match(saved, /\nupdated: \d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\n/);
   assert.ok(saved.endsWith('---\n\nQA edited body\n'));
+  assert.ok(!/\ntags:/.test(saved), 'Removing every tag while editing drops them from the file');
 
   // Delete asks first.
   page.once('dialog', (dialog) => dialog.accept());
