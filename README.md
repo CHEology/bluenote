@@ -7,7 +7,7 @@
 ## Project standards
 
 - [设计规范](docs/DESIGN.md)：站点视觉、排版、组件交互与验收的统一规范。
-- [发文流程](docs/PUBLISHING.md)：内容与资源录入、检查、发布及回滚的操作标准；§13 为短文（Notes）与发布令牌设置。
+- [发文流程](docs/PUBLISHING.md)：内容与资源录入、检查、发布及回滚的操作标准。
 - [主题 1.1 与博客复验](docs/VALIDATION-2026-09-04.md)：移动适配、独立安装与线上加载测量。
 
 ## Repository structure
@@ -17,12 +17,11 @@
 ├── node_modules/hexo-theme-bluenote/  # 主题（npm 依赖；源码见 github.com/CHEology/hexo-theme-bluenote）
 ├── source/
 │   ├── _posts/        # Markdown 文章
-│   ├── _notes/        # 短文（Notes，由网页撰写框或 npm run note 创建；入口见 DESIGN.md §9.3）
-│   ├── css/           # 站点专属样式（私密文章、Design Doc、随想公式、配乐）
+│   ├── css/           # 站点专属样式（私密文章、随想公式、配乐）
 │   ├── js/            # 站点专属交互（私密文章、配乐）
 │   ├── audio/posts/   # 作者选择的完整文章配乐
 │   └── images/, img/  # 图片资源
-├── scripts/           # 站点构建处理（Design Doc、私密链接标记、配乐组件）
+├── scripts/           # 站点构建处理（私密链接标记、配乐组件）
 ├── tooling/           # 内容、构建与视觉对比检查
 ├── _config.yml        # Hexo 配置
 ├── _config.bluenote.yml # 主题站点配置

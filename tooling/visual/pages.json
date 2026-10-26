@@ -581,42 +581,6 @@
       ]
     },
     {
-      "key": "design",
-      "path": "/design/",
-      "editorial": true,
-      "keys": [
-        "column",
-        "docFirstP",
-        "docH2",
-        "docH3",
-        "docTable",
-        "docTh",
-        "docPre",
-        "docCode",
-        "docInlineCode",
-        "docUl",
-        "docLi"
-      ],
-      "shots": [
-        {
-          "name": "top"
-        },
-        {
-          "name": "table",
-          "scrollTo": ".design-document table"
-        },
-        {
-          "name": "code",
-          "scrollTo": ".design-document pre"
-        }
-      ],
-      "markdown": true,
-      "compareText": false,
-      "textReason": "docs/DESIGN.md itself changed in this migration (sections 2.3, 4.1, 9.1, 11, 12)",
-      "shotThreshold": 2.5,
-      "thresholdReason": "the document text changed; earlier runs with unchanged text were within 0.11%"
-    },
-    {
       "key": "tags",
       "path": "/tags/",
       "newOnly": true,

@@ -18,7 +18,7 @@ const server=createServer((req,res)=>{
 });
 await new Promise(r=>server.listen(0,'127.0.0.1',r));
 const origin=process.env.BLUE_NOTE_ORIGIN||'http://127.0.0.1:'+server.address().port;
-const paths=['','archives/','gallery/','gallery/all/','about/','2026/08/27/Z.A.T.O-随想/','2026/09/27/小蓝本/','design/','tags/','404.html'];
+const paths=['','archives/','gallery/','gallery/all/','about/','2026/08/27/Z.A.T.O-随想/','2026/09/27/小蓝本/','tags/','404.html'];
 const builtHome=readFileSync(join(root,'public/index.html'),'utf8');
 const publicCount=(builtHome.match(/<li class="letterbox-entry">/g)||[]).length;
 const totalCount=(builtHome.match(/<li class="letterbox-entry"/g)||[]).length;

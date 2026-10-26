@@ -1,4 +1,4 @@
-/* Notes composer (DESIGN.md §9.3). Loaded only on notes pages; shown only to a device
+/* Notes composer. Loaded only on notes pages; shown only to a device
    that holds the vault key and the sealed posting key. */
 .notes-composer {
   margin: 0 0 1.5rem;

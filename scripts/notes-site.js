@@ -1,7 +1,7 @@
 /* global hexo */
 'use strict';
 
-// Blue Note's side of the Notes module (DESIGN.md §9.3): the composer assets, and a
+// Blue Note's side of the Notes module: the composer assets, and a
 // strict Content-Security-Policy on every notes page, where a device may hold a token
 // that can write to the repository.
 const { createHash } = require('node:crypto');

@@ -69,7 +69,7 @@ if (!generatedPrivateScript.includes('是否退出解锁状态？') ||
   throw new Error('Archive unlock-exit control is missing or does not clear the saved site key.');
 }
 
-// Notes posting key (PUBLISHING.md §13): sealed with the vault key, never in plain text.
+// Notes posting key: sealed with the vault key, never in plain text.
 const fixtureToken = 'github_pat_QAFIXTURE0123456789abcdefghijklmn';
 const sealedFixture = sealNotesKey({ token: fixtureToken }, vaultKey(bundle, password), bundle.kdf.salt);
 if (JSON.stringify(sealedFixture).includes(fixtureToken)) throw new Error('Sealed posting key leaks the token.');

@@ -25,13 +25,11 @@ const required = [
   'about/index.html',
   'archives/index.html',
   'tags/index.html',
-  'design/index.html',
   'gallery/index.html',
   'gallery/all/index.html',
   'css/bluenote.css',
   'js/bluenote.js',
   'css/site.css',
-  'css/design-doc.css',
   'css/thought-notes.css',
   'css/private.css',
   'css/gallery.css',
@@ -51,7 +49,7 @@ for (const path of required) {
   if (!existsSync(join(publicRoot, path))) fail(`Missing generated file: ${path}`);
 }
 
-for (const path of ['links/index.html', 'categories/index.html', 'css/main.css', 'js/boot.js', 'js/utils.js', 'xml/local-search.xml',
+for (const path of ['design/index.html', 'css/design-doc.css', 'links/index.html', 'categories/index.html', 'css/main.css', 'js/boot.js', 'js/utils.js', 'xml/local-search.xml',
   'vendor/bootstrap', 'vendor/jquery', 'vendor/iconfont', 'vendor/nprogress', 'css/custom.css', 'css/home.css', 'js/site.js']) {
   if (existsSync(join(publicRoot, path))) fail(`Retired output must not be generated: ${path}`);
 }
@@ -209,8 +207,8 @@ if (homeEntries.length !== markdownPosts.length || new Set(homeEntries.map(entry
 }
 const aboutResources = readFileSync(join(publicRoot, 'about/index.html'), 'utf8')
   .match(/<footer class="about-resources">[\s\S]*?<\/footer>/)?.[0] || '';
-if (!aboutResources.includes('href="/bluenote/design/"') || !aboutResources.includes('href="/bluenote/rss.xml"')) {
-  fail('About must group Design Doc and RSS in its footer');
+if (!aboutResources.includes('href="/bluenote/rss.xml"') || aboutResources.includes('/design/')) {
+  fail('About must keep RSS in its footer, without a Design Doc link');
 }
 
 const tags = readFileSync(join(publicRoot, 'tags', 'index.html'), 'utf8');
@@ -218,16 +216,6 @@ if (!tags.includes('<body class="editorial-page listing-page tags-page">') || !t
   fail('Tags index does not use the editorial listing layout');
 }
 
-const design = readFileSync(join(publicRoot, 'design', 'index.html'), 'utf8');
-if (!design.includes('<body class="editorial-page design-doc-page">')) {
-  fail('Design Doc page does not use its editorial layout');
-}
-if (!design.includes('class="markdown-body design-document"')) {
-  fail('Design Doc page does not contain the generated canonical document');
-}
-if (!design.includes('## 1. 设计目标') && !design.includes('1. 设计目标')) {
-  fail('Design Doc page is missing its first design section');
-}
 
 const about = readFileSync(join(publicRoot, 'about', 'index.html'), 'utf8');
 if (!about.includes('<body class="editorial-page about-page">')) {
@@ -397,7 +385,7 @@ for (const htmlFile of htmlFiles) {
   }
 }
 
-// Notes (DESIGN.md §9.3): a hidden, noindexed stream that never reaches articles' surfaces.
+// Notes: a hidden, noindexed stream that never reaches articles' surfaces.
 const notesSource = join(projectRoot, 'source', '_notes');
 const noteFiles = existsSync(notesSource) ? readdirSync(notesSource).filter((name) => name.endsWith('.md')) : [];
 for (const path of ['notes/index.html', 'notes/search.json', 'notes/tags.json', 'css/notes.css', 'js/notes.js', 'css/notes-compose.css', 'js/notes-compose.js']) {
@@ -425,7 +413,6 @@ for (const htmlFile of htmlFiles) {
   const menu = (html.match(/<ul class="site-menu"[\s\S]*?<\/ul>/) || [''])[0];
   if (menu.includes('/notes/')) fail(`Notes must not appear in the navigation: ${name}`);
   if (!name.startsWith('notes/')) {
-    // Tags only: the Design Doc page names these files in its text.
     if (/<div class="notes-composer"|<script\b[^>]*notes-compose\.js/.test(html)) fail(`The notes composer must stay on notes pages: ${name}`);
     continue;
   }
