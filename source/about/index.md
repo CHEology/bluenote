@@ -3,7 +3,7 @@ title: About
 layout: about
 date: 2023-08-01 04:46:06 -04:00
 updated: 2026-09-27 12:02:20 -0400
-description: 语言的边界划定思绪的历史与领地。
+description: 语言的边界，思绪的历史领地
 ---
 
 <footer class="about-resources">
