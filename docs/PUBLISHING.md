@@ -337,24 +337,7 @@ npm run visual:capture && npm run visual:compare
 
 Gallery 模块由主题提供，在 `_config.bluenote.yml` 中设置 `gallery.enable: true` 后读取本站的 `source/_data/gallery.json`；主题示例站使用独立的原创几何图形，不带入本站照片或文章。
 
-## 11. AI Lab 回应与文末链接
-
-目录及对应页在独立 AI Lab 仓库维护（`writing/entries.json`），首批原文为《布涅星》《Z.A.T.O. 随想》《0902 - 随想》《修图》。回应地址的末级目录必须沿用原文标题，不换成拼音。结构与状态详见 `docs/AI-LAB-LINK-PLAN.md`。
-
-先在 AI Lab 建立页面并验证可访问，然后仅在明确选择的原文 Front Matter 添加：
-
-```yaml
-companion:
-  url: https://cheology.github.io/ai-lab/writing/bluenote/修图/
-  label: Read the ai-written reflection
-  aria_label: 前往 ai-lab 查看《修图》的回应页
-```
-
-需要主题 1.2.2 或更新版本。入口为正文末尾的狭长横框，文案左对齐、右上箭头靠右，字号与下方上一篇／下一篇一致；不在原文开头插入导航，不修改正文或已有发布日期。待写页面明确告知尚未发布回应，避免填写虚构内容和署名；真正完成后在 AI Lab 填写正文和实际发布日期，署名仅在已提供时填写，双方 URL 不变。作者已于 2026-09-05 授权后续请求的站点与内容更新检查通过后直接上线，不再询问发布确认，也不因缺少署名暂停发布；明确要求仅预览或保留草稿时除外。
-
-发布前分别检查两个站点，并逐对验证原文→回应→原文，确认原文正文未变。先发布 AI Lab，再发布 Blue Note 的入口。发布后验证两个 Actions 与线上响应、CSS 版本及普通链接。使用原生链接，切换不依赖 JavaScript、数据库或跨站 API。
-
-## 12. RSS 订阅
+## 11. RSS 订阅
 
 `/bluenote/rss.xml` 提供 RSS 2.0，About 页面底部细横线下的图标与 `RSS` 文字链接为唯一可见订阅入口；站点文档不列入文章归档。订阅只包含公开文章的原有标题、发布日期、description 摘要和原文链接；不读取全文、私密档案或本机私密源文件，不收录 Gallery、About 等页面。
 

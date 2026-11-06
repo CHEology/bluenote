@@ -1652,7 +1652,7 @@
     "pageStartsWith": "post-",
     "key": "postPrev",
     "prop": "width",
-    "reason": "DESIGN §4.1 (2026-10-09): the article navigation uses 16px mirrored chevrons with 6px text spacing; the mobile English label is Prev. Companion links and article prose stay unchanged."
+    "reason": "DESIGN §4.1 (2026-10-09): the article navigation uses 16px mirrored chevrons with 6px text spacing; the mobile English label is Prev. Article prose stays unchanged."
   },
   {
     "page": "404",
