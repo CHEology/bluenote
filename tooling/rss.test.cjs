@@ -87,7 +87,7 @@ test('generated RSS includes every public article, excludes private identities a
   assert.doesNotMatch(feed, /private-post|posts\.enc|posts\.public|<script|<enclosure|<content:encoded/);
   const about = readFileSync(join(root, 'public/about/index.html'), 'utf8');
   assert.match(about, /<footer class="about-resources">/);
-  assert.match(about, /class="about-resources__link" href="\/bluenote\/rss\.xml"/);
+  assert.match(about, /class="about-resources__link" href="\/rss\.xml"/);
   assert.match(about, /<span>RSS<\/span>/);
   assert.match(about, /rel="alternate" type="application\/rss\+xml"/);
 });

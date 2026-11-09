@@ -4,7 +4,7 @@ import { readFileSync, readdirSync, existsSync, statSync, createReadStream, mkdi
 import { createServer } from 'node:http';
 import { createGzip } from 'node:zlib';
 import { join, resolve, extname, sep, relative } from 'node:path';
-const base=resolve('public'),root='/bluenote/';
+const base=resolve('public'),root='/';
 const output=resolve('tooling/audit');mkdirSync(output,{recursive:true});
 const mime={'.html':'text/html; charset=utf-8','.css':'text/css','.js':'text/javascript','.json':'application/json','.xml':'application/xml','.svg':'image/svg+xml','.png':'image/png','.jpg':'image/jpeg','.jpeg':'image/jpeg'};
 const server=createServer((req,res)=>{

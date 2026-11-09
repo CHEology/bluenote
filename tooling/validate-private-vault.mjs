@@ -47,7 +47,7 @@ for (const field of ['id', 'filename', 'url']) {
   }
 }
 for (const identity of identities) {
-  const path = decodeURIComponent(identity.url).replace(/^\/bluenote\//, '');
+  const path = decodeURIComponent(identity.url).replace(/^\//, '');
   const page = readFileSync(join(publicRoot, path, 'index.html'), 'utf8');
   if (!page.includes(`data-private-post-id="${identity.id}"`)) {
     throw new Error('Generated private post shell is missing or has the wrong identity.');

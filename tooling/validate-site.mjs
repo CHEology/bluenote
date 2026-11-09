@@ -91,7 +91,7 @@ if (!homeCover || !home.includes('rel="preload" as="image" fetchpriority="high" 
   fail('Homepage must preload the same cover that its frame displays');
 }
 const preloadedCover = home.match(/<link rel="preload" as="image"[^>]*href="([^"]+)"/)?.[1];
-if (!preloadedCover?.startsWith('/bluenote/images/')) {
+if (!preloadedCover?.startsWith('/images/')) {
   fail('Preloaded cover must be a site image URL without CSS quoting');
 }
 {
@@ -105,11 +105,11 @@ if (!preloadedCover?.startsWith('/bluenote/images/')) {
     if (!archivePage.includes(title)) fail(`Archive does not contain post title: ${title}`);
   }
 }
-for (const asset of ['/bluenote/css/bluenote.css', '/bluenote/js/bluenote.js', '/bluenote/css/site.css', '/bluenote/js/private.js']) {
+for (const asset of ['/css/bluenote.css', '/js/bluenote.js', '/css/site.css', '/js/private.js']) {
   if (!home.includes(asset)) fail(`Home page does not load asset: ${asset}`);
 }
-if (home.includes('href="/bluenote/links/"')) fail('Home navigation still contains Links');
-if (!home.includes('href="/bluenote/gallery/"')) fail('Home navigation is missing Gallery');
+if (home.includes('href="/links/"')) fail('Home navigation still contains Links');
+if (!home.includes('href="/gallery/"')) fail('Home navigation is missing Gallery');
 if (home.includes('/css/gallery.css') || home.includes('/js/gallery.js')) {
   fail('Gallery assets must not load on the article homepage');
 }
@@ -123,7 +123,7 @@ if (!/<p class="letterbox-dock__line"><span>Dream to be a tranquil spectator\.<\
 if (home.includes('typed.min.js')) {
   fail('The letterbox home shows its slogan whole; typed.js must not load');
 }
-if (!home.includes('/bluenote/fonts/eb-garamond/eb-garamond.css')) {
+if (!home.includes('/fonts/eb-garamond/eb-garamond.css')) {
   fail('EB Garamond is not loaded');
 }
 
@@ -179,7 +179,7 @@ if (archive.includes('posts in total')) fail('Archives page still contains the p
 if (/<div class="masthead"[^>]*style=/.test(archive)) {
   fail('Archives page still contains an image masthead');
 }
-if (archive.includes('href="/bluenote/design/"') || archive.includes('listing__item--entry')) {
+if (archive.includes('href="/design/"') || archive.includes('listing__item--entry')) {
   fail('Archives must contain articles only, without site documentation entries');
 }
 const archiveArticles = (archive.match(/class="listing__item"/g) || []).length;
@@ -207,12 +207,12 @@ if (homeEntries.length !== markdownPosts.length || new Set(homeEntries.map(entry
 }
 const aboutResources = readFileSync(join(publicRoot, 'about/index.html'), 'utf8')
   .match(/<footer class="about-resources">[\s\S]*?<\/footer>/)?.[0] || '';
-if (!aboutResources.includes('href="/bluenote/rss.xml"') || aboutResources.includes('/design/')) {
+if (!aboutResources.includes('href="/rss.xml"') || aboutResources.includes('/design/')) {
   fail('About must keep RSS in its footer, without a Design Doc link');
 }
 
 const tags = readFileSync(join(publicRoot, 'tags', 'index.html'), 'utf8');
-if (!tags.includes('<body class="editorial-page listing-page tags-page">') || !tags.includes('href="/bluenote/tags/%E5%85%B6%E4%BB%96/"')) {
+if (!tags.includes('<body class="editorial-page listing-page tags-page">') || !tags.includes('href="/tags/%E5%85%B6%E4%BB%96/"')) {
   fail('Tags index does not use the editorial listing layout');
 }
 
@@ -226,7 +226,7 @@ if (/<div class="masthead"[^>]*style=/.test(about)) {
 }
 
 const notFound = readFileSync(join(publicRoot, '404.html'), 'utf8');
-if (!notFound.includes('<body class="error-page">') || !notFound.includes('class="site-nav"') || !notFound.includes('href="/bluenote/"')) {
+if (!notFound.includes('<body class="error-page">') || !notFound.includes('class="site-nav"') || !notFound.includes('href="/"')) {
   fail('404 page does not use the theme navigation with a way home');
 }
 
@@ -237,7 +237,7 @@ if (!gallery.includes('<body class="editorial-page gallery-page">') ||
   fail('Gallery must be an independent editorial page');
 }
 for (const asset of ['css/gallery.css', 'js/gallery.js']) {
-  if (!gallery.includes('/bluenote/' + asset)) fail('Gallery asset is missing: ' + asset);
+  if (!gallery.includes('/' + asset)) fail('Gallery asset is missing: ' + asset);
 }
 const allGallery = readFileSync(join(publicRoot, 'gallery/all/index.html'), 'utf8');
 if (!allGallery.includes('<body class="editorial-page gallery-page">') ||
@@ -245,7 +245,7 @@ if (!allGallery.includes('<body class="editorial-page gallery-page">') ||
   fail('Complete Gallery must share the independent editorial layout');
 }
 for (const asset of ['css/gallery.css', 'js/gallery.js']) {
-  if (!allGallery.includes('/bluenote/' + asset)) fail('Complete Gallery asset is missing: ' + asset);
+  if (!allGallery.includes('/' + asset)) fail('Complete Gallery asset is missing: ' + asset);
 }
 const photoCount = (allGallery.match(/data-gallery-open="/g) || []).length;
 if (photoCount !== galleryManifest.photos.length) fail('Gallery must only contain explicitly selected photos');
@@ -310,13 +310,13 @@ for (const htmlFile of htmlFiles) {
   if (retiredDependency.test(dependencySurface) || /fluid|navbar-|mobile-grid|col-lg|nprogress|fancybox|tocbot|anchorjs/i.test(dependencySurface)) {
     fail(`Retired theme dependency referenced in ${name}`);
   }
-  if (!html.includes('data-root="/bluenote/"')) fail(`Site root attribute missing in ${name}`);
+  if (!html.includes('data-root="/"')) fail(`Site root attribute missing in ${name}`);
   if (!html.includes('<meta name="theme-color"')) fail(`theme-color meta missing in ${name}`);
   if (!html.includes('id="bluenote-scheme-boot"')) fail(`Color-scheme boot script missing in ${name}`);
-  if (!/\/bluenote\/css\/bluenote\.css\?v=[0-9a-f]{12}/.test(html) || !/\/bluenote\/js\/bluenote\.js\?v=[0-9a-f]{12}/.test(html)) {
+  if (!/\/css\/bluenote\.css\?v=[0-9a-f]{12}/.test(html) || !/\/js\/bluenote\.js\?v=[0-9a-f]{12}/.test(html)) {
     fail(`Theme assets are not referenced with content versions in ${name}`);
   }
-  for (const [, url, assetPath, version] of html.matchAll(/(?:href|src)="(\/bluenote\/([^"?#]+\.(?:css|js))(?:\?v=([^"#]+))?)"/g)) {
+  for (const [, url, assetPath, version] of html.matchAll(/(?:href|src)="(\/([^"?#]+\.(?:css|js))(?:\?v=([^"#]+))?)"/g)) {
     const target = join(publicRoot, decodeURIComponent(assetPath));
     if (!existsSync(target)) continue; // Reported by the local reference check below.
     if (!assetVersions.has(target)) {
@@ -363,7 +363,7 @@ for (const generatedPost of generatedPosts) {
   });
 }
 
-const localReference = /(?:href|src)=["'](\/bluenote\/[^"'#?]*)/g;
+const localReference = /(?:href|src)=["'](\/(?!\/)[^"'#?]*)/g;
 
 for (const htmlFile of htmlFiles) {
   const html = readFileSync(htmlFile, 'utf8');
@@ -377,7 +377,7 @@ for (const htmlFile of htmlFiles) {
       continue;
     }
 
-    let target = join(publicRoot, decoded.slice('/bluenote/'.length));
+    let target = join(publicRoot, decoded.slice(1));
     if (decoded.endsWith('/')) target = join(target, 'index.html');
     if (!existsSync(target)) {
       fail(`Broken local reference in ${relative(publicRoot, htmlFile)}: ${match[1]}`);
@@ -404,7 +404,7 @@ if (existsSync(join(publicRoot, 'notes/search.json'))) {
     }
   }
 }
-if (!/<a class="about-avatar about-avatar--link" href="\/bluenote\/notes\/" aria-label="Notes">/.test(about)) {
+if (!/<a class="about-avatar about-avatar--link" href="\/notes\/" aria-label="Notes">/.test(about)) {
   fail('The About avatar must be the quiet entrance to Notes');
 }
 for (const htmlFile of htmlFiles) {
@@ -422,7 +422,7 @@ for (const htmlFile of htmlFiles) {
   if (policy === -1 || (firstScript !== -1 && policy > firstScript) || !/connect-src 'self' https:\/\/api\.github\.com;/.test(html)) {
     fail(`Notes page lacks its Content-Security-Policy before the first script: ${name}`);
   }
-  if (!/<script defer src="\/bluenote\/js\/notes-compose\.js\?v=[0-9a-f]{12}" data-repo="CHEology\/bluenote" data-branch="master"/.test(html)) {
+  if (!/<script defer src="\/js\/notes-compose\.js\?v=[0-9a-f]{12}" data-repo="CHEology\/bluenote" data-branch="master"/.test(html)) {
     fail(`Notes page lacks the composer script: ${name}`);
   }
   if (name !== 'notes/index.html' && html.includes('data-notes-composer')) fail(`Only the first notes page has a composer: ${name}`);

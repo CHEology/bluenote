@@ -17,8 +17,8 @@ const mime = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.
 const server = createServer((req, res) => {
   let pathname;
   try { pathname = decodeURIComponent(new URL(req.url, 'http://localhost').pathname); } catch { res.writeHead(400).end(); return; }
-  if (!pathname.startsWith('/bluenote/')) { res.writeHead(404).end(); return; }
-  let file = resolve(root, pathname.slice('/bluenote/'.length));
+  if (!pathname.startsWith('/')) { res.writeHead(404).end(); return; }
+  let file = resolve(root, pathname.slice(1));
   if (file !== root && !file.startsWith(root + sep)) { res.writeHead(404).end(); return; }
   if (existsSync(file) && statSync(file).isDirectory()) file = resolve(file, 'index.html');
   if (!existsSync(file)) { res.writeHead(404).end(); return; }
@@ -37,7 +37,7 @@ const server = createServer((req, res) => {
   if (req.method === 'HEAD') res.end(); else createReadStream(file, { start, end }).pipe(res);
 });
 await new Promise(r => server.listen(0, '127.0.0.1', r));
-const base = `http://127.0.0.1:${server.address().port}/bluenote/`;
+const base = `http://127.0.0.1:${server.address().port}/`;
 const article = base + '2026/09/25/一些想象/';
 const original = readFileSync('source/_posts/一些想象.md', 'utf8').split(/^---\s*$/m)[2].trim().split(/\n\n+/).filter(p => !p.startsWith('<p aria-hidden'));
 

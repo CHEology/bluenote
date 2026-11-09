@@ -19,7 +19,7 @@ const mime = { '.html': 'text/html; charset=utf-8', '.js': 'application/javascri
 let serveFixture = false;
 let servedCiphertexts = 0;
 const server = createServer((request, response) => {
-  const pathname = decodeURIComponent(new URL(request.url, 'http://localhost').pathname).replace(/^\/bluenote\//, '');
+  const pathname = decodeURIComponent(new URL(request.url, 'http://localhost').pathname).replace(/^\//, '');
   if (serveFixture && pathname === 'private/posts.enc.json') {
     servedCiphertexts++;
     response.writeHead(200, {'content-type':'application/json', 'cache-control':'public, max-age=31536000'});
@@ -127,7 +127,7 @@ try {
   await page.locator('[data-private-unlock]').click();
   await submit(password);
   await fixture.waitFor({ state: 'visible' });
-  await page.goto(origin + '/bluenote/archives/' + identity.date.slice(0, 4) + '/', { waitUntil: 'networkidle' });
+  await page.goto(origin + '/archives/' + identity.date.slice(0, 4) + '/', { waitUntil: 'networkidle' });
   await page.locator('[data-private-lock-control][role="button"]').first().click();
   await page.locator('[data-private-lock-confirm-action]').click();
   await page.waitForFunction(() => !localStorage.getItem('bluenote.private-key.v1'));
@@ -170,7 +170,7 @@ try {
   const cachePage = await cacheContext.newPage();
   await cachePage.goto(origin + identity.url, {waitUntil:'networkidle'});
   await cachePage.locator('[data-fixture]').waitFor({state:'visible'});
-  await cachePage.goto(origin + '/bluenote/archives/', {waitUntil:'networkidle'});
+  await cachePage.goto(origin + '/archives/', {waitUntil:'networkidle'});
   await cachePage.goto(origin + identity.url, {waitUntil:'networkidle'});
   await cachePage.locator('[data-fixture]').waitFor({state:'visible'});
   assert.equal(servedCiphertexts, 1, 'Page navigation must reuse cached ciphertext');

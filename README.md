@@ -1,6 +1,6 @@
 # Blue Note
 
-个人博客：<https://bluenote-cheology.pages.dev/bluenote/>
+个人博客：<https://blue-note.pages.dev/>
 
 使用 [Hexo](https://hexo.io/) 与自有主题 [hexo-theme-bluenote](https://github.com/CHEology/hexo-theme-bluenote) 构建，通过 Cloudflare Pages 发布。主题是独立仓库，以 npm 依赖的方式引入（`package.json` 中锁定版本标签）；它不依赖任何前端框架、图标字体或第三方请求，可供其他 Hexo 站点复用。
 

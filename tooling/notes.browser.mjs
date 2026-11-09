@@ -23,7 +23,7 @@ const sealed = sealNotesKey({ token, repo: 'CHEology/bluenote' }, vaultKey(archi
 
 const mime = { '.html': 'text/html; charset=utf-8', '.js': 'application/javascript', '.css': 'text/css', '.json': 'application/json', '.xml': 'text/xml', '.svg': 'image/svg+xml', '.png': 'image/png', '.jpg': 'image/jpeg', '.webp': 'image/webp', '.woff2': 'font/woff2' };
 const server = createServer((request, response) => {
-  const pathname = decodeURIComponent(new URL(request.url, 'http://localhost').pathname).replace(/^\/bluenote\//, '');
+  const pathname = decodeURIComponent(new URL(request.url, 'http://localhost').pathname).replace(/^\//, '');
   let path = join(publicRoot, pathname);
   if (existsSync(path) && statSync(path).isDirectory()) path = join(path, 'index.html');
   if (!existsSync(path)) { response.writeHead(404); response.end(); return; }
@@ -32,7 +32,7 @@ const server = createServer((request, response) => {
 });
 await new Promise((resolve) => server.listen(0, '127.0.0.1', resolve));
 const origin = `http://127.0.0.1:${server.address().port}`;
-const notesUrl = origin + '/bluenote/notes/';
+const notesUrl = origin + '/notes/';
 
 const browser = await chromium.launch({
   executablePath: process.env.BLUE_NOTE_CHROMIUM || undefined,
@@ -172,7 +172,7 @@ try {
   await composer.waitFor({ state: 'visible' });
 
   // Note pages and tag pages get edit controls but no composer.
-  await page.goto(origin + notesIndex[0].url.replace(/^\/bluenote\//, '/bluenote/'), { waitUntil: 'networkidle' });
+  await page.goto(origin + notesIndex[0].url, { waitUntil: 'networkidle' });
   await page.locator('.note__action').first().waitFor();
   assert.equal(await page.locator('.notes-compose').count(), 0);
 

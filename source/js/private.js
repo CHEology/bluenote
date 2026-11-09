@@ -84,7 +84,12 @@
       key,
       bytesFromBase64(bundle.ciphertext)
     );
-    return JSON.parse(new TextDecoder().decode(plain));
+    var payload = JSON.parse(new TextDecoder().decode(plain));
+    // Older archives store URLs with the former project prefix.
+    payload.posts.forEach(function(post) {
+      if (post.permalink) post.url = encodeURI(siteRoot + post.permalink);
+    });
+    return payload;
   }
 
   function normalizedPath(value) {

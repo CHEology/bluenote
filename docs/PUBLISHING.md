@@ -185,7 +185,7 @@ npm run new -- "文章标题"
 npm run server
 ```
 
-浏览 <http://localhost:4000/bluenote/>，至少检查：首页卡片、文章页、移动端窄屏、所有图片、代码块和链接。
+浏览 <http://localhost:4000/>，至少检查：首页卡片、文章页、移动端窄屏、所有图片、代码块和链接。
 
 ## 5. 发布前质量门槛
 
@@ -201,7 +201,7 @@ npm run check
 - 所有预期文章成功生成；
 - 首页能找到文章标题并载入主题与站点样式；
 - 任何页面都不请求第三方 CSS、JavaScript 或字体，也不再引用旧主题依赖；
-- HTML 中指向 `/bluenote/` 的本地资源均存在。
+- HTML 中引用的本地资源均存在。
 
 命令失败时不得发布。先修复首个明确错误，再重新运行完整检查。
 
@@ -237,7 +237,7 @@ git push origin master
 发布完成后验证：
 
 1. GitHub Actions 的 `Build and deploy Blue Note` 工作流成功；
-2. <https://bluenote-cheology.pages.dev/bluenote/> 首页出现新文章；
+2. <https://blue-note.pages.dev/> 首页出现新文章；
 3. 新文章 URL 返回正常页面，图片和样式均加载；
 4. 归档、对应标签和站内搜索能够找到新文章。
 
@@ -339,7 +339,7 @@ Gallery 模块由主题提供，在 `_config.bluenote.yml` 中设置 `gallery.en
 
 ## 11. RSS 订阅
 
-`/bluenote/rss.xml` 提供 RSS 2.0，About 页面底部细横线下的图标与 `RSS` 文字链接为唯一可见订阅入口；站点文档不列入文章归档。订阅只包含公开文章的原有标题、发布日期、description 摘要和原文链接；不读取全文、私密档案或本机私密源文件，不收录 Gallery、About 等页面。
+`/rss.xml` 提供 RSS 2.0，About 页面底部细横线下的图标与 `RSS` 文字链接为唯一可见订阅入口；站点文档不列入文章归档。订阅只包含公开文章的原有标题、发布日期、description 摘要和原文链接；不读取全文、私密档案或本机私密源文件，不收录 Gallery、About 等页面。
 
 生成器同时检查私密标记、私密 ID 和公开私密清单中的文件名／网址；清单缺失或损坏时构建失败。私密文章的新增、修改、删除均不改变 RSS 内容；文件没有构建时间、私密更新时间或私密条目占位，文章 GUID 使用稳定原文网址。`npm run check` 包含 RSS 隔离与内容稳定性测试。
 

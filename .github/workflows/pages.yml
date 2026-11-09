@@ -44,18 +44,14 @@ jobs:
           CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
         run: |
           set -eu
-          stage="$RUNNER_TEMP/cloudflare-site"
-          mkdir -p "$stage"
-          mv public "$stage/bluenote"
-          cp "$stage/bluenote/404.html" "$stage/404.html"
-          printf '/ /bluenote/ 302\n' > "$stage/_redirects"
-          printf '%s\n' "$GITHUB_SHA" > "$stage/bluenote/revision.txt"
-          npx --yes wrangler@4.159.0 pages deploy "$stage" --project-name bluenote-cheology --branch master --commit-hash "$GITHUB_SHA"
+          printf '%s\n' "$GITHUB_SHA" > public/revision.txt
+          printf '/bluenote / 301\n/bluenote/* /:splat 301\n' > public/_redirects
+          npx --yes wrangler@4.159.0 pages deploy public --project-name blue-note --branch master --commit-hash "$GITHUB_SHA"
 
       - name: Verify the published revision
         if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
         run: |
-          url="https://bluenote-cheology.pages.dev/bluenote/revision.txt?v=$GITHUB_SHA"
+          url="https://blue-note.pages.dev/revision.txt?v=$GITHUB_SHA"
           for attempt in {1..30}; do
             if [[ "$(curl -fsS --max-time 5 "$url")" == "$GITHUB_SHA" ]]; then exit 0; fi
             sleep 2

@@ -8,8 +8,8 @@ const mime = {'.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css'
 const server = createServer((req, res) => {
   try {
     const pathname = decodeURIComponent(new URL(req.url, 'http://localhost').pathname);
-    assert(pathname.startsWith('/bluenote/'));
-    let file = resolve(publicDir, pathname.slice('/bluenote/'.length));
+    assert(pathname.startsWith('/'));
+    let file = resolve(publicDir, pathname.slice(1));
     assert(file === publicDir || file.startsWith(publicDir + sep));
     if (statSync(file).isDirectory()) file = join(file, 'index.html');
     let content = readFileSync(file);
@@ -19,7 +19,7 @@ const server = createServer((req, res) => {
   } catch { res.writeHead(404); res.end(); }
 });
 await new Promise(r => server.listen(0, '127.0.0.1', r));
-const url = (process.env.BLUE_NOTE_ORIGIN || 'http://127.0.0.1:' + server.address().port) + '/bluenote/';
+const url = (process.env.BLUE_NOTE_ORIGIN || 'http://127.0.0.1:' + server.address().port) + '/';
 try {
   for (const [name, engine] of Object.entries({chromium, webkit})) {
     const browser = await engine.launch();

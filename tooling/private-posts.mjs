@@ -26,7 +26,7 @@ const privatePostsRoot = join(projectRoot, '.private-posts');
 const encryptedArchivePath = join(projectRoot, 'source', 'private', 'posts.enc.json');
 const publicManifestPath = join(projectRoot, 'source', 'private', 'posts.public.json');
 const iterations = 600000;
-const siteRoot = '/bluenote/';
+const siteRoot = '/';
 
 function base64(value) {
   return Buffer.from(value).toString('base64');

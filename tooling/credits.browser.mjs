@@ -8,7 +8,7 @@ mkdirSync(shots,{recursive:true});
 const mime={'.html':'text/html','.css':'text/css','.js':'text/javascript','.jpg':'image/jpeg','.png':'image/png','.woff2':'font/woff2','.xml':'application/xml','.json':'application/json','.svg':'image/svg+xml'};
 const server=createServer((req,res)=>{
  const pathname=decodeURIComponent(new URL(req.url,'http://localhost').pathname);
- let file=resolve(root,'public',pathname.replace(/^\/bluenote\//,''));
+ let file=resolve(root,'public',pathname.replace(/^\//,''));
  if(file!==join(root,'public')&&!file.startsWith(join(root,'public')+'/')){res.writeHead(404);res.end();return;}
  if(existsSync(file)&&statSync(file).isDirectory())file=join(file,'index.html');
  if(!existsSync(file)){res.writeHead(404);res.end();return;}
@@ -53,7 +53,7 @@ for(const [engine,browserType] of (process.env.BLUE_NOTE_ENGINE==='webkit'?[['we
   const p=await browser.newPage({viewport:{width:w,height:h},colorScheme:scheme});
   p.on('pageerror',e=>errors.push(e.message));
   for(const path of paths){
-   await p.goto(origin+'/bluenote/'+path);await p.evaluate(()=>document.fonts.ready);await p.evaluate(()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r))));await p.waitForTimeout(150);
+   await p.goto(origin+'/'+path);await p.evaluate(()=>document.fonts.ready);await p.evaluate(()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r))));await p.waitForTimeout(150);
    const nav=await box(p,'.site-nav'),brand=await box(p,'.site-nav__brand');
    const dockFixed=await p.evaluate(()=>matchMedia('(min-width: 768px) and (min-height: 521px)').matches);
    assert.equal(nav.y,0);assert.equal(nav.h,dockFixed?88:64,`${engine} ${w} ${path}: initial navigation height`);
@@ -124,7 +124,7 @@ for(const [engine,browserType] of (process.env.BLUE_NOTE_ENGINE==='webkit'?[['we
    ['2023/11/19/秋之纽约-2023-11/','.markdown-body img','[data-lightbox-close]'],
    ['2026/09/27/小蓝本/','[data-private-unlock]','[data-private-close]']
   ]){
-   await p.goto(origin+'/bluenote/'+path);await p.evaluate(()=>document.fonts.ready);
+   await p.goto(origin+'/'+path);await p.evaluate(()=>document.fonts.ready);
    const button=p.locator(trigger).first();await button.scrollIntoViewIfNeeded();await p.waitForTimeout(100);
    const before=await box(p,'.page-body'),nav=await box(p,'.site-nav'),y=await p.evaluate(()=>scrollY);
    await button.click();await p.locator(close).waitFor({state:'visible'});await p.mouse.wheel(0,220);await p.waitForTimeout(100);
@@ -137,7 +137,7 @@ for(const [engine,browserType] of (process.env.BLUE_NOTE_ENGINE==='webkit'?[['we
  }
  results.push(`${engine}: Gallery, article images and private unlock overlays freeze and restore the background`);
  // Long/future lists, natural wrapping, private metadata visibility and text zoom.
- const p=await browser.newPage({viewport:{width:390,height:844}});await p.goto(origin+'/bluenote/');
+ const p=await browser.newPage({viewport:{width:390,height:844}});await p.goto(origin+'/');
  await p.evaluate(()=>{const list=document.querySelector('.letterbox-year__list'),entry=list.firstElementChild;
   for(let i=0;i<45;i++){const clone=entry.cloneNode(true);clone.querySelector('.letterbox-entry__title').textContent='长标题与英文 LongUnbrokenTitle'.repeat(4)+i;list.appendChild(clone);}
  });
@@ -148,7 +148,7 @@ for(const [engine,browserType] of (process.env.BLUE_NOTE_ENGINE==='webkit'?[['we
  await p.evaluate(()=>document.documentElement.classList.add('private-reading-unlocked'));assert.equal(await p.locator('.letterbox-entry:visible').count(),totalCount+45);
  await checkCreditsAxis(p);
  await p.close();
- const n=await browser.newPage({javaScriptEnabled:false,viewport:{width:390,height:844}});await n.goto(origin+'/bluenote/');
+ const n=await browser.newPage({javaScriptEnabled:false,viewport:{width:390,height:844}});await n.goto(origin+'/');
  assert.equal(await n.locator('.letterbox-entry:visible').count(),publicCount);assert(await n.locator('.letterbox-dock').isVisible());await n.close();
  results.push(`${engine}: 45 extra long entries, 200% text, privacy gating and no-script fallback`);
  }finally{await browser.close();}
