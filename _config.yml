@@ -9,7 +9,7 @@ author: 陆城
 language: en
 timezone: America/New_York
 
-url: https://cheology.github.io/bluenote
+url: https://bluenote-cheology.pages.dev/bluenote
 root: /bluenote/
 permalink: :year/:month/:day/:title/
 permalink_defaults:

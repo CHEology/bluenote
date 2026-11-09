@@ -232,12 +232,12 @@ git commit -m "Publish <文章标题>"
 git push origin master
 ```
 
-推送 `master` 后 GitHub Actions 自动执行 `npm ci`、构建、验证和 Pages 部署。无需运行 `hexo deploy`，也不要提交 `public/`。
+推送 `master` 后 GitHub Actions 自动执行 `npm ci`、构建、验证和 Cloudflare Pages 增量部署。无需运行 `hexo deploy`，也不要提交 `public/`。
 
 发布完成后验证：
 
 1. GitHub Actions 的 `Build and deploy Blue Note` 工作流成功；
-2. <https://cheology.github.io/bluenote/> 首页出现新文章；
+2. <https://bluenote-cheology.pages.dev/bluenote/> 首页出现新文章；
 3. 新文章 URL 返回正常页面，图片和样式均加载；
 4. 归档、对应标签和站内搜索能够找到新文章。
 
@@ -266,11 +266,11 @@ git revert <problem-commit>
 git push origin master
 ```
 
-回滚推送同样会触发自动构建和部署。不要删除 Git 历史，也不要手动替换 GitHub Pages 上的文件。
+回滚推送同样会触发自动构建和部署。不要删除 Git 历史，也不要手动替换 Cloudflare Pages 上的文件。
 
 ## 9. 私密文章
 
-私密文章仍使用一个仓库和 GitHub Pages，不依赖数据库。公开仓库中只保存 AES-256-GCM 加密后的文章档案；可读的 Markdown 临时保存在本机 `.private-posts/`，该目录不会被 Git 提交。
+私密文章仍使用一个仓库和 Cloudflare Pages，不依赖数据库。公开仓库中只保存 AES-256-GCM 加密后的文章档案；可读的 Markdown 临时保存在本机 `.private-posts/`，该目录不会被 Git 提交。
 
 将一篇公开文章转为私密文章：
 

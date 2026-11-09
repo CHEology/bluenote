@@ -158,12 +158,13 @@
   function watch(sha, update) {
     var started = Date.now();
     var runId = null;
+    var workflow = '/repos/' + cfg.repo + '/actions/workflows/pages.yml/runs';
     function finish(state, link) { update(state, link); }
     function poll() {
       if (Date.now() - started > 15 * 60 * 1000) return finish('slow');
       var path = runId
         ? '/repos/' + cfg.repo + '/actions/runs/' + runId
-        : '/repos/' + cfg.repo + '/actions/runs?head_sha=' + sha + '&per_page=5';
+        : workflow + '?event=push&head_sha=' + sha + '&per_page=1';
       api('GET', path).then(function(data) {
         var run = runId ? data : (data.workflow_runs || [])[0];
         if (!run) return window.setTimeout(poll, 6000);
@@ -174,14 +175,22 @@
         }
         if (run.conclusion === 'success') return finish('live');
         if (run.conclusion === 'cancelled') {
-          return api('GET', '/repos/' + cfg.repo + '/actions/runs?branch=' + encodeURIComponent(cfg.branch) + '&event=push&per_page=1').then(function(latest) {
+          return api('GET', workflow + '?branch=' + encodeURIComponent(cfg.branch) + '&event=push&per_page=1').then(function(latest) {
             var next = (latest.workflow_runs || [])[0];
             if (next && next.id !== run.id) { runId = next.id; return window.setTimeout(poll, 8000); }
             finish('failed', run.html_url);
           });
         }
         finish('failed', run.html_url);
-      }).catch(function() { finish('saved'); });
+      }).catch(function() {
+        // The posting token may have Contents access without Actions access.
+        fetch(new URL('../revision.txt', script.src), { cache: 'no-store' }).then(function(response) {
+          return response.ok ? response.text() : '';
+        }).then(function(revision) {
+          if (revision.trim() === sha) finish('live');
+          else window.setTimeout(poll, 8000);
+        }).catch(function() { window.setTimeout(poll, 8000); });
+      });
     }
     update('building');
     window.setTimeout(poll, 5000);

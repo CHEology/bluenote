@@ -52,7 +52,7 @@ async function prepare(context) {
     const entry = { method: request.method(), path: url.pathname, search: url.search, auth: request.headers().authorization, body: request.postData() ? JSON.parse(request.postData()) : null };
     github.push(entry);
     const json = (body, status = 200) => route.fulfill({ status, contentType: 'application/json', headers: { 'access-control-allow-origin': '*' }, body: JSON.stringify(body) });
-    if (url.pathname.includes('/actions/runs')) {
+    if (url.pathname.includes('/actions/runs') || url.pathname.endsWith('/actions/workflows/pages.yml/runs')) {
       polls += 1;
       const run = { id: 7, status: polls < 2 ? 'in_progress' : 'completed', conclusion: polls < 2 ? null : 'success', html_url: 'https://github.com/run/7' };
       return json(url.pathname.endsWith('/7') ? run : { workflow_runs: [run] });
