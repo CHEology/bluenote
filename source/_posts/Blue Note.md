@@ -1,6 +1,5 @@
 ---
 title: Blue Note
-permalink: 2023/07/31/小蓝本/
 date: 2023-07-31 21:00:00
 updated: 2023-07-31 22:50:22
 tags:

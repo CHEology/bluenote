@@ -17,6 +17,7 @@ import {
 import { basename, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import frontMatter from 'hexo-front-matter';
+import hexoUtil from 'hexo-util';
 import { resealNotesKey } from './lib/notes-key.mjs';
 import { marked } from 'marked';
 
@@ -60,9 +61,10 @@ export function serializePrivatePost(filename, raw) {
   const dateValue = rawFrontMatterValue(raw, 'date');
   const updatedValue = rawFrontMatterValue(raw, 'updated') || dateValue;
   const date = dateValue ? dateValue.split(/[ T]/)[0] : normalizedDate(parsed.date);
-  const permalink = parsed.permalink
-    ? String(parsed.permalink).replace(/^\/+|\/+$/g, '') + '/'
-    : [date.replace(/-/g, '/'), String(parsed.slug || filename.replace(/\.md$/, ''))].join('/') + '/';
+  const explicit = String(parsed.permalink || '').replace(/^\/+|\/+$/g, '');
+  const permalink = (explicit && !/^\d{4}\/\d{2}\/\d{2}\//.test(explicit)
+    ? explicit
+    : hexoUtil.slugize(String(parsed.title), { transform: 1 })) + '/';
 
   return {
     id: postId(filename),

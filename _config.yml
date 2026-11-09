@@ -11,7 +11,7 @@ timezone: America/New_York
 
 url: https://blue-note.pages.dev
 root: /
-permalink: :year/:month/:day/:title/
+permalink: :post_title/
 permalink_defaults:
 pretty_urls:
   trailing_index: false
@@ -76,6 +76,7 @@ search:
 
 include:
   - .nojekyll
+  - _redirects
 
 deploy:
   type: ""

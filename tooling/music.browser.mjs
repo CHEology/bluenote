@@ -38,7 +38,7 @@ const server = createServer((req, res) => {
 });
 await new Promise(r => server.listen(0, '127.0.0.1', r));
 const base = `http://127.0.0.1:${server.address().port}/`;
-const article = base + '2026/09/25/一些想象/';
+const article = base + '一些想象/';
 const original = readFileSync('source/_posts/一些想象.md', 'utf8').split(/^---\s*$/m)[2].trim().split(/\n\n+/).filter(p => !p.startsWith('<p aria-hidden'));
 
 // Hold the actual player script across several paints to reproduce cold entry

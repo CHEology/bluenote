@@ -85,9 +85,11 @@
       bytesFromBase64(bundle.ciphertext)
     );
     var payload = JSON.parse(new TextDecoder().decode(plain));
-    // Older archives store URLs with the former project prefix.
+    // The public manifest tracks current URLs even for archives encrypted before a move.
     payload.posts.forEach(function(post) {
-      if (post.permalink) post.url = encodeURI(siteRoot + post.permalink);
+      var current = manifest.posts.find(function(entry) { return entry.id === post.id; });
+      if (current) post.url = current.url;
+      else if (post.permalink) post.url = encodeURI(siteRoot + post.permalink);
     });
     return payload;
   }

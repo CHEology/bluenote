@@ -45,7 +45,6 @@ jobs:
         run: |
           set -eu
           printf '%s\n' "$GITHUB_SHA" > public/revision.txt
-          printf '/bluenote / 301\n/bluenote/* /:splat 301\n' > public/_redirects
           npx --yes wrangler@4.159.0 pages deploy public --project-name blue-note --branch master --commit-hash "$GITHUB_SHA"
 
       - name: Verify the published revision

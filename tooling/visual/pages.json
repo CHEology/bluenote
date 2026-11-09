@@ -340,7 +340,7 @@
     },
     {
       "key": "post-text",
-      "path": "/2026/09/02/%E8%BF%91%E6%9C%9F%E9%9A%8F%E6%83%B3/",
+      "path": "/0902-%E9%9A%8F%E6%83%B3/",
       "editorial": true,
       "keys": [
         "postContent",
@@ -360,7 +360,7 @@
     },
     {
       "key": "post-zato",
-      "path": "/2026/08/27/Z.A.T.O-%E9%9A%8F%E6%83%B3/",
+      "path": "/z-a-t-o-%E9%9A%8F%E6%83%B3/",
       "editorial": true,
       "keys": [
         "postContent",
@@ -381,7 +381,7 @@
     },
     {
       "key": "post-story",
-      "path": "/2023/09/26/%E5%B8%83%E6%B6%85%E6%98%9F/",
+      "path": "/%E5%B8%83%E6%B6%85%E6%98%9F/",
       "editorial": true,
       "keys": [
         "postContent",
@@ -403,7 +403,7 @@
     },
     {
       "key": "post-photo",
-      "path": "/2023/11/19/%E7%A7%8B%E4%B9%8B%E7%BA%BD%E7%BA%A6-2023-11/",
+      "path": "/%E7%A7%8B%E4%B9%8B%E7%BA%BD%E7%BA%A6-2023-11/",
       "editorial": true,
       "keys": [
         "postContent",
@@ -425,7 +425,7 @@
     },
     {
       "key": "post-private",
-      "path": "/2023/07/31/%E5%B0%8F%E8%93%9D%E6%9C%AC/",
+      "path": "/blue-note/",
       "editorial": true,
       "keys": [
         "postContent",
@@ -442,7 +442,7 @@
     },
     {
       "key": "post-menu",
-      "path": "/2026/09/02/%E8%BF%91%E6%9C%9F%E9%9A%8F%E6%83%B3/",
+      "path": "/0902-%E9%9A%8F%E6%83%B3/",
       "viewports": [
         "mobile"
       ],

@@ -40,9 +40,9 @@ const required = [
   'private/posts.enc.json',
   'private/posts.public.json',
   'local-search.xml',
-  '2023/07/31/小蓝本/index.html',
-  '2023/09/26/布涅星/index.html',
-  '2023/11/19/秋之纽约-2023-11/index.html'
+  'blue-note/index.html',
+  '布涅星/index.html',
+  '秋之纽约-2023-11/index.html'
 ];
 
 for (const path of required) {
